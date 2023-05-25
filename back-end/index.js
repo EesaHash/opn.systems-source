@@ -6,8 +6,8 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 app.use(express.json());
 
-// APIs CONTROLLERS
-
+// ACCOUNT APIs CONTROLLERS
+app.use("/api/login", require("./controllers/accountController/loginController"));
 
 app.listen(PORT, () => {
     console.log(`Server listening on ${PORT}`);
@@ -15,3 +15,4 @@ app.listen(PORT, () => {
 app.on('error', (err) => {
     console.log(err.message);
 });
+
