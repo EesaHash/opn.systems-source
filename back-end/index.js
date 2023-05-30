@@ -6,6 +6,9 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 app.use(express.json());
 
+// ===== CONNECTION TO DATABASE =====
+require("./controllers/accountController/connectDatabase").connectDatabase();
+
 // ACCOUNT APIs CONTROLLERS
 app.use("/api/login", require("./controllers/accountController/loginController"));
 
