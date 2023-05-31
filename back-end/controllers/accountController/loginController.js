@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const connection = require("./connectDatabase.js").connection;
+const { connection } = require("./connectDatabase");
 
 router.post("/", async (req, res) => {
     try{
