@@ -5,6 +5,36 @@ import { Header } from "./header/components/Header";
 import { SignUp } from "./account/components/SignUp";
 import { SignIn } from "./account/components/SignIn";
 
+export const getUserID = _ => {
+  let token;
+  if (localStorage.getItem("rememberMe") === "true")
+    token = localStorage.getItem("u");
+  else
+    token = sessionStorage.getItem("u");
+  return fetch("/api/authenticatelogin", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      token: token
+    })
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      return String(data.userID);
+    })
+    .catch(error => {
+      console.log(error);
+      return "none";
+    });
+};
+export const logOut = _ => {
+  sessionStorage.removeItem("u");
+  localStorage.removeItem("u");
+  localStorage.removeItem("rememberMe");
+};
+
 function App() {
   return (
     <div className="App">
