@@ -18,7 +18,7 @@ const sendEmailConfirmation = (email) => {
         const mailContent = {
             from: process.env.EMAIL_USERNAME,
             to: email,
-            subject: "Subject Recommendation Forget Password",
+            subject: "OPN.SYSTEM EMAIL VERIFICATION",
             html: `Please click the following link to activate your account (the link will only be available for 60 minutes): <a href="${url}">${url}</a>`
         };
         transporter.sendMail(mailContent, (error, info) => {

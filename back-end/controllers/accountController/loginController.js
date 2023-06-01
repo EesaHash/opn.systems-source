@@ -6,7 +6,8 @@ const { sendEmailConfirmation } = require("../emailController/emailSenderControl
 router.post("/", async (req, res) => {
     try{
         const {username, password, rememberMe} = req.body;
-        const user  = await getUser(username)[0];
+        let user  = await getUser(username);
+        user = user[0];
 
         // Check account existence
         if(!user){
