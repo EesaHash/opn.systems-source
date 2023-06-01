@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { connection } = require("./connectDatabase");
+const { sendEmailConfirmation } = require("../emailController/emailSenderController");
 
 router.post("/", async (req, res) => {
     try{
@@ -22,6 +23,16 @@ router.post("/", async (req, res) => {
             return res.status(400).json({
                 status: false,
                 message: "Invalid username/email address and/or password!"
+            });
+        }
+
+        // Check account's activations status and send email verification if it is not active
+        if(Number(user.email_confirmation) === 0){
+            console.log("Non-active account, email verification required!");
+            sendEmailConfirmation((user.email));
+            return res.status(400).json({
+                status: false,
+                message: "Your account is not yet active. Please verify your email to activate your account via the link sent in your email!"
             });
         }
 
