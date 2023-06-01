@@ -1,12 +1,12 @@
-# ** opn.systems-source **
+# **opn.systems-source**
 - OpnSystems Code Repository
 
-## ** Technology required to be installed: **
+## **Technology required to be installed:**
 ### > 1. NPM
 ### > 2. Node
 ### > 3. Nodemon (optional)
 
-## ** Step by Step to Execute the Program Locally **
+## **Step by Step to Execute the Program Locally**
 ### - If you have not cloned the repository yet:
 #### > 1.1. Open Terminal
 #### > 1.2. Direct it to your desired location where you want the project's folder to be saved (cd path)
