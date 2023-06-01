@@ -5,7 +5,15 @@ const { sendEmailConfirmation } = require("../emailController/emailSenderControl
 
 router.post("/", async (req, res) => {
     try{
-        const {email, password, firstName, lastName, contactNumber, dob} = req.body;
+        const {username, email, password, firstName, lastName, contactNumber, dob} = req.body;
+
+        // Check for existing username
+        if(await isExisted("username", String(username).toLowerCase())){
+            return res.status(400).json({
+                status: false,
+                message: "Email already exists, please choose another email!"
+            });
+        }
         // Check for existing email
         if(await isExisted("email_address", String(email).toLowerCase())){
             return res.status(400).json({
@@ -40,11 +48,12 @@ router.post("/", async (req, res) => {
 });
 module.exports = router;
 
-const createAccount = async (email, password, firstName, lastName, contactNumber, dob) => {
+const createAccount = async (username, email, password, firstName, lastName, contactNumber, dob) => {
     try{
         const userID = await generateID(accountType);
         const user = {
             user_id: String(userID).toUpperCase(),
+            username: String(username).toUpperCase(),
             email_address: String(email).toLowerCase(),
             password: password,
             first_name: firstName,
@@ -52,7 +61,7 @@ const createAccount = async (email, password, firstName, lastName, contactNumber
             contact_number: contactNumber,
             dob: new Date(dob).toLocaleDateString('en-AU', {day: "numeric", month: "short", year: "numeric"})
         };
-        const sql  = `INSERT INTO user_t VALUES ('${user.user_id}', '${user.email_address}', '${password}', '${user.first_name}', '${user.last_name}', '${user.contact_number}', '${dob}');`;
+        const sql  = `INSERT INTO user_t VALUES ('${user.user_id}', '${user.username}', '${user.email_address}', '${password}', '${user.first_name}', '${user.last_name}', '${user.contact_number}', '${dob}', 0);`;
         return new Promise((resolve, reject) => {
             connection.query(sql, async (err) => {
                 if(err){
