@@ -13,6 +13,7 @@ require("./controllers/accountController/connectDatabase").connectDatabase();
 app.use("/api/login", require("./controllers/accountController/loginController"));
 app.use("/api/signup", require("./controllers/accountController/registrationController"));
 app.use("/api/authenticatelogin", require("./controllers/accountController/AuthenticateLoginController"));
+app.use("/confirmation", require("./controllers/emailController/emailConfirmationController"));
 
 app.listen(PORT, () => {
     console.log(`Server listening on ${PORT}`);

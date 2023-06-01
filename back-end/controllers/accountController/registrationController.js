@@ -1,6 +1,7 @@
 const express = require ("express");
 const router = express.Router();
-const connection = require("./connectDatabase.js").connection;
+const { connection } = require("./connectDatabase");
+const { sendEmailConfirmation } = require("../emailController/emailSenderController");
 
 router.post("/", async (req, res) => {
     try{
@@ -20,6 +21,10 @@ router.post("/", async (req, res) => {
                 message: "Failed to create new user!"
             });
         }
+
+        // Send Email Verification
+        sendEmailConfirmation(email);
+
         return res.status(200).json({
             status: true,
             user: user,

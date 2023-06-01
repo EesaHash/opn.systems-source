@@ -13,6 +13,7 @@
     "dotenv": "^16.1.0",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.0",
+    "nodemailer": "^6.9.3",
     "path": "^0.12.7",
     "pg": "^8.11.0",
     "Router": "^2.1.0"
