@@ -23,7 +23,7 @@ const sendEmailConfirmation = (email) => {
         };
         transporter.sendMail(mailContent, (error, info) => {
             if(error) console.log(error);
-            else console.log(info.response);
+            else console.log(`Successfully sent email verification to ${email}`);
         });
     }catch(error){
         console.log(error);

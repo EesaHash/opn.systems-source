@@ -6,16 +6,16 @@ const { transporter } = require("../emailController/emailSenderController");
 router.post("/", async (req, res) => {
     try{
         const {email} = req.body;
-        // let user  = await getUser(email);
-        // user = user[0];
+        let user  = await getUser(email);
+        user = user[0];
 
         // Check email input
-        // if(!user){
-        //     return res.status(400).json({
-        //         status: false,
-        //         message: "Unregistered email address"
-        //     });
-        // }
+        if(!user){
+            return res.status(400).json({
+                status: false,
+                message: "Unregistered email address"
+            });
+        }
         // Send forget password link
         sendEmail(String(email).toLowerCase(), "pass");
         return res.status(200).json({
@@ -58,7 +58,7 @@ const sendEmail = (email, password) => {
         };
         transporter.sendMail(mailContent, (error, info) => {
             if(error) console.log(error);
-            else console.log(info.response);
+            else console.log(`Successfully sent forget password email to ${email}`);
         });
     }catch(error){
         console.log(error);
