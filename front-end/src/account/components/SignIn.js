@@ -68,7 +68,7 @@ export const SignIn = _ => {
                             <div className="user-authentication-input">
                                 <div>
                                     <label html="password">Password</label>
-                                    <button className="forgot-password" href="#forgotpassword" onClick={forgetPassword} >Forget your password?</button>
+                                    <a className="forgot-password" href="/forgotpassword" >Forget your password?</a>
                                 </div>
                                 <input type="password" id ="password" onKeyPress={handleKeypress} />
                             </div>
@@ -88,25 +88,4 @@ export const SignIn = _ => {
             </div> 
         </div>
     );
-};
-
-const forgetPassword = _ => {
-    try{
-        const email = document.getElementById("email").value;
-        fetch("/api/forgetpassword", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                email: email
-            })
-        })
-            .then((res) => {return res.json(); })
-            .then((data) => {
-                alert(data.message);
-            });
-    }catch(error){
-        console.log(error);
-    }
 };

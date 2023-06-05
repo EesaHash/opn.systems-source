@@ -5,6 +5,7 @@ import { Header } from "./header/components/Header";
 import { SignUp } from "./account/components/SignUp";
 import { SignIn } from "./account/components/SignIn";
 import { Dashboard } from "./dashboard/component/Dashboard";
+import { ForgotPassword } from "./account/components/ForgotPassword";
 
 export const getUserID = _ => {
   let token;
@@ -50,8 +51,8 @@ function App() {
         <Route path="/signup" element={<Header/>} >
           <Route path="" element={<SignUp/>}/>
         </Route>
-        <Route path="/test" element={<Header/>} >
-          <Route path="" element={<SignUp/>}/>
+        <Route path="/forgotpassword" element={<Header/>} >
+          <Route path="" element={<ForgotPassword/>}/>
         </Route>
       </Routes>
     </div>
