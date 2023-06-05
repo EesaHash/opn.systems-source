@@ -79,7 +79,9 @@ $input-font: #b0bac9;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: $page-color;
+    // background-color: $page-color;
+    background-image: url("../../../public/opnwallpaper.jpg");
+    background-size: auto;
 
    & .cover{
         background-color: $cover-color;

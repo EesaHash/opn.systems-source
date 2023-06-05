@@ -63,7 +63,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #171B21;
+  background-image: url("../../../public/opnwallpaper.jpg");
+  background-size: auto;
 }
 .page .cover {
   background-color: #21252B;
