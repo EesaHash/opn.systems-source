@@ -1,9 +1,10 @@
-import React, {useState} from "react";
+import React from "react";
 import "./style/index.css";
 import { Routes, Route } from "react-router-dom";
 import { Header } from "./header/components/Header";
 import { SignUp } from "./account/components/SignUp";
 import { SignIn } from "./account/components/SignIn";
+import { Dashboard } from "./dashboard/component/Dashboard";
 
 export const getUserID = _ => {
   let token;
@@ -41,7 +42,7 @@ function App() {
     <div className="App">
       <Routes>
         <Route path="*" element={<Header/>} >
-          <Route path="" element={<SignIn/>}/>
+          <Route path="" element={<Dashboard/>}/>
         </Route>
         <Route path="/signin" element={<Header/>} >
           <Route path="" element={<SignIn/>}/>

@@ -3,7 +3,7 @@ $cover-color: #21252B;
 $primary-color-malibu: #7DC8F7;
 $input-color: #1A1E23;
 $input-border: #39424C;
-$input-font: #8c9fc1;
+$input-font: #b0bac9;
 
 .user-authentication{
     text-align: center;
@@ -103,4 +103,11 @@ $input-font: #8c9fc1;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.checkbox{
+    text-align: center;
+    & input{
+        height: 14px;
+    }
 }

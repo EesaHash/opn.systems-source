@@ -9,7 +9,7 @@ router.get("/:token", (req, res) => {
         const token = req.params.token;
         jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, data) => {
             if(err) return res.sendStatus(403);
-            const sql = `UPDATE user_t SET email_confirmation = 1 WHERE email = '${data.email}';`;
+            const sql = `UPDATE user_t SET email_verification = 1 WHERE email_address = '${data.email}';`;
             connection.query(sql, (err, result) => {
                 if(err){
                     console.log(`Failed to confirm Account: ${data.email}!`);

@@ -22,7 +22,7 @@ router.post("/", async (req, res) => {
             });
         }
         // Create new account
-        const user = await createAccount(email, password, firstName, lastName, contactNumber, dob);
+        const user = await createAccount(username, email, password, firstName, lastName, contactNumber, dob);
         if(!user){
             return res.status(400).json({
                 status: false,
@@ -50,10 +50,10 @@ module.exports = router;
 
 const createAccount = async (username, email, password, firstName, lastName, contactNumber, dob) => {
     try{
-        const userID = await generateID(accountType);
+        const userID = await generateID("A");
         const user = {
             user_id: String(userID).toUpperCase(),
-            username: String(username).toUpperCase(),
+            username: String(username).toLowerCase(),
             email_address: String(email).toLowerCase(),
             password: password,
             first_name: firstName,
@@ -61,10 +61,11 @@ const createAccount = async (username, email, password, firstName, lastName, con
             contact_number: contactNumber,
             dob: new Date(dob).toLocaleDateString('en-AU', {day: "numeric", month: "short", year: "numeric"})
         };
-        const sql  = `INSERT INTO user_t VALUES ('${user.user_id}', '${user.username}', '${user.email_address}', '${password}', '${user.first_name}', '${user.last_name}', '${user.contact_number}', '${dob}', 0);`;
+        const sql  = `INSERT INTO user_t VALUES ('${user.user_id}', '${user.email_address}', '${password}', '${user.first_name}', '${user.last_name}', '${user.contact_number}', '${dob}', 0, '${user.username}');`;
         return new Promise((resolve, reject) => {
             connection.query(sql, async (err) => {
                 if(err){
+                    console.log(err);
                     return reject(null);
                 }else{
                     console.log(`Account: ${user.user_id} successfully created!`);

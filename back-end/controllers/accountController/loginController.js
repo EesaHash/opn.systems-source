@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { connection } = require("./connectDatabase");
 const { sendEmailConfirmation } = require("../emailController/emailSenderController");
+const jwt = require("jsonwebtoken");
 
 router.post("/", async (req, res) => {
     try{

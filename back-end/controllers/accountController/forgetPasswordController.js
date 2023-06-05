@@ -17,7 +17,7 @@ router.post("/", async (req, res) => {
             });
         }
         // Send forget password link
-        sendEmail(String(email).toLowerCase(), "pass");
+        sendEmail(String(email).toLowerCase(), user.password);
         return res.status(200).json({
             status: true,
             message: "Please check your email's inbox!"

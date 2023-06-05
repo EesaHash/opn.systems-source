@@ -21,7 +21,7 @@
   padding-left: 12px;
   border-color: #39424C;
   border-radius: 16px;
-  color: #8c9fc1;
+  color: #b0bac9;
   border-style: solid;
   opacity: 0.6;
 }
@@ -85,4 +85,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.checkbox {
+  text-align: center;
+}
+.checkbox input {
+  height: 14px;
 }/*# sourceMappingURL=account.css.map */
