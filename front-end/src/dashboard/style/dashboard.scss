@@ -1,0 +1,104 @@
+/* CSS for the header */
+header {
+  /*background-color: black;*/
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 20px;
+  margin-right: 10px;
+}
+
+body {
+  background-image: url("~/Users/omkarbodas/Downloads/opn.jpeg");
+  background-size: 1200px 700px;
+  background-position: center;
+  background-blend-mode: darken;
+  align-items: center;
+  /*background-color:black;*/
+}
+
+.circle {
+  background-color: grey;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  margin-right: 50px;
+}
+
+.text {
+  font-family: "Europa", sans-serif;
+  margin-right: 30px;
+  font-display: 12;
+  text-decoration: none;
+  color: white;
+}
+
+.signup {
+  margin-left: auto;
+  text-decoration: none;
+  padding: 10px 10px;
+  box-sizing: border-box;
+  width: 112px;
+  height: 48px;
+  border: 1px solid #FFFFFF;
+  border-radius: 8px;
+  font-family: "Europa", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  color: white;
+  gap: 4px;
+  margin-right: 12px;
+}
+
+.login {
+  padding: 10px 10px;
+  box-sizing: border-box;
+  width: 112px;
+  height: 48px;
+  border: 1px solid #FFFFFF;
+  border-radius: 8px;
+  font-family: "Europa", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  text-decoration: none;
+  color: black;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  background-color: white;
+  gap: 4px;
+  margin-right: 12px;
+}
+
+.center_head {
+  margin-top: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 803px;
+  height: 80px;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 80px;
+  text-align: center;
+  color: white;
+}
+
+.mission {
+  margin-top: auto;
+  padding: 20px;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 1016px;
+  height: 90px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 32px;
+  text-align: center;
+  color: white;
+}
+
+/*# sourceMappingURL=dashboard.scss.map */
