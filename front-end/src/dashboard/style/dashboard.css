@@ -5,7 +5,6 @@ header {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    padding: 10px;
     margin-right: 10px; 
   }
   body {
@@ -24,6 +23,7 @@ header {
     height: 50px;
     margin-right: 50px;
     margin-left: 20px;
+    margin-top: 10px;
   }
   
   .text {
@@ -32,6 +32,7 @@ header {
     font-display: 12;
     text-decoration: none;
     color: white;
+    margin-top: 10px;
   }
   
   .signup {
@@ -52,6 +53,7 @@ header {
     color: white;
     gap: 4px;
     margin-right: 12px;
+    margin-top: 10px;
   }
   
   .login {
@@ -72,6 +74,7 @@ header {
     background-color: white;
     gap: 4px;
     margin-right: 12px;
+    margin-top: 10px;
   }
   
   .center_head {
