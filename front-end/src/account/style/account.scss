@@ -79,7 +79,6 @@ $input-font: #b0bac9;
     display: flex;
     justify-content: center;
     align-items: center;
-    // background-color: $page-color;
     background-image: url("../../../public/opnwallpaper.jpg");
     background-size: auto;
 
@@ -96,12 +95,13 @@ $input-font: #b0bac9;
         & .sign-up{
             height: 75vh;
         }
+
     }
 
 }
 
 .content{
-    height: 95%;
+    height: 150;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -113,3 +113,5 @@ $input-font: #b0bac9;
         height: 14px;
     }
 }
+
+
