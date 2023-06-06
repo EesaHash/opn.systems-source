@@ -12,6 +12,8 @@
 }
 .user-authentication h1, .user-authentication .user-authentication-input, .user-authentication button {
   margin-bottom: 25px;
+  margin-top: 35px;
+  text-align: center;
 }
 .user-authentication a {
   color: #7DC8F7;
