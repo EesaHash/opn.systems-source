@@ -9,7 +9,7 @@ header {
     margin-right: 10px; 
   }
   body {
-    background-image: url("~/Users/omkarbodas/Downloads/opn.jpeg");
+    background-image: url("../images/opn.jpeg");
     background-size: 1200px 700px;
     background-position: center;
     background-blend-mode: darken;
