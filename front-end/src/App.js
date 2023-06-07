@@ -4,7 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import { Header } from "./header/components/Header";
 import { SignUp } from "./account/components/SignUp";
 import { SignIn } from "./account/components/SignIn";
-import { Dashboard } from "./dashboard/component/Dashboard";
+import { Dashboard } from "./homepage/component/homepage";
 import { ForgotPassword } from "./account/components/ForgotPassword";
 
 export const getUserID = _ => {
