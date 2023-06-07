@@ -56,7 +56,7 @@ export const SignIn = _ => {
     if(userID !== "none") return window.location.href = "/";
     return(
         <div className = "page">
-             <div className = "cover">
+            <div className = "cover">
                 <div className = "sign-in">
                     <div className="content">
                         <div className ="user-authentication">
