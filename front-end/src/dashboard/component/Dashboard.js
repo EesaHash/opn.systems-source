@@ -13,8 +13,10 @@ function varLink(userID,setUserID) {
     if (userID === "none") {
         return (
             <>
+            <div className="buttons">
             <a href="/SignUp" className="signup">Sign up</a>
             <a href="/SignIn" className="login">Login</a>
+            </div>
             </>
         );
     }
@@ -43,7 +45,7 @@ export const Dashboard = _ => {
 
 
   return (
-    <div className = "body">
+    <div className = "page" style={{overflow: "scroll"}}>
         <div className="ricky">
           <div className="header">
            <a href="https://www.instagram.com/" className="circle"></a>
