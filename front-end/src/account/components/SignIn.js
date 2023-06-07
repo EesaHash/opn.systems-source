@@ -68,12 +68,13 @@ export const SignIn = _ => {
                             <div className="user-authentication-input">
                                 <div>
                                     <label html="password">Password</label>
-                                    <a className="forgot-password" href="/forgotpassword" >Forget your password?</a>
+                                    <a className="forgot-password" href="/forgotpassword" >Forgot your password?</a>
                                 </div>
                                 <input type="password" id ="password" onKeyPress={handleKeypress} />
                             </div>
                             <div>
                             <button onClick={signIn}> Sign In</button>
+            
                             </div>
                             <div>
                                 <label style={{marginRight: "5px"}} >New to opn.systems?</label>

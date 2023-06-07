@@ -10,20 +10,19 @@ export const ForgotPassword = _ => {
     if(userID !== "none") return window.location.href = "/";
     return(
     <div className="page"> 
-        <div className="cover">
+        <div className="cover" style={{height: "35%", width: "100%", overflow: "scroll"}}>
         
                     <div className="content">
                 <div className ="user-authentication">
     <div>    
             <h1>Forgot Password</h1>
     
-            <div className="user-authentication-input">
+            <div className="user-authentication-input" >
             <label>Recovery Email Address</label>
             <input type="text" placeholder="johndoe@gmail.com" id="email"></input>
             </div>
             <div>
-                
-             <button>Send Email</button>
+             <input type="button" onClick={SignIn}>Send Email</input>
             
             </div>
     </div>

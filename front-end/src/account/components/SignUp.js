@@ -68,18 +68,22 @@ export const SignUp = _ => {
                         <div className ="user-authentication" style={{height: "80%", width: "100%", overflow: "scroll"}}>
                             <h1>Create Account</h1>
                             <div className="user-authentication-input">
-                                <label htmlFor="username">Username</label>
-                                <input type ="text" id="username" placeholder="" onKeyPress={handleKeypress} />
+                                <label htmlFor="email">Email Address</label>
+                                <input type="email" id ="email" placeholder="johndoe@gmail.com" onKeyPress={handleKeypress} />
                             </div>
                             <div className="user-authentication-input">
-                                <label htmlFor="email">Email Address</label>
-                                <input type="email" id ="email" onKeyPress={handleKeypress} />
+                                <label htmlFor="username">Username</label>
+                                <input type ="text" id="username" placeholder="John Doe" onKeyPress={handleKeypress} />
                             </div>
+                            
                             <div className="user-authentication-input">
                                 <label htmlFor="password">Password</label>
                                 <input type="password" id ="password" onKeyPress={handleKeypress} />
                             </div>
-                            <div className="user-authentication-input">
+                            <div className="pass">
+                                <label style={{marginRight: "150px"}}>Minimum of 8 characters</label>
+                            </div>
+                            {/* <div className="user-authentication-input">
                                 <label htmlFor="firstName">First Name</label>
                                 <input type="text" id ="firstName" onKeyPress={handleKeypress} />
                             </div>
@@ -94,12 +98,12 @@ export const SignUp = _ => {
                             <div className="user-authentication-input">
                                 <label htmlFor="dob">Date of Birth</label>
                                 <input type="date" id ="dob" onKeyPress={handleKeypress} />
-                            </div>
+                            </div> */}
                             <div>
                                 <button onClick={createAccount} > Sign Up</button>
                             </div>
                             <div>
-                                <label style={{marginRight: "5px"}} >Already have an account? </label>
+                                <label style={{marginRight: "5px"}} >Have an account? </label>
                                 <a href="/signin">Sign In</a>
                             </div>
                         </div>
