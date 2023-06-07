@@ -1,28 +1,42 @@
 /* CSS for the header */
-header {
-  /*background-color: black;*/
+body{
+  height: 4000px;
+  max-width: auto;
+}
+.header {
+  width: 1440px ;
   display: flex;
+  flex-direction:row;
   align-items: center;
   justify-content: flex-start;
-  padding: 20px;
-  margin-right: 10px;
+  margin-right: 10px; 
 }
-
-body {
-  background-image: url("~/Users/omkarbodas/Downloads/opn.jpeg");
-  background-size: 1200px 700px;
-  background-position: center;
-  background-blend-mode: darken;
+.page{
+  display: flex;
+  background: radial-gradient(24.11% 40.89% at 20% 29.5%, rgba(2, 2, 132, 0.88) 0%, black 100%);
+  width: 1440 px;
+  height: 900px;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: black;
   align-items: center;
-  /*background-color:black;*/
 }
-
+.ricky {
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url("../images/blue_logo.png"), url("../images/green_logo.png"), url("../images/blue_logo_side.png"),url("../images/vec1.png");
+  background-position: 20% 76%, 0% 10%, top right, 4.5% 410%;
+}
 .circle {
-  background-color: grey;
+  background-image: url("../images/green_profile_logo.png");
   border-radius: 50%;
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   margin-right: 50px;
+  margin-left: 20px;
+  margin-top: 10px;
 }
 
 .text {
@@ -31,10 +45,19 @@ body {
   font-display: 12;
   text-decoration: none;
   color: white;
+  margin-top: 10px;
+}
+
+.buttons {
+  margin-block: 15px;
+  position:fixed;
+  top:0;
+  right: 0%;
 }
 
 .signup {
   margin-left: auto;
+  margin-top: 10px;
   text-decoration: none;
   padding: 10px 10px;
   box-sizing: border-box;
@@ -54,7 +77,10 @@ body {
 }
 
 .login {
-  padding: 10px 10px;
+  margin-top: 10px;
+  margin-right: 12px;
+  padding: 10px;
+  padding-right: 10px;
   box-sizing: border-box;
   width: 112px;
   height: 48px;
@@ -64,21 +90,19 @@ body {
   font-style: normal;
   font-weight: 500;
   text-decoration: none;
-  color: black;
+  color:black;
   font-size: 16px;
   line-height: 24px;
   text-align: center;
   background-color: white;
-  gap: 4px;
-  margin-right: 12px;
 }
 
 .center_head {
-  margin-top: 500px;
+  margin-top: 200px;
+  margin-right:auto;
   margin-left: auto;
-  margin-right: auto;
   width: 803px;
-  height: 80px;
+  height: hug 80px;
   font-style: normal;
   font-weight: 700;
   font-size: 80px;
@@ -86,19 +110,37 @@ body {
   color: white;
 }
 
-.mission {
-  margin-top: auto;
-  padding: 20px;
-  align-items: center;
-  margin-left: auto;
-  margin-right: auto;
+.mission{
+  margin-top:auto;
+  align-items:center;
+  margin-left:auto;
+  margin-right:auto;
   width: 1016px;
   height: 90px;
   font-style: normal;
   font-weight: 400;
   font-size: 32px;
-  text-align: center;
-  color: white;
+  text-align:center;
+  color:rgba(146, 235, 227, 0.743);
 }
 
-/*# sourceMappingURL=dashboard.scss.map */
+.signout
+{
+  padding: 10px 10px;
+  box-sizing: border-box;
+  width: 11px;
+  height: 48px;
+  border: 1px solid #FFFFFF;
+  border-radius: 8px;
+  font-family: "Europa", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  text-decoration: none;
+  color:black;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  background-color: white;
+  gap: 4px;
+  margin-right: 12px;
+}
