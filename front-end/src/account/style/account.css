@@ -27,8 +27,8 @@
 .user-authentication input {
   background-color: #1A1E23;
   padding-left: 12px;
-  border-color: #1A1E23;
-  border-radius: 16px;
+  border-color: #343741;
+  border-radius: 12px;
   color: #b0bac9;
   border-style: solid;
   opacity: 0.6;
@@ -91,11 +91,11 @@
   height: 500px;
 }
 .page .cover .sign-up {
-  height: 75vh;
+  height: 90vh;
 }
 
 .content {
-  height: 97%;
+  height: 98%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -116,6 +116,3 @@
   color: #eb5757
 }
 
-.img{
-  display:inline-block;
-}

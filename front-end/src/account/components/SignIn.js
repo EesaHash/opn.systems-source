@@ -56,7 +56,7 @@ export const SignIn = _ => {
     if(userID !== "none") return window.location.href = "/";
     return(
         <div className = "page">
-            <div className = "cover">
+             <div className = "cover">
                 <div className = "sign-in">
                     <div className="content">
                         <div className ="user-authentication">
@@ -77,7 +77,7 @@ export const SignIn = _ => {
             
                             </div>
                             <div>
-                                <label style={{marginRight: "5px"}} >New to opn.systems?</label>
+                                <label style={{marginRight: "5px"}} >New to Opn.Systems?</label>
                                 <a href="/signup">Sign Up</a>
                             </div>
                             <div className="checkbox">
@@ -86,7 +86,7 @@ export const SignIn = _ => {
                         </div>
                     </div>
                 </div>
+                </div>
             </div> 
-        </div>
     );
 };
