@@ -1,8 +1,6 @@
 import React, {useState} from "react";
 import "../style/account.css";
 import { getUserID } from "../../App";
-import { SignIn } from "./SignIn";
-
 export const ForgotPassword = _ => {
     const [userID, setUserID] = useState("none");
     getUserID().then(res => setUserID(res));
@@ -22,8 +20,8 @@ export const ForgotPassword = _ => {
             <input type="text" placeholder="johndoe@gmail.com" id="email"></input>
             </div>
             <div>
-             <input type="button" onClick={SignIn}>Send Email</input>
-            
+             <button onClick={backToLogin}>Send Email</button>
+             
             </div>
     </div>
                 </div>
@@ -34,6 +32,10 @@ export const ForgotPassword = _ => {
    
     );
 };
+
+function backToLogin() {
+    return window.location.href = "/SignIn";
+}
 
 const forgetPassword = _ => {
     try{

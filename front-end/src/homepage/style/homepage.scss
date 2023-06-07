@@ -1,11 +1,6 @@
 /* CSS for the header */
-body{
-  height: auto px;
-  background-color: black;
-  max-width: auto;
-}
-.header {
-  width: 1440px ;
+header {
+  /*background-color: black;*/
   display: flex;
   flex-direction:row;
   align-items: center;
@@ -33,8 +28,8 @@ body{
 .circle {
   background-image: url("../images/green_profile_logo.png");
   border-radius: 50%;
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   margin-right: 50px;
   margin-left: 20px;
   margin-top: 10px;
@@ -146,24 +141,4 @@ body{
   margin-right: 12px;
 }
 
-.page_1{
-  //background-color: black;
-  height: 900px;
-  width: auto;
-  margin-top: 900px;
-}
-.page_2{
-  //background-color: black;
-  height: 900px;
-  width: auto;
-}
-.page_3{
-  //background-color: black;
-  height: 900px;
-  width : auto;
-}
-.page_4{
-  //background-color: black;
-  height: 900px;
-  width: auto;
-}
+/*# sourceMappingURL=dashboard.scss.map */
