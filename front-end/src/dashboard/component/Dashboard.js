@@ -40,17 +40,20 @@ export const Dashboard = _ => {
     //  }
 
 
-    
+
+
   return (
-    <div>
-      <header>
-        <a href="https://www.instagram.com/" className="circle"></a>
-        <a href="https://www.instagram.com/" className="text">Features</a>
-        <a href="https://www.instagram.com/" className="text">About OPN</a>
-        {varLink(userID, setUserID)}
-      </header>
-      <div className="center_head">SOPs Optimized</div>
-      <div className="mission">AI generated. Streamlined SOPs. Continuous improvement.<br />Your operations made Easy!</div>
+    <div className = "body">
+        <div className="ricky">
+          <div className="header">
+           <a href="https://www.instagram.com/" className="circle"></a>
+           <a href="https://www.instagram.com/" className="text">Features</a>
+           <a href="https://www.instagram.com/" className="text">About OPN</a>
+           {varLink(userID, setUserID)}
+          </div>
+          <div className="center_head">SOPs Optimized</div>
+          <div className="mission">AI generated. Streamlined SOPs. Continuous improvement.<br />Your operations made Easy!</div>
+        </div>
     </div>
   );
 };
