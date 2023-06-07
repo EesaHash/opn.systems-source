@@ -53,6 +53,9 @@ export const Dashboard = _ => {
           </div>
           <div className="center_head">SOPs Optimized</div>
           <div className="mission">AI generated. Streamlined SOPs. Continuous improvement.<br />Your operations made Easy!</div>
+          <div>
+            
+          </div>
         </div>
     </div>
   );

@@ -7,7 +7,7 @@
   justify-content: flex-start;
   margin-right: 10px; 
 }
-.body {
+.body{
   display: flex;
   background: radial-gradient(24.11% 40.89% at 20% 29.5%, rgba(2, 2, 132, 0.88) 0%, black 100%);
   width: 1440px;
@@ -87,7 +87,6 @@
 
 .center_head {
   margin-top: 200px;
-  margin-left:auto;
   margin-right:auto;
   width: 803px;
   height: hug 80px;
