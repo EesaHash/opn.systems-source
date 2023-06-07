@@ -10,24 +10,16 @@
   width: 300px;
   display: grid;
 }
-.user-authentication .user-authentication-input {
-  margin-bottom: 10px;
-  margin-top: 8px;
-  text-align: left;
+.user-authentication h1, .user-authentication .user-authentication-input, .user-authentication button {
+  margin-bottom: 25px;
 }
-
-.user-authentication h1 {
-  text-align: center;
-}
-
-
 .user-authentication a {
   color: #7DC8F7;
 }
 .user-authentication input {
   background-color: #1A1E23;
   padding-left: 12px;
-  border-color: #1A1E23;
+  border-color: #39424C;
   border-radius: 16px;
   color: #b0bac9;
   border-style: solid;
@@ -41,16 +33,15 @@
 .user-authentication button {
   width: 110px;
   border-radius: 10px;
-  background-color: #5D5FEF;
+  background-color: aliceblue;
   border-style: solid;
-  border-color: #5D5FEF;
-  
+  border-color: aliceblue;
 }
 .user-authentication .forgot-password {
   width: auto;
   margin: 0;
   padding: 0;
-  padding-top: 17px;
+  padding-top: 5px;
   float: right;
   background-color: transparent;
   border: transparent;
@@ -63,34 +54,25 @@
 }
 .user-authentication label, .user-authentication .forgot-passord {
   margin-bottom: 8px !important;
-  margin-top: 10px;
   font-size: 16px !important;
 }
 
 .page {
-
-  background-image: url("./images/green_profile_logo.png");
-  background-repeat: no-repeat;
-  background-position: top left;
   height: 100vh;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #030C14;
+  background-image: url("../../../public/opnwallpaper.jpg");
   background-size: auto;
 }
 .page .cover {
-  background-color: #171B21;
-  border: solid;
-  border-width: thin;
-  border-color: #343741;
+  background-color: #21252B;
   width: 35vw;
   min-width: 450px;
   max-width: 550px;
   position: relative;
-  border-radius: 2em;
-
+  border-radius: 1em;
 }
 .page .cover .sign-in {
   height: 500px;
@@ -100,7 +82,7 @@
 }
 
 .content {
-  height: 97%;
+  height: 150;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -108,29 +90,7 @@
 
 .checkbox {
   text-align: center;
-  font-size: 13px;
 }
 .checkbox input {
-  height: 13px;
+  height: 14px;
 }/*# sourceMappingURL=account.css.map */
-
-.pass label{
-  margin-bottom: 12px !important;
-  margin-top: 0%;
-  font-size: 12px !important;
-  color: #eb5757
-}
-
-.img{
-  display:inline-block;
-}
-
-.circle_logo{
-  background-image: url("./images/green_profile_logo.png");
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  margin-right: 50px;
-  margin-left: 20px;
-  margin-top: 10px;
-}

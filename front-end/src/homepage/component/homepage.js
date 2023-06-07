@@ -1,9 +1,6 @@
 import React, {useEffect, useState} from "react";
-import "../style/dashboard.css";
+import "../style/homepage.css";
 import { getUserID } from "../../App";
-
-
-
 
 function SignOut(setUserID) {
   setUserID("none");
@@ -42,22 +39,22 @@ export const Dashboard = _ => {
     //  }
 
 
-
-
   return (
     <div className = "page" style={{overflow: "scroll"}}>
         <div className="ricky">
           <div className="header">
-           <a href="https://www.instagram.com/" className="circle"></a>
+           <div className="circle"></div>
            <a href="https://www.instagram.com/" className="text">Features</a>
            <a href="https://www.instagram.com/" className="text">About OPN</a>
            {varLink(userID, setUserID)}
           </div>
           <div className="center_head">SOPs Optimized</div>
           <div className="mission">AI generated. Streamlined SOPs. Continuous improvement.<br />Your operations made Easy!</div>
-          <div>
-            
+          <div className="page_1">
           </div>
+          <div className="page_2"></div>
+          <div className="page_3"></div>
+          <div className="page_4"></div>
         </div>
     </div>
   );
