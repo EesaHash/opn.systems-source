@@ -5,8 +5,8 @@ import { Header } from "./header/components/Header";
 import { SignUp } from "./account/components/SignUp";
 import { SignIn } from "./account/components/SignIn";
 import { ForgotPassword } from "./account/components/ForgotPassword";
-import { Homepage } from "./homepage/component/Homepage";
-import { Dashboard } from "./homepage/component/Dashboard";
+import { Homepage } from "./homepage/component/homepage";
+import { Dashboard } from "./homepage/component/dashboard";
 
 export const getUserID = _ => {
   let token;
