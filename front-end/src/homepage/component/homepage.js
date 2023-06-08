@@ -38,9 +38,9 @@ export const Dashboard = _ => {
     //     return window.location.href = "/SignIn"
     //  }
 
-
+//style={{overflow: "scroll"}} for scrolling
   return (
-    <div className = "page" style={{overflow: "scroll"}}>
+    <div className = "page"> 
         <div className="ricky">
           <div className="header">
            <div className="circle"></div>

@@ -1,5 +1,5 @@
 /* CSS for the header */
-header {
+.header {
   /*background-color: black;*/
   display: flex;
   flex-direction:row;
@@ -11,10 +11,8 @@ header {
   display: flex;
   background: radial-gradient(24.11% 40.89% at 20% 29.5%, rgba(2, 2, 132, 0.88) 0%, black 100%);
   width: 1440 px;
-  height: 900px;
+  height: 1200px;
   flex-direction: column;
-  min-height: 100vh;
-  background-color: black;
   align-items: center;
 }
 .ricky {
@@ -23,7 +21,7 @@ header {
   background-position: center;
   background-repeat: no-repeat;
   background-image: url("../images/blue_logo.png"), url("../images/green_logo.png"), url("../images/blue_logo_side.png"),url("../images/vec1.png");
-  background-position: 20% 76%, 0% 10%, top right, 4.5% 410%;
+  background-position: 20% 9.5cm, 0% 10%, top right, 2cm 7.5cm;
 }
 .circle {
   background-image: url("../images/green_profile_logo.png");
@@ -52,7 +50,6 @@ header {
 }
 
 .signup {
-  margin-left: auto;
   margin-top: 10px;
   text-decoration: none;
   padding: 10px 10px;
@@ -98,7 +95,6 @@ header {
   margin-right:auto;
   margin-left: auto;
   width: 803px;
-  height: hug 80px;
   font-style: normal;
   font-weight: 700;
   font-size: 80px;
@@ -141,4 +137,21 @@ header {
   margin-right: 12px;
 }
 
+.page_1{
+  background-color: black;
+  height: 900px;
+  margin-top: 1200px;
+}
+.page_2{
+  background-color: black;
+  height: 900px;
+}
+.page_3{
+  background-color: black;
+  height: 900px;
+}
+.page_4{
+  background-color: black;
+  height: 900px;
+}
 /*# sourceMappingURL=dashboard.scss.map */
