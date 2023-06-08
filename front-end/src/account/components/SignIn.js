@@ -35,7 +35,7 @@ export const SignIn = _ => {
                             localStorage.setItem("u", data.loginToken);
                         else
                             sessionStorage.setItem("u", data.loginToken);
-                        window.location.href = '/';
+                        window.location.href = '/dashboard';
                     }else{
                         alert(data.message);
                     }
