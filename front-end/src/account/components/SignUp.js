@@ -11,18 +11,10 @@ export const SignUp = _ => {
             const email = document.getElementById("email").value;
             const username = document.getElementById("username").value;
             const password = document.getElementById("password").value;
-            const firstName = document.getElementById("firstName").value;
-            const lastName = document.getElementById("lastName").value;
-            const contactNumber = document.getElementById("contactNumber").value;
-            const dob = document.getElementById("dob").value;
 
             // Check if the required fields are filled
-            if(!email || !username || !password || !firstName || !contactNumber || !dob){
+            if(!email || !username || !password){
                 return alert("Please fill in all non-optional fields!");
-            }
-            // Check if the contact number input is in valid format
-            if(!(/^(\+?\d{1,3}|0\d{1,4})\d{8}$/).test(contactNumber)){
-                return alert("Invalid Contact Number!");
             }
 
             fetch("/api/signup", {
@@ -33,11 +25,7 @@ export const SignUp = _ => {
                 body: JSON.stringify({
                     username: username,
                     email: email,
-                    password: password,
-                    firstName: firstName,
-                    lastName: lastName,
-                    contactNumber: contactNumber,
-                    dob: dob
+                    password: password
                 })
             })
                 .then((res) => {return res.json(); })
@@ -83,22 +71,6 @@ export const SignUp = _ => {
                             <div className="pass">
                                 <label style={{marginRight: "150px"}}>Minimum of 8 characters</label>
                             </div>
-                            {/* <div className="user-authentication-input">
-                                <label htmlFor="firstName">First Name</label>
-                                <input type="text" id ="firstName" onKeyPress={handleKeypress} />
-                            </div>
-                            <div className="user-authentication-input">
-                                <label htmlFor="lastName">Last Name (optional)</label>
-                                <input type="text" id ="lastName" onKeyPress={handleKeypress} />
-                            </div>
-                            <div className="user-authentication-input">
-                                <label htmlFor="contactNumber">Contact Number</label>
-                                <input type="tel" id ="contactNumber" onKeyPress={handleKeypress} />
-                            </div>
-                            <div className="user-authentication-input">
-                                <label htmlFor="dob">Date of Birth</label>
-                                <input type="date" id ="dob" onKeyPress={handleKeypress} />
-                            </div> */}
                             <div>
                                 <button onClick={createAccount} > Sign Up</button>
                             </div>

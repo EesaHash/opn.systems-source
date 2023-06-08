@@ -5,7 +5,7 @@ const { sendEmailConfirmation } = require("../emailController/emailSenderControl
 
 router.post("/", async (req, res) => {
     try{
-        const {username, email, password, firstName, lastName, contactNumber, dob} = req.body;
+        const {username, email, password} = req.body;
 
         // Check for existing username
         if(await isExisted("username", String(username).toLowerCase())){
@@ -22,7 +22,7 @@ router.post("/", async (req, res) => {
             });
         }
         // Create new account
-        const user = await createAccount(username, email, password, firstName, lastName, contactNumber, dob);
+        const user = await createAccount(username, email, password);
         if(!user){
             return res.status(400).json({
                 status: false,
@@ -48,20 +48,16 @@ router.post("/", async (req, res) => {
 });
 module.exports = router;
 
-const createAccount = async (username, email, password, firstName, lastName, contactNumber, dob) => {
+const createAccount = async (username, email, password) => {
     try{
         const userID = await generateID("A");
         const user = {
             user_id: String(userID).toUpperCase(),
             username: String(username).toLowerCase(),
             email_address: String(email).toLowerCase(),
-            password: password,
-            first_name: firstName,
-            last_name: lastName,
-            contact_number: contactNumber,
-            dob: new Date(dob).toLocaleDateString('en-AU', {day: "numeric", month: "short", year: "numeric"})
+            password: password
         };
-        const sql  = `INSERT INTO user_t VALUES ('${user.user_id}', '${user.email_address}', '${password}', '${user.first_name}', '${user.last_name}', '${user.contact_number}', '${dob}', 0, '${user.username}');`;
+        const sql  = `INSERT INTO user_t VALUES ('${user.user_id}', '${user.email_address}', '${password}', 0, '${user.username}');`;
         return new Promise((resolve, reject) => {
             connection.query(sql, async (err) => {
                 if(err){
