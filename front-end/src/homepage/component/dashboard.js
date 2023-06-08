@@ -15,7 +15,7 @@ export const Dashboard = _ => {
     if(userID === "none") return window.location.href = "/";
     return(
         <section>
-            
+            <button onClick={logOut}>Log Out</button>
         </section>
     );
 };
