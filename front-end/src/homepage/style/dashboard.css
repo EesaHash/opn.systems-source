@@ -1,15 +1,13 @@
-
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+body {
+  color: black;
 }
 
-.sidebar{
-    position: fixed;
-    width: 300px;
-    height: 100px;
-    background: #000;
-    top: 0;
-    left: 0;
-}
+.logo1 {
+  background-image: url("../images/green_profile_logo.png");
+  width:40px;
+  height: 40px;
+  position:absolute;
+  top: 0;
+  left:0;
+  
+}/*# sourceMappingURL=dashboard.css.map */

@@ -1,8 +1,8 @@
-$page-color: #171B21;
-$cover-color: #21252B;
+$page-color: #030C14;
+$cover-color: #171B21;
 $primary-color-malibu: #7DC8F7;
 $input-color: #1A1E23;
-$input-border: #39424C;
+$input-border: #1A1E23;
 $input-font: #b0bac9;
 
 .user-authentication{
@@ -11,10 +11,15 @@ $input-font: #b0bac9;
     display: grid;
     color: white;    
     & .user-authentication-input{
-        margin: auto;
+        margin-bottom: 10px;
+        margin-top: 8px;
         text-align: left;
         width: 300px;
         display: grid;
+    }
+
+    & h1{
+        text-align: center;
     }
 
     & h1, .user-authentication-input, button{
@@ -28,7 +33,7 @@ $input-font: #b0bac9;
     & input{
         background-color: $input-color;
         padding-left: 12px;
-        border-color: $input-border;
+        border-color: #343741;
         border-radius: 16px;
         color: $input-font;
         border-style: solid;
@@ -44,9 +49,9 @@ $input-font: #b0bac9;
     & button{
         width: 110px;
         border-radius: 10px;
-        background-color: aliceblue;
+        background-color: #5D5FEF;
         border-style: solid;
-        border-color: aliceblue;
+        border-color: #5D5FEF;
     }
 
     & .forgot-password{
@@ -82,11 +87,14 @@ $input-font: #b0bac9;
 
    & .cover{
         background-color: $cover-color;
+        border: solid;
+        border-width: thin;
+        border-color: #343741;
         width: 35vw;
         min-width: 450px;
         max-width: 550px;
         position: relative;
-        border-radius: 1em;
+        border-radius: 2em;
         & .sign-in {
             height: 500px;
         }
@@ -110,4 +118,11 @@ $input-font: #b0bac9;
     & input{
         height: 14px;
     }
+}
+
+.pass label{
+    margin-bottom: 12px !important;
+    margin-top: 0%;
+    font-size: 12px !important;
+    color: #eb5757
 }
