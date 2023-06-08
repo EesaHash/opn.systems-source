@@ -14,8 +14,21 @@ export const dashboard = _ => {
 
     if(userID === "none") return window.location.href = "/";
     return(
-        <section>
-            
-        </section>
+        <head>
+            <body>
+                <div className="sidebar">
+                    <div className="logo">
+                        <ul className="main">
+                            <li>
+                                <a href="#">
+                                    
+                                </a>
+                            </li>
+                        </ul>
+                        </div>
+                    </div>
+            </body>
+        </head>
+        
     );
 };
