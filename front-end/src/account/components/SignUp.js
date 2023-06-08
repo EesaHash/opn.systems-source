@@ -49,7 +49,7 @@ export const SignUp = _ => {
 
     if(userID !== "none") return window.location.href = "/";
     return(
-        <div className = "page">
+        <div className = "page1">
             <div className = "cover">
                 <div className = "sign-up">
                     <div className="content">

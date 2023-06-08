@@ -13,7 +13,7 @@ export const ForgotPassword = _ => {
 
     if(userID !== "none") return window.location.href = "/";
     return(
-        <div className="page"> 
+        <div className="page1"> 
             <div className="cover" style={{height: "35%", width: "100%", overflow: "scroll"}}>
                 <div className="content">
                     <div className ="user-authentication">
