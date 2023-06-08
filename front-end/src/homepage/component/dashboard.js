@@ -1,8 +1,8 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import "../style/homepage.css";
-import { getUserID } from "../../App";
+import { getUserID, logOut } from "../../App";
 
-export const dashboard = _ => {
+export const Dashboard = _ => {
     const [userID, setUserID] = useState();
      useEffect(() => {
          try{
@@ -15,7 +15,7 @@ export const dashboard = _ => {
     if(userID === "none") return window.location.href = "/";
     return(
         <section>
-            
+            <button onClick={logOut}>Log Out</button>
         </section>
     );
 };

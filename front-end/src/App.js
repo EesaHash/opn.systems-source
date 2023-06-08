@@ -4,8 +4,9 @@ import { Routes, Route } from "react-router-dom";
 import { Header } from "./header/components/Header";
 import { SignUp } from "./account/components/SignUp";
 import { SignIn } from "./account/components/SignIn";
-import { Dashboard } from "./homepage/component/homepage";
 import { ForgotPassword } from "./account/components/ForgotPassword";
+import { Homepage } from "./homepage/component/Homepage";
+import { Dashboard } from "./homepage/component/Dashboard";
 
 export const getUserID = _ => {
   let token;
@@ -35,6 +36,7 @@ export const logOut = _ => {
   sessionStorage.removeItem("u");
   localStorage.removeItem("u");
   localStorage.removeItem("rememberMe");
+  window.location.href = "/";
 };
 
 function App() {
@@ -43,6 +45,9 @@ function App() {
     <div className="App">
       <Routes>
         <Route path="*" element={<Header/>} >
+          <Route path="" element={<Homepage/>}/>
+        </Route>
+        <Route path="/dashboard" element={<Header/>} >
           <Route path="" element={<Dashboard/>}/>
         </Route>
         <Route path="/signin" element={<Header/>} >
