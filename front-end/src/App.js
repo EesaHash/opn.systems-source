@@ -5,7 +5,7 @@ import { Header } from "./header/components/Header";
 import { SignUp } from "./account/components/SignUp";
 import { SignIn } from "./account/components/SignIn";
 import { ForgotPassword } from "./account/components/ForgotPassword";
-import { Homepage } from "./homepage/component/homepage";
+import { Homepage } from "./homepage/component/Homepage";
 import { Dashboard } from "./homepage/component/dashboard";
 
 export const getUserID = _ => {
