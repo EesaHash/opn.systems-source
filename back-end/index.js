@@ -16,6 +16,7 @@ app.use("/api/authenticatelogin", require("./controllers/accountController/Authe
 app.use("/confirmation", require("./controllers/emailController/emailConfirmationController"));
 app.use("/api/forgetpassword", require("./controllers/accountController/forgetPasswordController"));
 app.use("/api/gptest", require("./controllers/gptController/gptTestController"));
+app.use("/api/survey", require("./controllers/surveyController/surveyController"));
 
 
 app.listen(PORT, () => {
