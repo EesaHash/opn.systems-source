@@ -2,24 +2,15 @@ const express = require("express");
 const { Configuration, OpenAIApi } = require("openai");
 const router = express.Router();
 require('dotenv').config()
-
-
 const configuration = new Configuration({
     apiKey: process.env.OPENAI_API_KEY,
 });
 
+
+
+
 const openai = new OpenAIApi(configuration);
 
-//Single Prompt -- RESPONSE IS TRUNCATED DUE TO THE TOKEN LIMIT -- subscription is required & use gpt 3.5 turbo
-// async function runCompletion() {    
-//     const completion = await openai.createCompletion({
-//         model: "text-davinci-003",
-//         prompt: "Give me a course plan for teaching a 5 years old Python programming.",
-// });
-//     return completion;
-// }
-
-//Multi Prompt
 async function runCompletion() {    
     const completion = await openai.createChatCompletion({
         model: "gpt-3.5-turbo",
