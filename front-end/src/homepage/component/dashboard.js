@@ -13,40 +13,17 @@ export const Dashboard = _ => {
      }, []);
     if(userID === "none") return window.location.href = "/";
     return(
+       <html>
+        <head>
+            <meta charSet="UTF-8"></meta>
+            <meta httpEquiv="X-UA-Compatible" content="IE=edge"></meta>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+
+            <link rel="stylesheet" href="dashboard.css"></link>
+        </head>
         <body>
-            <div className="container">
-                <div className="navigation">
-                    <ul>
-                        <li>
-                            <a href="#">
-                                <span className="icon"><ion-icon name="pie-chart-outline"></ion-icon></span>
-                                <span className="title">Opn.Systems</span>
-                            </a>
-                        </li>
-                        <li>
-                        <a href="#">
-                                <span className="icon"><ion-icon name="pie-chart-outline"></ion-icon></span>
-                                <span className="title">Dashboard</span>
-                            </a>
-                        </li>
-                        <li>
-                        <a href="#">
-                                <span className="icon"></span>
-                                <span className="title">Add Business</span>
-                            </a>
-                        </li>
-                        <li>
-                        <a href="/" onClick={logOut}>
-                                <span className="icon"></span>
-                                <span className="title">Sign Out</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <script src=".../opn. systems project/opn.systems-source/front-end/src/homepage/component/Dashboard.js"></script>
-            <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script> 
-            <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+            <nav className="sidebar"></nav>
         </body>
+       </html>
     );
 };
