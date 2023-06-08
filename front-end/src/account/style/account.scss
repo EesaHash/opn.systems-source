@@ -9,8 +9,7 @@ $input-font: #b0bac9;
     text-align: center;
     justify-content: center;
     display: grid;
-    color: white;
-   
+    color: white;    
     & .user-authentication-input{
         margin: auto;
         text-align: left;
@@ -34,7 +33,6 @@ $input-font: #b0bac9;
         color: $input-font;
         border-style: solid;
         opacity: 0.6;
-
     }
 
     & button, input{
