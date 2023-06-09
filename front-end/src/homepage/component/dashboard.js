@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import "../style/homepage.css";
 import "../style/dashboard.css";
 import { getUserID, logOut } from "../../App";
+import { ForgotPassword } from "../../account/components/ForgotPassword";
 
 export const Dashboard = _ => {
     const [userID, setUserID] = useState();
@@ -15,8 +16,20 @@ export const Dashboard = _ => {
     if(userID === "none") return window.location.href = "/";
     return(
         <body>
-            <div className="logo1">
-            </div>            
+            <div className="box1">
+            <div className="search-bar">
+                <input type="text" id="searchInput" placeholder="Search for businesses, CCF, SOPs or keywords" />
+                <button type="submit">Search</button>
+            </div>
+            </div>
+            <div className="box_main">
+                <div className="search-bar"></div>
+                <div className="box2">
+                </div>
+                <div className="box3">
+                    
+                </div>
+            </div>         
         </body> 
     );
 };
