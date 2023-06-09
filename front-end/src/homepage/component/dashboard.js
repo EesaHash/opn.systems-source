@@ -29,7 +29,7 @@ export const Dashboard = _ => {
                 <div className="box3">
                     
                 </div>
-            </div>
-        </body>
+            </div>         
+        </body> 
     );
 };
