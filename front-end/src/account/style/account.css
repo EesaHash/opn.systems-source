@@ -13,9 +13,17 @@
 }
 .user-authentication h1 {
   text-align: center;
+  white-space: nowrap;
 }
 .user-authentication h1, .user-authentication .user-authentication-input, .user-authentication button {
   margin-bottom: 25px;
+}
+.user-authentication h3 {
+  font-size: 16px;
+  color: #A4A4A4;
+  float: left;
+  margin-left: -50px;
+  margin-top: 10px;
 }
 .user-authentication a {
   color: #7DC8F7;
@@ -62,6 +70,7 @@
 }
 
 .page1 {
+  padding-top: 30px;
   height: 100vh;
   width: 100%;
   display: flex;
@@ -80,17 +89,51 @@
   max-width: 550px;
   position: relative;
   border-radius: 2em;
+  overflow: scroll;
 }
 .page1 .cover .sign-in {
-  height: 500px;
+  height: 60vh;
+  min-height: 550px;
 }
 .page1 .cover .sign-up {
   height: 75vh;
+  min-height: 625px;
+}
+.page1 .cover .sign-up2 {
+  height: 40vh;
+  min-height: 400px;
+}
+.page1 .cover .sign-up2 .inviteInput {
+  display: flex;
+}
+.page1 .cover .sign-up2 .inviteInput input {
+  margin-right: 20px;
+  width: 18vw;
+  min-width: 200px;
+  max-width: 275px;
+}
+.page1 .cover .sign-up2 .invitation-label {
+  overflow: scroll;
+  height: 150px;
+  display: grid;
+}
+.page1 .cover .sign-up2 .invitation-label button {
+  background-color: #F8F8F8 !important;
+  text-align: center;
+  color: black;
+  border-radius: 40px;
+  width: 270px;
+  height: 50px;
+}
+.page1 .cover .forgot-pass {
+  height: 40vh;
+  min-height: 400px;
 }
 
 .content {
-  height: 150;
+  height: 100%;
   display: flex;
+  flex: wrap;
   align-items: center;
   justify-content: center;
 }

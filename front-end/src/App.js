@@ -5,7 +5,7 @@ import { Header } from "./header/components/Header";
 import { SignUp } from "./account/components/SignUp";
 import { SignIn } from "./account/components/SignIn";
 import { ForgotPassword } from "./account/components/ForgotPassword";
-import { Homepage } from "./homepage/component/homepage";
+import { Homepage } from "./homepage/component/Homepage";
 import { Dashboard } from "./homepage/component/dashboard";
 
 export const getUserID = _ => {
@@ -44,19 +44,19 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="*" element={<Header/>} >
+        <Route path="*" element={<Header page="none"/>} >
           <Route path="" element={<Homepage/>}/>
         </Route>
-        <Route path="/dashboard" element={<Header/>} >
+        <Route path="/dashboard" element={<Header page="none"/>} >
           <Route path="" element={<Dashboard/>}/>
         </Route>
-        <Route path="/signin" element={<Header/>} >
+        <Route path="/signin" element={<Header page="signin"/>} >
           <Route path="" element={<SignIn/>}/>
         </Route>
-        <Route path="/signup" element={<Header/>} >
+        <Route path="/signup" element={<Header page="signup"/>} >
           <Route path="" element={<SignUp/>}/>
         </Route>
-        <Route path="/forgotpassword" element={<Header/>} >
+        <Route path="/forgotpassword" element={<Header page="forgetpass"/>} >
           <Route path="" element={<ForgotPassword/>}/>
         </Route>
       </Routes>

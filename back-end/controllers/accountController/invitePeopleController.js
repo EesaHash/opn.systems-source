@@ -5,22 +5,18 @@ const { transporter } = require("../emailController/emailSenderController");
 
 router.post("/", async (req, res) => {
     try{
-        const {email} = req.body;
-        let user  = await getUser(email);
-        user = user[0];
-
-        // Check email input
-        if(!user){
-            return res.status(400).json({
-                status: false,
-                message: "Unregistered email address"
-            });
+        const {emails, emailSource} = req.body;
+        for(let i = 0; i < emails.length; ++i){
+            const email = emails[i];
+            let user = await getUser(email);
+            user = user[0];
+            if(!user){
+                sendEmail(email, emailSource);
+            }
         }
-        // Send forget password link
-        sendEmail(String(email).toLowerCase(), user.password);
         return res.status(200).json({
             status: true,
-            message: "Please check your email's inbox!"
+            message: "Successfully sent invitation emails!"
         });
     }catch(error){
         console.log(error);
@@ -33,8 +29,8 @@ router.post("/", async (req, res) => {
 module.exports = router;
 
 const getUser = (email) => {
-    const inputUsername = String(email).toLowerCase();
-    const sql = `SELECT * FROM  user_t WHERE username = '${inputUsername}' OR email_address = '${inputUsername}';`
+    const inputEmail = String(email).toLowerCase();
+    const sql = `SELECT * FROM  user_t WHERE email_address = '${inputEmail}';`
     return new Promise((resolve, reject) => {
         connection.query(sql, (err, result) => {
             if(err){
@@ -47,18 +43,18 @@ const getUser = (email) => {
     });
 };
 
-const sendEmail = (email, password) => {
+const sendEmail = (email, emailSource) => {
     try{
-        const url = `${process.env.FRONTEND_URL}/signin`;
+        const url = `${process.env.FRONTEND_URL}/signup`;
         const mailContent = {
             from: process.env.EMAIL_USERNAME,
             to: email,
-            subject: "OPN.SYSTEM FORGET PASSWORD",
-            html: `<h1>The password for account: ${email} is '${password}'.\nNow you can go back and fill in your information ${url}.</h1>`
+            subject: "OPN.SYSTEM INVITATION",
+            html: `<h1>${emailSource} is inviting you to register to Opn.Systems.\nPlease follow the attached link to proceed</h1>`
         };
         transporter.sendMail(mailContent, (error, info) => {
             if(error) console.log(error);
-            else console.log(`Successfully sent forget password email to ${email}`);
+            else console.log(`Successfully sent invitation email to ${email}`);
         });
     }catch(error){
         console.log(error);
