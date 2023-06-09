@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from "react";
 import "../style/homepage.css";
+import "../style/dashboard.css";
 import { getUserID, logOut } from "../../App";
+import { ForgotPassword } from "../../account/components/ForgotPassword";
 
 export const Dashboard = _ => {
     const [userID, setUserID] = useState();
@@ -14,39 +16,20 @@ export const Dashboard = _ => {
     if(userID === "none") return window.location.href = "/";
     return(
         <body>
-            <div className="container">
-                <div className="navigation">
-                    <ul>
-                        <li>
-                            <a href="#">
-                                <span className="icon"><ion-icon name="pie-chart-outline"></ion-icon></span>
-                                <span className="title">Opn.Systems</span>
-                            </a>
-                        </li>
-                        <li>
-                        <a href="#">
-                                <span className="icon"><ion-icon name="pie-chart-outline"></ion-icon></span>
-                                <span className="title">Dashboard</span>
-                            </a>
-                        </li>
-                        <li>
-                        <a href="#">
-                                <span className="icon"></span>
-                                <span className="title">Add Business</span>
-                            </a>
-                        </li>
-                        <li>
-                        <a href="/" onClick={logOut}>
-                                <span className="icon"></span>
-                                <span className="title">Sign Out</span>
-                            </a>
-                        </li>
-                    </ul>
+            <div className="box1">
+            <div className="search-bar">
+                <input type="text" id="searchInput" placeholder="Search for businesses, CCF, SOPs or keywords" />
+                <button type="submit">Search</button>
+            </div>
+            </div>
+            <div className="box_main">
+                <div className="search-bar"></div>
+                <div className="box2">
+                </div>
+                <div className="box3">
+                    
                 </div>
             </div>
-            <script src=".../opn. systems project/opn.systems-source/front-end/src/homepage/component/Dashboard.js"></script>
-            <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script> 
-            <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
         </body>
     );
 };

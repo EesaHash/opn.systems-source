@@ -1,14 +1,64 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/*.page1{
+    height: 900px ;
+    width: 1440px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    background-size: auto;
+}*/
+.search-bar {
+  display: flex;
+  align-items: center;
+  width: 20cm;
+  margin-left: 2vh;
+}
+.search-bar input[type=text] {
+  padding: 8px;
+  padding-left: 0 vh;
+  margin-top: 5%;
+  border-style: ridge;
+  border-radius: 10px;
+  font-size: 14px;
+  flex: 1;
+}
+.search-bar button[type=submit] {
+  padding: 8px 16px;
+  border: none;
+  margin-top: 5%;
+  border-radius: 4px;
+  background-color: #5353e3;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  margin-left: 8px;
+}
+.search-bar button[type=submit]:hover {
+  background-color: #031014;
 }
 
-.sidebar {
-  position: fixed;
-  width: 300px;
-  height: 100px;
-  background: #000;
+.box_main {
+  margin-top: 10px;
+  height: 88vh;
+  width: 100vh;
+}
+
+.box2 {
+  width: 28.5cm;
+  height: 100%;
+  background-color: #5353e3;
+  border-radius: 14px;
+  margin-left: 2vh;
+}
+
+.box3 {
+  width: 40vh;
+  height: 97vh;
+  margin: 2vh;
+  background-color: #bb75ec;
+  border-radius: 20px;
+  margin-left: 1vh;
+  position: absolute;
   top: 0;
   left: 0;
 }/*# sourceMappingURL=dashboard.css.map */
