@@ -53,7 +53,7 @@ export const SignUp = _ => {
             <div className = "cover">
                 <div className = "sign-up">
                     <div className="content">
-                        <div className ="user-authentication" style={{height: "80%", width: "100%", overflow: "scroll"}}>
+                        <div className ="user-authentication">
                             <h1>Create Account</h1>
                             <div className="user-authentication-input">
                                 <label htmlFor="email">Email Address</label>

@@ -96,18 +96,24 @@ $input-font: #b0bac9;
         position: relative;
         border-radius: 2em;
         & .sign-in {
-            height: 500px;
+            height: 60vh;
+            min-height: 550px;
         }
         & .sign-up{
             height: 75vh;
+            min-height: 600px;
         }
-
+        & .forgot-pass{
+            height: 40vh;
+            min-height: 400px;
+        }
+        overflow: scroll;
     }
 
 }
 
 .content{
-    height: 150;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;

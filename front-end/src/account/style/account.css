@@ -80,16 +80,23 @@
   max-width: 550px;
   position: relative;
   border-radius: 2em;
+  overflow: scroll;
 }
 .page1 .cover .sign-in {
-  height: 500px;
+  height: 60vh;
+  min-height: 550px;
 }
 .page1 .cover .sign-up {
   height: 75vh;
+  min-height: 600px;
+}
+.page1 .cover .forgot-pass {
+  height: 40vh;
+  min-height: 400px;
 }
 
 .content {
-  height: 150;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
