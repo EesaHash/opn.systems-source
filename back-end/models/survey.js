@@ -15,9 +15,8 @@ const Survey = sequelize.define('Survey', {
       type: DataTypes.STRING
     },
     email: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
     }
   });
-  
 
 module.exports = Survey;
