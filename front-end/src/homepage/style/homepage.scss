@@ -23,12 +23,12 @@
   height: 100%;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url("../images/blue_logo.png"), url("../images/green_logo.png"), url("../images/blue_logo_side.png"), url("../images/vec1.png"), url("../images/vec2.png");
+  background-image: url("../../../public/images/blue_logo.png"), url("../../../public/images/green_logo.png"), url("../../../public/images/blue_logo_side.png"), url("../../../public/images/vec1.png"), url("../../../public/images/vec2.png");
   background-position: 20% 10.5cm, 0cm 2cm, top right, 2cm 8.5cm, -0.1cm 30cm;
 }
 
 .circle {
-  background-image: url("../images/green_profile_logo.png");
+  background-image: url("../../../public/images/green_profile_logo.png");
   border-radius: 50%;
   width: 40px;
   height: 40px;
@@ -38,9 +38,8 @@
 }
 
 .text {
-  font-family: "Europa", sans-serif;
   margin-right: 30px;
-  font-display: 12;
+  font-display: 16;
   text-decoration: none;
   color: white;
   margin-top: 10px;

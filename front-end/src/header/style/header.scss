@@ -1,0 +1,55 @@
+$page-color: #030C14;
+
+.menu-bar{
+    position: fixed;
+    width: 100%;
+    z-index: 10;
+    background-color: $page-color !important;
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+.logo{
+    width: 50px;
+    height: 60px;
+    float: left;
+    background-color: transparent;
+
+    & a{
+        text-align: left;
+    }
+
+    & a:hover:not(.active), .active{
+        background-color: transparent;
+    }
+    & img{
+        text-align: left;
+        width: 42px;
+        height: 43px;
+        margin-right: 5px;
+    }
+}
+
+ul {
+    list-style-type: none;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden;
+    background-color: transparent;
+}
+
+li {
+    border-radius: 10px;
+    background-color: transparent;
+    min-width: 150px;
+    height: 40px;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    text-align: center;
+}
