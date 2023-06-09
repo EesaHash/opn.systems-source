@@ -19,7 +19,7 @@ const sendEmailConfirmation = (email) => {
             from: process.env.EMAIL_USERNAME,
             to: email,
             subject: "OPN.SYSTEM EMAIL VERIFICATION",
-            html: `Please click the following link to activate your account (the link will only be available for 60 minutes): <a href="${url}">${url}</a>`
+            html: `<h1>Please click the following link to activate your account (the link will only be available for 60 minutes): <a href="${url}">${url}</a></h1>`
         };
         transporter.sendMail(mailContent, (error, info) => {
             if(error) console.log(error);
