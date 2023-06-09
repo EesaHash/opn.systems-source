@@ -13,6 +13,8 @@
     "dotenv": "^16.1.4",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.0",
+    "media-typer": "^1.1.0",
+    "negotiator": "^0.6.3",
     "nodemailer": "^6.9.3",
     "openai": "^3.2.1",
     "path": "^0.12.7",
