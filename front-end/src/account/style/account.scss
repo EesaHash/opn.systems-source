@@ -138,6 +138,11 @@ $grey: #A4A4A4;
                     width: 270px;
                     height: 50px;
                 }
+                & hr{
+                    height: 1px;
+                    color: transparent;
+                    margin: 0;
+                }
             }
         }
         & .forgot-pass{

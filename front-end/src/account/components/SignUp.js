@@ -103,7 +103,7 @@ export const SignUp = _ => {
                                 <button onClick={addInvitation} >Invite</button>
                             </div>
                         </div>
-                        <div id="invitation-list" className="invitation-label"> <br/> </div>
+                        <div id="invitation-list" className="invitation-label" style={{display: "none"}}> <hr/> </div>
                         <div >
                             <button onClick={nextAction}> Sign Up</button>
                         </div>
