@@ -1,1 +1,51 @@
-/*# sourceMappingURL=header.css.map */
+.menu-bar {
+  position: fixed;
+  width: 100%;
+  z-index: 10;
+  background-color: #030C14 !important;
+  margin-left: 20px;
+  margin-top: 10px;
+}
+
+.logo {
+  width: 50px;
+  height: 60px;
+  float: left;
+  background-color: transparent;
+}
+.logo a {
+  text-align: left;
+}
+.logo a:hover:not(.active), .logo .active {
+  background-color: transparent;
+}
+.logo img {
+  text-align: left;
+  width: 42px;
+  height: 43px;
+  margin-right: 5px;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden;
+  background-color: transparent;
+}
+
+li {
+  border-radius: 10px;
+  background-color: transparent;
+  min-width: 150px;
+  height: 40px;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  text-align: center;
+}/*# sourceMappingURL=header.css.map */

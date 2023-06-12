@@ -1,37 +1,90 @@
 const express = require("express");
 const router = express.Router();
 const Survey = require('../../models/survey');
+const User = require('../../models/user');
 
 const surveyController = {};
 
-
-surveyController.sendQuestion = async (res) => {
-    try {
-        const { question, response } = req.body;
-        const survey = await Survey.create({ question, response });
-        res.json(survey);
-      } catch (error) {
-        console.error('Error saving survey response:', error);
-        res.status(500).json({ error: 'An error occurred while saving the survey response.' });
-      }
-}
-
-surveyController.saveResponse = async (req, res) => {
+surveyController.saveSurvey = async (req, res) => {
   try {
-    const { question, response } = req.body;
+    const { question, response, email } = req.body;
 
     // Create a new survey record in the database
-    const survey = await Survey.create({ question, response });
+    const survey = await Survey.create({ question, response, email});
 
     // Return the saved survey record as a response
     res.json(survey);
   } catch (error) {
-    console.error('Error saving survey response:', error);
-    res.status(500).json({ error: 'An error occurred while saving the survey response.' });
+    console.error(`Error saving survey response for ${email} : `, error);
+    res.status(500).json({ error: `An error occurred while saving the survey response for ${email}` });
   }
 };
 
-// Define the route and use the saveResponse method
-router.post('/', surveyController.saveResponse);
+surveyController.getSurveys = async (req, res) => { 
+  try {
+    const { email } = req.body;
+
+    // Find all surveys for the given user
+    const surveys = await Survey.findAll({ where: { email } });
+
+    // Return the surveys as a response
+    res.json(surveys);
+  } catch (error) {
+    console.error(`Error getting surveys for ${email} : `, error);
+    res.status(500).json({ error: `An error occurred while getting the surveys for ${email}` });
+  }
+};
+
+surveyController.updateSurvey = async (req, res) => {
+  try {
+    const { id, question, response, email } = req.body;
+
+    // Update the survey record in the database
+    const survey = await Survey.update({ question, response, email }, { where: { id } });
+
+    // Return the updated survey record as a response
+    res.json(survey);
+  } catch (error) {
+    console.error(`Error updating survey [id = ${id}] : `, error);
+    res.status(500).json({ error: `An error occurred while updating the survey [id = ${id}]` });
+  }
+};
+
+surveyController.deleteSurvey = async (req, res) => {
+  try {
+    const { id } = req.body;
+
+    // Delete the survey record from the database
+    const survey = await Survey.destroy({ where: { id } });
+
+    // Return the deleted survey record as a response
+    res.json(survey);
+  } catch (error) {
+    console.error(`Error deleting survey id = [${id}] : `, error);
+    res.status(500).json({ error: `An error occurred while deleting the survey id = [${id}]` });
+  }
+};
+
+surveyController.deleteAllSurveys = async (req, res) => {
+  try {
+    const { email } = req.body;
+
+    // Delete all surveys for the given user
+    const surveys = await Survey.destroy({ where: { email } });
+
+    // Return the deleted surveys as a response
+    res.json(surveys);
+  } catch (error) {
+    console.error(`Error deleting surveys for ${email} : `, error);
+    res.status(500).json({ error: `An error occurred while deleting the surveys for ${email}`});
+  }
+};
+
+// Define the routes
+router.post('/', surveyController.saveSurvey);
+router.get('/', surveyController.getSurveys);
+router.put('/', surveyController.updateSurvey);
+router.delete('/', surveyController.deleteSurvey);
+router.delete('/all', surveyController.deleteAllSurveys);
 
 module.exports = router;

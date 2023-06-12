@@ -15,6 +15,9 @@ app.use("/api/signup", require("./controllers/accountController/registrationCont
 app.use("/api/authenticatelogin", require("./controllers/accountController/AuthenticateLoginController"));
 app.use("/confirmation", require("./controllers/emailController/emailConfirmationController"));
 app.use("/api/forgetpassword", require("./controllers/accountController/forgetPasswordController"));
+app.use("/api/invitepeopl", require("./controllers/accountController/invitePeopleController"));
+
+// GPT API's CONTROLLERS
 app.use("/api/gptest", require("./controllers/gptController/gptTestController"));
 app.use("/api/survey", require("./controllers/surveyController/surveyController"));
 

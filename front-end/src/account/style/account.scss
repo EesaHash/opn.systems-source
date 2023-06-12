@@ -4,12 +4,13 @@ $primary-color-malibu: #7DC8F7;
 $input-color: #1A1E23;
 $input-border: #1A1E23;
 $input-font: #b0bac9;
+$grey: #A4A4A4;
 
 .user-authentication{
     text-align: center;
     justify-content: center;
     display: grid;
-    color: white;    
+    color: white;
     & .user-authentication-input{
         margin-bottom: 10px;
         margin-top: 8px;
@@ -20,10 +21,19 @@ $input-font: #b0bac9;
 
     & h1{
         text-align: center;
+        white-space: nowrap;
     }
 
     & h1, .user-authentication-input, button{
         margin-bottom: 25px;
+    }
+
+    & h3{
+        font-size: 16px;
+        color: $grey;
+        float: left;
+        margin-left: -50px;
+        margin-top: 10px;
     }
 
     & a{
@@ -77,6 +87,7 @@ $input-font: #b0bac9;
 }
 
 .page1{
+    padding-top: 30px;
     height: 100vh;
     width: 100%;
     display: flex;
@@ -96,19 +107,52 @@ $input-font: #b0bac9;
         position: relative;
         border-radius: 2em;
         & .sign-in {
-            height: 500px;
+            height: 60vh;
+            min-height: 550px;
         }
         & .sign-up{
             height: 75vh;
+            min-height: 625px;
         }
-
+        & .sign-up2{
+            height: 40vh;
+            min-height: 400px;
+            & .inviteInput{
+                display: flex;
+                & input{
+                    margin-right: 20px;
+                    width: 18vw;
+                    min-width: 200px;
+                    max-width: 275px;
+                }
+            }
+            & .invitation-label{
+                overflow: scroll;
+                height: 150px;
+                display: grid;
+                & button{
+                    background-color: #F8F8F8 !important;
+                    text-align: center;
+                    color: black;
+                    border-radius: 40px;
+                    width: 270px;
+                    height: 50px;
+                }
+            }
+        }
+        & .forgot-pass{
+            height: 40vh;
+            min-height: 400px;
+        }
+        overflow: scroll;
     }
 
 }
 
 .content{
-    height: 150;
+    height: 100%;
     display: flex;
+    flex: wrap;
     align-items: center;
     justify-content: center;
 }
