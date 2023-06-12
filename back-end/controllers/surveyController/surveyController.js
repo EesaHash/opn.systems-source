@@ -10,13 +10,13 @@ surveyController.saveSurvey = async (req, res) => {
     const { question, response, email } = req.body;
 
     // Create a new survey record in the database
-    const survey = await Survey.create({ question, response, email});
+    const survey = await Survey.create({ question, response, email });
 
     // Return the saved survey record as a response
     res.json(survey);
   } catch (error) {
-    console.error(`Error saving survey response for ${email} : `, error);
-    res.status(500).json({ error: `An error occurred while saving the survey response for ${email}` });
+    console.error(`Error saving survey response: `, error);
+    res.status(500).json({ error: `An error occurred while saving the survey response` });
   }
 };
 
@@ -30,8 +30,8 @@ surveyController.getSurveys = async (req, res) => {
     // Return the surveys as a response
     res.json(surveys);
   } catch (error) {
-    console.error(`Error getting surveys for ${email} : `, error);
-    res.status(500).json({ error: `An error occurred while getting the surveys for ${email}` });
+    console.error(`Error getting surveys: `, error);
+    res.status(500).json({ error: `An error occurred while getting the surveys` });
   }
 };
 
@@ -45,8 +45,8 @@ surveyController.updateSurvey = async (req, res) => {
     // Return the updated survey record as a response
     res.json(survey);
   } catch (error) {
-    console.error(`Error updating survey [id = ${id}] : `, error);
-    res.status(500).json({ error: `An error occurred while updating the survey [id = ${id}]` });
+    console.error(`Error updating survey`, error);
+    res.status(500).json({ error: `An error occurred while updating the survey` });
   }
 };
 
@@ -60,8 +60,8 @@ surveyController.deleteSurvey = async (req, res) => {
     // Return the deleted survey record as a response
     res.json(survey);
   } catch (error) {
-    console.error(`Error deleting survey id = [${id}] : `, error);
-    res.status(500).json({ error: `An error occurred while deleting the survey id = [${id}]` });
+    console.error(`Error deleting survey: `, error);
+    res.status(500).json({ error: `An error occurred while deleting the survey` });
   }
 };
 
@@ -75,8 +75,8 @@ surveyController.deleteAllSurveys = async (req, res) => {
     // Return the deleted surveys as a response
     res.json(surveys);
   } catch (error) {
-    console.error(`Error deleting surveys for ${email} : `, error);
-    res.status(500).json({ error: `An error occurred while deleting the surveys for ${email}`});
+    console.error(`Error deleting surveys`, error);
+    res.status(500).json({ error: `An error occurred while deleting the surveys`});
   }
 };
 
