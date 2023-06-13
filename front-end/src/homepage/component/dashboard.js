@@ -4,6 +4,7 @@ import "../style/dashboard.css";
 import { getUserID, logOut } from "../../App";
 import { ForgotPassword } from "../../account/components/ForgotPassword";
 
+
 export const Dashboard = _ => {
     const [userID, setUserID] = useState();
      useEffect(() => {
@@ -32,3 +33,8 @@ export const Dashboard = _ => {
         </body> 
     );
 };
+
+/*export const SideBar() => {
+
+    return (
+    );*/
