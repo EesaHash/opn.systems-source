@@ -28,14 +28,6 @@ $grey: #A4A4A4;
         margin-bottom: 25px;
     }
 
-    & h3{
-        font-size: 16px;
-        color: $grey;
-        float: left;
-        margin-left: -50px;
-        margin-top: 10px;
-    }
-
     & a{
         color: $primary-color-malibu;
     }
@@ -110,6 +102,27 @@ $grey: #A4A4A4;
             height: 60vh;
             min-height: 550px;
         }
+        & .sign-up-step-title{
+            float: left;
+            margin-left: -50px;
+            margin-top: 10px;
+            display: flex;
+            & button{
+                margin: 0;
+                margin-top: -13px;
+                margin-right: 10px;
+                margin-left: 10px;
+                background-color: transparent;
+                border-color: transparent;
+                color: white;
+                width: 20px;
+                font-size: 16px;
+            }
+            & h3{
+                font-size: 16px;
+                color: $grey;
+            }
+        }
         & .sign-up{
             height: 75vh;
             min-height: 625px;
@@ -126,17 +139,45 @@ $grey: #A4A4A4;
                     max-width: 275px;
                 }
             }
-            & .invitation-label{
+            & .invitation-list{
                 overflow: scroll;
-                height: 150px;
+                height: 200px;
                 display: grid;
-                & button{
+                margin-bottom: 25px;
+                & .invitation-label{
                     background-color: #F8F8F8 !important;
                     text-align: center;
                     color: black;
                     border-radius: 40px;
-                    width: 270px;
+                    width: 100%;
                     height: 50px;
+                    margin-bottom: 10px;
+                    & p{
+                        float: left;
+                        text-align: left;
+                        width: 60%;
+                        height: 20px;
+                        margin: 0;
+                        margin-left: 15px;
+                        margin-top: 12px;
+                    }
+                    & .close-button{
+                        width: 20%;
+                        margin: 0;
+                        margin-top: -5px;
+                        background-color: transparent;
+                        border-color: transparent;
+                        float: right;
+                        & span{
+                            font-size: 35px;
+                            color: #818181;
+                        }
+                    }
+                }
+                & hr{
+                    height: 1px;
+                    color: transparent;
+                    margin: 0;
                 }
             }
         }
@@ -146,7 +187,6 @@ $grey: #A4A4A4;
         }
         overflow: scroll;
     }
-
 }
 
 .content{
