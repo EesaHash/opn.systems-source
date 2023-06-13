@@ -8,16 +8,16 @@ const configuration = new Configuration({
     apiKey: process.env.OPENAI_API_KEY,
 });
 
+
 const openai = new OpenAIApi(configuration);
 
-//Single Prompt -- RESPONSE IS TRUNCATED DUE TO THE TOKEN LIMIT -- subscription is required & use gpt 3.5 turbo
-// async function runCompletion() {    
-//     const completion = await openai.createCompletion({
-//         model: "text-davinci-003",
-//         prompt: "Give me a course plan for teaching a 5 years old Python programming.",
-// });
-//     return completion;
-// }
+// TODO 
+// Append user responses to this array/list --> Must be in the form at "Role" and "Content". This will help keep track of the conversation history,
+// as well as allow the user to ask questions aka receive dynamic input from the frontend.
+
+const messages = [
+    { role: "user", content: "I want you to generate business plan for fashion for online selling" },
+];
 
 //Multi Prompt
 async function runCompletion() {    
@@ -25,14 +25,12 @@ async function runCompletion() {
         model: "gpt-3.5-turbo",
         messages: [
             { role: "system", content: "You are in charge of making business plans and SOPs (how to open up and the steps involved)" },
-            { role: "user", content: "I want you to generate business plan for fashion for online selling" },
-            // { role: "user", content: "Please show the executive summary" },
-            // { role: "user",content: "how viable is this business plan?"},
+            ...messages,
           ],
-        //   max_tokens: 1000,
-        //   temperature: 0.6,
-        //   n: 1,
-        //   stop: "\n",
+        //   max_tokens: 1000, -> Number of word, sentences etc...
+        //   temperature: 0.6, -> Reduces randomisation set to 0 for the same response each time
+        //   n: 1, -> Number of responses
+        //   stop: "\n", -> Stop at new line
 });
     return completion;
 }
