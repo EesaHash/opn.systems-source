@@ -3,23 +3,27 @@ const sequelize = require('../controllers/accountController/connectDatabase').se
 const Survey = require('./survey');
 
 const User = sequelize.define('User', {
-    email: {
-      type: DataTypes.STRING,
-      primaryKey: true
+    user_id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true
     },
-    firstName: {
+    email_address: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    username: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    lastName: {
-        type: DataTypes.STRING
-    },
     password: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        allowNull: false
     },
-    dob: {
-        type: DataTypes.STRING
-    },
+    email_verification: {
+        type: DataTypes.STRING,
+        allowNull: false
+    }
   });
   
 //Define relationship between User and Survey, A user can have many surveys (naming inappropriate as each survey entry is a single question)
