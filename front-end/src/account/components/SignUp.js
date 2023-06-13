@@ -3,16 +3,17 @@ import { getUserID } from "../../App";
 
 export const SignUp = _ => {
     const [userID, setUserID] = useState("none");
+    const [userInput, setUserInput] = useState({
+        email: "",
+        username: "",
+        password: ""
+    });
     const [emailList, setEmailList] = useState([]);
     const [invitationList, setInvitationList] = useState([]);
 
     getUserID().then(res => setUserID(res));
 
     const nextAction = _ => {
-        document.getElementById("step1").style.display = "none";
-        document.getElementById("step2").style.display = "block";
-    };
-    const createAccount = _ => {
         try{
             const email = document.getElementById("email").value;
             const username = document.getElementById("username").value;
@@ -23,15 +24,57 @@ export const SignUp = _ => {
                 return alert("Please fill in all non-optional fields!");
             }
 
-            fetch("/api/signup", {
+            // Check if the password is at least 8 characters
+            if(password.length < 8)
+                return alert("Password must be at least 8 characters long!");
+
+            const data = {
+                email: email,
+                username: username,
+                password: password
+            };
+            setUserInput(data);
+
+            fetch("/api/authenticateuser", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
                     username: username,
-                    email: email,
-                    password: password
+                    email: email
+                })
+            })
+                .then((res) => {return res.json(); })
+                .then((data) => {
+                    if(!data.status){
+                        alert(data.message);
+                    }
+                    else{
+                        document.getElementById("step1").style.display = "none";
+                        document.getElementById("step2").style.display = "block";
+                    }
+                });
+        }catch(error){
+            return alert(error);
+        }
+    };
+    const backAction = _ => {
+        document.getElementById("step1").style.display = "block";
+        document.getElementById("step2").style.display = "none";
+    };
+    const createAccount = _ => {
+        try{
+            fetch("/api/signup", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    username: userInput.username,
+                    email: userInput.email,
+                    password: userInput.password,
+                    emails: invitationList
                 })
             })
                 .then((res) => {return res.json(); })
@@ -49,7 +92,7 @@ export const SignUp = _ => {
     };
     const handleKeypress = e => {
         if(e.key === "Enter"){
-            createAccount();
+            nextAction();
         }
     };
     const signUpStep1 = _ => {
@@ -58,7 +101,9 @@ export const SignUp = _ => {
                 <div className="content">
                     <div className="user-authentication" style={{height: "100%"}} >
                         <div className="user-authentication-input">
-                            <h3>Step 1 of 2</h3>
+                            <div className="sign-up-step-title">
+                                <h3>Step 1 of 2</h3>
+                            </div>
                         </div>
                         <h1>Create Account</h1>
                         <div className="user-authentication-input">
@@ -94,7 +139,12 @@ export const SignUp = _ => {
                 <div className="content">
                     <div className="user-authentication">
                         <div className="user-authentication-input">
-                            <h3>Step 2 of 2</h3>
+                            <div className="sign-up-step-title">
+                                <button type="button" onClick={backAction} >
+                                    <span aria-hidden="true">{"<"}</span>
+                                </button>
+                                <h3>Step 2 of 2</h3>
+                            </div>
                         </div>
                         <h1>Invite Team Members</h1>
                         <div className="user-authentication-input">
@@ -115,7 +165,7 @@ export const SignUp = _ => {
                         ))}
                         </div>
                         <div >
-                            <button onClick={nextAction}> Sign Up</button>
+                            <button onClick={createAccount}> Sign Up</button>
                         </div>
                     </div>
                 </div>
@@ -123,14 +173,17 @@ export const SignUp = _ => {
         );
     };
     const addInvitation = _ => {
+        const email = document.getElementById("invitation-email").value;
+        if(!email)
+            return alert("Please fill in the input field!");
         if(document.getElementById("invitation-list").style.display === "none"){
             document.getElementById("step2").style.height = "75vh";
             document.getElementById("step2").style.minHeight = "625px";
             document.getElementById("invitation-list").style.display = "grid";
         }
-        const email = document.getElementById("invitation-email").value;
         setEmailList([...emailList, { email: email }]);
         setInvitationList([...invitationList, email]);
+        document.getElementById("invitation-email").value = "";
     };
     const cancelEmailInvitation = (index) => {
         const list = [...emailList];

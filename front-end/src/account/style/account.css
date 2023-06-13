@@ -18,13 +18,6 @@
 .user-authentication h1, .user-authentication .user-authentication-input, .user-authentication button {
   margin-bottom: 25px;
 }
-.user-authentication h3 {
-  font-size: 16px;
-  color: #A4A4A4;
-  float: left;
-  margin-left: -50px;
-  margin-top: 10px;
-}
 .user-authentication a {
   color: #7DC8F7;
 }
@@ -95,6 +88,27 @@
   height: 60vh;
   min-height: 550px;
 }
+.page1 .cover .sign-up-step-title {
+  float: left;
+  margin-left: -50px;
+  margin-top: 10px;
+  display: flex;
+}
+.page1 .cover .sign-up-step-title button {
+  margin: 0;
+  margin-top: -13px;
+  margin-right: 10px;
+  margin-left: 10px;
+  background-color: transparent;
+  border-color: transparent;
+  color: white;
+  width: 20px;
+  font-size: 16px;
+}
+.page1 .cover .sign-up-step-title h3 {
+  font-size: 16px;
+  color: #A4A4A4;
+}
 .page1 .cover .sign-up {
   height: 75vh;
   min-height: 625px;
@@ -139,12 +153,14 @@
 .page1 .cover .sign-up2 .invitation-list .invitation-label .close-button {
   width: 20%;
   margin: 0;
+  margin-top: -5px;
   background-color: transparent;
   border-color: transparent;
   float: right;
 }
 .page1 .cover .sign-up2 .invitation-list .invitation-label .close-button span {
-  font-size: 20px;
+  font-size: 35px;
+  color: #818181;
 }
 .page1 .cover .sign-up2 .invitation-list hr {
   height: 1px;

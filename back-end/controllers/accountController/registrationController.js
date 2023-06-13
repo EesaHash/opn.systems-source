@@ -2,25 +2,12 @@ const express = require ("express");
 const router = express.Router();
 const { connection } = require("./connectDatabase");
 const { sendEmailConfirmation } = require("../emailController/emailSenderController");
+const { transporter } = require("../emailController/emailSenderController");
 
 router.post("/", async (req, res) => {
     try{
-        const {username, email, password} = req.body;
-
-        // Check for existing username
-        if(await isExisted("username", String(username).toLowerCase())){
-            return res.status(400).json({
-                status: false,
-                message: "Email already exists, please choose another email!"
-            });
-        }
-        // Check for existing email
-        if(await isExisted("email_address", String(email).toLowerCase())){
-            return res.status(400).json({
-                status: false,
-                message: "Email already exists, please choose another email!"
-            });
-        }
+        const {username, email, password, emails} = req.body;
+        
         // Create new account
         const user = await createAccount(username, email, password);
         if(!user){
@@ -32,6 +19,15 @@ router.post("/", async (req, res) => {
 
         // Send Email Verification
         sendEmailConfirmation(email);
+
+        // Send Email Invitation
+        for(let i = 0; i < emails.length; ++i){
+            const temp = emails[i];
+            const emailExistence = await isExisted("email_address", temp);
+            if(!emailExistence){
+                sendEmail(temp, email);
+            }
+        }
 
         return res.status(200).json({
             status: true,
@@ -74,6 +70,23 @@ const createAccount = async (username, email, password) => {
     }
 };
 
+const sendEmail = (email, emailSource) => {
+    try{
+        const url = `${process.env.FRONTEND_URL}/signup`;
+        const mailContent = {
+            from: process.env.EMAIL_USERNAME,
+            to: email,
+            subject: "OPN.SYSTEM INVITATION",
+            html: `<h1>${emailSource} is inviting you to register to Opn.Systems.\nPlease follow the attached link to proceed\n${url}</h1>`
+        };
+        transporter.sendMail(mailContent, (error, info) => {
+            if(error) console.log(error);
+            else console.log(`Successfully sent invitation email to ${email}`);
+        });
+    }catch(error){
+        console.log(error);
+    }
+};
 
 const generateID = async (accountType) => {
     const numbers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
