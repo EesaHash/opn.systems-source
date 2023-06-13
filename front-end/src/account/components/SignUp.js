@@ -3,7 +3,8 @@ import { getUserID } from "../../App";
 
 export const SignUp = _ => {
     const [userID, setUserID] = useState("none");
-    const invitationList = [];
+    const [emailList, setEmailList] = useState([]);
+    const [invitationList, setInvitationList] = useState([]);
 
     getUserID().then(res => setUserID(res));
 
@@ -99,11 +100,20 @@ export const SignUp = _ => {
                         <div className="user-authentication-input">
                             <label htmlFor="email">Email Address</label>
                             <div className="inviteInput">
-                                <input type="email" id ="invitation-email" placeholder="johndoe@gmail.com" onKeyPress={handleKeypress} />
+                                <input type="email" id ="invitation-email" placeholder="johndoe@gmail.com" onKeyPress={handleKeypress2} />
                                 <button onClick={addInvitation} >Invite</button>
                             </div>
                         </div>
-                        <div id="invitation-list" className="invitation-label" style={{display: "none"}}> <hr/> </div>
+                        <div id="invitation-list" className="invitation-list" style={{display: "none"}}> 
+                        {emailList.map((data, index) => (
+                            <div key={index} className="invitation-label">
+                                <p>{data.email}</p>
+                                <button className="close-button" aria-label="Dismiss alert" type="button" onClick={cancelEmailInvitation} >
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        ))}
+                        </div>
                         <div >
                             <button onClick={nextAction}> Sign Up</button>
                         </div>
@@ -113,11 +123,32 @@ export const SignUp = _ => {
         );
     };
     const addInvitation = _ => {
-        const node = document.createElement("button");
+        if(document.getElementById("invitation-list").style.display === "none"){
+            document.getElementById("step2").style.height = "75vh";
+            document.getElementById("step2").style.minHeight = "625px";
+            document.getElementById("invitation-list").style.display = "grid";
+        }
         const email = document.getElementById("invitation-email").value;
-        node.textContent = email;
-        invitationList.push(email);
-        document.getElementById("invitation-list").appendChild(node);
+        setEmailList([...emailList, { email: email }]);
+        setInvitationList([...invitationList, email]);
+    };
+    const cancelEmailInvitation = (index) => {
+        const list = [...emailList];
+        list.splice(index, 1);
+        setEmailList(list);
+        const list2 = [...invitationList];
+        list2.splice(index, 1);
+        setInvitationList(list2);
+        if(list2.length === 0){
+            document.getElementById("step2").style.height = "40vh";
+            document.getElementById("step2").style.minHeight = "400px";
+            document.getElementById("invitation-list").style.display = "none";
+        }
+    };
+    const handleKeypress2 = e => {
+        if(e.key === "Enter"){
+            addInvitation();
+        }
     };
 
     if(userID !== "none") return window.location.href = "/";
@@ -127,14 +158,6 @@ export const SignUp = _ => {
                 {signUpStep1()}
                 {signUpStep2()}
             </div>
-        </div>
-    );
-};
-
-const emailInvitationLabel = (email) => {
-    return(
-        <div className="invitation-label">
-            <button>{email}</button>
         </div>
     );
 };

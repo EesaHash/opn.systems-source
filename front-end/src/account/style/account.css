@@ -112,20 +112,41 @@
   min-width: 200px;
   max-width: 275px;
 }
-.page1 .cover .sign-up2 .invitation-label {
+.page1 .cover .sign-up2 .invitation-list {
   overflow: scroll;
-  height: 150px;
+  height: 200px;
   display: grid;
+  margin-bottom: 25px;
 }
-.page1 .cover .sign-up2 .invitation-label button {
+.page1 .cover .sign-up2 .invitation-list .invitation-label {
   background-color: #F8F8F8 !important;
   text-align: center;
   color: black;
   border-radius: 40px;
-  width: 270px;
+  width: 100%;
   height: 50px;
+  margin-bottom: 10px;
 }
-.page1 .cover .sign-up2 .invitation-label hr {
+.page1 .cover .sign-up2 .invitation-list .invitation-label p {
+  float: left;
+  text-align: left;
+  width: 60%;
+  height: 20px;
+  margin: 0;
+  margin-left: 15px;
+  margin-top: 12px;
+}
+.page1 .cover .sign-up2 .invitation-list .invitation-label .close-button {
+  width: 20%;
+  margin: 0;
+  background-color: transparent;
+  border-color: transparent;
+  float: right;
+}
+.page1 .cover .sign-up2 .invitation-list .invitation-label .close-button span {
+  font-size: 20px;
+}
+.page1 .cover .sign-up2 .invitation-list hr {
   height: 1px;
   color: transparent;
   margin: 0;
