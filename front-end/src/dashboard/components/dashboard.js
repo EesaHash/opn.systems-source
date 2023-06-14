@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from "react";
-import "../style/homepage.css";
 import "../style/dashboard.css";
 import { getUserID, logOut } from "../../App";
 import { ForgotPassword } from "../../account/components/ForgotPassword";

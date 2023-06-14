@@ -61,3 +61,19 @@ body{
  align-content: center;
 }
 
+.logo1 {
+    display: flex;
+    align-items: center;
+    background-image: url("../../../public/images/green_logo.png");
+    width:40px;
+    height: 40px;
+    margin-top: 10px;
+    margin-right: auto;
+    margin-left: auto;
+}
+ 
+  .logo1 p {
+    color:white;
+  }
+  
+

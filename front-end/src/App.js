@@ -6,8 +6,8 @@ import { SignUp } from "./account/components/SignUp";
 import { SignIn } from "./account/components/SignIn";
 import { ForgotPassword } from "./account/components/ForgotPassword";
 import { Homepage } from "./homepage/component/homepage";
-import { Dashboard } from "./homepage/component/dashboard";
-import { Dashboard2 } from "./homepage/component/dashboard2";
+import { Dashboard } from "./dashboard/components/dashboard";
+import { Dashboard2 } from "./dashboard/components/dashboard2";
 
 export const getUserID = _ => {
   let token;
