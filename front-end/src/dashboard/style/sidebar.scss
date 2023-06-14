@@ -1,0 +1,36 @@
+.sidebar {
+    display: flex;
+    height: 100vh;
+    overflow: scroll initial;
+    float: left;
+    color: black;
+  }
+  
+  .sidebar-content {
+    padding: 20px 5px;
+  }
+  
+  .sidebar a {
+    color: inherit;
+    text-decoration: none;
+  }
+  
+  .sidebar-header {
+    color: #fff;
+    background-color: #000000;
+  }
+  
+  .sidebar-footer {
+    text-align: center;
+  }
+
+  .content {
+    float: left;
+  }
+
+  .menu-item-tab {
+    border: 1px solid rgb(39, 39, 39);
+    border-radius: 6px;
+    background-color:#171B21;
+    margin-bottom: 25px;
+  }
