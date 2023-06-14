@@ -15,23 +15,20 @@ export const Dashboard = _ => {
      }, []);
     if(userID === "none") return window.location.href = "/";
     return(
-        <body>
-            <div className="search-bar">
-                <input type="text" id="searchInput" placeholder="Search for businesses, CCF, SOPs or keywords" />
-                <button type="submit">Search</button>
-            </div>
-            <div className="box_main">  
-                <div className="search-bar"></div>
-                <div className="box2">
-
+        <body>  
+                 <div className="search-bar">
+                    <input type="text" id="searchInput" placeholder= " &#xF002; Search for businesses, CCF, SOPs or keywords" />
                 </div>
-                <div className="box3">
-                    <div className="logo1">
-                        <p>opn.system</p>
+                <div className="box_main">
+                    <div className="search-bar"></div>
+                    <div className="box2">
+                    
                     </div>
-            
-                </div>
-            </div>         
+                    <div className="box3">
+                        <div className="smalllogo"><h5>opn.system</h5></div>
+
+                     </div>
+                 </div> 
         </body> 
     );
 };
