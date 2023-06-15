@@ -22,11 +22,9 @@ export const Dashboard = _ => {
                 <div className="box_main">
                     <div className="search-bar"></div>
                     <div className="box2">
-                    
-                    </div>
                     <div className="box3">
                         <div className="smalllogo"><h5>opn.system</h5></div>
-
+                        </div>
                      </div>
                  </div> 
         </body> 
