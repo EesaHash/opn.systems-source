@@ -33,7 +33,3 @@ export const Dashboard = _ => {
     );
 };
 
-/*export const SideBar() => {
-
-    return (
-    );*/
