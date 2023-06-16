@@ -50,7 +50,7 @@ function App() {
           <Route path="" element={<Homepage/>}/>
         </Route>
         <Route path="/dashboard" element={<Header page="none"/>} >
-          <Route path="" element={<Dashboard/>}/>
+          <Route path="" element={<Dashboard2/>}/>
         </Route>
         <Route path="/signin" element={<Header page="signin"/>} >
           <Route path="" element={<SignIn/>}/>
