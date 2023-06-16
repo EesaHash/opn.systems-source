@@ -62,7 +62,7 @@ export const SignIn = _ => {
                         <div className ="user-authentication">
                             <h1>Login</h1>
                             <div className="user-authentication-input">
-                                <label html="email">Email Address</label>
+                                <label html="email">Email Address/Username</label>
                                 <input type="text" placeholder="johndoe@gmail.com" id ="email" onKeyPress={handleKeypress} />
                             </div>
                             <div className="user-authentication-input">
@@ -86,7 +86,7 @@ export const SignIn = _ => {
                         </div>
                     </div>
                 </div>
-                </div>
-            </div> 
+            </div>
+        </div> 
     );
 };

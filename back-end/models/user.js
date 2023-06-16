@@ -1,31 +1,25 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../controllers/accountController/connectDatabase').sequelize;
-const Survey = require('./survey');
 
 const User = sequelize.define('User', {
-    user_id: {
-        type: DataTypes.INTEGER,
-        autoIncrement: true,
-        primaryKey: true
-    },
-    email_address: {
-      type: DataTypes.STRING,
-      allowNull: false
+    email: {
+      type: DataTypes.STRING(50),
+      allowNull: false,
+      primaryKey: true
     },
     username: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(50),
         allowNull: false
     },
     password: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(20),
         allowNull: false
     },
     email_verification: {
-        type: DataTypes.STRING,
-        allowNull: false
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false
     }
-  });
-  
-//Define relationship between User and Survey, A user can have many surveys (naming inappropriate as each survey entry is a single question)
-User.hasMany(Survey, { foreignKey: 'email' });
+});
+
 module.exports = User;

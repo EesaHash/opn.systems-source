@@ -1,14 +1,13 @@
 const express = require("express");
 const router = express.Router();
-const { connection } = require("./connectDatabase");
 const { transporter } = require("../emailController/emailSenderController");
+const { getUsers } = require("./UserController");
 
 router.post("/", async (req, res) => {
     try{
         const {email} = req.body;
-        let user  = await getUser(email);
+        let user  = await getUsers(email);
         user = user[0];
-
         // Check email input
         if(!user){
             return res.status(400).json({
@@ -17,7 +16,7 @@ router.post("/", async (req, res) => {
             });
         }
         // Send forget password link
-        sendEmail(String(email).toLowerCase(), user.password);
+        sendEmail(user.email, user.password);
         return res.status(200).json({
             status: true,
             message: "Please check your email's inbox!"
@@ -31,21 +30,6 @@ router.post("/", async (req, res) => {
     }
 });
 module.exports = router;
-
-const getUser = (email) => {
-    const inputUsername = String(email).toLowerCase();
-    const sql = `SELECT * FROM  user_t WHERE username = '${inputUsername}' OR email_address = '${inputUsername}';`
-    return new Promise((resolve, reject) => {
-        connection.query(sql, (err, result) => {
-            if(err){
-                console.log(err);
-                return reject(null);
-            }else{
-                return resolve(result.rows);
-            }
-        });
-    });
-};
 
 const sendEmail = (email, password) => {
     try{

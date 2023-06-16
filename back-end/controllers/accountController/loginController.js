@@ -1,13 +1,13 @@
 const express = require("express");
 const router = express.Router();
-const { connection } = require("./connectDatabase");
 const { sendEmailConfirmation } = require("../emailController/emailSenderController");
 const jwt = require("jsonwebtoken");
+const { getUsers } = require("./UserController");
 
 router.post("/", async (req, res) => {
     try{
         const {username, password, rememberMe} = req.body;
-        let user  = await getUser(username);
+        let user  = await getUsers(username);
         user = user[0];
 
         // Check account existence
@@ -29,9 +29,9 @@ router.post("/", async (req, res) => {
         }
 
         // Check account's activations status and send email verification if it is not active
-        if(Number(user.email_verification) === 0){
+        if(!(user.email_verification)){
             console.log("Non-active account, email verification required!");
-            sendEmailConfirmation((user.email_address));
+            sendEmailConfirmation((user.email));
             return res.status(400).json({
                 status: false,
                 message: "Your account is not yet active. Please verify your email to activate your account via the link sent in your email!"
@@ -39,13 +39,13 @@ router.post("/", async (req, res) => {
         }
 
         // Generate token and save the token (login credentials)
-        const userID = user.user_id;
+        const email = user.email;
         let loginToken;
         if(rememberMe)
-            loginToken = jwt.sign(JSON.parse(`{"userID":"${userID}"}`), process.env.ACCESS_TOKEN_SECRET, { expiresIn: '7d' });
+            loginToken = jwt.sign(JSON.parse(`{"email":"${email}"}`), process.env.ACCESS_TOKEN_SECRET, { expiresIn: '7d' });
         else
-            loginToken = jwt.sign(JSON.parse(`{"userID":"${userID}"}`), process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1d' });
-        console.log(`${user.email_address} successfully login to his/her account!`);
+            loginToken = jwt.sign(JSON.parse(`{"email":"${email}"}`), process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1d' });
+        console.log(`${user.email} successfully login to his/her account!`);
         return res.status(200).json({
             status: true,
             message: "Log In Successfull!",
@@ -60,18 +60,3 @@ router.post("/", async (req, res) => {
     }
 });
 module.exports = router;
-
-const getUser = (username) => {
-    const inputUsername = String(username).toLowerCase();
-    const sql = `SELECT * FROM  user_t WHERE username = '${inputUsername}' OR email_address = '${inputUsername}';`
-    return new Promise((resolve, reject) => {
-        connection.query(sql, (err, result) => {
-            if(err){
-                console.log(err);
-                return reject(null);
-            }else{
-                return resolve(result.rows);
-            }
-        });
-    });
-};

@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
 const { connection } = require("./connectDatabase");
+const { isEmailExist } = require("./UserController");
 require ("dotenv").config();
 
 router.post("/", async (req, res) => {
@@ -13,7 +14,7 @@ router.post("/", async (req, res) => {
                     userID: "none"
                 });
             }
-            const checkID = await isUserExists(data.userID);
+            const checkID = await isEmailExist(data.email)
             if(!checkID){
                 return res.status(403).json({
                     userID: "none"
@@ -32,17 +33,17 @@ router.post("/", async (req, res) => {
 });
 module.exports = router;
 
-const isUserExists = (userID) => {
-    const sql = `SELECT * FROM user_t WHERE user_id = '${userID}';`;
+// const isUserExists = (userID) => {
+//     const sql = `SELECT * FROM user_t WHERE user_id = '${userID}';`;
 
-    return new Promise((resolve, reject) => {
-        connection.query(sql, (err, result) => {
-            if(err){
-                console.log(err);
-                return reject(null);
-            }else{
-                return resolve(result.rows);
-            }
-        });
-    });
-};
+//     return new Promise((resolve, reject) => {
+//         connection.query(sql, (err, result) => {
+//             if(err){
+//                 console.log(err);
+//                 return reject(null);
+//             }else{
+//                 return resolve(result.rows);
+//             }
+//         });
+//     });
+// };

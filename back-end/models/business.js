@@ -26,7 +26,7 @@ const Business = sequelize.define('Business', {
         type: DataTypes.BOOLEAN,
     },
     email: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(50)
     }
   });
 

@@ -1,4 +1,5 @@
 const { DataTypes } = require('sequelize');
+const User = require('./user');
 const sequelize = require('../controllers/accountController/connectDatabase').sequelize;
 
 const Survey = sequelize.define('Survey', {
@@ -15,8 +16,9 @@ const Survey = sequelize.define('Survey', {
       type: DataTypes.STRING
     },
     email: {
-        type: DataTypes.STRING,
+      type: DataTypes.STRING(50)
     }
-  });
+});
 
+User.hasMany(Survey, { foreignKey: 'email' });
 module.exports = Survey;
