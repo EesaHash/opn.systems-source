@@ -32,7 +32,7 @@ export const Dashboard2 = _ => {
               <li className="navigation-item">
                 <a href="#" className="navigation_link">
                   <svg className="bi pe-none me-2" width="16" height="16">
-                   <path""/>
+                   <path/>
                   </svg>
                   Dashboard
                 </a>
