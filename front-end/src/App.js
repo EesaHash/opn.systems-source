@@ -6,7 +6,7 @@ import { SignUp } from "./account/components/SignUp";
 import { SignIn } from "./account/components/SignIn";
 import { ForgotPassword } from "./account/components/ForgotPassword";
 import { Homepage } from "./homepage/component/homepage";
-import { Dashboard } from "./dashboard/components/dashboard";
+import { Sidebar } from "./dashboard/components/Sidebar";
 import { Dashboard2 } from "./dashboard/components/dashboard2";
 
 export const getUserID = _ => {
@@ -59,6 +59,9 @@ function App() {
         </Route>
         <Route path="/forgotpassword" element={<Header page="forgetpass"/>} >
           <Route path="" element={<ForgotPassword/>}/>
+        </Route>
+        <Route path="/test" element={<Header page="none"/>} >
+          <Route path="" element={<Sidebar/>}/>
         </Route>
       </Routes>
     </div>

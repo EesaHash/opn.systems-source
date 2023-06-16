@@ -1,36 +1,50 @@
 .sidebar {
+  height: 100%;
+  width: 240px;
+  background-color: black;
+  height: 100vh;
+  border-radius: 12px;
+}
+
+.icon {
+  color: white;
+}
+
+.sidebar-list {
+  height: auto;
+  width: 100%;
+  & .row {
+    width: 85%;
+    background-color: black;
+    border: 1px solid gray;
+    list-style-type: none;
+    margin:0%;
     display: flex;
-    height: 100vh;
-    overflow: scroll initial;
-    float: left;
+    flex-direction: row;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    margin-top: 4%;
+    margin-left: 7%;
+  }
+  & .row>*{
+    width: 50%;
+  }
+  & .row:hover {
+    background-color: white;
+    cursor: pointer;
     color: black;
-  }
-  
-  .sidebar-content {
-    padding: 20px 5px;
-  }
-  
-  .sidebar a {
-    color: inherit;
-    text-decoration: none;
-  }
-  
-  .sidebar-header {
-    color: #fff;
-    background-color: #000000;
-  }
-  
-  .sidebar-footer {
-    text-align: center;
+
   }
 
-  .content {
-    float: left;
+  & div#icon {
+    width: 14%;
   }
+}
 
-  .menu-item-tab {
-    border: 1px solid rgb(39, 39, 39);
-    border-radius: 6px;
-    background-color:#171B21;
-    margin-bottom: 25px;
-  }
+.opn-systems-text {
+  color: white;
+  font-size: 1.5rem;
+  margin-left: 20%;
+  margin-top: 5%;
+}
