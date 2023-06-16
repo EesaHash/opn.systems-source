@@ -37,10 +37,6 @@
 }
 .user-authentication button {
   width: 110px;
-  border-radius: 10px;
-  background-color: #5D5FEF;
-  border-style: solid;
-  border-color: #5D5FEF;
 }
 .user-authentication .forgot-password {
   width: auto;

@@ -141,15 +141,44 @@
 }
 
 .Features {
-  font-family: "Europa", sans-serif;
   font-style: normal;
   font-size: medium;
 }
 
 .about {
-  font-family: "Europa", sans-serif;
   font-style: normal;
   font-size: medium;
+}
+
+.page-1 {
+  width: 100vw;
+  text-align: center;
+}
+
+.free-trial {
+  margin-top: 35px;
+  display: flex;
+  justify-content: center;
+}
+.free-trial .form-floating {
+  width: 25vw;
+  margin-right: -1px;
+}
+.free-trial .form-floating input {
+  border-radius: 10px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-style: solid;
+  border-color: transparent;
+}
+.free-trial button {
+  width: 15vw;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  font-weight: 500;
+}
+.free-trial button, .free-trial input {
+  height: 65px !important;
 }
 
 /*# sourceMappingURL=homepage.css.map */

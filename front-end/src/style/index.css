@@ -1,3 +1,10 @@
 html * {
   font-family: "DM Sans";
+}
+
+button {
+  border-radius: 10px;
+  background-color: #5D5FEF;
+  border-style: solid;
+  border-color: #5D5FEF;
 }/*# sourceMappingURL=index.css.map */
