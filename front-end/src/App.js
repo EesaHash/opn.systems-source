@@ -46,7 +46,7 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="*" element={<Header page="none"/>} >
+        <Route path="*" element={<Header page="homepage"/>} >
           <Route path="" element={<Homepage/>}/>
         </Route>
         <Route path="/dashboard" element={<Header page="none"/>} >

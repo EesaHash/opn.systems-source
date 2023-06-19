@@ -1,24 +1,13 @@
-/* CSS for the header */
-.header {
-  /*background-color: black;*/
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  margin-right: 10px;
-}
-
-.page {
+.homepage {
   display: flex;
   background: radial-gradient(14.11cm 8.89% at 5cm 10cm, rgba(2, 2, 132, 0.88) 0%, black 100%);
-  height: 4800px;
   width: 100vw;
   background-repeat: no-repeat;
   flex-direction: column;
   align-items: center;
 }
 
-.ricky {
+.homepage-body {
   width: 100%;
   height: 100%;
   background-position: center;
@@ -27,29 +16,12 @@
   background-position: 20% 10.5cm, 0cm 2cm, top right, 2cm 8.5cm, -0.1cm 30cm;
 }
 
-.circle {
-  background-image: url("../../../public/images/green_profile_logo.png");
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  margin-right: 50px;
-  margin-left: 20px;
-  margin-top: 10px;
-}
-
 .text {
   margin-right: 30px;
   font-display: 16;
   text-decoration: none;
   color: white;
   margin-top: 10px;
-}
-
-.buttons {
-  margin-block: 15px;
-  position: fixed;
-  top: 0;
-  right: 0%;
 }
 
 .signup {
@@ -93,92 +65,339 @@
   background-color: white;
 }
 
-.center_head {
-  margin-top: 200px;
+.page-1, .page-2, .page-3, .page-4 {
+  width: 100vw;
+  text-align: center;
+}
+
+.page-1 h1 {
+  width: 60vw;
+  margin-top: 300px;
   margin-right: auto;
   margin-left: auto;
-  width: 803px;
   font-style: normal;
   font-weight: 700;
   font-size: 80px;
   text-align: center;
   color: white;
 }
-
-.mission {
+.page-1 h3 {
   margin-top: auto;
   align-items: center;
   margin-left: auto;
   margin-right: auto;
-  width: 1016px;
-  height: 90px;
-  font-weight: bolder;
+  width: 75vw;
   font-style: normal;
   font-weight: 400;
   font-size: 32px;
   text-align: center;
   color: rgba(179, 208, 203, 0.949);
 }
-
-.signout {
-  padding: 10px 10px;
-  box-sizing: border-box;
-  width: 11px;
-  height: 48px;
-  border: 1px solid #FFFFFF;
-  border-radius: 8px;
-  font-family: "Europa", sans-serif;
-  font-style: normal;
-  font-weight: 500;
-  text-decoration: none;
-  color: black;
-  font-size: 16px;
-  line-height: 24px;
-  text-align: center;
-  background-color: white;
-  gap: 4px;
-  margin-right: 12px;
-}
-
-.Features {
-  font-style: normal;
-  font-size: medium;
-}
-
-.about {
-  font-style: normal;
-  font-size: medium;
-}
-
-.page-1 {
-  width: 100vw;
-  text-align: center;
-}
-
-.free-trial {
+.page-1 .free-trial {
   margin-top: 35px;
   display: flex;
   justify-content: center;
 }
-.free-trial .form-floating {
+.page-1 .free-trial .form-floating {
   width: 25vw;
   margin-right: -1px;
+  color: #787878;
 }
-.free-trial .form-floating input {
+.page-1 .free-trial .form-floating input {
   border-radius: 10px;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
   border-style: solid;
   border-color: transparent;
 }
-.free-trial button {
+.page-1 .free-trial button {
   width: 15vw;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
   font-weight: 500;
 }
-.free-trial button, .free-trial input {
+.page-1 .free-trial .form-floating, .page-1 .free-trial button {
+  font-size: 20px;
+}
+.page-1 .free-trial button, .page-1 .free-trial input {
   height: 65px !important;
 }
 
-/*# sourceMappingURL=homepage.css.map */
+.page-2, .page-3, .page-4 {
+  width: var(--window-width)-70px;
+  margin-left: 70px;
+}
+
+.page-2 {
+  margin-top: 450px;
+}
+.page-2 .sponsor {
+  height: 150px;
+}
+.page-2 .sponsor h3 {
+  font-size: 32px;
+  color: rgba(179, 208, 203, 0.949);
+}
+.page-2 .sponsor .sponsor-list {
+  display: block;
+  margin-top: 30px;
+}
+.page-2 .sponsor .sponsor-list img {
+  width: 75px;
+  height: 75px;
+  margin-right: 60px;
+  filter: grayscale(100%);
+}
+.page-2 .ai-driven, .page-2 .customer-journey, .page-2 .integration {
+  width: 80vw;
+  text-align: left;
+  margin: auto;
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+.page-2 .ai-driven h1, .page-2 .ai-driven h2, .page-2 .customer-journey h1, .page-2 .customer-journey h2, .page-2 .integration h1, .page-2 .integration h2 {
+  margin: 0;
+  font-weight: 500;
+  font-size: 64px;
+}
+.page-2 .ai-driven h2, .page-2 .customer-journey h2, .page-2 .integration h2 {
+  margin-top: -15px;
+  color: #F7F8FC;
+}
+.page-2 .ai-driven h3, .page-2 .customer-journey h3, .page-2 .integration h3 {
+  margin-top: 30px;
+  font-size: 32px;
+  color: rgba(179, 208, 203, 0.949);
+}
+.page-2 .ai-driven {
+  height: 1400px;
+}
+.page-2 .ai-driven h1 {
+  color: #5D5FEF;
+}
+.page-2 .ai-driven .ai-driven-content {
+  margin-top: 100px;
+  display: inline-flex;
+  width: 75vw;
+  height: 1050px;
+}
+.page-2 .ai-driven .ai-driven-content div {
+  background-color: white;
+  border-radius: 20px;
+}
+.page-2 .ai-driven .ai-driven-content .ai-driven-content-1 {
+  width: 35vw;
+  height: 1050px;
+  margin-right: 50px;
+}
+.page-2 .ai-driven .ai-driven-content .ai-driven-content-2, .page-2 .ai-driven .ai-driven-content .ai-driven-content-3 {
+  width: 35vw;
+  height: 500px;
+}
+.page-2 .ai-driven .ai-driven-content .ai-driven-content-2 {
+  margin-bottom: 50px;
+}
+.page-2 .customer-journey {
+  height: 1200px;
+}
+.page-2 .customer-journey h1 {
+  color: #FEC514;
+}
+.page-2 .customer-journey .customer-journey-content {
+  display: inline-flex;
+}
+.page-2 .customer-journey .customer-journey-content div {
+  background-color: white;
+  border-radius: 20px;
+}
+.page-2 .customer-journey .customer-journey-content .customer-journey-content-1 {
+  width: 65vw;
+  height: 700px;
+}
+.page-2 .customer-journey .customer-journey-content .customer-journey-content-2 {
+  position: absolute;
+  right: 75px;
+  top: 3150px;
+  width: 55vw;
+  height: 750px;
+  z-index: 2;
+  box-shadow: 0 0 20px #888888;
+}
+@media screen and (max-width: 1000px) {
+  .page-2 .customer-journey .customer-journey-content .customer-journey-content-2 {
+    top: 3400px;
+  }
+}
+.page-2 .integration .integration-title {
+  display: flex;
+}
+@media screen and (max-width: 750px) {
+  .page-2 .integration .integration-title {
+    display: block;
+  }
+}
+.page-2 .integration h1 {
+  color: #F8F8F8;
+}
+.page-2 .integration h2 {
+  margin: 0;
+  margin-left: 25px;
+  color: #F04E98;
+}
+.page-2 .integration .integration-content {
+  padding: 60px 0;
+  height: auto;
+  width: 70vw;
+  align-items: center;
+  margin: auto;
+}
+.page-2 .integration .integration-content .integration-content-row, .page-2 .integration .integration-content .integration-content-row, .page-2 .integration .integration-content .integration-content-row {
+  width: -moz-fit-content;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  margin: auto;
+  margin-bottom: 20px;
+}
+.page-2 .integration .integration-content .integration-content-row div, .page-2 .integration .integration-content .integration-content-row div, .page-2 .integration .integration-content .integration-content-row div {
+  text-align: center;
+  font-size: 35px;
+  background-color: transparent;
+  padding: 5px 30px;
+  width: auto;
+  height: auto;
+  border: 1.5px solid #ACACAC;
+  border-radius: 55px;
+}
+.page-2 .integration .integration-content .integration-content-row img, .page-2 .integration .integration-content .integration-content-row img, .page-2 .integration .integration-content .integration-content-row img {
+  width: auto;
+  height: 35px;
+  margin-right: 10px;
+  margin-top: -5px;
+}
+
+.page-3 {
+  margin-top: 100px;
+  margin-bottom: 100px;
+  text-align: center;
+}
+.page-3 h1, .page-3 h2 {
+  font-size: 64px;
+  margin: 0;
+  margin-bottom: -15px;
+}
+.page-3 h1 {
+  color: #F8F8F8;
+}
+.page-3 h2 {
+  color: #75F84C;
+}
+.page-3 .page-3-sub-title {
+  display: inline-flex;
+  align-items: center;
+  margin: auto;
+}
+@media screen and (max-width: 750px) {
+  .page-3 .page-3-sub-title {
+    display: block;
+  }
+}
+.page-3 h3 {
+  margin-top: 50px;
+  font-size: 32px;
+  color: rgba(179, 208, 203, 0.949);
+}
+.page-3 .page-3-content {
+  display: inline-flex;
+  margin: 100px auto;
+}
+.page-3 .page-3-content div {
+  background-color: white;
+  border-radius: 20px;
+  width: 15vw;
+  height: 15vw;
+  margin-right: 3vw;
+}
+.page-3 button {
+  background-color: #F7F8FC;
+  width: 20vw;
+  height: 65px;
+  border-radius: 8px;
+  border-color: transparent;
+  border-style: solid;
+  font-size: 24px;
+}
+
+.page-4 {
+  margin-top: 120px;
+  margin-bottom: 100px;
+  height: auto;
+}
+.page-4 h1 {
+  font-size: 64px;
+  color: #F8F8F8;
+}
+.page-4 h3 {
+  margin-top: 50px;
+  font-size: 32px;
+  color: rgba(179, 208, 203, 0.949);
+}
+.page-4 a, .page-4 button {
+  background-color: transparent;
+  width: 20vw;
+  height: 65px;
+  border-radius: 8px;
+  border-style: solid;
+  border-color: white;
+  color: white;
+  font-size: 24px;
+  margin: 30px 0;
+}
+.page-4 a {
+  text-decoration: none;
+  padding: 15px;
+  border-width: 2px;
+}
+.page-4 .plan-list {
+  margin-top: 30px;
+  display: inline-flex;
+}
+.page-4 .plan-list .plan-content {
+  background-color: white;
+  width: 20vw;
+  height: 100%;
+  margin: auto;
+  margin-right: 3vw;
+  border-radius: 12px;
+  text-align: left;
+  padding: 2vw 3vw;
+}
+.page-4 .plan-list .plan-content h1, .page-4 .plan-list .plan-content h2, .page-4 .plan-list .plan-content h3, .page-4 .plan-list .plan-content p {
+  color: black;
+}
+.page-4 .plan-list .plan-content h2 {
+  margin-top: 30px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+}
+.page-4 .plan-list .plan-content h1 {
+  margin-top: 20px;
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 48px;
+}
+.page-4 .plan-list .plan-content h3 {
+  font-size: 12px;
+  line-height: 24px;
+  margin-top: 0;
+}
+.page-4 .plan-list .plan-content p {
+  margin-top: 30px;
+}
+.page-4 .plan-list .plan-content button {
+  background-color: #5D5FEF;
+  height: auto;
+  width: auto;
+  padding: 12px 24px;
+}/*# sourceMappingURL=homepage.css.map */
