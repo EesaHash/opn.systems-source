@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import { getUserID } from "../../App";
+import { useSearchParams } from "react-router-dom";
 
 export const SignUp = _ => {
     const [userID, setUserID] = useState("none");
@@ -10,6 +11,7 @@ export const SignUp = _ => {
     });
     const [emailList, setEmailList] = useState([]);
     const [invitationList, setInvitationList] = useState([]);
+    const [queryParameters] = useSearchParams()
 
     getUserID().then(res => setUserID(res));
 
@@ -108,7 +110,7 @@ export const SignUp = _ => {
                         <h1>Create Account</h1>
                         <div className="user-authentication-input">
                             <label htmlFor="email">Email Address</label>
-                            <input type="email" id ="email" placeholder="johndoe@gmail.com" onKeyPress={handleKeypress} />
+                            <input type="email" id ="email" placeholder="johndoe@gmail.com" onKeyPress={handleKeypress} defaultValue={queryParameters.get("email")} />
                         </div>
                         <div className="user-authentication-input">
                             <label htmlFor="username">Username</label>
