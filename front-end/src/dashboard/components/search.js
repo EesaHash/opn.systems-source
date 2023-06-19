@@ -4,7 +4,7 @@ import SearchIcon from '@mui/icons-material/Search';
 
 export const SearchBar = () => {
     return(
-        <div className="search-bar">
+      <div className="search-bar">
       <div className="search-container">
       <SearchIcon className="search-icon" />
         <input

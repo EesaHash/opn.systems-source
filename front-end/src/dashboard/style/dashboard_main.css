@@ -1,5 +1,7 @@
-body {
-  background-color: #F7F8FC;
+.background {
+  display: flex;
+  height: 100vh;
+  background-color: bisque;
 }
 
 .search-div {
@@ -15,4 +17,14 @@ body {
   top: 0;
   margin: 10vh 10vh 0 0;
   border-radius: 20px;
+}
+
+.bash {
+  display: flex;
+  padding: 2%;
+}
+
+.SEARCH {
+  margin-top: 10px;
+  position: relative;
 }/*# sourceMappingURL=dashboard_main.css.map */

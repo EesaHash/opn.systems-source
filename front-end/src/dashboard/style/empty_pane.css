@@ -1,5 +1,17 @@
 .mainbox {
-  width: 100px;
-  height: 100px;
-  background-color: rgb(124, 22, 22);
+  display: flex;
+  width: 1109px;
+  height: 764px;
+  background-color: white;
+  color: white;
+  border-radius: 20px;
+  align-items: center;
+}
+
+.addButton {
+  width: 170px;
+  height: 40px;
+  border-radius: 10px;
+  align-items: center;
+  margin-left: 50%;
 }/*# sourceMappingURL=empty_pane.css.map */

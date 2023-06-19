@@ -1,1 +1,1 @@
-{"version":3,"sources":["empty_pane.scss","empty_pane.css"],"names":[],"mappings":"AAAA;EACI,YAAA;EACA,aAAA;EACA,kCAAA;ACCJ","file":"empty_pane.css"}
+{"version":3,"sources":["empty_pane.scss","empty_pane.css"],"names":[],"mappings":"AAAA;EACI,aAAA;EACA,aAAA;EACA,aAAA;EACA,uBAAA;EACA,YAAA;EACA,mBAAA;EACA,mBAAA;ACCJ;;ADEA;EACI,YAAA;EACA,YAAA;EACA,mBAAA;EACA,mBAAA;EACA,gBAAA;ACCJ","file":"empty_pane.css"}

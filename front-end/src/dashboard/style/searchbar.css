@@ -1,9 +1,5 @@
 .search-bar {
-  display: flex;
-  align-items: center;
   width: 856.2px;
-  height: 56px;
-  margin-left: 6px;
 }
 
 .search-container {
@@ -14,18 +10,17 @@
 }
 
 .search-container input[type=text] {
-  padding: 8px 40px 8px 30px;
+  /*border-style: solid;
+  border-color: black;*/
   border-radius: 28px;
-  border-style: solid;
   font-size: 14px;
-  color:black;
-  /*flex: 1;*/
+  flex: 1;
 }
 
 .search-icon {
-  color: #A2ABBA;
   position: absolute;
-  top: 55%;
-  left: 10px;
+  top: 70%;
+  right: 10px;
+  transform: translateY(-50%);
   pointer-events: none;
-}
+}/*# sourceMappingURL=searchbar.css.map */
