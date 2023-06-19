@@ -1,16 +1,18 @@
 import React from "react";
-import DashboardIcon from '@mui/icons-material/Dashboard';
-import BusinessIcon from '@mui/icons-material/Business';
+import DonutLargeIcon from '@mui/icons-material/DonutLarge';
+import BusinessCenterIcon from '@mui/icons-material/BusinessCenter';
+import WorkIcon from '@mui/icons-material/Work';
 
 export const SidebarData = [
     {
         title: "Dashboard",
-        icon: <DashboardIcon/>,
+        icon: <DonutLargeIcon/>,
         link: "/dashboard",
 
     },
     {
         title: "Business",
-        icon: <BusinessIcon/>,
+        icon: <BusinessCenterIcon/>,
     },
+
 ]

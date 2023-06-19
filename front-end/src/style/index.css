@@ -1,5 +1,5 @@
 html * {
-  font-family: "DM Sans";
+  font-family: "DM Sans" !important;
 }
 
 button {

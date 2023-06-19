@@ -1,0 +1,22 @@
+
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    width: 856.2px;
+    height: 56px;
+    margin-left: 6px;
+  }
+
+.search-bar input[type=text] {
+    padding: 8px;
+    padding-left: 0 vh;
+    margin-top: 29px;
+    border-style: solid;
+    border-color: black;
+    border-radius: 28px;
+    font-size: 14px;
+    flex: 1;
+    text-indent: 5px;
+  }
+
