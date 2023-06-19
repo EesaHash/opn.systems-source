@@ -1,7 +1,7 @@
 .sidebar {
   height: 100%;
   width: 240px;
-  background-color: black;
+  background-color: #0E1116;
   height: 100vh;
   border-radius: 12px;
 }
@@ -15,8 +15,7 @@
   width: 100%;
   & .row {
     width: 85%;
-    background-color: black;
-    border: 1px solid gray;
+    background-color: #0E1116;
     list-style-type: none;
     margin:0%;
     display: flex;
@@ -31,9 +30,12 @@
     width: 50%;
   }
   & .row:hover {
-    background-color: white;
     cursor: pointer;
-    color: black;
+    color: white;
+    border-style: solid;
+    border-width: thin;
+    border-color: #343741;
+
 
   }
 

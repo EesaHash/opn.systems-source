@@ -37,7 +37,7 @@ export const Dashboard2 = _ => {
                   Dashboard
                 </a>
               </li>
-              <li className="business dropdown">
+             <li className="business dropdown">
                 <a className="navigation_link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   <svg className="bi pe-none me-2" width="16" height="16">
                     <rect width="16" height="16" fill="blue" /> {/* Replace with your desired icon */}
@@ -45,7 +45,7 @@ export const Dashboard2 = _ => {
                   Add Business
                 </a>
               </li>
-            </ul>
+            </ul> 
             <hr />
           </div>
       </div>
