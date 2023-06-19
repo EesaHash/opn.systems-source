@@ -19,7 +19,9 @@ app.use("/api/authenticateuser", require("./controllers/accountController/authen
 
 // GPT API's CONTROLLERS
 app.use("/api/gptest", require("./controllers/gptController/gptTestController"));
-app.use("/api/survey", require("./controllers/surveyController/surveyController"));
+app.use("/api/business", require("./controllers/businessControllers/businessController"));
+app.use("/api/gpt", require("./controllers/gptController/gptController"));
+
 
 
 app.listen(PORT, () => {

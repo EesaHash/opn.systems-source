@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import "../style/sidebar.css";
 import { SidebarData } from './SidebarData';
 
@@ -23,4 +22,4 @@ export const Sidebar = () => {
       </ul>
     </div>
   );
-}
+ }
