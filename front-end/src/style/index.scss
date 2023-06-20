@@ -18,3 +18,80 @@ button{
     border-top: 10px solid white;
     background-color: transparent;
 }
+
+// -----POPUP WINDOW-----
+.form-popup {
+    display: none;
+    position: fixed !important;
+    border: 3px solid #f1f1f1;
+    z-index: 9;
+    padding: auto;
+    overflow: scroll;
+    border-radius: 30px;
+    & .content-form{
+        margin: 20px 40px;
+    }
+    & h1, h2, h3, .pop-up-input{
+        margin: 20px 0;
+    }
+    & h1{
+        font-size: 24px;
+        color: #343741;
+        font-weight: 700;
+    }
+    & h2{
+        font-size: 20px;
+    }
+    & h3, label{
+        font-size: 16px;
+        color: #ACACAC;
+    }
+    & hr{
+        margin: 20px -40px;
+        width: auto;
+        border: 1.5px solid #a8a7a7;
+    }
+    & .pop-up-input{
+        display: grid;
+        & input{
+            border-radius: 4px;
+            height: 5vh;
+        }
+    }
+    & .pop-up-button{
+        display: flex;
+        float: right;
+        & button{
+            height: 5vh;
+            width: 7vw;
+            border-radius: 8px;
+            border: 1.5px solid transparent;
+            font-size: 16px;
+        }
+        & .cancel-button{
+            background-color: transparent;
+            margin-right: 20px;
+
+        }
+        & .submit-button{
+            background-color: #A2ABBA;
+            color: white;
+        }
+    }
+}
+.form-container {
+    padding: 10px;
+    background-color: white;
+}
+.form-container input, .form-container select{
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    border: none;
+    background: #f1f1f1;
+}
+.form-container input:focus, .form-container select:focus{
+    outline: none;
+}
+.form-floating select{
+    height: calc(3.5rem + 2px);
+}

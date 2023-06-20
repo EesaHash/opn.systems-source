@@ -26,7 +26,7 @@
   color: white;
   justify-content: center;
   align-items: center;
-  margin-top: 4%;
+  margin-top: 10%;
   margin-left: 7%;
 }
 .sidebar-list .row li:hover, .sidebar-list .row.active, .sidebar-list .row:hover {
@@ -57,18 +57,29 @@
   color: white;
   float: right;
 }
-.sidebar-list .row .sub-items li {
+.sidebar-list .row .sub-items .active a {
+  color: grey !important;
+}
+.sidebar-list .row .sub-items li, .sidebar-list .row .sub-items button {
   width: 100%;
   height: 100%;
   margin-bottom: 10px;
   border-radius: 8px;
   border: 1px solid #343741;
 }
-.sidebar-list .row .sub-items li :hover, .sidebar-list .row .sub-items li :active {
+.sidebar-list .row .sub-items li :hover, .sidebar-list .row .sub-items button :hover {
   color: grey !important;
 }
-.sidebar-list .row .sub-items li a {
+.sidebar-list .row .sub-items li a, .sidebar-list .row .sub-items button a {
   padding: 8px 1.75vw;
+}
+.sidebar-list .row .sub-items button {
+  background-color: #A5A6F6;
+  padding: 8px 1.75vw;
+  border: 1px solid transparent;
+}
+.sidebar-list .row .sub-items button:hover {
+  color: rgb(67, 67, 67) !important;
 }
 .sidebar-list .row > * {
   width: 70%;

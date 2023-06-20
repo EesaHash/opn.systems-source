@@ -21,7 +21,7 @@ router.post("/", async (req, res) => {
                 });
             }
             return res.status(200).json({
-                userID: data.userID
+                userID: data.email
             });
         });
     }catch(error){

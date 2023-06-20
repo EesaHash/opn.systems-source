@@ -6,8 +6,7 @@ import { SignUp } from "./account/components/SignUp";
 import { SignIn } from "./account/components/SignIn";
 import { ForgotPassword } from "./account/components/ForgotPassword";
 import { Homepage } from "./homepage/component/homepage";
-import { Sidebar } from "./dashboard/components/sidebar";
-import { Dashboard_Page } from "./dashboard/page/dashboard_main";
+import { DashboardPage } from "./dashboard/page/dashboard_main";
 
 export const getUserID = _ => {
   let token;
@@ -49,7 +48,7 @@ function App() {
           <Route path="" element={<Homepage/>}/>
         </Route>
         <Route path="/dashboard" element={<Header page="none"/>} >
-          <Route path="" element={<Dashboard_Page/>}/>
+          <Route path="" element={<DashboardPage/>}/>
         </Route>
         <Route path="/signin" element={<Header page="signin"/>} >
           <Route path="" element={<SignIn/>}/>
@@ -59,9 +58,6 @@ function App() {
         </Route>
         <Route path="/forgotpassword" element={<Header page="forgetpass"/>} >
           <Route path="" element={<ForgotPassword/>}/>
-        </Route>
-        <Route path="/test" element={<Header page="none"/>} >
-          <Route path="" element={<Dashboard_Page/>}/>
         </Route>
       </Routes>
     </div>

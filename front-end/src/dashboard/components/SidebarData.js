@@ -9,16 +9,9 @@ export const SidebarData = [
         link: "/dashboard",
     },
     {
-    title: "Business",
-    icon: <BusinessCenterIcon />,
-    items: [
-      {
-        title: "Business 1",
-      },
-      {
-        title: "Business 2",
-      }
-    ]
-}
-
+        title: "Business",
+        icon: <BusinessCenterIcon />,
+        items: [
+        ]
+    }
 ]
