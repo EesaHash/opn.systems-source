@@ -1,7 +1,7 @@
 .background {
   display: flex;
   height: 100vh;
-  background-color: bisque;
+  background-color: #F7F8FC;
 }
 
 .search-div {
@@ -21,10 +21,10 @@
 
 .bash {
   display: flex;
-  padding: 2%;
+  margin: 2vh 2vw;
 }
 
-.SEARCH {
-  margin-top: 10px;
-  position: relative;
+.search, .profile {
+  margin-top: 1vw;
+  padding: 0 1vw;
 }/*# sourceMappingURL=dashboard_main.css.map */

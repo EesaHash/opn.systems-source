@@ -1,1 +1,21 @@
-/*# sourceMappingURL=pane.css.map */
+.pane {
+  padding: 1vw;
+}
+
+.mainbox {
+  display: flex;
+  width: calc(100vw - 240px - 8vw);
+  height: calc(96vh - 50px - 1vw);
+  background-color: white;
+  color: white;
+  border-radius: 20px;
+  align-items: center;
+}
+
+.addButton {
+  width: 170px;
+  height: 40px;
+  border-radius: 10px;
+  align-items: center;
+  margin-left: 50%;
+}/*# sourceMappingURL=pane.css.map */

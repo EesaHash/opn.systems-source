@@ -1,12 +1,10 @@
 import React from "react";
-import "../style/empty_pane.css";
+import "../style/pane.css";
 
-export const EmptyPane = () => {
+export const Pane = () => {
     return(
-     
         <div className="mainbox">
             <button className="addButton"> + Add Business </button>
         </div>
-        
-        );
-    }
+    );
+}

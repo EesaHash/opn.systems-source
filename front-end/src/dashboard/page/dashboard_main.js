@@ -2,10 +2,11 @@ import React from "react";
 import "../style/searchbar.css";
 import "../style/sidebar.css";
 import "../style/dashboard_main.css";
-import "../style/empty_pane.css";
+import "../style/pane.css";
 import { Sidebar } from "../components/sidebar";
 import { SearchBar } from "../components/search";
-import { EmptyPane } from "../components/empty_pane";
+import { Pane } from "../components/pane";
+import { Profile } from "../components/profile";
 
 export const Dashboard_Page = () => {
     /*let flag = true;
@@ -18,21 +19,25 @@ export const Dashboard_Page = () => {
     }
     else {*/
     return (
-    <div className="background">
-    <div className="bash">
-        <Sidebar> </Sidebar>
-    </div>
-    <div>
-    <div className="SEARCH">
-        <SearchBar />
-    </div>
-    <div className="pane" style={{ padding: "1%" }}>
-        <EmptyPane />
-    </div>
-    </div>
-
-    </div>
+        <div className="background">
+            <div className="bash">
+                <Sidebar> </Sidebar>
+            </div>
+            <div>
+                <div style={{display: "flex"}}>
+                    <div className="search">
+                        <SearchBar />
+                    </div>
+                    <div className="profile">
+                        <Profile />
+                    </div>
+                </div>
+                <div className="pane">
+                    <Pane />
+                </div>
+            </div>
+        </div>
     );
-    }
+}
 
 

@@ -1,1 +1,1 @@
-{"version":3,"sources":[],"names":[],"mappings":"","file":"pane.css"}
+{"version":3,"sources":["pane.scss","pane.css"],"names":[],"mappings":"AAEA;EACI,YAAA;ACDJ;;ADGA;EACI,aAAA;EACA,gCANY;EAOZ,+BARa;EASb,uBAAA;EACA,YAAA;EACA,mBAAA;EACA,mBAAA;ACAJ;;ADEA;EACI,YAAA;EACA,YAAA;EACA,mBAAA;EACA,mBAAA;EACA,gBAAA;ACCJ","file":"pane.css"}

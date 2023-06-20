@@ -1,0 +1,21 @@
+$mainbox-height: calc(96vh - 50px - 1vw);
+$mainbox-width: calc(100vw - 240px - 8vw);
+.pane{
+    padding: 1vw;
+}
+.mainbox{
+    display:flex;
+    width: $mainbox-width;
+    height: $mainbox-height;
+    background-color: white;
+    color: white;
+    border-radius: 20px;
+    align-items: center;
+}
+.addButton{
+    width: 170px;
+    height: 40px;
+    border-radius: 10px;
+    align-items: center;
+    margin-left: 50%;
+}

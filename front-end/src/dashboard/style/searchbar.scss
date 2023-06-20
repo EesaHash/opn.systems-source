@@ -1,5 +1,6 @@
+$search-bar-width: calc(100vw - 240px - 8vw - 15vw - 4vw);
 .search-bar {
-  width: 856.2px;
+  width: $search-bar-width;
 }
 
 .search-container {
@@ -12,17 +13,21 @@
 .search-container input[type=text] {
   //padding: 8px 40px 8px 8px;
   //margin-top: 29px;
-  /*border-style: solid;
-  border-color: black;*/
+  border-style: solid;
+  border-color: transparent;
   border-radius: 28px;
   font-size: 14px;
   flex: 1;
+  box-shadow: none;
+  height: 50px;
+  text-indent: 12px;
 }
 
 .search-icon {
   position: absolute;
-  top: 70%;
+  top: 50%;
   right: 10px;
   transform: translateY(-50%);
   pointer-events: none;
+  color: grey;
 }

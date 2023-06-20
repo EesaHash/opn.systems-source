@@ -1,8 +1,9 @@
 .sidebar {
-  height: 85vh;
+  height: 96vh;
   width: 240px;
   background-color: #0E1116;
   border-radius: 12px;
+  margin: 0;
 }
 
 .icon {
@@ -12,13 +13,15 @@
 .sidebar-list {
   height: 100%;
   width: 100%;
+  display: block;
 }
 .sidebar-list .row {
   width: 85%;
+  height: 50px;
   background-color: #0E1116;
   list-style-type: none;
   margin: 0%;
-  display: flex;
+  display: block;
   flex-direction: row;
   color: white;
   justify-content: center;
@@ -26,15 +29,49 @@
   margin-top: 4%;
   margin-left: 7%;
 }
+.sidebar-list .row li:hover, .sidebar-list .row.active, .sidebar-list .row:hover {
+  border-radius: 8px;
+  border: 2px solid #343741;
+  color: grey !important;
+  cursor: pointer;
+}
+.sidebar-list .row li:hover .dropdown-arrow, .sidebar-list .row.active .dropdown-arrow, .sidebar-list .row:hover .dropdown-arrow {
+  margin-top: -10px;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid grey;
+  border-top: 10px solid transparent;
+}
+.sidebar-list .row .main-item {
+  display: flex;
+  height: 100%;
+  margin: auto;
+  text-align: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.sidebar-list .row .sub-items {
+  min-width: -moz-fit-content;
+  min-width: fit-content;
+  display: block;
+  color: white;
+  float: right;
+}
+.sidebar-list .row .sub-items li {
+  width: 100%;
+  height: 100%;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  border: 1px solid #343741;
+}
+.sidebar-list .row .sub-items li :hover, .sidebar-list .row .sub-items li :active {
+  color: grey !important;
+}
+.sidebar-list .row .sub-items li a {
+  padding: 8px 1.75vw;
+}
 .sidebar-list .row > * {
   width: 70%;
-}
-.sidebar-list .row:hover {
-  cursor: pointer;
-  color: white;
-  border-style: solid;
-  border-width: thin;
-  border-color: #343741;
 }
 .sidebar-list div#icon {
   width: 14%;
