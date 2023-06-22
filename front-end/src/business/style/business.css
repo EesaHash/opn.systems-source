@@ -20,4 +20,19 @@
 }
 .create-account .team-member-input input {
   margin-bottom: 20px;
+}
+
+.business-dashboard {
+  width: calc(100vw - 240px - 8vw);
+}
+.business-dashboard .business-dashboard-title, .business-dashboard .business-dashboard-body {
+  border-radius: 20px;
+  background-color: white;
+}
+.business-dashboard .business-dashboard-title {
+  height: 15vh;
+  margin-bottom: 1vw;
+}
+.business-dashboard .business-dashboard-body {
+  height: calc(100vh - 2vw - 15vh - 50px - 4vh);
 }/*# sourceMappingURL=business.css.map */

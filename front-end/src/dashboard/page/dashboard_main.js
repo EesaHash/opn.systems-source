@@ -15,6 +15,8 @@ export const DashboardPage = () => {
     const [user, setUser] = useState({});
     const [loading, setLoading] = useState(false);
     const [businesses, setBusinesses] = useState([]);
+    const [activeLink, setActiveLink] = useState('');
+    const [activeLink2, setActiveLink2] = useState('');
 
     useEffect(() => {
         try{
@@ -55,7 +57,7 @@ export const DashboardPage = () => {
     return (
         <div className="background">
             <div id="bash" className="bash">
-                <Sidebar businesses = {businesses} />
+                <Sidebar businesses = {businesses} activeLink = {activeLink} setActiveLink = {setActiveLink} activeLink2 = {activeLink2} setActiveLink2 = {setActiveLink2} />
             </div>
             {!loading &&
                 <div>
@@ -70,7 +72,7 @@ export const DashboardPage = () => {
                             </div>
                         </div>
                         <div className="pane">
-                            <Pane createNewBusinessForm = {createNewBusinessForm} />
+                            <Pane createNewBusinessForm = {createNewBusinessForm} businesses = {businesses} activeLink = {activeLink} activeLink2 = {activeLink2} />
                         </div>
                     </div>
                 </div>

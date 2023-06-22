@@ -6,11 +6,12 @@ export const SidebarData = [
     {
         title: "Dashboard",
         icon: <DonutLargeIcon/>,
-        link: "/dashboard",
+        link: "dashboard",
     },
     {
         title: "Business",
         icon: <BusinessCenterIcon />,
+        link: "business",
         items: [
         ]
     }

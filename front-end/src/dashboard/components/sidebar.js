@@ -1,12 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import "../style/sidebar.css";
 import { SidebarData } from './SidebarData';
 import { createNewBusinessForm } from '../page/dashboard_main';
 
 export const Sidebar = (props) => {
-    const [activeLink, setActiveLink] = useState('');
-    const [activeLink2, setActiveLink2] = useState('');
-
     const addBusiness = _ => {
         createNewBusinessForm();
     };
@@ -27,10 +24,10 @@ export const Sidebar = (props) => {
                 {SidebarData.map((val, key) => {
                 return (
                     <li
-                        className={`row ${activeLink === val.link ? 'active' : ''}`}
+                        className={`row ${props.activeLink === val.link ? 'active' : ''}`}
                         key={key}
                         onClick={() => {
-                            setActiveLink(val.link);
+                            props.setActiveLink(val.link);
                         }}
                     >
                         <div className="main-item">
@@ -38,10 +35,10 @@ export const Sidebar = (props) => {
                             <div id="title">{val.title}</div>
                             {(val.title === "Business") && <div class="dropdown-arrow"></div>}
                         </div>
-                        {val.items && activeLink === val.link && (
+                        {val.items && props.activeLink === val.link && (
                         <ul className="sub-items">
                             {(val.title === "Business") && props.businesses.map((item, index) => (
-                            <li className={activeLink2 === item.link ? 'active' : ''} key={index} onClick={() => {setActiveLink2(item.link)}} >
+                            <li className={props.activeLink2 === item.link ? 'active' : ''} key={index} onClick={() => {props.setActiveLink2(item.link)}} >
                                 <a href={`#${item.title}`}>{item.title}</a>
                             </li>
                             ))}

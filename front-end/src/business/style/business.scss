@@ -22,4 +22,20 @@
         }
     }
 }
-$red: rgba(157, 6, 6, 0.807);
+
+$dashboard-width: calc(100vw - 240px - 8vw);
+$body-width: calc(100vh - 2vw - 15vh - 50px - 4vh);
+.business-dashboard{
+    width: $dashboard-width;
+    & .business-dashboard-title, .business-dashboard-body{
+        border-radius: 20px;
+        background-color: white;
+    }
+    & .business-dashboard-title{
+        height: 15vh;
+        margin-bottom: 1vw;
+    }
+    & .business-dashboard-body{
+        height: $body-width;
+    }
+}
