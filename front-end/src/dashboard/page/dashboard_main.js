@@ -61,7 +61,7 @@ export const DashboardPage = () => {
             </div>
             {!loading &&
                 <div>
-                    <CreateBusiness businesses = {businesses} setBusinesses = {setBusinesses} />
+                    <CreateBusiness businesses = {businesses} setBusinesses = {setBusinesses} userID = {userID} />
                     <div id="dashboard-content">
                         <div style={{display: "flex"}}>
                             <div className="search">

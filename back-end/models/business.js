@@ -58,9 +58,11 @@ const Business = sequelize.define('Business', {
     productOrServiceDescription: {
         type: DataTypes.TEXT,
     },
-    //Do you intend to do any manufacturing in case you are selling a product?
-    isManufacture: {
+    //Do you intend to sell product or service
+    isProduct: {
         type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false
     },
     //How do you fund your business, do you have investors, are you self-funded, do you need to take a loan?
     fundingStrategy: {

@@ -7,7 +7,7 @@ import { getBusinessTypeList, getCompanySizeList } from '../../App';
 export const CreateBusiness = (props) => {
     const [teamList, setTeamList] = useState([]);
     const [businessOverviewInput, setBusinessOverviewInput] = useState({
-        name: "",
+        businessName: "",
         businessType: "",
         industry: "",
         companySize: "",
@@ -16,7 +16,8 @@ export const CreateBusiness = (props) => {
         targetMarket: "",
         isProduct: "",
         productOrServiceDescription: "",
-        fundingStrategy: ""
+        fundingStrategy: "",
+        email: props.userID
     });
 
     const handleKeypress = e => {
@@ -27,7 +28,7 @@ export const CreateBusiness = (props) => {
     // Next Action from Step 1 to Step 2
     const nextAction = _ => {
         try{
-            if(!businessOverviewInput.name || !businessOverviewInput.businessType || !businessOverviewInput.industry || !businessOverviewInput.companySize || !businessOverviewInput.businessObjective)
+            if(!businessOverviewInput.businessName || !businessOverviewInput.businessType || !businessOverviewInput.industry || !businessOverviewInput.companySize || !businessOverviewInput.businessObjective)
                 return alert("Please fill in all fields!");
             document.getElementById("create-business-step1").style.display = "none";
             document.getElementById("create-business-step2").style.display = "block";
@@ -87,10 +88,23 @@ export const CreateBusiness = (props) => {
     const createNewBusiness = _ => {
         try{
             const business = {
-                title: businessOverviewInput.name,
-                link:  businessOverviewInput.name
+                title: businessOverviewInput.businessName,
+                link:  businessOverviewInput.businessName
             };
             props.setBusinesses([...props.businesses, business]);
+            fetch("/api/business/addNewBusiness", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    
+                })
+            })
+                .then((res) => {return res.json(); })
+                .then((data) => {
+                    
+                });
             closeCreateBusinessForm();
         }catch(error){
             alert(error);
@@ -98,7 +112,7 @@ export const CreateBusiness = (props) => {
     };
     const closeCreateBusinessForm = _ => {
         setBusinessOverviewInput({
-            name: "",
+            businessName: "",
             businessType: "",
             industry: "",
             companySize: "",
@@ -107,7 +121,8 @@ export const CreateBusiness = (props) => {
             targetMarket: "",
             isProduct: "",
             productOrServiceDescription: "",
-            fundingStrategy: ""
+            fundingStrategy: "",
+            email: props.userID
         });
         setTeamList([]);
         document.getElementById("create-business-step1").style.display = "block";
@@ -127,9 +142,9 @@ export const CreateBusiness = (props) => {
                     <label>Business Name</label>
                     <input 
                         type="text" 
-                        value={businessOverviewInput.name}
+                        value={businessOverviewInput.businessName}
                         onKeyPress={handleKeypress} 
-                        onChange={event => setBusinessOverviewInput({...businessOverviewInput, name: event.target.value})}
+                        onChange={event => setBusinessOverviewInput({...businessOverviewInput, businessName: event.target.value})}
                     />
                 </div>
                 <div className="pop-up-input">

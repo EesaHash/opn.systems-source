@@ -14,8 +14,8 @@ business.addNewBusiness = async (req, res) => {
           businessObjective,
           coreServices,
           targetMarket,
+          isProduct,
           productOrServiceDescription,
-          isManufacture,
           fundingStrategy,
           email,
         } = req.body;
@@ -29,8 +29,8 @@ business.addNewBusiness = async (req, res) => {
           businessObjective,
           coreServices,
           targetMarket,
+          isProduct,
           productOrServiceDescription,
-          isManufacture,
           fundingStrategy,
           email,
         });
@@ -66,8 +66,8 @@ business.updateBusiness = async (req, res) => {
           businessObjective,
           coreServices,
           targetMarket,
+          isProduct,
           productOrServiceDescription,
-          isManufacture,
           fundingStrategy,
           email,
          } = req.body;
@@ -81,8 +81,8 @@ business.updateBusiness = async (req, res) => {
           businessObjective,
           coreServices,
           targetMarket,
+          isProduct,
           productOrServiceDescription,
-          isManufacture,
           fundingStrategy,
           email,
         }, { where: { id } });
