@@ -21,6 +21,7 @@
   background-color: #A5A6F6;
   border-radius: 8px;
   border: 1px solid transparent;
+  color: black;
 }
 .addButton:hover {
   color: rgb(67, 67, 67) !important;

@@ -66,6 +66,7 @@
   margin-bottom: 10px;
   border-radius: 8px;
   border: 1px solid #343741;
+  color: black;
 }
 .sidebar-list .row .sub-items li :hover, .sidebar-list .row .sub-items button :hover {
   color: grey !important;

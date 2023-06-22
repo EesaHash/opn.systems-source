@@ -7,6 +7,7 @@ button {
   background-color: #5D5FEF;
   border-style: solid;
   border-color: #5D5FEF;
+  color: #F7F8FC;
 }
 
 .dropdown-arrow {
@@ -42,7 +43,11 @@ button {
 .form-popup h2 {
   font-size: 20px;
 }
-.form-popup h3, .form-popup label {
+.form-popup input::-moz-placeholder {
+  font-size: 16px;
+  color: #ACACAC;
+}
+.form-popup h3, .form-popup label, .form-popup input::placeholder {
   font-size: 16px;
   color: #ACACAC;
 }
@@ -54,9 +59,16 @@ button {
 .form-popup .pop-up-input {
   display: grid;
 }
-.form-popup .pop-up-input input {
+.form-popup .pop-up-input .dropdown button {
+  color: black;
+  text-align: left;
+}
+.form-popup .pop-up-input input, .form-popup .pop-up-input button, .form-popup .pop-up-input .dropdown {
+  height: 5vh !important;
   border-radius: 4px;
-  height: 5vh;
+}
+.form-popup .pop-up-input input, .form-popup .pop-up-input .dropdown, .form-popup .pop-up-input .dropdown-menu {
+  background-color: #f1f1f1;
 }
 .form-popup .pop-up-button {
   display: flex;
@@ -72,10 +84,24 @@ button {
 .form-popup .pop-up-button .cancel-button {
   background-color: transparent;
   margin-right: 20px;
+  color: black;
 }
-.form-popup .pop-up-button .submit-button {
+.form-popup .pop-up-button .next-button {
   background-color: #A2ABBA;
-  color: white;
+}
+.form-popup .title {
+  display: flex;
+  margin-top: -20px;
+  margin-bottom: -20px;
+  margin-left: -10px;
+}
+.form-popup .title button {
+  color: #ACACAC;
+  background-color: transparent;
+  border-color: transparent;
+}
+.form-popup .title span {
+  font-size: 20px;
 }
 
 .form-container {
@@ -85,7 +111,7 @@ button {
 
 .form-container input, .form-container select {
   padding: 15px;
-  margin: 5px 0 22px 0;
+  margin: 5px 0 0 0;
   border: none;
   background: #f1f1f1;
 }
@@ -96,4 +122,25 @@ button {
 
 .form-floating select {
   height: calc(3.5rem + 2px);
+}
+
+.dropdown, .dropdown-menu {
+  width: 100%;
+  font-size: 16px;
+}
+
+.dropdown button, .dropdown button:active, .dropdown button:hover {
+  background-color: transparent;
+}
+.dropdown button {
+  width: 100%;
+  border: none;
+  color: black;
+}
+
+.dropdown-menu button {
+  margin-bottom: 5px;
+}
+.dropdown-menu button:hover {
+  background-color: rgb(108, 117, 125);
 }/*# sourceMappingURL=index.css.map */

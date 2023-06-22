@@ -7,6 +7,7 @@ button{
     background-color: #5D5FEF;
     border-style: solid;
     border-color: #5D5FEF;
+    color: #F7F8FC;
 }
 
 .dropdown-arrow {
@@ -42,7 +43,7 @@ button{
     & h2{
         font-size: 20px;
     }
-    & h3, label{
+    & h3, label, input::placeholder{
         font-size: 16px;
         color: #ACACAC;
     }
@@ -53,9 +54,16 @@ button{
     }
     & .pop-up-input{
         display: grid;
-        & input{
+        & .dropdown button{
+            color: black;
+            text-align: left;
+        }
+        & input, button, .dropdown{
+            height: 5vh !important;
             border-radius: 4px;
-            height: 5vh;
+        }
+        & input, .dropdown, .dropdown-menu{
+            background-color: #f1f1f1;
         }
     }
     & .pop-up-button{
@@ -71,11 +79,25 @@ button{
         & .cancel-button{
             background-color: transparent;
             margin-right: 20px;
+            color: black;
 
         }
-        & .submit-button{
+        & .next-button{
             background-color: #A2ABBA;
-            color: white;
+        }
+    }
+    & .title{
+        display: flex;
+        margin-top: -20px;
+        margin-bottom: -20px;
+        margin-left: -10px;
+        & button{
+            color: #ACACAC;
+            background-color: transparent;
+            border-color: transparent;
+        }
+        & span{
+            font-size: 20px;
         }
     }
 }
@@ -85,7 +107,7 @@ button{
 }
 .form-container input, .form-container select{
     padding: 15px;
-    margin: 5px 0 22px 0;
+    margin: 5px 0 0 0;
     border: none;
     background: #f1f1f1;
 }
@@ -94,4 +116,28 @@ button{
 }
 .form-floating select{
     height: calc(3.5rem + 2px);
+}
+
+// -----DROPDOWN INPUT-----
+.dropdown, .dropdown-menu{
+    width: 100%;
+    font-size: 16px;
+}
+.dropdown{
+    & button, button:active, button:hover{
+        background-color: transparent;
+    }
+    & button{
+        width: 100%;
+        border: none;
+        color: black;
+    }   
+}
+.dropdown-menu{
+    & button{
+        margin-bottom: 5px;
+    }
+    & button:hover{
+        background-color: rgb(108, 117, 125);
+    }
 }

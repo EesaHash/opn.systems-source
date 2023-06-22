@@ -1,8 +1,18 @@
 .create-account {
-  margin-top: 2.5vh;
-  height: 95vh;
+  margin-top: 5vh;
+  height: 90vh;
   width: 50vw;
   min-width: -moz-fit-content;
   min-width: fit-content;
   left: 25vw;
+}
+.create-account .team-member-input .email-input {
+  width: calc(65% - 40px);
+}
+.create-account .team-member-input button {
+  margin-left: 20px;
+  width: 15%;
+  background-color: #A2ABBA;
+  color: white;
+  border: 1.5px solid transparent;
 }/*# sourceMappingURL=business.css.map */

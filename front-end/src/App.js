@@ -38,6 +38,9 @@ export const logOut = _ => {
   localStorage.removeItem("rememberMe");
   window.location.href = "/";
 };
+export const getBusinessTypeList = _ => {
+  return ["Private", "Public", "Non-Profit"];
+};
 
 function App() {
 
