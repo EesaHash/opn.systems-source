@@ -26,15 +26,15 @@ const Business = sequelize.define('Business', {
         autoIncrement: true,
         primaryKey: true,
     },
-    //Name of the business
+    //Name of the business *
     businessName: {
         type: DataTypes.STRING,
     },
-    //Type of business private or public or non-profit
+    //Type of business private or public or non-profit 
     businessType: {
         type: DataTypes.STRING,
     },
-    //Industry of the business e.g. Technology, Finance, Fashion etc...
+    //Industry of the business e.g. Technology, Finance, Fashion etc... *
     industry: {
         type: DataTypes.STRING,
     },
@@ -42,19 +42,19 @@ const Business = sequelize.define('Business', {
     companySize: {
         type: DataTypes.STRING,
     },
-    //Main idea behind the business (what are you trying to achieve)
+    //Main idea behind the business (what are you trying to achieve) long term goal, vision, mission 
     businessObjective: {
         type: DataTypes.TEXT,
     },
-    //What services or product would you provide to acheive your objective
+    //What services(for the product) would you provide to help sell the product? e.g if you are selling a car, you would provide a test drive, warranty, etc...
     coreServices: {
         type: DataTypes.TEXT,
     },
-    //Who are you targeting? Local, National, International? and is it a specific community/catering to people in a certain profession?
+    //Who are you targeting? Local, National, International? and is it a specific community/catering to people in a certain profession? Is it B to B or B to C?
     targetMarket: {
         type: DataTypes.TEXT,
     },
-    //Describe how your product or service works in detail
+    //Describe how your product or service works in detail - is it a digital service, physical product, service based orffering or a combination. Explain the mechanism if its a physical product  
     productOrServiceDescription: {
         type: DataTypes.TEXT,
     },
