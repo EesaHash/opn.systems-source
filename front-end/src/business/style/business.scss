@@ -1,19 +1,25 @@
 .create-account{
     margin-top: 5vh;
-    height: 90vh;
+    max-height: 90vh;
     width: 50vw;
     min-width: fit-content;
-    left: 25vw;
+    left: 0;
+    margin-left: 25vw;
+    margin-right: 25vw;
     & .team-member-input{
         & .email-input{
-            width: calc(65% - 40px);
+            width: calc(80% - 40px - 7vw);
         }
         & button{
             margin-left: 20px;
-            width: 15%;
+            width: 7vw;
             background-color: #A2ABBA;
             color: white;
             border: 1.5px solid transparent;
         }
+        & input{
+            margin-bottom: 20px;
+        }
     }
 }
+$red: rgba(157, 6, 6, 0.807);

@@ -58,12 +58,15 @@ button{
             color: black;
             text-align: left;
         }
-        & input, button, .dropdown{
+        & input, button, .dropdown, textarea{
             height: 5vh !important;
             border-radius: 4px;
         }
-        & input, .dropdown, .dropdown-menu{
+        & input, .dropdown, .dropdown-menu, textarea{
             background-color: #f1f1f1;
+        }
+        & textarea{
+            height: 10vh !important;
         }
     }
     & .pop-up-button{
@@ -105,11 +108,13 @@ button{
     padding: 10px;
     background-color: white;
 }
-.form-container input, .form-container select{
-    padding: 15px;
-    margin: 5px 0 0 0;
-    border: none;
-    background: #f1f1f1;
+.form-container{
+    & input, select, textarea{
+        padding: 15px;
+        margin: 5px 0 0 0;
+        border: none;
+        background: #f1f1f1;
+    }
 }
 .form-container input:focus, .form-container select:focus{
     outline: none;
