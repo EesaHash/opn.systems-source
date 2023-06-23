@@ -47,7 +47,27 @@ export const DashboardPage = () => {
                     alert(data.message);
                 }
             };
-            if(userID != null && userID !== "none") getUserData();
+            const getBusinessList = async _ => {
+                const res = await fetch("/api/business/getAllBusinesses", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        email: userID
+                    })
+                });
+                const data = await res.json();
+                if(data.status){
+                    setBusinesses(data.businesses);
+                }else{
+                    alert(data.message);
+                }
+            };
+            if(userID != null && userID !== "none"){
+                getUserData();
+                getBusinessList();
+            }
         }catch(error){
             console.log(error);
         }
@@ -72,7 +92,7 @@ export const DashboardPage = () => {
                             </div>
                         </div>
                         <div className="pane">
-                            <Pane createNewBusinessForm = {createNewBusinessForm} businesses = {businesses} activeLink = {activeLink} activeLink2 = {activeLink2} />
+                            <Pane createNewBusinessForm = {createNewBusinessForm} businesses = {businesses} setBusinesses = {setBusinesses} activeLink = {activeLink} activeLink2 = {activeLink2} />
                         </div>
                     </div>
                 </div>

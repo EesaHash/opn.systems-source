@@ -87,23 +87,23 @@ export const CreateBusiness = (props) => {
     };
     const createNewBusiness = _ => {
         try{
-            const business = {
-                title: businessOverviewInput.businessName,
-                link:  businessOverviewInput.businessName
-            };
-            props.setBusinesses([...props.businesses, business]);
             fetch("/api/business/addNewBusiness", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({
-                    
-                })
+                body: JSON.stringify(businessOverviewInput)
             })
                 .then((res) => {return res.json(); })
                 .then((data) => {
-                    
+                    alert(data.message);
+                    if(data.status){
+                        const business = {
+                            ...businessOverviewInput,
+                            id: data.business.id
+                        };
+                        props.setBusinesses([...props.businesses, business]);
+                    }
                 });
             closeCreateBusinessForm();
         }catch(error){
@@ -161,7 +161,7 @@ export const CreateBusiness = (props) => {
                     />
                 </div>
                 <div className="pop-up-input">
-                    <label>Comapny Size</label>
+                    <label>Company Size</label>
                     {companySizeDropdown(businessOverviewInput, setBusinessOverviewInput)}
                 </div>
                 <div className="pop-up-input">
@@ -290,7 +290,7 @@ export const CreateBusiness = (props) => {
 };
 
 const businessTypeListDrowdown = (businessOverviewInput, setBusinessOverviewInput) => {
-    const getBusinesssType = _ => {
+    const getBusinessType = _ => {
         let newType = [];
         getBusinessTypeList().forEach(type => {
             newType.push(
@@ -313,7 +313,7 @@ const businessTypeListDrowdown = (businessOverviewInput, setBusinessOverviewInpu
     return(
         <UncontrolledDropdown>
             <DropdownToggle>{businessOverviewInput.businessType}</DropdownToggle>
-            <DropdownMenu>{getBusinesssType()}</DropdownMenu>
+            <DropdownMenu>{getBusinessType()}</DropdownMenu>
         </UncontrolledDropdown>
     );
 };

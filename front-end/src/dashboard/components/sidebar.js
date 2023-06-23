@@ -26,20 +26,19 @@ export const Sidebar = (props) => {
                     <li
                         className={`row ${props.activeLink === val.link ? 'active' : ''}`}
                         key={key}
-                        onClick={() => {
-                            props.setActiveLink(val.link);
-                        }}
                     >
-                        <div className="main-item">
-                            <div id="icon" style={{marginRight: "15px"}}>{val.icon}</div>
-                            <div id="title">{val.title}</div>
-                            {(val.title === "Business") && <div class="dropdown-arrow"></div>}
+                        <div className="main-item" onClick={() => { onLink1ClickAction(props.activeLink, val.link, props.setActiveLink) }}>
+                            <div className='main-item-content'>
+                                <div id="icon" style={{marginRight: "15px"}} > {val.icon} </div>
+                                <div id="title" > {val.title} </div>
+                                {(val.title === "Business") && <div class="dropdown-arrow"></div>}
+                            </div>
                         </div>
                         {val.items && props.activeLink === val.link && (
                         <ul className="sub-items">
                             {(val.title === "Business") && props.businesses.map((item, index) => (
-                            <li className={props.activeLink2 === item.link ? 'active' : ''} key={index} onClick={() => {props.setActiveLink2(item.link)}} >
-                                <a href={`#${item.title}`}>{item.title}</a>
+                            <li className={props.activeLink2 === item.id ? 'active' : ''} key={index} onClick={() => {props.setActiveLink2(item.id)}} >
+                                <a href={`#${item.id}`}>{item.businessName}</a>
                             </li>
                             ))}
                             {(val.title === "Business") && <button onClick={addBusiness}>+ Add Business</button>}
@@ -52,4 +51,9 @@ export const Sidebar = (props) => {
         </div>
     );
   };
-  
+  const onLink1ClickAction = (activeLink, valLink, setActiveLink) => {
+    if(activeLink === valLink)
+        setActiveLink('');
+    else
+        setActiveLink(valLink);
+  }

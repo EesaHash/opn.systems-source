@@ -54,15 +54,15 @@ const Business = sequelize.define('Business', {
     targetMarket: {
         type: DataTypes.TEXT,
     },
-    //Describe how your product or service works in detail - is it a digital service, physical product, service based orffering or a combination. Explain the mechanism if its a physical product  
-    productOrServiceDescription: {
-        type: DataTypes.TEXT,
-    },
     //Do you intend to sell product or service
     isProduct: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
         defaultValue: false
+    },
+    //Describe how your product or service works in detail - is it a digital service, physical product, service based orffering or a combination. Explain the mechanism if its a physical product  
+    productOrServiceDescription: {
+        type: DataTypes.TEXT,
     },
     //How do you fund your business, do you have investors, are you self-funded, do you need to take a loan?
     fundingStrategy: {

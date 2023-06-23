@@ -6,7 +6,7 @@ export const Pane = (props) => {
     if(props.businesses.length === 0)
         return emptyPane(props.createNewBusinessForm)
     else
-        return filledPane(props.activeLink, props.activeLink2, props.createNewBusinessForm)
+        return filledPane(props.activeLink, props.activeLink2, props.createNewBusinessForm, props.businesses, props.setBusinesses)
 };
 
 const emptyPane = (createNewBusinessForm) => {
@@ -16,11 +16,11 @@ const emptyPane = (createNewBusinessForm) => {
         </div>
     );
 };
-const filledPane = (activeLink, activeLink2, createNewBusinessForm) => {
+const filledPane = (activeLink, activeLink2, createNewBusinessForm, businesses, setBusinesses) => {
     switch(activeLink){
         case "business":
             if(activeLink2)
-                return businessDashboard(activeLink2);
+                return businessDashboard(activeLink2, businesses);
             else{
                 return emptyPane(createNewBusinessForm);
             }

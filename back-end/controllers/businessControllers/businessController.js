@@ -19,6 +19,7 @@ business.addNewBusiness = async (req, res) => {
           fundingStrategy,
           email,
         } = req.body;
+        console.log(businessName);
 
         // Create a new business record in the database
         const business = await Business.create({
@@ -29,15 +30,16 @@ business.addNewBusiness = async (req, res) => {
           businessObjective,
           coreServices,
           targetMarket,
-          isProduct,
+          isProduct: (isProduct === "Product" ? true : false),
           productOrServiceDescription,
           fundingStrategy,
           email,
         });
-        console.log(`[Success] Added business ${businessName} for ${email} : `, business.businessName);
-        return res.status(200).json({ Message: "successfully added business"})
+        console.log(`[Success] Added business ${businessName} for ${email} : `, business.id);
+        return res.status(200).json({ status: true, message: "Successfully added new business!", business: business});
       } catch (error) {
-        res.status(500).json({ error: `Could not add business`});
+        console.log(error);
+        res.status(500).json({ status: false, message: error});
       }
 };
 
@@ -109,11 +111,12 @@ business.getAllBusinesses = async (req, res) => {
     try {
         const { email } = req.body;
         // Find all businesses for the given user
-        const business = await Business.findAll({ where: { email } });
-        console.log(`[Success] Retrieved business details for ${email} : `, business.businessName);
-        return res.status(200).json(business);
+        const businesses = await Business.findAll({ where: { email } });
+        console.log(`[Success] Retrieved business details for ${email}`);
+        return res.status(200).json({status: true, businesses: businesses});
       } catch (error) {
-        res.status(500).json({ error: `Could not retrieve business`});
+        console.log(error);
+        res.status(500).json({ status: false, mesesage: error});
       }
 };
 
