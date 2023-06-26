@@ -73,12 +73,26 @@ export const CreateBusiness = (props) => {
             const role = document.getElementById("team-member-role").value;
             if(!email || !role)
                 return alert("Please fill in all fields!");
+            if(teamMemberExist(email, role) === 1)
+                return alert("Team member already exists with the same role!");
             setTeamList([...teamList, { email: email, role: role }]);
             document.getElementById("team-member-email").value = "";
             document.getElementById("team-member-role").value = "";
         }catch(error){
             alert(error);
         }
+    };
+    // Check if the team member already exists and has the same role as before
+    const teamMemberExist = (email, role) => {
+        let res = 0;
+        teamList.every((item, index) => {
+            if(String(item.email).toLowerCase() === String(email).toLowerCase() && String(item.role).toLowerCase() === String(role).toLowerCase()){
+                res = 1;
+                return false;
+            }
+            return true;
+        });
+        return res;
     };
     const removeTeamMember = (index) => {
         const list = [...teamList];
@@ -92,7 +106,7 @@ export const CreateBusiness = (props) => {
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify(businessOverviewInput)
+                body: JSON.stringify({...businessOverviewInput, teamList: teamList})
             })
                 .then((res) => {return res.json(); })
                 .then((data) => {
@@ -100,7 +114,8 @@ export const CreateBusiness = (props) => {
                     if(data.status){
                         const business = {
                             ...businessOverviewInput,
-                            id: data.business.id
+                            id: data.business.id,
+                            teamMember: teamList
                         };
                         props.setBusinesses([...props.businesses, business]);
                     }
@@ -254,9 +269,9 @@ export const CreateBusiness = (props) => {
                 <div className="pop-up-input">
                     <div className="team-member-input">
                         <input 
-                            type="text" 
+                            type="email" 
                             id ="team-member-email" 
-                            placeholder="Add team member's email or username"
+                            placeholder="Add team member's email"
                             className="email-input"
                             onKeyPress={handleKeypress3} 
                         />
@@ -394,8 +409,8 @@ const teamMemberInputElements = (teamList, setTeamList, index, removeTeamMember)
     return(
         <div key = {index} className="team-member-input">
             <input 
-                type = "text" 
-                placeholder = "Add team member's email or username"
+                type="email" 
+                placeholder = "Add team member's email"
                 className = "email-input"
                 value = {teamList[index].email}
                 onChange={event => modifyEmail(event.target.value)}

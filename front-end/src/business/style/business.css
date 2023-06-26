@@ -37,7 +37,14 @@
   padding: 3vh;
   display: block;
 }
-.business-dashboard .business-dashboard-title .business-dashboard-title-content h1 {
+.business-dashboard .business-dashboard-title .business-dashboard-title-content .business-title {
+  display: flex;
+  height: 6vh;
+}
+.business-dashboard .business-dashboard-title .business-dashboard-title-content .business-title img {
+  margin-right: 20px;
+}
+.business-dashboard .business-dashboard-title .business-dashboard-title-content .business-title h1 {
   margin: 0;
   margin-top: -10px;
   font-size: 6vh;
@@ -46,7 +53,7 @@
 }
 .business-dashboard .business-dashboard-title .business-dashboard-title-content h3 {
   margin: 0;
-  margin-top: -5px;
+  margin-top: 10px;
   font-size: 2vh;
   color: #8c8c8e;
   font-family: Inter;
@@ -55,10 +62,88 @@
   height: calc(100vh - 2vw - 15vh - 50px - 4vh);
 }
 .business-dashboard .business-dashboard-body .business-dashboard-body-content {
+  display: block;
   padding: 20px 30px;
   height: 100%;
 }
+.business-dashboard .business-dashboard-body .business-dashboard-body-content hr {
+  margin-top: -3px;
+  border: none;
+  height: 3px;
+  background-color: #ACACAC;
+}
 .business-dashboard .business-dashboard-body .business-dashboard-body-content .business-dashboard-navbar {
   width: 100%;
-  height: 7vh;
+  height: auto;
+  display: flex;
+  overflow-y: hidden;
+  overflow-x: scroll;
+}
+.business-dashboard .business-dashboard-body .business-dashboard-body-content .business-dashboard-navbar li {
+  width: calc((100vw - 240px - 8vw) / 7 + 1.5vw);
+  display: flex;
+  height: 100%;
+}
+.business-dashboard .business-dashboard-body .business-dashboard-body-content .business-dashboard-navbar li:hover, .business-dashboard .business-dashboard-body .business-dashboard-body-content .business-dashboard-navbar li .active {
+  cursor: pointer;
+}
+.business-dashboard .business-dashboard-body .business-dashboard-body-content .business-dashboard-navbar li:hover .icon, .business-dashboard .business-dashboard-body .business-dashboard-body-content .business-dashboard-navbar li .active .icon {
+  color: #5D5FEF !important;
+}
+.business-dashboard .business-dashboard-body .business-dashboard-body-content .business-dashboard-navbar .business-dashboard-navbar-item {
+  margin: auto;
+  height: 50px;
+  width: 100%;
+  padding: 8px !important;
+}
+.business-dashboard .business-dashboard-body .business-dashboard-body-content .business-dashboard-navbar .business-dashboard-navbar-item:hover, .business-dashboard .business-dashboard-body .business-dashboard-body-content .business-dashboard-navbar .business-dashboard-navbar-item.active {
+  border-bottom: 3px solid #5D5FEF;
+}
+.business-dashboard .business-dashboard-body .business-dashboard-body-content .business-dashboard-navbar .business-dashboard-navbar-item .business-dashboard-navbar-item-content {
+  display: flex;
+  height: 100%;
+  margin: auto;
+  align-items: center;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.business-dashboard .business-dashboard-body .business-dashboard-body-content .business-dashboard-navbar .business-dashboard-navbar-item .business-dashboard-navbar-item-content .icon {
+  color: #ACACAC;
+  margin-right: 8px;
+}
+.business-dashboard .business-dashboard-body .business-dashboard-body-content .business-dashboard-navbar .business-dashboard-navbar-item .business-dashboard-navbar-item-content .title {
+  white-space: nowrap;
+  font-size: 14px;
+  color: #343741;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0.07px;
+}
+
+.business-details {
+  overflow: scroll;
+  height: calc(100vh - 2vw - 15vh - 50px - 4vh - 60px - 30px - 40px);
+  width: 100%;
+}
+.business-details .business-details-item {
+  margin-bottom: 24px;
+  display: grid;
+}
+.business-details .business-details-item label {
+  font-size: 16px;
+  color: #ACACAC;
+}
+.business-details .business-details-item input {
+  height: 5vh !important;
+}
+.business-details .business-details-item input, .business-details .business-details-item textarea {
+  border-radius: 4px;
+  padding: 15px;
+  margin: 5px 0 0 0;
+  border: none;
+  background: #f1f1f1;
+  color: #8496AE;
+}
+.business-details .business-details-item textarea {
+  height: 10vh !important;
 }/*# sourceMappingURL=business.css.map */

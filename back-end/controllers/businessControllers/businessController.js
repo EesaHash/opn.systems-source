@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Business = require('../../models/business');
+const { addTeamMembers } = require("./addTeamMemberController");
 
 const business = {};
 
@@ -18,8 +19,8 @@ business.addNewBusiness = async (req, res) => {
           productOrServiceDescription,
           fundingStrategy,
           email,
+          teamList
         } = req.body;
-        console.log(businessName);
 
         // Create a new business record in the database
         const business = await Business.create({
@@ -33,9 +34,13 @@ business.addNewBusiness = async (req, res) => {
           isProduct: (isProduct === "Product" ? true : false),
           productOrServiceDescription,
           fundingStrategy,
-          email,
+          email
         });
+
+        await addTeamMembers(teamList, business.id);
+
         console.log(`[Success] Added business ${businessName} for ${email} : `, business.id);
+        
         return res.status(200).json({ status: true, message: "Successfully added new business!", business: business});
       } catch (error) {
         console.log(error);
