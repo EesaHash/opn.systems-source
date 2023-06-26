@@ -1,14 +1,17 @@
+@use './searchbar';
+@use './pane';
+$profile-width: calc(pane.$mainbox-width - searchbar.$search-bar-width - 2vw);
 $profile-name-width: calc(15vw - 30px - 35px - 1vw);
 
 .profile-header{
     margin-top: 5px;
     display: flex;
-    & .notification{
-        & img{
-            width: 30px;
-        }
-        margin-right: 1vw;
-    }
+    background-color: #FFF;
+    padding: 0 1vw;
+    padding-top: 5px;
+    width: $profile-width;
+    border-radius: 28px;
+    margin: auto;
     & .profile-picture{
         display: block;
         margin-right: 0.5vw;
@@ -34,7 +37,7 @@ $profile-name-width: calc(15vw - 30px - 35px - 1vw);
         margin-top: 15px;
         display: block;
         float: left;
-        right: 2vw;
+        right: 4vw;
         position: fixed;
         height: 100px;
         &:hover{
