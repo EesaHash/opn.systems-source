@@ -6,7 +6,7 @@ export const Pane = (props) => {
     if(props.businesses.length === 0)
         return emptyPane(props.user)
     else
-        return filledPane(props.activeLink, props.activeLink2, props.createNewBusinessForm, props.businesses, props.setBusinesses, props.activeLink3, props.setActiveLink3)
+        return filledPane(props.activeLink, props.activeLink2, props.createNewBusinessForm, props.businesses, props.setBusinesses, props.activeLink3, props.setActiveLink3, props.user)
 };
 
 const emptyPane = (user) => {
@@ -31,7 +31,7 @@ const emptyPane = (user) => {
             </div>
 
             <div className="updates">
-            <img className="updateslogo" src="./images/notificationlogo.png"/>
+            <img className="updateslogo" src="./images/notificationlogo.png" alt="logo"/>
             <div className="updatestitle">
             <text>Recent Updates</text>
             </div>
@@ -83,15 +83,15 @@ const peopleTemplate = (gender) => {
         </div>
     );
 };
-const filledPane = (activeLink, activeLink2, createNewBusinessForm, businesses, setBusinesses, activeLink3, setActiveLink3) => {
+const filledPane = (activeLink, activeLink2, createNewBusinessForm, businesses, setBusinesses, activeLink3, setActiveLink3, user) => {
     switch(activeLink){
         case "business":
             if(activeLink2)
                 return businessDashboard(activeLink2, businesses, activeLink3, setActiveLink3);
             else{
-                return emptyPane(createNewBusinessForm);
+                return emptyPane(user);
             }
         default:
-            return emptyPane(createNewBusinessForm);
+            return emptyPane(user);
     }
 };
