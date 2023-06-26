@@ -1,6 +1,5 @@
 const express = require ("express");
 const router = express.Router();
-const { connection } = require("./connectDatabase");
 const { sendEmailConfirmation } = require("../emailController/emailSenderController");
 const { transporter } = require("../emailController/emailSenderController");
 const User = require("../../models/user");

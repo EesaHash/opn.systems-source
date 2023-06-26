@@ -32,20 +32,21 @@
 }
 .sidebar-list .row li:hover, .sidebar-list .row.active, .sidebar-list .row:hover {
   border-radius: 8px;
-  border: 2px solid #343741;
-  color: grey !important;
+  border: 2px solid transparent;
+  background-color: #242D3A;
   cursor: pointer;
 }
 .sidebar-list .row li:hover .dropdown-arrow, .sidebar-list .row.active .dropdown-arrow, .sidebar-list .row:hover .dropdown-arrow {
   margin-top: -10px;
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
-  border-bottom: 10px solid grey;
+  border-bottom: 10px solid;
   border-top: 10px solid transparent;
 }
 .sidebar-list .row .main-item {
   width: 100%;
   height: 100%;
+  margin-bottom: 15px;
 }
 .sidebar-list .row .main-item .main-item-content {
   display: flex;
@@ -55,7 +56,6 @@
   margin: auto;
   text-align: center;
   align-items: center;
-  margin-bottom: 10px;
 }
 .sidebar-list .row .sub-items {
   min-width: -moz-fit-content;
@@ -64,22 +64,46 @@
   color: white;
   float: right;
 }
-.sidebar-list .row .sub-items .active a {
-  color: grey !important;
+.sidebar-list .row .sub-items .sub-items-content {
+  display: flex;
+  height: 100%;
+  margin: auto;
+  align-items: center;
+  color: white;
+}
+.sidebar-list .row .sub-items .sub-items-content .icon {
+  margin-right: 15px;
+  border-radius: 6px;
+}
+.sidebar-list .row .sub-items .sub-items-content .icon img {
+  height: 35px;
+  width: 35px;
+  color: #F7F8FC;
+}
+.sidebar-list .row .sub-items .sub-items-content .title {
+  width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.sidebar-list .row .sub-items .active .sub-items-content {
+  background-color: #242D3A;
+  border-radius: 8px;
 }
 .sidebar-list .row .sub-items li, .sidebar-list .row .sub-items button {
   width: 100%;
   height: 100%;
   margin-bottom: 10px;
+  margin-top: 0;
   border-radius: 8px;
-  border: 1px solid #343741;
+  border: 1px solid transparent;
   color: black;
 }
 .sidebar-list .row .sub-items li :hover, .sidebar-list .row .sub-items button :hover {
-  color: grey !important;
+  background-color: #242D3A;
 }
-.sidebar-list .row .sub-items li a, .sidebar-list .row .sub-items button a {
-  padding: 8px 1.75vw;
+.sidebar-list .row .sub-items li .sub-items-content, .sidebar-list .row .sub-items button .sub-items-content {
+  padding: 10px 12px;
 }
 .sidebar-list .row .sub-items button {
   background-color: #A5A6F6;

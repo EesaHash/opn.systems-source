@@ -17,6 +17,7 @@ export const DashboardPage = () => {
     const [businesses, setBusinesses] = useState([]);
     const [activeLink, setActiveLink] = useState('');
     const [activeLink2, setActiveLink2] = useState('');
+    const [activeLink3, setActiveLink3] = useState('Overview');
 
     useEffect(() => {
         try{
@@ -77,7 +78,11 @@ export const DashboardPage = () => {
     return (
         <div className="background">
             <div id="bash" className="bash">
-                <Sidebar businesses = {businesses} activeLink = {activeLink} setActiveLink = {setActiveLink} activeLink2 = {activeLink2} setActiveLink2 = {setActiveLink2} />
+                <Sidebar 
+                    businesses = {businesses} 
+                    activeLink = {activeLink}   setActiveLink = {setActiveLink} 
+                    activeLink2 = {activeLink2} setActiveLink2 = {setActiveLink2}
+                />
             </div>
             {!loading &&
                 <div>
@@ -92,7 +97,14 @@ export const DashboardPage = () => {
                             </div>
                         </div>
                         <div className="pane">
-                            <Pane createNewBusinessForm = {createNewBusinessForm} businesses = {businesses} setBusinesses = {setBusinesses} activeLink = {activeLink} activeLink2 = {activeLink2} user = {user} />
+                            <Pane 
+                                createNewBusinessForm = {createNewBusinessForm} 
+                                businesses = {businesses} setBusinesses = {setBusinesses} 
+                                activeLink = {activeLink} 
+                                activeLink2 = {activeLink2} 
+                                activeLink3 = {activeLink3} setActiveLink3 = {setActiveLink3} 
+                                user = {user} 
+                            />
                         </div>
                     </div>
                 </div>

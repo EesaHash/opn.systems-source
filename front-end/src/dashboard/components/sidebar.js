@@ -38,7 +38,10 @@ export const Sidebar = (props) => {
                         <ul className="sub-items">
                             {(val.title === "Business") && props.businesses.map((item, index) => (
                             <li className={props.activeLink2 === item.id ? 'active' : ''} key={index} onClick={() => {props.setActiveLink2(item.id)}} >
-                                <a href={`#${item.id}`}>{item.businessName}</a>
+                                <div className='sub-items-content'>
+                                    <div className='icon'><img src = {`./images/businessIcon/businessIcon${(index%6)+1}.png`} alt = "logo" /></div>
+                                    <div className='title'>{item.businessName}</div>
+                                </div>
                             </li>
                             ))}
                             {(val.title === "Business") && <button onClick={addBusiness}>+ Add Business</button>}
