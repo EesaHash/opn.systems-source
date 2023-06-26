@@ -2,27 +2,198 @@
   padding: 1vw;
 }
 
-.mainbox {
-  display: flex;
-  width: calc(100vw - 240px - 8vw);
-  height: calc(96vh - 50px - 1vw);
-  background-color: white;
-  color: white;
-  border-radius: 20px;
-  align-items: center;
+.mainpane {
+  display: block;
 }
 
-.addButton {
-  width: 170px;
-  height: 40px;
-  border-radius: 10px;
-  align-items: center;
-  margin-left: calc(50% - 85px);
-  background-color: #A5A6F6;
-  border-radius: 8px;
-  border: 1px solid transparent;
-  color: black;
+.nameheader {
+  height: 12vh;
+  width: calc(100vw - 240px - 8vw);
+  display: flex;
+  padding: 30px;
+  align-items: flex-start;
+  gap: 10px;
+  align-self: stretch;
+  border-radius: 20px;
+  background: #FFF;
 }
-.addButton:hover {
-  color: rgb(67, 67, 67) !important;
+
+.profilepicture {
+  display: flex;
+  margin-left: 0.5vw;
+  background-color: #FFF;
+  align-items: left;
+  align-content: center;
+}
+.profilepicture img {
+  width: 50px;
+}
+
+.nametitle {
+  color: #000;
+  font-size: 38.4px;
+  font-family: DM Sans;
+  font-weight: 500;
+  line-height: 140%;
+  align-items: center;
+  margin-top: -10px;
+}
+
+.email {
+  color: var(--text-subdued-text, #ACACAC);
+  /* Inter/Body 2 */
+  margin-top: -12px;
+  font-size: 14px;
+  font-family: Inter;
+  line-height: 24px;
+}
+
+.businesses-overview {
+  display: flex;
+  margin-top: 16px;
+}
+.businesses-overview .yourbusiness, .businesses-overview .update {
+  height: calc(49vh - 50px - 1vw - 32px);
+  width: calc((100vw - 240px - 8vw) / 2 - 15px);
+}
+.businesses-overview .yourbusiness {
+  display: flex;
+  padding: 20px 30px 40px 30px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  flex: 1 0 0;
+  border-radius: 20px;
+  background: #FFF;
+}
+.businesses-overview .updates {
+  margin-left: 15px;
+  display: flex;
+  padding: 27.941px 20.956px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  flex: 1 0 0;
+  align-self: stretch;
+  border-radius: 13.971px;
+  background: linear-gradient(133deg, #3235FF 0%, #5C5FFF 100%);
+  color: #F7F8FC;
+  text-align: center;
+}
+
+.businesstitle {
+  color: #000;
+  font-size: 40px;
+  font-family: DM Sans;
+  font-weight: 500;
+}
+
+.updatestitle {
+  color: var(--text-bod, #F7F8FC);
+  font-size: 27.941px;
+  font-family: DM Sans;
+  font-weight: 500;
+}
+
+.updateslogo {
+  align-items: center;
+  flex-shrink: 0;
+  width: 74px;
+  height: 75px;
+}
+
+.uptext {
+  margin-bottom: 8px;
+  display: flex;
+  width: 358px;
+  flex-direction: column;
+  align-self: center;
+  color: #F7F8FC;
+  text-align: center;
+  font-size: 16.765px;
+  font-family: Inter;
+  font-weight: 100;
+  line-height: 140%;
+}
+
+.updatesbutton {
+  display: flex;
+  height: 48.001px;
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 8px;
+  border-color: transparent;
+  color: #3235FF;
+  background-color: #FFF;
+  margin-top: -10px;
+}
+
+.people {
+  margin-top: 16px;
+  height: 45vh;
+  width: calc(100vw - 240px - 8vw);
+  display: flex;
+  padding: 20px 30px 40px 30px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  align-self: stretch;
+  border-radius: 20px;
+  background: #FFF;
+}
+
+.teammember {
+  display: flex;
+}
+.teammember .team-member-icon {
+  display: flex;
+}
+.teammember .team-member-icon img {
+  width: 75px;
+  height: 75px;
+  border-radius: 100px;
+  background: #FFF;
+  opacity: 60%;
+}
+.teammember .emptyname {
+  width: 140px;
+  height: 42px;
+  margin-right: 60px;
+  margin-left: 60px;
+  margin-top: 16px;
+  border-radius: 9px;
+  background: rgba(217, 217, 217, 0.3);
+}
+
+.collaborate {
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+  color: var(--text-subdued-text, #ACACAC);
+  text-align: center;
+  font-size: 24px;
+  font-family: DM Sans;
+  font-weight: 500;
+  line-height: 140%;
+}
+
+.invite-button {
+  width: 100%;
+}
+.invite-button button {
+  display: flex;
+  height: 48px;
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  background: var(--accent-yellow-dark, #FEC514);
+  border: #FEC514;
+  color: #000;
+  margin: auto;
 }/*# sourceMappingURL=pane.css.map */

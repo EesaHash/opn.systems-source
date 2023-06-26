@@ -92,7 +92,7 @@ export const DashboardPage = () => {
                             </div>
                         </div>
                         <div className="pane">
-                            <Pane createNewBusinessForm = {createNewBusinessForm} businesses = {businesses} setBusinesses = {setBusinesses} activeLink = {activeLink} activeLink2 = {activeLink2} />
+                            <Pane createNewBusinessForm = {createNewBusinessForm} businesses = {businesses} setBusinesses = {setBusinesses} activeLink = {activeLink} activeLink2 = {activeLink2} user = {user} />
                         </div>
                     </div>
                 </div>
