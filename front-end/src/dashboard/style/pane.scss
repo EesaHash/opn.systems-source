@@ -1,6 +1,11 @@
 $mainbox-height: calc(96vh - 50px - 1vw);
-$mainbox-width: calc(100vw - 240px - 8vw);
-$halfbox-width: calc($mainbox-width/2 - 15px);
+$mainbox-width: calc(100vw - 240px - 6vw);
+$halfbox-width: calc($mainbox-width * 0.5 - 15px - 12vw);
+
+* {
+  box-sizing: border-box;
+}
+
 .pane{
     padding: 1vw;
 }
@@ -57,7 +62,8 @@ $halfbox-width: calc($mainbox-width/2 - 15px);
     display: flex;
     margin-top: 16px;
     & .yourbusiness, .update{
-        height: calc(96vh - 12vh - 35vh - 50px - 1vw - 32px);
+        // height: calc(96vh - 50px - 2vw - 12vh - 45vh - 16px);
+        height: 30vh;
         width: $halfbox-width;
     }
     & .yourbusiness{
@@ -65,6 +71,7 @@ $halfbox-width: calc($mainbox-width/2 - 15px);
         padding: 20px 30px 40px 30px;
         flex-direction: column;
         align-items: flex-start;
+        align-self: stretch;
         gap: 16px;
         flex: 1 0 0;
         border-radius: 20px;
@@ -73,7 +80,7 @@ $halfbox-width: calc($mainbox-width/2 - 15px);
     & .updates{
         margin-left: 15px;
         display: flex;
-        padding: 27.941px 20.956px;
+        padding: 2vh 20.956px;
         flex-direction: column;
         justify-content: center;
         align-items: center;
@@ -84,65 +91,61 @@ $halfbox-width: calc($mainbox-width/2 - 15px);
         background: linear-gradient(133deg, #3235FF 0%, #5C5FFF 100%);
         color: #F7F8FC;
         text-align: center;
+        overflow: scroll;
+        & .updateslogo{
+            align-items: center;
+            flex-shrink: 0;
+            width: 7vh;
+            height: 7vh;
+        }
+        & .updatestitle{
+            color: var(--text-bod, #F7F8FC);
+            font-size: calc(5vh * 0.7);
+            font-family: DM Sans;
+            font-weight: 500;
+        }
+        & .uptext{
+            margin-bottom: 8px;
+            display: flex;
+            width: 358px;
+            flex-direction: column;
+            align-self: center;
+            color: #F7F8FC;
+            text-align: center;
+            font-size: calc(3vh * 0.7);
+            font-family: Inter;
+            font-weight: 100;
+            line-height: 140%;
+        }
+        & .updatesbutton{
+            display: flex;
+            height: 4vh;
+            padding: 2vh;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-size: 16px;
+            font-weight: 500;
+            border-radius: 8px;
+            border-color: transparent;
+            color: #3235FF;
+            background-color: #FFF;
+            margin-top: -10px;
+        }
     }
 
 }
 
 .businesstitle{
     color: #000;
-    font-size: 40px;
+    font-size: 30px;
     font-family: DM Sans;
     font-weight: 500;
 }
-
-.updatestitle{
-    color: var(--text-bod, #F7F8FC);
-    font-size: 27.941px;
-    font-family: DM Sans;
-    font-weight: 500;
-}
-
-.updateslogo{
-    align-items: center;
-    flex-shrink: 0;
-    width: 74px;
-    height: 75px;
-}
-
-.uptext{
-    margin-bottom: 8px;
-    display: flex;
-    width: 358px;
-    flex-direction: column;
-    align-self: center;
-    color: #F7F8FC;
-    text-align: center;
-    font-size: 16.765px;
-    font-family: Inter;
-    font-weight: 100;
-    line-height: 140%;
-}
-
-.updatesbutton{
-    display: flex;
-    height: 48.001px;
-    padding: 20px;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    font-size: 16px;
-    font-weight: 500;
-    border-radius: 8px;
-    border-color: transparent;
-    color: #3235FF;
-    background-color: #FFF;
-    margin-top: -10px;
-}
-
 
  .people{
     margin-top: 16px;
-    height: 45vh;
+    height: calc(96vh - 50px - 2vw - 12vh - 30vh - 16px);
     width: $mainbox-width;
     display: flex;
     padding: 20px 30px 40px 30px;
@@ -152,15 +155,16 @@ $halfbox-width: calc($mainbox-width/2 - 15px);
     align-self: stretch;
     border-radius: 20px;
     background: #FFF;   
-    }
+    overflow:auto;
+}
 
 .teammember{
     display: flex;
     & .team-member-icon {
         display: flex;
         & img{
-            width: 75px;
-            height: 75px;
+            width: 60px;
+            height: 60px;
             border-radius: 100px;
             background: #FFF;
             opacity: 60%;
@@ -169,10 +173,11 @@ $halfbox-width: calc($mainbox-width/2 - 15px);
     }
     
     & .emptyname{
-        width: 140px;
+        min-width: 140px;
+        max-width: fit-content;
         height: 42px;
-        margin-right: 60px;
-        margin-left: 60px;
+        margin-right: 35px;
+        margin-left: 35px;
         margin-top: 16px;
         border-radius: 9px;
         background: rgba(217, 217, 217, 0.30);
@@ -185,7 +190,7 @@ $halfbox-width: calc($mainbox-width/2 - 15px);
     align-self: stretch;
     color: var(--text-subdued-text, #ACACAC);
     text-align: center;
-    font-size: 24px;
+    font-size: 22px;
     font-family: DM Sans;
     font-weight: 500;
     line-height: 140%;
@@ -193,10 +198,11 @@ $halfbox-width: calc($mainbox-width/2 - 15px);
 
 .invite-button{
     width: 100%;
+    margin-top: -8px;
     & button{
         display: flex;
-        height: 48px;
-        padding: 20px;
+        height: 43px;
+        padding: 18px;
         justify-content: center;
         align-items: center;
         border-radius: 8px;

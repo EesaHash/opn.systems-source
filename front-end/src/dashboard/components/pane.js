@@ -24,52 +24,53 @@ const emptyPane = (user) => {
                 </div>
             </div>
             <div className="businesses-overview">
-            <div className="yourbusiness">
-            <div className="businesstitle">
-                <text>Your Businesses</text>
-            </div>
-            </div>
+                <div className="yourbusiness">
+                <div className="businesstitle">
+                    <text>Your Businesses</text>
+                </div>
+                </div>
 
-            <div className="updates">
-            <img className="updateslogo" src="./images/notificationlogo.png" alt="logo"/>
-            <div className="updatestitle">
-            <text>Recent Updates</text>
-            </div>
-            <div className="uptext">
-            <text>Want to view the most recent updates to your business?</text>
-            </div>
-            <div>
-                <button className="updatesbutton">Upgrade your plan</button>
-            </div>
-            </div>
+                <div className="updates">
+                    <img className="updateslogo" src="./images/notificationlogo.png" alt="logo"/>
+                    <div className="updatestitle">
+                        <text>Recent Updates</text>
+                    </div>
+                    <div className="uptext">
+                    <text>Want to view the most recent updates </text>
+                    <text>to your business?</text>
+                    </div>
+                    <div>
+                        <button className="updatesbutton">Upgrade your plan</button>
+                    </div>
+                </div>
 
             </div>
 
             <div className="people">
-            <div className="businesstitle">
-            <text>Team Members</text>
-            </div>
+                <div className="businesstitle">
+                    <text>People</text>
+                </div>
 
-            <div className="teammember">
-            {peopleTemplate("male")}
-            {peopleTemplate("female")}
-            {peopleTemplate("male")}
-            {peopleTemplate("female")}
-            </div>
-            <div className="teammember">
-            {peopleTemplate("male")}
-            {peopleTemplate("female")}
-            {peopleTemplate("male")}
-            {peopleTemplate("female")}
-            </div>
+                <div className="teammember">
+                    {peopleTemplate("male")}
+                    {peopleTemplate("female")}
+                    {peopleTemplate("male")}
+                    {peopleTemplate("female")}
+                </div>
+                <div className="teammember">
+                    {peopleTemplate("male")}
+                    {peopleTemplate("female")}
+                    {peopleTemplate("male")}
+                    {peopleTemplate("female")}
+                </div>
 
-            <div className="collaborate">
-            <text>Invite your team members to collaborate.</text>
-            </div>
+                <div className="collaborate">
+                <text>Invite your team members to collaborate.</text>
+                </div>
 
-            <div className="invite-button">
-                <button >+ Invite team members</button>
-            </div>
+                <div className="invite-button">
+                    <button >+ Invite team members</button>
+                </div>
 
             </div>
         </div>
