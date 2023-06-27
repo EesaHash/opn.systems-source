@@ -9,14 +9,16 @@ import { Pane } from "../components/pane";
 import { Profile } from "../components/profile";
 import { getUserID } from "../../App";
 import { CreateBusiness } from "../../business/components/createBusiness";
+import { EditBusinessDetail } from "../../business/components/editBusinessDetail";
 
 export const DashboardPage = () => {
     const [userID, setUserID] = useState();
     const [user, setUser] = useState({});
     const [loading, setLoading] = useState(false);
+    const [business, setBusiness] = useState({});
     const [businesses, setBusinesses] = useState([]);
     const [activeLink, setActiveLink] = useState('');
-    const [activeLink2, setActiveLink2] = useState('');
+    const [activeLink2, setActiveLink2] = useState(0);
     const [activeLink3, setActiveLink3] = useState('Overview');
 
     useEffect(() => {
@@ -87,6 +89,13 @@ export const DashboardPage = () => {
             {!loading &&
                 <div>
                     <CreateBusiness businesses = {businesses} setBusinesses = {setBusinesses} userID = {userID} />
+                    <EditBusinessDetail 
+                        businesses = {businesses} 
+                        setBusinesses = {setBusinesses} 
+                        index = {activeLink2 - 1}
+                        business = {business}
+                        setBusiness = {setBusiness}
+                    />
                     <div id="dashboard-content">
                         <div style={{display: "flex"}}>
                             <div className="search">
@@ -117,7 +126,7 @@ export const createNewBusinessForm = _ => {
     document.getElementById("createAccountForm").style.display = "block";
     openPopUpForm();
 };
-const openPopUpForm = _ => {
+export const openPopUpForm = _ => {
     document.getElementById("bash").style.opacity = "0.5";
     document.getElementById("dashboard-content").style.opacity = "0.5";
     document.getElementById("bash").style.filter = "blur(3px)";

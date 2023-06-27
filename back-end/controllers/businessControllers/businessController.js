@@ -116,7 +116,7 @@ business.getAllBusinesses = async (req, res) => {
     try {
         const { email } = req.body;
         // Find all businesses for the given user
-        const businesses = await Business.findAll({ where: { email } });
+        const businesses = await Business.findAll({ where: { email }, order: ['id']});
         console.log(`[Success] Retrieved business details for ${email}`);
         return res.status(200).json({status: true, businesses: businesses});
       } catch (error) {
