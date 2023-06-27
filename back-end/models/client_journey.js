@@ -7,36 +7,9 @@ const ClientJourney = sequelize.define('Client Journey', {
         autoIncrement: true,
         primaryKey: true,
     },
-    forProductOrService: {
-        type: DataTypes.STRING,
-    },
-    awareness: {
+    data : {
         type: DataTypes.TEXT,
-    },
-    research: {
-        type: DataTypes.TEXT,
-    },
-    consideration: {
-        type: DataTypes.TEXT,
-    },
-    decision: {
-        type: DataTypes.TEXT,
-    },
-    onboaring: {
-        type: DataTypes.TEXT,
-    },
-    usage: {
-        type: DataTypes.TEXT,
-    },
-    support: {
-        type: DataTypes.TEXT,
-    },
-    engagement: {
-        type: DataTypes.TEXT,
-    },
-    loyaltyAndAdvocacy: {
-        type: DataTypes.TEXT,
-    },
+    }
 });
 
 module.exports = ClientJourney;

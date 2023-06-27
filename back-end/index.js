@@ -21,7 +21,7 @@ app.use("/api/getuserdata", require("./controllers/accountController/getUserData
 // GPT API's CONTROLLERS
 app.use("/api/gptest", require("./controllers/gptController/gptTestController"));
 app.use("/api/business", require("./controllers/businessControllers/businessController"));
-app.use("/api/gpt", require("./controllers/gptController/gptController"));
+app.use("/api/clientjourney", require("./controllers/businessControllers/clientJourneyController"));
 
 
 

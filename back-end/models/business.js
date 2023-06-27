@@ -74,6 +74,6 @@ const Business = sequelize.define('Business', {
   });
 
 User.hasMany(Business, { foreignKey: 'email' });
-Business.hasMany(ClientJourney);
+Business.hasOne(ClientJourney, { foreignKey: 'id' });
 
 module.exports = Business;
