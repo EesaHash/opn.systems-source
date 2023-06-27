@@ -6,6 +6,7 @@
     left: 0;
     margin-left: 25vw;
     margin-right: 25vw;
+    overflow: scroll;
     & .team-member-input{
         & .email-input{
             width: calc(80% - 40px - 7vw);
@@ -18,6 +19,36 @@
             border: 1.5px solid transparent;
         }
         & input{
+            margin-bottom: 20px;
+        }
+    }
+}
+
+.edit-business{
+    margin-top: 8vh;
+    width: 50vw;
+    height: 80vh;
+    left: 0;
+    margin-left: 25vw;
+    margin-right: 25vw;
+    overflow: scroll;
+    & .business-icon{
+        width: 20%;
+        margin-right: 20px;
+        & img{
+            width: 6vw;
+            border-radius: 17px;
+        }
+    }
+    & .business-detail{
+        width: 80%;
+        height: calc(72vh - 25px - 22px - 60px) !important;
+        overflow: scroll;
+        margin-bottom: 20px;
+        & label{
+            margin-top: -20px;
+        }
+        & input, textarea, .dropdown{
             margin-bottom: 20px;
         }
     }
@@ -43,6 +74,7 @@ $navbaritem-width: calc($dashboard-width / 7 + 1.5vw);
                 height: 6vh;
                 & img{
                     margin-right: 20px;
+                    border-radius: 8px;
                 }
                 & h1{
                     margin: 0;
@@ -50,6 +82,19 @@ $navbaritem-width: calc($dashboard-width / 7 + 1.5vw);
                     font-size: 6vh;
                     font-weight: 900;
                     line-height: 64px;
+                }
+                & .dropdown-arrow{
+                    border-top-color: black;
+                    display: block;
+                    top: 20px;
+                    position: relative;
+                    &:hover{
+                        margin-top: -10px;
+                    }
+                    & .dropdown-content{
+                        margin-top: 30px;
+                        left: -170px;
+                    }
                 }
             }
             & h3{

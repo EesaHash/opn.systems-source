@@ -79,6 +79,7 @@
   height: 35px;
   width: 35px;
   color: #F7F8FC;
+  border-radius: 8px;
 }
 .sidebar-list .row .sub-items .sub-items-content .title {
   width: 100px;

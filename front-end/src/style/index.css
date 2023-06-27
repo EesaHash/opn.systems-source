@@ -10,14 +10,50 @@ button {
   color: #F7F8FC;
 }
 
+.dropdown-arrow-area {
+  height: 100px;
+}
+.dropdown-arrow-area:hover .dropdown-content {
+  display: grid;
+}
+
 .dropdown-arrow {
   margin-left: 10px;
   height: 0;
   width: 0;
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
-  border-top: 10px solid white;
+  border-top: 10px solid black;
   background-color: transparent;
+}
+.dropdown-arrow:hover {
+  cursor: pointer;
+  border-bottom: 10px solid black !important;
+  border-top: 10px solid transparent !important;
+}
+.dropdown-arrow .dropdown-content {
+  display: none;
+  position: relative;
+  z-index: 1;
+  background-color: #FFF;
+  white-space: nowrap;
+  padding: 10px;
+  width: -moz-fit-content;
+  width: fit-content;
+  box-shadow: 0 0 10px #888888;
+  border-radius: 9px;
+}
+.dropdown-arrow .dropdown-content button, .dropdown-arrow .dropdown-content a {
+  margin: 8px 0;
+  padding: 12px;
+  background-color: transparent;
+  border: none;
+  color: black;
+  text-align: left;
+}
+.dropdown-arrow .dropdown-content button:hover, .dropdown-arrow .dropdown-content a:hover {
+  background-color: #F7F8FC;
+  border-radius: 9px;
 }
 
 .form-popup {
@@ -78,6 +114,8 @@ button {
   float: right;
 }
 .form-popup .pop-up-button button {
+  min-height: -moz-fit-content;
+  min-height: fit-content;
   height: 5vh;
   width: 7vw;
   border-radius: 8px;

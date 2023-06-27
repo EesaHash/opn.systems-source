@@ -7,6 +7,7 @@
   left: 0;
   margin-left: 25vw;
   margin-right: 25vw;
+  overflow: scroll;
 }
 .create-account .team-member-input .email-input {
   width: calc(80% - 40px - 7vw);
@@ -19,6 +20,36 @@
   border: 1.5px solid transparent;
 }
 .create-account .team-member-input input {
+  margin-bottom: 20px;
+}
+
+.edit-business {
+  margin-top: 8vh;
+  width: 50vw;
+  height: 80vh;
+  left: 0;
+  margin-left: 25vw;
+  margin-right: 25vw;
+  overflow: scroll;
+}
+.edit-business .business-icon {
+  width: 20%;
+  margin-right: 20px;
+}
+.edit-business .business-icon img {
+  width: 6vw;
+  border-radius: 17px;
+}
+.edit-business .business-detail {
+  width: 80%;
+  height: calc(72vh - 25px - 22px - 60px) !important;
+  overflow: scroll;
+  margin-bottom: 20px;
+}
+.edit-business .business-detail label {
+  margin-top: -20px;
+}
+.edit-business .business-detail input, .edit-business .business-detail textarea, .edit-business .business-detail .dropdown {
   margin-bottom: 20px;
 }
 
@@ -43,6 +74,7 @@
 }
 .business-dashboard .business-dashboard-title .business-dashboard-title-content .business-title img {
   margin-right: 20px;
+  border-radius: 8px;
 }
 .business-dashboard .business-dashboard-title .business-dashboard-title-content .business-title h1 {
   margin: 0;
@@ -50,6 +82,19 @@
   font-size: 6vh;
   font-weight: 900;
   line-height: 64px;
+}
+.business-dashboard .business-dashboard-title .business-dashboard-title-content .business-title .dropdown-arrow {
+  border-top-color: black;
+  display: block;
+  top: 20px;
+  position: relative;
+}
+.business-dashboard .business-dashboard-title .business-dashboard-title-content .business-title .dropdown-arrow:hover {
+  margin-top: -10px;
+}
+.business-dashboard .business-dashboard-title .business-dashboard-title-content .business-title .dropdown-arrow .dropdown-content {
+  margin-top: 30px;
+  left: -170px;
 }
 .business-dashboard .business-dashboard-title .business-dashboard-title-content h3 {
   margin: 0;

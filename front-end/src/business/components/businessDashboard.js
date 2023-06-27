@@ -1,25 +1,37 @@
 import React from 'react';
-import { AccountTree, Assignment, Badge, FolderCopy, Group, Home, ViewHeadline } from "@mui/icons-material";
+import { AccountTree, Assignment, Badge, DeleteForever, FolderCopy, Group, Home, ModeEdit, ViewHeadline } from "@mui/icons-material";
 import "../style/business.css";
 import { businessDetails } from './businessDetails';
+import { openPopUpForm } from '../../dashboard/page/dashboard_main';
 
 export const businessDashboard = (activeLink2, businesses, activeLink3, setActiveLink3) => {
-    const businessIndex = getSelectedBusinessIndex(activeLink2, businesses);
-    const business = businesses[businessIndex];
+    const business = businesses[activeLink2 - 1];
     return(
         <div className='business-dashboard'>
-            {title(business, businessIndex)}
+            {title(business, activeLink2 - 1)}
             {body(business, activeLink3, setActiveLink3)}
         </div>
     );
 };
 const title = (business, businessIndex) => {
+    const openEditBusinessForm = _ => {
+        document.getElementById("editBusinessForm").style.display = "block";
+        openPopUpForm();
+    };
     return(
         <div className='business-dashboard-title'>
             <div className='business-dashboard-title-content'>
                 <div className='business-title'>
                     <img src={`./images/businessIcon/businessIcon${(businessIndex%6)+1}.png`} alt="logo"/>
                     <h1>{business.businessName}</h1>
+                    <div className='dropdown-arrow-area'>
+                        <div className='dropdown-arrow'>
+                            <div className="dropdown-content">
+                                <button onClick={openEditBusinessForm}><ModeEdit/>Edit Business Details</button>
+                                <button onClick={null} style={{color: "#EB5757"}} ><DeleteForever/>Delete</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <h3>{`${business.industry} - ${business.companySize}`}</h3>
             </div>
@@ -50,17 +62,6 @@ const body = (business, activeLink3, setActiveLink3) => {
             </div>
         </div>
     );
-};
-const getSelectedBusinessIndex = (activeLink2, businesses) => {
-    let result;
-    businesses.every((item, index) => {
-        if(item.id === activeLink2){
-            result = index;
-            return false;
-        }
-        return true;
-    });
-    return result;
 };
 
 const navbarItem = (icon, title, activeLink3, setActiveLink3) => {

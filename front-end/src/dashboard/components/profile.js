@@ -13,9 +13,11 @@ export const Profile = (props) => {
                 <h1>{props.user.username}</h1>
                 <h2>Business Owner</h2>
             </div>
-            <div class="dropdown-arrow">
-                <div className="profile-dropdown-content">
-                    <a href="/" onClick={logOut}><MeetingRoom/>Log Out</a>
+            <div className="dropdown-arrow-area">
+                <div className="dropdown-arrow">
+                    <div className="dropdown-content">
+                        <a href="/" onClick={logOut}><MeetingRoom/>Log Out</a>
+                    </div>
                 </div>
             </div>
         </div>
