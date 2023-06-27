@@ -25,9 +25,9 @@ const emptyPane = (user) => {
             </div>
             <div className="businesses-overview">
                 <div className="yourbusiness">
-                <div className="businesstitle">
-                    <text>Your Businesses</text>
-                </div>
+                    <div className="businesstitle">
+                        <text>Your Businesses</text>
+                    </div>
                 </div>
 
                 <div className="updates">
@@ -46,7 +46,7 @@ const emptyPane = (user) => {
 
             </div>
 
-            <div className="people">
+            <div className="main-dashboard-people">
                 <div className="businesstitle">
                     <text>People</text>
                 </div>

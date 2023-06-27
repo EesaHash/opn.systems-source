@@ -12,7 +12,7 @@
 
 .nameheader {
   height: 12vh;
-  width: calc(100vw - 240px - 6vw);
+  width: calc(100vw - 240px - 8vw);
   display: flex;
   padding: 30px;
   align-items: flex-start;
@@ -55,10 +55,10 @@
 .businesses-overview {
   display: flex;
   margin-top: 16px;
+  height: 30vh;
 }
 .businesses-overview .yourbusiness, .businesses-overview .update {
-  height: 30vh;
-  width: calc((100vw - 240px - 6vw) * 0.5 - 15px - 12vw);
+  width: calc((100vw - 240px - 8vw) * 0.5 - 15px - 12vw) !important;
 }
 .businesses-overview .yourbusiness {
   display: flex;
@@ -70,6 +70,13 @@
   flex: 1 0 0;
   border-radius: 20px;
   background: #FFF;
+  height: 100% !important;
+}
+.businesses-overview .yourbusiness .businesstitle {
+  color: #000;
+  font-size: 30px;
+  font-family: DM Sans;
+  font-weight: 500;
 }
 .businesses-overview .updates {
   margin-left: 15px;
@@ -128,17 +135,10 @@
   margin-top: -10px;
 }
 
-.businesstitle {
-  color: #000;
-  font-size: 30px;
-  font-family: DM Sans;
-  font-weight: 500;
-}
-
-.people {
+.main-dashboard-people {
   margin-top: 16px;
-  height: calc(96vh - 50px - 2vw - 12vh - 30vh - 16px);
-  width: calc(100vw - 240px - 6vw);
+  height: calc(96vh - 50px - 12vh - 50px - 30vh);
+  width: calc(100vw - 240px - 8vw);
   display: flex;
   padding: 20px 30px 40px 30px;
   flex-direction: column;
@@ -147,7 +147,7 @@
   align-self: stretch;
   border-radius: 20px;
   background: #FFF;
-  overflow: auto;
+  overflow: scroll;
 }
 
 .teammember {

@@ -1,5 +1,5 @@
 $mainbox-height: calc(96vh - 50px - 1vw);
-$mainbox-width: calc(100vw - 240px - 6vw);
+$mainbox-width: calc(100vw - 240px - 8vw);
 $halfbox-width: calc($mainbox-width * 0.5 - 15px - 12vw);
 
 * {
@@ -61,10 +61,9 @@ $halfbox-width: calc($mainbox-width * 0.5 - 15px - 12vw);
 .businesses-overview{
     display: flex;
     margin-top: 16px;
+    height: 30vh;
     & .yourbusiness, .update{
-        // height: calc(96vh - 50px - 2vw - 12vh - 45vh - 16px);
-        height: 30vh;
-        width: $halfbox-width;
+        width: $halfbox-width !important;
     }
     & .yourbusiness{
         display: flex;
@@ -75,7 +74,14 @@ $halfbox-width: calc($mainbox-width * 0.5 - 15px - 12vw);
         gap: 16px;
         flex: 1 0 0;
         border-radius: 20px;
-        background: #FFF;       
+        background: #FFF; 
+        height: 100% !important;     
+        & .businesstitle{
+            color: #000;
+            font-size: 30px;
+            font-family: DM Sans;
+            font-weight: 500;
+        } 
     }
     & .updates{
         margin-left: 15px;
@@ -136,16 +142,9 @@ $halfbox-width: calc($mainbox-width * 0.5 - 15px - 12vw);
 
 }
 
-.businesstitle{
-    color: #000;
-    font-size: 30px;
-    font-family: DM Sans;
-    font-weight: 500;
-}
-
- .people{
+ .main-dashboard-people{
     margin-top: 16px;
-    height: calc(96vh - 50px - 2vw - 12vh - 30vh - 16px);
+    height: calc(96vh - 50px - 12vh - 50px - 30vh);
     width: $mainbox-width;
     display: flex;
     padding: 20px 30px 40px 30px;
@@ -155,7 +154,7 @@ $halfbox-width: calc($mainbox-width * 0.5 - 15px - 12vw);
     align-self: stretch;
     border-radius: 20px;
     background: #FFF;   
-    overflow:auto;
+    overflow: scroll;
 }
 
 .teammember{
