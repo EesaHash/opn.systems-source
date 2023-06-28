@@ -8,33 +8,33 @@ const business = {};
 business.addNewBusiness = async (req, res) => {
     try {
         const {
-          businessName,
-          businessType,
-          industry,
-          companySize,
-          businessObjective,
-          coreServices,
-          targetMarket,
-          isProduct,
-          productOrServiceDescription,
-          fundingStrategy,
-          email,
-          teamList
+            businessName,
+            businessType,
+            industry,
+            companySize,
+            businessObjective,
+            coreServices,
+            targetMarket,
+            isProduct,
+            productOrServiceDescription,
+            fundingStrategy,
+            email,
+            teamList
         } = req.body;
 
         // Create a new business record in the database
         const business = await Business.create({
-          businessName,
-          businessType,
-          industry,
-          companySize,
-          businessObjective,
-          coreServices,
-          targetMarket,
-          isProduct: (isProduct === "Product" ? true : false),
-          productOrServiceDescription,
-          fundingStrategy,
-          email
+            businessName,
+            businessType,
+            industry,
+            companySize,
+            businessObjective,
+            coreServices,
+            targetMarket,
+            isProduct: (isProduct === "Product" ? true : false),
+            productOrServiceDescription,
+            fundingStrategy,
+            email
         });
 
         await addTeamMembers(teamList, business.id);
@@ -65,39 +65,38 @@ business.removeBusiness = async (req, res) => {
 business.updateBusiness = async (req, res) => {
     try {
         const {
-          id,
-          businessName,
-          businessType,
-          industry,
-          companySize,
-          businessObjective,
-          coreServices,
-          targetMarket,
-          isProduct,
-          productOrServiceDescription,
-          fundingStrategy,
-          email,
+            id,
+            businessName,
+            businessType,
+            industry,
+            companySize,
+            businessObjective,
+            coreServices,
+            targetMarket,
+            isProduct,
+            productOrServiceDescription,
+            fundingStrategy
          } = req.body;
         // Update the business record in the database
         const business = await Business.update({
-          id,
-          businessName,
-          businessType,
-          industry,
-          companySize,
-          businessObjective,
-          coreServices,
-          targetMarket,
-          isProduct,
-          productOrServiceDescription,
-          fundingStrategy,
-          email,
+            businessName,
+            businessType,
+            industry,
+            companySize,
+            businessObjective,
+            coreServices,
+            targetMarket,
+            isProduct,
+            productOrServiceDescription,
+            fundingStrategy
         }, { where: { id } });
-        console.log(`[Success] Updated business details for ${email} : `, business.businessName);
-        res.status(200).json({ Success : `Updated Bussiness ID: ${id} for ${email}`});
-      } catch (error) {
-        res.status(500).json({ error: `Could not update business`});
-      }
+        if(business[0] === 0)
+            throw("Failed to update business data");
+        console.log(`[Success] Updated business details id: ${id} - ${businessName}`);
+        res.status(200).json({ status: true, message : `Successfully update business details!`});
+    } catch (error) {
+        res.status(500).json({ status: false, message: error});
+    }
     };
 
 business.getSingleBusiness = async (req, res) => {
@@ -128,7 +127,7 @@ business.getAllBusinesses = async (req, res) => {
 
 // Define the routes
 router.post('/addNewBusiness', business.addNewBusiness);
-router.put('/updateBusiness', business.updateBusiness);
+router.post('/updateBusiness', business.updateBusiness);
 router.delete('/removeBusiness', business.removeBusiness);
 router.post('/getSingleBusiness', business.getSingleBusiness);
 router.post('/getAllBusinesses', business.getAllBusinesses);

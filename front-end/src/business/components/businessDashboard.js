@@ -3,6 +3,7 @@ import { AccountTree, Assignment, Badge, DeleteForever, FolderCopy, Group, Home,
 import "../style/business.css";
 import { businessDetails } from './businessDetails';
 import { openPopUpForm } from '../../dashboard/page/dashboard_main';
+import { businessOverview } from './businessOverview';
 
 export const businessDashboard = (activeLink2, businesses, activeLink3, setActiveLink3) => {
     const business = businesses[activeLink2 - 1];
@@ -18,6 +19,25 @@ const title = (business, businessIndex) => {
         document.getElementById("editBusinessForm").style.display = "block";
         openPopUpForm();
     };
+    const deleteBusiness = _ => {
+        try{
+            if(!window.confirm("Are you sure to delete this business?"))
+                return;
+            fetch("/api/business/removeBusiness", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({id: business.id})
+            })
+                .then((res) => {return res.json(); })
+                .then((data) => {
+                    
+                });
+        }catch(error){
+            alert(error);
+        }
+    };
     return(
         <div className='business-dashboard-title'>
             <div className='business-dashboard-title-content'>
@@ -28,7 +48,7 @@ const title = (business, businessIndex) => {
                         <div className='dropdown-arrow'>
                             <div className="dropdown-content">
                                 <button onClick={openEditBusinessForm}><ModeEdit/>Edit Business Details</button>
-                                <button onClick={null} style={{color: "#EB5757"}} ><DeleteForever/>Delete</button>
+                                <button onClick={deleteBusiness} style={{color: "#EB5757"}} ><DeleteForever/>Delete</button>
                             </div>
                         </div>
                     </div>
@@ -54,10 +74,19 @@ const body = (business, activeLink3, setActiveLink3) => {
                 <hr/>
                 {
                     activeLink3 === "Overview" ?
-                        null :
+                        businessOverview(business) :
                     activeLink3 === "Details" ?
                         businessDetails(business) :
-                    null
+                    activeLink3 === "Client Journey" ?
+                        null :
+                    activeLink3 === "Procedures" ?
+                        null :
+                    activeLink3 === "Policies" ?
+                        null :
+                    activeLink3 === "Team Members" ?
+                        null :
+                    activeLink3 === "Department & Roles" &&
+                        null
                 }
             </div>
         </div>

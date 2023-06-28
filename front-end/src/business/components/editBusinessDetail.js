@@ -14,8 +14,59 @@ export const EditBusinessDetail = (props) => {
     }, [props.businesses, props.setBusiness, index]);
 
     const closeForm = _ => {
+        if(!checkChanges())
+            if(window.confirm("Do you want to save the changes you made?"))
+                updateData();
+            else
+                props.setBusiness(props.businesses[index]);
         document.getElementById("editBusinessForm").style.display = "none";
         closePopUpForm();
+    };
+    const updateData = _ => {
+        try{
+            fetch("/api/business/updateBusiness", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(props.business)
+            })
+                .then((res) => {return res.json(); })
+                .then((data) => {
+                    if(data.status){
+                        const temp = [...props.businesses];
+                        temp[index] = props.business;
+                        props.setBusinesses(temp);
+                        alert(data.message);
+                    }
+                });
+        }catch(error){
+            alert(error);
+        }
+    };
+    const checkChanges = _ => {
+        return Object.entries(props.business).toString() === Object.entries(props.businesses[index]).toString();
+    };
+    const updateBusinessName = (value) => {
+        props.setBusiness({...props.business, businessName: value});
+    };
+    const updateBusinessIndustry = (value) => {
+        props.setBusiness({...props.business, industry: value});
+    };
+    const updateBusinessObjective = (value) => {
+        props.setBusiness({...props.business, businessObjective: value});
+    };
+    const updateCoreService = (value) => {
+        props.setBusiness({...props.business, coreServices: value});
+    };
+    const updateTargetMarket = (value) => {
+        props.setBusiness({...props.business, targetMarket: value});
+    };
+    const updateProductOrServiceDescription = (value) => {
+        props.setBusiness({...props.business, productOrServiceDescription: value});
+    };
+    const updateFundingStrategy = (value) => {
+        props.setBusiness({...props.business, fundingStrategy: value});
     };
     return(
         <section id="editBusinessForm" className="form-popup center form-container edit-business">
@@ -27,19 +78,19 @@ export const EditBusinessDetail = (props) => {
                         <img src={`./images/businessIcon/businessIcon${(index%6)+1}.png`} alt="logo"/>
                     </div>
                     <div className='business-detail'>
-                        {itemInput("Business Name", props.business.businessName)}
+                        {itemInput("Business Name", props.business.businessName, updateBusinessName)}
                         {itemDropdown("Nature of Business", props.business, props.setBusiness, businessTypeListDrowdown)}
-                        {itemInput("Industry", props.business.industry)}
+                        {itemInput("Industry", props.business.industry, updateBusinessIndustry)}
                         {itemDropdown("Company Size", props.business, props.setBusiness, companySizeDropdown)}
-                        {itemArea("Business Objective", props.business.businessObjective)}
-                        {itemArea("Core Service", props.business.coreServices)}
-                        {itemInput("Target Market", props.business.targetMarket)}
+                        {itemArea("Business Objective", props.business.businessObjective, updateBusinessObjective)}
+                        {itemArea("Core Service", props.business.coreServices, updateCoreService)}
+                        {itemInput("Target Market", props.business.targetMarket, updateTargetMarket)}
                         {itemDropdown("Product/Service", props.business, props.setBusiness, manufactureDropdown)}
-                        {itemArea("Product/Service Description", props.business.productOrServiceDescription)}
-                        {itemArea("Funding Strategy", props.business.fundingStrategy)}
+                        {itemArea("Product/Service Description", props.business.productOrServiceDescription, updateProductOrServiceDescription)}
+                        {itemArea("Funding Strategy", props.business.fundingStrategy, updateFundingStrategy)}
                         <div className='pop-up-button'>
                             <button className='cancel-button' onClick={closeForm}>Cancel</button>
-                            <button onClick={null} >Save</button>
+                            <button onClick={updateData} >Save</button>
                         </div>
                     </div>
                 </div>
@@ -47,20 +98,28 @@ export const EditBusinessDetail = (props) => {
         </section>
     );
 };
-const itemInput = (title, data) => {
+const itemInput = (title, data, updateData) => {
     return(
         <div className='pop-up-input'>
             <label>{title}</label>
-            <input type='text' defaultValue={data ? data : ''} />
+            <input 
+                type='text' 
+                value={data ? data : ''} 
+                onChange={event => updateData(event.target.value)} 
+            />
         </div>
     );
 };
 
-const itemArea = (title, data) => {
+const itemArea = (title, data, updateData) => {
     return(
         <div className='pop-up-input'>
             <label>{title}</label>
-            <textarea type='text' defaultValue={data ? data : ''} />
+            <textarea 
+                type='text' 
+                value={data ? data : ''} 
+                onChange={event => updateData(event.target.value)} 
+            />
         </div>
     );
 };
