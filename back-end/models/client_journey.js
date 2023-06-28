@@ -1,5 +1,6 @@
 const sequelize = require('../controllers/accountController/connectDatabase').sequelize;
 const {DataTypes} = require('sequelize');
+const Business = require('./business');
 
 const ClientJourney = sequelize.define('Client Journey', {
     id: {
@@ -7,9 +8,39 @@ const ClientJourney = sequelize.define('Client Journey', {
         autoIncrement: true,
         primaryKey: true,
     },
-    data : {
+    overview: {
         type: DataTypes.TEXT,
-    }
+    },
+    awareness: {
+        type: DataTypes.TEXT,
+    },
+    interest: {
+        type: DataTypes.TEXT,
+    },
+    evaluation: {
+        type: DataTypes.TEXT,
+    },
+    decision: {
+        type: DataTypes.TEXT,
+    },
+    purchase: {
+        type: DataTypes.TEXT,
+    },
+    implementation: {
+        type: DataTypes.TEXT,
+    },
+    postPurchase: {
+        type: DataTypes.TEXT,
+    },
+    retention: {
+        type: DataTypes.TEXT,
+    },
+    businessId: {
+        type: DataTypes.INTEGER,
+        foreignKey: true,
+    },
 });
+
+
 
 module.exports = ClientJourney;

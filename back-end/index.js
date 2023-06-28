@@ -22,6 +22,7 @@ app.use("/api/getuserdata", require("./controllers/accountController/getUserData
 app.use("/api/gptest", require("./controllers/gptController/gptTestController"));
 app.use("/api/business", require("./controllers/businessControllers/businessController"));
 app.use("/api/clientjourney", require("./controllers/businessControllers/clientJourneyController"));
+app.use("/api/langJourney", require("./controllers/gptController/langchainTestController"));
 
 
 

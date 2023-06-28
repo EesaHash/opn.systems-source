@@ -13,6 +13,7 @@
     "dotenv": "^16.1.4",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.0",
+    "langchain": "^0.0.97",
     "media-typer": "^1.1.0",
     "negotiator": "^0.6.3",
     "nodemailer": "^6.9.3",
@@ -20,6 +21,7 @@
     "path": "^0.12.7",
     "pg": "^8.11.0",
     "Router": "^2.1.0",
-    "sequelize": "^6.32.0"
+    "sequelize": "^6.32.0",
+    "zod": "^3.21.4"
   }
 }
