@@ -154,7 +154,9 @@ $halfbox-width: calc($mainbox-width * 0.5 - 15px - 12vw);
     align-self: stretch;
     border-radius: 20px;
     background: #FFF;   
-    overflow: scroll;
+    overflow:scroll;
+    overflow-y:visible;
+    max-height: fit-content;
 }
 
 .teammember{
