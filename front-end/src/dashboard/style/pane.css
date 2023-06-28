@@ -148,6 +148,9 @@
   border-radius: 20px;
   background: #FFF;
   overflow: scroll;
+  overflow-y: visible;
+  max-height: -moz-fit-content;
+  max-height: fit-content;
 }
 
 .teammember {
