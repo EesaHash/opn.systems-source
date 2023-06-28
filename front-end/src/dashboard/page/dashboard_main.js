@@ -90,11 +90,9 @@ export const DashboardPage = () => {
                 <div>
                     <CreateBusiness businesses = {businesses} setBusinesses = {setBusinesses} userID = {userID} />
                     <EditBusinessDetail 
-                        businesses = {businesses} 
-                        setBusinesses = {setBusinesses} 
+                        businesses = {businesses} setBusinesses = {setBusinesses} 
                         index = {activeLink2 - 1}
-                        business = {business}
-                        setBusiness = {setBusiness}
+                        business = {business} setBusiness = {setBusiness}
                     />
                     <div id="dashboard-content">
                         <div style={{display: "flex"}}>
@@ -108,9 +106,10 @@ export const DashboardPage = () => {
                         <div className="pane">
                             <Pane 
                                 createNewBusinessForm = {createNewBusinessForm} 
+                                business = {business} setBusiness = {setBusiness}
                                 businesses = {businesses} setBusinesses = {setBusinesses} 
                                 activeLink = {activeLink} 
-                                activeLink2 = {activeLink2} 
+                                activeLink2 = {activeLink2} setActiveLink2 = {setActiveLink2}
                                 activeLink3 = {activeLink3} setActiveLink3 = {setActiveLink3} 
                                 user = {user} 
                             />

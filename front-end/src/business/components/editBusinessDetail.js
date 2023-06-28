@@ -5,20 +5,18 @@ import { getBusinessTypeList, getCompanySizeList } from '../../App';
 import { DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown } from "reactstrap";
 
 export const EditBusinessDetail = (props) => {
-    const index = props.index;
-    
     useEffect(() => {
-        if(index >= 0)
-            props.setBusiness(props.businesses[index]);
+        if(props.index >= 0)
+            props.setBusiness(props.businesses[props.index]);
         // eslint-disable-next-line
-    }, [props.businesses, props.setBusiness, index]);
+    }, [props.businesses, props.setBusiness, props.index]);
 
     const closeForm = _ => {
         if(!checkChanges())
             if(window.confirm("Do you want to save the changes you made?"))
                 updateData();
             else
-                props.setBusiness(props.businesses[index]);
+                props.setBusiness(props.businesses[props.index]);
         document.getElementById("editBusinessForm").style.display = "none";
         closePopUpForm();
     };
@@ -35,7 +33,7 @@ export const EditBusinessDetail = (props) => {
                 .then((data) => {
                     if(data.status){
                         const temp = [...props.businesses];
-                        temp[index] = props.business;
+                        temp[props.index] = props.business;
                         props.setBusinesses(temp);
                         alert(data.message);
                     }
@@ -45,7 +43,7 @@ export const EditBusinessDetail = (props) => {
         }
     };
     const checkChanges = _ => {
-        return Object.entries(props.business).toString() === Object.entries(props.businesses[index]).toString();
+        return Object.entries(props.business).toString() === Object.entries(props.businesses[props.index]).toString();
     };
     const updateBusinessName = (value) => {
         props.setBusiness({...props.business, businessName: value});
@@ -75,7 +73,7 @@ export const EditBusinessDetail = (props) => {
                 <hr/>
                 <div style={{display: "flex"}}>
                     <div className='business-icon'>
-                        <img src={`./images/businessIcon/businessIcon${(index%6)+1}.png`} alt="logo"/>
+                        <img src={`./images/businessIcon/businessIcon${(props.index%6)+1}.png`} alt="logo"/>
                     </div>
                     <div className='business-detail'>
                         {itemInput("Business Name", props.business.businessName, updateBusinessName)}

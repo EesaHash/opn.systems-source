@@ -5,20 +5,7 @@ import { businessDetails } from './businessDetails';
 import { openPopUpForm } from '../../dashboard/page/dashboard_main';
 import { businessOverview } from './businessOverview';
 
-export const businessDashboard = (activeLink2, businesses, activeLink3, setActiveLink3) => {
-    const business = businesses[activeLink2 - 1];
-    return(
-        <div className='business-dashboard'>
-            {title(business, activeLink2 - 1)}
-            {body(business, activeLink3, setActiveLink3)}
-        </div>
-    );
-};
-const title = (business, businessIndex) => {
-    const openEditBusinessForm = _ => {
-        document.getElementById("editBusinessForm").style.display = "block";
-        openPopUpForm();
-    };
+export const BusinessDashboard = (business, setBusiness, businesses, setBusinesses, activeLink2, setActiveLink2, activeLink3, setActiveLink3) => {
     const deleteBusiness = _ => {
         try{
             if(!window.confirm("Are you sure to delete this business?"))
@@ -32,11 +19,43 @@ const title = (business, businessIndex) => {
             })
                 .then((res) => {return res.json(); })
                 .then((data) => {
-                    
+                    alert(data.message);
                 });
+            removeBusiness();
         }catch(error){
             alert(error);
         }
+    };
+    const removeBusiness = _ => {
+        let index = activeLink2 - 1;
+        // Remove it from businesses
+        const list = [...businesses];
+        list.splice(index, 1);
+        setBusinesses(list);
+        // Change activeLink3 to Overview
+        setActiveLink3("Overview");
+        // Change activeLink2 to previous/next index. If empty, set activeLink2 to 0
+        if(list.length <= 0){
+            setActiveLink2(0);
+        }else{
+            if(index !== 0)
+                setActiveLink2(activeLink2 - 1);
+            // Change business variable to previous/next index
+            setBusiness(businesses[index]);
+        }
+    };
+
+    return(
+        <div className='business-dashboard'>
+            {title(business, (activeLink2 - 1), deleteBusiness)}
+            {body(business, activeLink3, setActiveLink3)}
+        </div>
+    );
+};
+const title = (business, businessIndex, deleteBusiness) => {
+    const openEditBusinessForm = _ => {
+        document.getElementById("editBusinessForm").style.display = "block";
+        openPopUpForm();
     };
     return(
         <div className='business-dashboard-title'>

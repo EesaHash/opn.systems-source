@@ -41,7 +41,11 @@ business.addNewBusiness = async (req, res) => {
 
         console.log(`[Success] Added business ${businessName} for ${email} : `, business.id);
         
-        return res.status(200).json({ status: true, message: "Successfully added new business!", business: business});
+        return res.status(200).json({ 
+            status: true, 
+            message: "Successfully added new business!", 
+            business: business
+        });
       } catch (error) {
         console.log(error);
         res.status(500).json({ status: false, message: error});
@@ -53,13 +57,20 @@ business.removeBusiness = async (req, res) => {
         const { id } = req.body;
         // Delete the business from the business table
         const business = await Business.destroy({ where: { id } });
-        if (business === 0) return res.status(404).json({ error: `Could not find business`});
+        if (business === 0) 
+            return res.status(404).json({ status: false, message: `Could not find business`});
         console.log(`[Success] Deleted business ${id}`);
-        return res.status(200).json({ Success : `Deleted Bussiness ID: ${id}`});
-      } catch (error) {
-        res.status(500).json({ error: `Could not delete business`});
-      }
-    };
+        return res.status(200).json({ 
+            status: true,
+            message : `Successfully deleted business!`
+        });
+    } catch (error) {
+        res.status(500).json({ 
+            status: false,
+            message: error
+        });
+    }
+};
 
 
 business.updateBusiness = async (req, res) => {
@@ -97,7 +108,7 @@ business.updateBusiness = async (req, res) => {
     } catch (error) {
         res.status(500).json({ status: false, message: error});
     }
-    };
+};
 
 business.getSingleBusiness = async (req, res) => {
     try {
@@ -106,10 +117,10 @@ business.getSingleBusiness = async (req, res) => {
         const business = await Business.findAll({ where: { id } });
         console.log(`[Success] Retrieved business details`);
         res.status(200).json({business});
-      } catch (error) {
+    } catch (error) {
         res.status(500).json({ error: `Could not retrieve business`});
-      }
-    };
+    }
+};
 
 business.getAllBusinesses = async (req, res) => {
     try {
@@ -118,17 +129,17 @@ business.getAllBusinesses = async (req, res) => {
         const businesses = await Business.findAll({ where: { email }, order: ['id']});
         console.log(`[Success] Retrieved business details for ${email}`);
         return res.status(200).json({status: true, businesses: businesses});
-      } catch (error) {
+    } catch (error) {
         console.log(error);
         res.status(500).json({ status: false, mesesage: error});
-      }
+    }
 };
 
 
 // Define the routes
 router.post('/addNewBusiness', business.addNewBusiness);
 router.post('/updateBusiness', business.updateBusiness);
-router.delete('/removeBusiness', business.removeBusiness);
+router.post('/removeBusiness', business.removeBusiness);
 router.post('/getSingleBusiness', business.getSingleBusiness);
 router.post('/getAllBusinesses', business.getAllBusinesses);
 

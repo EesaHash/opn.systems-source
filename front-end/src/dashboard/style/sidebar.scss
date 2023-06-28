@@ -29,6 +29,12 @@
         margin-top: 10%;
         margin-left: 7%;
 
+        & .dropdown-arrow{
+            border-top: 10px solid white;
+            &:hover{
+                border-bottom: 10px solid white !important;
+            }
+        }
         & li:hover, &.active, &:hover{
             border-radius: 8px;
             border: 2px solid transparent;
@@ -38,7 +44,7 @@
                 margin-top: -10px;
                 border-left: 10px solid transparent;
                 border-right: 10px solid transparent;
-                border-bottom: 10px solid;
+                border-bottom: 10px solid white;
                 border-top: 10px solid transparent;
             }
         }

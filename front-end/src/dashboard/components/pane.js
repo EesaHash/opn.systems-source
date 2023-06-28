@@ -1,12 +1,30 @@
 import React from "react";
 import "../style/pane.css";
-import { businessDashboard } from "../../business/components/businessDashboard";
+import { BusinessDashboard } from "../../business/components/businessDashboard";
 
 export const Pane = (props) => {
     if(props.businesses.length === 0)
         return emptyPane(props.user)
-    else
-        return filledPane(props.activeLink, props.activeLink2, props.createNewBusinessForm, props.businesses, props.setBusinesses, props.activeLink3, props.setActiveLink3, props.user)
+    else{
+        // return filledPane(
+        //     props.activeLink, 
+        //     props.activeLink2, props.setActiveLink2, 
+        //     props.createNewBusinessForm, 
+        //     props.businesses, props.setBusinesses, 
+        //     props.business, props.setBusiness,
+        //     props.activeLink3, props.setActiveLink3, 
+        //     props.user)
+        switch(props.activeLink){
+            case "business":
+                if(props.activeLink2){
+                    return BusinessDashboard(props.business, props.setBusiness, props.businesses, props.setBusinesses, props.activeLink2, props.setActiveLink2, props.activeLink3, props.setActiveLink3);
+                }else{
+                    return emptyPane(props.user);
+                }
+            default:
+                return emptyPane(props.user);
+        }
+    }
 };
 
 const emptyPane = (user) => {
@@ -84,12 +102,12 @@ const peopleTemplate = (gender) => {
         </div>
     );
 };
-const filledPane = (activeLink, activeLink2, createNewBusinessForm, businesses, setBusinesses, activeLink3, setActiveLink3, user) => {
+const filledPane = (activeLink, activeLink2, setActiveLink2, createNewBusinessForm, businesses, setBusinesses, business, setBusiness, activeLink3, setActiveLink3, user) => {
     switch(activeLink){
         case "business":
-            if(activeLink2)
-                return businessDashboard(activeLink2, businesses, activeLink3, setActiveLink3);
-            else{
+            if(activeLink2){
+                return BusinessDashboard(business, setBusiness, businesses, setBusinesses, activeLink2, setActiveLink2, activeLink3, setActiveLink3);
+            }else{
                 return emptyPane(user);
             }
         default:
