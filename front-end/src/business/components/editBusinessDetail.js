@@ -22,6 +22,8 @@ export const EditBusinessDetail = (props) => {
     };
     const updateData = _ => {
         try{
+            if(!props.business.businessName || !props.business.businessType || !props.business.industry || !props.business.companySize || !props.business.businessObjective || !props.business.coreServices || !props.business.targetMarket || !props.business.productOrServiceDescription || !props.business.fundingStrategy)
+                return alert("Please fill in all fields!");
             fetch("/api/business/updateBusiness", {
                 method: "POST",
                 headers: {
