@@ -15,7 +15,7 @@ export const Sidebar = (props) => {
                 <ul>
                     <li id="logo" className="logo">
                     <a href="/dashboard">
-                        <img src="./images/green_profile_logo.png" alt="logo" />
+                        <img src="./images/green_profile_logo.png" alt="logo"/>
                         Opn.Systems
                     </a>
                     </li>

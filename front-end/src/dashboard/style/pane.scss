@@ -16,17 +16,32 @@ $halfbox-width: calc($mainbox-width * 0.5 - 15px - 12vw);
 
 .nameheader{
     height: 12vh;
+    position:relative;
     width: $mainbox-width;
     display: flex;
     padding: 30px;
     align-items: flex-start;
-    gap: 10px;
+    //gap: 10px;
     align-self: stretch;
     border-radius: 20px;
     background: #FFF;
 }
 
-.profilepicture{
+.initials {
+    font-size: 50px;
+    color: #000000;
+    background-color: #7DDED8;
+    width: 90px;
+    height: 90px;
+    line-height: 140%;
+    border-radius: 50%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 1000;
+  }
+  
+/*.profilepicture{
     display: flex;
     margin-left: 0.5vw;
     background-color: #FFF;
@@ -35,27 +50,34 @@ $halfbox-width: calc($mainbox-width * 0.5 - 15px - 12vw);
     & img{
         width: 50px;
 }
-}
+}*/
 
-.nametitle{
-    color: #000;
-    font-size: 38.4px;
+.nametitle {
+    
+    & h1 {
+        color: rgb(0, 0, 0);
+        font-size: 38.4px;
     font-family: DM Sans;
     font-weight: 500;
-    line-height: 140%;
+    //line-height: 140%;
     align-items: center;
     margin-top: -10px;
+    }
 }
 
-.email{
+
+.email-text{
     color: var(--text-subdued-text, #ACACAC);
     /* Inter/Body 2 */
-    margin-top: -12px;
+    //margin-top: -12px;
     font-size: 14px;
     font-family: Inter;
     line-height: 24px;
 }
-
+.icon{
+    color:#ACACAC;
+    margin-right: 3px;
+}
 
 
 .businesses-overview{
@@ -154,13 +176,14 @@ $halfbox-width: calc($mainbox-width * 0.5 - 15px - 12vw);
     align-self: stretch;
     border-radius: 20px;
     background: #FFF;   
-    overflow:scroll;
-    overflow-y:visible;
+    //overflow:scroll;
+    //overflow-y:visible;
     max-height: fit-content;
 }
 
 .teammember{
     display: flex;
+    margin-bottom: 20px;
     & .team-member-icon {
         display: flex;
         & img{
@@ -213,3 +236,4 @@ $halfbox-width: calc($mainbox-width * 0.5 - 15px - 12vw);
         margin: auto;
     }
 }
+

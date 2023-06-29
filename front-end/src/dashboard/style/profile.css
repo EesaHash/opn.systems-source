@@ -43,44 +43,60 @@
 
 .nameheader {
   height: 12vh;
+  position: relative;
   width: calc(100vw - 240px - 8vw);
   display: flex;
   padding: 30px;
   align-items: flex-start;
-  gap: 10px;
   align-self: stretch;
   border-radius: 20px;
   background: #FFF;
 }
 
-.profilepicture {
+.initials {
+  font-size: 50px;
+  color: #000000;
+  background-color: #7DDED8;
+  width: 90px;
+  height: 90px;
+  line-height: 140%;
+  border-radius: 50%;
   display: flex;
-  margin-left: 0.5vw;
-  background-color: #FFF;
-  align-items: left;
-  align-content: center;
-}
-.profilepicture img {
-  width: 50px;
+  justify-content: center;
+  align-items: center;
+  font-weight: 1000;
 }
 
-.nametitle {
-  color: #000;
+/*.profilepicture{
+    display: flex;
+    margin-left: 0.5vw;
+    background-color: #FFF;
+    align-items: left;
+    align-content: center;
+    & img{
+        width: 50px;
+}
+}*/
+.nametitle h1 {
+  color: rgb(0, 0, 0);
   font-size: 38.4px;
   font-family: DM Sans;
   font-weight: 500;
-  line-height: 140%;
   align-items: center;
   margin-top: -10px;
 }
 
-.email {
+.email-text {
   color: var(--text-subdued-text, #ACACAC);
   /* Inter/Body 2 */
-  margin-top: -12px;
   font-size: 14px;
   font-family: Inter;
   line-height: 24px;
+}
+
+.icon {
+  color: #ACACAC;
+  margin-right: 3px;
 }
 
 .businesses-overview {
@@ -178,11 +194,13 @@
   align-self: stretch;
   border-radius: 20px;
   background: #FFF;
-  overflow: scroll;
+  max-height: -moz-fit-content;
+  max-height: fit-content;
 }
 
 .teammember {
   display: flex;
+  margin-bottom: 20px;
 }
 .teammember .team-member-icon {
   display: flex;
@@ -235,6 +253,20 @@
   margin: auto;
 }
 
+.profile_in {
+  font-size: 30px;
+  color: #000000;
+  background-color: #7DDED8;
+  width: 40px;
+  height: 40px;
+  line-height: 140%;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 1000;
+}
+
 .profile-header {
   margin-top: 5px;
   display: flex;
@@ -245,6 +277,14 @@
   border-radius: 28px;
   margin: auto;
   height: 50px;
+  /*@media screen and (max-width: 750px) {
+      & .profile-picture{
+          display: none;
+          width: 0;
+          height: 0;
+          margin-right: 0;
+      }
+  }*/
 }
 .profile-header .profile-picture {
   display: block;
@@ -288,12 +328,4 @@
 }
 .profile-header .dropdown-arrow .css-i4bv87-MuiSvgIcon-root {
   margin-right: 10px;
-}
-@media screen and (max-width: 750px) {
-  .profile-header .profile-picture {
-    display: none;
-    width: 0;
-    height: 0;
-    margin-right: 0;
-  }
 }/*# sourceMappingURL=profile.css.map */
