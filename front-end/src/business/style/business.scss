@@ -1,3 +1,4 @@
+@use '../../dashboard/style/pane';
 .create-account{
     margin-top: 5vh;
     max-height: 90vh;
@@ -54,11 +55,10 @@
     }
 }
 
-$dashboard-width: calc(100vw - 240px - 8vw);
-$body-width: calc(100vh - 2vw - 15vh - 50px - 4vh);
-$navbaritem-width: calc($dashboard-width / 7 + 1.5vw);
+$body-height: calc(100vh - 2vw - 15vh - 50px - 4vh);
+$navbaritem-width: calc(pane.$mainbox-width / 7 + 1.5vw);
 .business-dashboard{
-    width: $dashboard-width;
+    width: pane.$mainbox-width;
     & .business-dashboard-title, .business-dashboard-body{
         border-radius: 20px;
         background-color: white;
@@ -109,7 +109,7 @@ $navbaritem-width: calc($dashboard-width / 7 + 1.5vw);
         }
     }
     & .business-dashboard-body{
-        height: $body-width;
+        height: $body-height;
         & .business-dashboard-body-content{
             display: block;
             padding: 10px 30px;
@@ -172,7 +172,7 @@ $navbaritem-width: calc($dashboard-width / 7 + 1.5vw);
 
 .business-details{
     overflow: scroll;
-    height: calc($body-width - 60px - 30px - 40px);
+    height: calc($body-height - 60px - 30px - 40px);
     width: 100%;
     & .business-details-item{
         margin-bottom: 24px;

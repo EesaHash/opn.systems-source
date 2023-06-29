@@ -12,7 +12,7 @@
 
 .nameheader {
   height: 12vh;
-  width: calc(100vw - 240px - 6vw);
+  width: calc(100vw - 240px - 8vw);
   display: flex;
   padding: 30px;
   align-items: flex-start;
@@ -58,7 +58,7 @@
   height: 33vh;
 }
 .businesses-overview .yourbusiness, .businesses-overview .update {
-  width: calc((100vw - 240px - 6vw) * 0.5 - 15px);
+  width: calc((100vw - 240px - 8vw) * 0.5 - 15px);
 }
 .businesses-overview .yourbusiness {
   display: flex;
@@ -139,7 +139,7 @@
 .main-dashboard-people {
   margin-top: 16px;
   height: calc(96vh - 50px - 1vh - 12vh - 33vh - 32px);
-  width: calc(100vw - 240px - 6vw);
+  width: calc(100vw - 240px - 8vw);
   display: flex;
   padding: 20px 30px 40px 30px;
   flex-direction: column;
@@ -165,11 +165,11 @@
   opacity: 60%;
 }
 .teammember .emptyname {
-  width: calc((100vw - 240px - 6vw) / 4 - (96vh - 50px - 1vh - 12vh - 33vh - 32px) * 0.2 - (100vw - 240px - 6vw) * 0.04 - 60px);
+  width: calc((100vw - 240px - 8vw) / 4 - (96vh - 50px - 1vh - 12vh - 33vh - 32px) * 0.2 - (100vw - 240px - 8vw) * 0.04 - 60px);
   min-width: -moz-fit-content;
   min-width: fit-content;
   height: calc((96vh - 50px - 1vh - 12vh - 33vh - 32px) * 0.1);
-  margin: 0 calc((100vw - 240px - 6vw) * 0.04);
+  margin: 0 calc((100vw - 240px - 8vw) * 0.04);
   margin-top: 16px;
   border-radius: 9px;
   background: rgba(217, 217, 217, 0.3);
