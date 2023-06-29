@@ -3,6 +3,19 @@
 $profile-width: calc(pane.$mainbox-width - searchbar.$search-bar-width - 2vw);
 $profile-name-width: calc(15vw - 30px - 35px - 1vw);
 
+.profile_in{
+    font-size: 30px;
+    color: #000000;
+    background-color: #7DDED8;
+    width: 40px;
+    height: 40px;
+    line-height: 140%;
+    border-radius: 50%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 1000;
+}
 .profile-header{
     margin-top: 5px;
     display: flex;
@@ -56,12 +69,12 @@ $profile-name-width: calc(15vw - 30px - 35px - 1vw);
             margin-right: 10px;
         }
     }
-    @media screen and (max-width: 750px) {
+    /*@media screen and (max-width: 750px) {
         & .profile-picture{
             display: none;
             width: 0;
             height: 0;
             margin-right: 0;
         }
-    }
+    }*/
 }

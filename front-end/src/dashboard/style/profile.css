@@ -43,44 +43,60 @@
 
 .nameheader {
   height: 12vh;
-  width: calc(100vw - 240px - 7vw);
+  position: relative;
+  width: calc(100vw - 240px - 8vw);
   display: flex;
   padding: 30px;
   align-items: flex-start;
-  gap: 10px;
   align-self: stretch;
   border-radius: 20px;
   background: #FFF;
 }
 
-.profilepicture {
+.initials {
+  font-size: 50px;
+  color: #000000;
+  background-color: #7DDED8;
+  width: 90px;
+  height: 90px;
+  line-height: 140%;
+  border-radius: 50%;
   display: flex;
-  margin-left: 0.5vw;
-  background-color: #FFF;
-  align-items: left;
-  align-content: center;
-}
-.profilepicture img {
-  width: 50px;
+  justify-content: center;
+  align-items: center;
+  font-weight: 1000;
 }
 
-.nametitle {
-  color: #000;
+/*.profilepicture{
+    display: flex;
+    margin-left: 0.5vw;
+    background-color: #FFF;
+    align-items: left;
+    align-content: center;
+    & img{
+        width: 50px;
+}
+}*/
+.nametitle h1 {
+  color: rgb(0, 0, 0);
   font-size: 38.4px;
   font-family: DM Sans;
   font-weight: 500;
-  line-height: 140%;
   align-items: center;
   margin-top: -10px;
 }
 
-.email {
+.email-text {
   color: var(--text-subdued-text, #ACACAC);
   /* Inter/Body 2 */
-  margin-top: -12px;
   font-size: 14px;
   font-family: Inter;
   line-height: 24px;
+}
+
+.icon {
+  color: #ACACAC;
+  margin-right: 3px;
 }
 
 .businesses-overview {
@@ -89,7 +105,7 @@
   height: 33vh;
 }
 .businesses-overview .yourbusiness, .businesses-overview .update {
-  width: calc((100vw - 240px - 7vw) * 0.5 - 15px);
+  width: calc((100vw - 240px - 8vw) * 0.5 - 15px);
 }
 .businesses-overview .yourbusiness {
   display: flex;
@@ -170,7 +186,7 @@
 .main-dashboard-people {
   margin-top: 16px;
   height: calc(96vh - 50px - 1vh - 12vh - 33vh - 32px);
-  width: calc(100vw - 240px - 7vw);
+  width: calc(100vw - 240px - 8vw);
   display: flex;
   padding: 20px 30px 40px 30px;
   flex-direction: column;
@@ -185,6 +201,7 @@
 
 .teammember {
   display: flex;
+  margin-bottom: 20px;
 }
 .teammember .team-member-icon {
   display: flex;
@@ -196,11 +213,11 @@
   opacity: 60%;
 }
 .teammember .emptyname {
-  width: calc((100vw - 240px - 7vw) / 4 - (96vh - 50px - 1vh - 12vh - 33vh - 32px) * 0.2 - (100vw - 240px - 7vw) * 0.04 - 60px);
+  width: calc((100vw - 240px - 8vw) / 4 - (96vh - 50px - 1vh - 12vh - 33vh - 32px) * 0.2 - (100vw - 240px - 8vw) * 0.04 - 60px);
   min-width: -moz-fit-content;
   min-width: fit-content;
   height: calc((96vh - 50px - 1vh - 12vh - 33vh - 32px) * 0.1);
-  margin: 0 calc((100vw - 240px - 7vw) * 0.04);
+  margin: 0 calc((100vw - 240px - 8vw) * 0.04);
   margin-top: 16px;
   border-radius: 9px;
   background: rgba(217, 217, 217, 0.3);
@@ -235,16 +252,38 @@
   margin: auto;
 }
 
+.profile_in {
+  font-size: 30px;
+  color: #000000;
+  background-color: #7DDED8;
+  width: 40px;
+  height: 40px;
+  line-height: 140%;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 1000;
+}
+
 .profile-header {
   margin-top: 5px;
   display: flex;
   background-color: #FFF;
   padding: 0 1vw;
   padding-top: 5px;
-  width: calc(100vw - 240px - 7vw - (100vw - 240px - 8vw - 15vw - 4vw) - 2vw);
+  width: calc(100vw - 240px - 8vw - (100vw - 240px - 8vw - 15vw - 4vw) - 2vw);
   border-radius: 28px;
   margin: auto;
   height: 50px;
+  /*@media screen and (max-width: 750px) {
+      & .profile-picture{
+          display: none;
+          width: 0;
+          height: 0;
+          margin-right: 0;
+      }
+  }*/
 }
 .profile-header .profile-picture {
   display: block;
@@ -288,12 +327,4 @@
 }
 .profile-header .dropdown-arrow .css-i4bv87-MuiSvgIcon-root {
   margin-right: 10px;
-}
-@media screen and (max-width: 750px) {
-  .profile-header .profile-picture {
-    display: none;
-    width: 0;
-    height: 0;
-    margin-right: 0;
-  }
 }/*# sourceMappingURL=profile.css.map */
