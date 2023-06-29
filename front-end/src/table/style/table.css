@@ -102,4 +102,26 @@
   margin: auto;
   width: -moz-fit-content;
   width: fit-content;
+}
+
+.table-content-1 {
+  width: 100%;
+  display: flex;
+  height: calc(100% - 150px);
+  overflow: scroll;
+}
+.table-content-1 .table-content-1-item {
+  width: 100%;
+}
+.table-content-1 .table-content-1-item button {
+  border-radius: 28px;
+  background-color: #F8F8F8;
+  width: 100%;
+  text-align: left;
+  padding: 12.5px 20px;
+  align-items: center;
+}
+.table-content-1 .table-content-1-item button img {
+  height: 25px;
+  margin-right: 15px;
 }/*# sourceMappingURL=table.css.map */

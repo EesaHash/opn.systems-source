@@ -10,6 +10,7 @@ import { Profile } from "../components/profile";
 import { getUserID } from "../../App";
 import { CreateBusiness } from "../../business/components/createBusiness";
 import { EditBusinessDetail } from "../../business/components/editBusinessDetail";
+import { CreateClientJourney } from "../../client_journey/components/createClientJourney";
 
 export const DashboardPage = () => {
     const [userID, setUserID] = useState();
@@ -20,6 +21,7 @@ export const DashboardPage = () => {
     const [activeLink, setActiveLink] = useState('');
     const [activeLink2, setActiveLink2] = useState(0);
     const [activeLink3, setActiveLink3] = useState('Overview');
+    const [journeys, setJourneys] = useState([]);
 
     useEffect(() => {
         try{
@@ -94,6 +96,9 @@ export const DashboardPage = () => {
                         index = {activeLink2 - 1}
                         business = {business} setBusiness = {setBusiness}
                     />
+                    <CreateClientJourney  
+                        journeys = {journeys} setJourneys = {setJourneys}
+                    />
                     <div id="dashboard-content">
                         <div style={{display: "flex"}}>
                             <div className="search">
@@ -112,6 +117,7 @@ export const DashboardPage = () => {
                                 activeLink2 = {activeLink2} setActiveLink2 = {setActiveLink2}
                                 activeLink3 = {activeLink3} setActiveLink3 = {setActiveLink3} 
                                 user = {user} 
+                                journeys = {journeys} setJourneys = {setJourneys}
                             />
                         </div>
                     </div>

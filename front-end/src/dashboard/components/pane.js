@@ -9,7 +9,13 @@ export const Pane = (props) => {
         switch(props.activeLink){
             case "business":
                 if(props.activeLink2){
-                    return BusinessDashboard(props.business, props.setBusiness, props.businesses, props.setBusinesses, props.activeLink2, props.setActiveLink2, props.activeLink3, props.setActiveLink3);
+                    return <BusinessDashboard
+                                business = {props.business}   setBusiness = {props.setBusiness}
+                                businesses = {props.businesses} setBusinesses = {props.setBusinesses}
+                                activeLink2 = {props.activeLink2}   setActiveLink2 = {props.setActiveLink2}
+                                activeLink3 = {props.activeLink3}   setActiveLink3 = {props.setActiveLink3}
+                                journeys = {props.journeys} setJourneys = {props.setJourneys}
+                            />
                 }else{
                     return emptyPane(props.user);
                 }

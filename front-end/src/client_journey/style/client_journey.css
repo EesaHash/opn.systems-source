@@ -2,4 +2,19 @@
   width: 100%;
   height: calc(100% - 70px - 23px);
   overflow: scroll;
+}
+
+.create-form {
+  width: 40vw;
+  margin-top: 15vh;
+  max-height: 70vh;
+  left: 0;
+  margin-left: 30vw;
+  margin-right: 30vw;
+  overflow: scroll;
+}
+.create-form button {
+  width: -moz-fit-content !important;
+  width: fit-content !important;
+  padding: 10px 20px;
 }/*# sourceMappingURL=client_journey.css.map */

@@ -2,6 +2,7 @@ import React from 'react';
 import "../style/table.css";
 import { TableHeader } from './TableHeader';
 import { EmptyTableContent } from './EmptyTableContent';
+import { TableContent1 } from './TableContent1';
 
 export const MainTableHeader = (props) => {
     return(
@@ -9,13 +10,13 @@ export const MainTableHeader = (props) => {
             <div className='main-table-title'>
                 <h1>{props.title}</h1>
                 <div className='main-table-right-header'>
-                    <button>+ Add New</button>
+                    <button onClick={props.addNewBtn}>+ Add New</button>
                 </div>
             </div>
-            <TableHeader list = {[]}/>
+            <TableHeader list = {props.list}/>
             {props.list.length <= 0 ?
-                <EmptyTableContent/> :
-                null
+                <EmptyTableContent addNewBtn = {props.addNewBtn}/> :
+                <TableContent1 list = {props.list}/>
             }
         </div>
     );

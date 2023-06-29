@@ -3,3 +3,17 @@
     height: calc(100% - 70px - 23px);
     overflow: scroll;
 }
+
+.create-form{
+    width: 40vw;
+    margin-top: 15vh;
+    max-height: 70vh;
+    left: 0;
+    margin-left: 30vw;
+    margin-right: 30vw;
+    overflow: scroll;
+    & button{
+        width: fit-content !important;
+        padding: 10px 20px;
+    }
+}

@@ -305,7 +305,7 @@ export const CreateBusiness = (props) => {
             {step1()}
             {step2()}
             {step3()}
-            {loading && loadingPage()}
+            {loading && loadingPage(businessOverviewInput.businessName)}
         </section>
     );
 };

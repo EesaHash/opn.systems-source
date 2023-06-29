@@ -1,13 +1,13 @@
 import React from 'react';
 import "../style/table.css";
 
-export const EmptyTableContent = _ => {
+export const EmptyTableContent = (props) => {
     return(
         <div className='empty-table'>
             <div className='empty-table-content'>
                 <img src = "./images/emptyListIcon.png" alt="icon"/>
                 <h2>Oops, it's empty</h2>
-                <button>+ Add New</button>
+                <button onClick={props.addNewBtn}>+ Add New</button>
             </div>
         </div>
     );

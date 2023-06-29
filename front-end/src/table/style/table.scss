@@ -102,3 +102,24 @@
         }
     }
 }
+.table-content-1{
+    width: 100%;
+    display: flex;
+    height: calc(100% - 150px);
+    overflow: scroll;
+    & .table-content-1-item{
+        width: 100%;
+        & button{
+            border-radius: 28px;
+            background-color: #F8F8F8;
+            width: 100%;
+            text-align: left;
+            padding: 12.5px 20px;
+            align-items: center;
+            & img{
+                height: 25px;
+                margin-right: 15px;
+            }
+        }
+    }
+}

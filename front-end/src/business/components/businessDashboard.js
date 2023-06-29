@@ -8,7 +8,7 @@ import { ClientJourneyDashboard } from '../../client_journey/components/clientJo
 import { ProceduresDashboard } from '../../client_journey/components/ProceduresDashboard';
 import { PoliciesDashboard } from '../../client_journey/components/PoliciesDashboard';
 
-export const BusinessDashboard = (business, setBusiness, businesses, setBusinesses, activeLink2, setActiveLink2, activeLink3, setActiveLink3) => {
+export const BusinessDashboard = (props) => {
     const deleteBusiness = _ => {
         try{
             if(!window.confirm("Are you sure to delete this business?"))
@@ -18,7 +18,7 @@ export const BusinessDashboard = (business, setBusiness, businesses, setBusiness
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({id: business.id})
+                body: JSON.stringify({id: props.business.id})
             })
                 .then((res) => {return res.json(); })
                 .then((data) => {
@@ -30,28 +30,28 @@ export const BusinessDashboard = (business, setBusiness, businesses, setBusiness
         }
     };
     const removeBusiness = _ => {
-        let index = activeLink2 - 1;
+        let index = props.activeLink2 - 1;
         // Remove it from businesses
-        const list = [...businesses];
+        const list = [...props.businesses];
         list.splice(index, 1);
-        setBusinesses(list);
+        props.setBusinesses(list);
         // Change activeLink3 to Overview
-        setActiveLink3("Overview");
+        props.setActiveLink3("Overview");
         // Change activeLink2 to previous/next index. If empty, set activeLink2 to 0
         if(list.length <= 0){
-            setActiveLink2(0);
+            props.setActiveLink2(0);
         }else{
             if(index !== 0)
-                setActiveLink2(activeLink2 - 1);
+                props.setActiveLink2(props.activeLink2 - 1);
             // Change business variable to previous/next index
-            setBusiness(businesses[index]);
+            props.setBusiness(props.businesses[index]);
         }
     };
 
     return(
         <div className='business-dashboard'>
-            {title(business, (activeLink2 - 1), deleteBusiness)}
-            {body(business, activeLink3, setActiveLink3)}
+            {title(props.business, (props.activeLink2 - 1), deleteBusiness)}
+            {body(props.business, props.activeLink3, props.setActiveLink3, props.journeys, props.setJourneys)}
         </div>
     );
 };
@@ -80,7 +80,7 @@ const title = (business, businessIndex, deleteBusiness) => {
         </div>
     );
 };
-const body = (business, activeLink3, setActiveLink3) => {
+const body = (business, activeLink3, setActiveLink3, journeys, setJourneys) => {
     return(
         <div className='business-dashboard-body'>
             <div className='business-dashboard-body-content'>
@@ -100,7 +100,9 @@ const body = (business, activeLink3, setActiveLink3) => {
                     activeLink3 === "Details" ?
                         businessDetails(business) :
                     activeLink3 === "Client Journey" ?
-                        <ClientJourneyDashboard/> :
+                        <ClientJourneyDashboard
+                            journeys = {journeys} setJourneys = {setJourneys}
+                        /> :
                     activeLink3 === "Procedures" ?
                         <ProceduresDashboard/> :
                     activeLink3 === "Policies" ?
