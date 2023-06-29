@@ -39,7 +39,7 @@ export const logOut = _ => {
     window.location.href = "/";
 };
 export const getBusinessTypeList = _ => {
-    return ["Private", "Public", "Non-Profit"];
+    return ["Private", "Public", "For-Profit", "Non-Profit"];
 };
 export const getCompanySizeList = _ => {
     return ["Startup", "Small-Scale", "Medium-Scale", "Large-Enterprise"];

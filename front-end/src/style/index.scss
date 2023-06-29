@@ -10,6 +10,36 @@ button{
     color: #F7F8FC;
 }
 
+// -----LOADING PAGE FOR CREATION-----
+.loading-page{
+    display: grid;
+    & .loading-message{
+        white-space: nowrap;
+        display: flex;
+        width: fit-content;
+        margin: auto;
+        margin-top: 20px;
+        & img{
+            height: 25px;
+            margin-right: 10px;
+        }
+        & h2{
+            font-size: 16px;
+            color: #5D5FEF;
+            margin: 0 !important;
+        }
+    }
+    & input{
+        margin-top: 20px !important;
+        margin-bottom: 20px !important;
+        margin: auto;
+        background-color: #F1F4F9 !important;
+        border-radius: 4px !important;
+        color: #8496AE !important;
+    }
+}
+
+// -----DROPDOWN ARROW-----
 .dropdown-arrow-area{
     height: 100px;
     &:hover .dropdown-content{

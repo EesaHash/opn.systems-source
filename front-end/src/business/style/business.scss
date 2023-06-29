@@ -79,9 +79,11 @@ $navbaritem-width: calc($dashboard-width / 7 + 1.5vw);
                 & h1{
                     margin: 0;
                     margin-top: -10px;
-                    font-size: 6vh;
+                    font-size: 5vh;
                     font-weight: 900;
                     line-height: 64px;
+                    white-space: nowrap;
+                    overflow: scroll;
                 }
                 & .dropdown-arrow{
                     border-top-color: black;
@@ -110,7 +112,7 @@ $navbaritem-width: calc($dashboard-width / 7 + 1.5vw);
         height: $body-width;
         & .business-dashboard-body-content{
             display: block;
-            padding: 20px 30px;
+            padding: 10px 30px;
             height: 100%;
             & hr{
                 margin-top: -3px;
@@ -120,7 +122,7 @@ $navbaritem-width: calc($dashboard-width / 7 + 1.5vw);
             }
             & .business-dashboard-navbar{
                 width: 100%;
-                height: auto;
+                height: 70px;
                 display: flex;
                 overflow-y: hidden;
                 overflow-x: scroll;

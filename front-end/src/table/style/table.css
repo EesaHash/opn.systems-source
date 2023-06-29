@@ -1,0 +1,105 @@
+.main-table {
+  width: 100%;
+  height: 100%;
+  overflow: scroll;
+}
+.main-table button {
+  border-radius: 4px;
+  padding: 4px 5px;
+  justify-content: center;
+  align-items: center;
+  background-color: #FEC514;
+  border-color: transparent;
+  color: black;
+}
+.main-table .main-table-title {
+  width: 100%;
+  display: flex;
+  margin: 10px 0;
+}
+.main-table .main-table-title h1 {
+  font-size: 32px;
+  font-weight: 500;
+  float: left;
+}
+.main-table .main-table-title .main-table-right-header {
+  display: flex;
+  float: right;
+  margin-left: auto;
+}
+
+.table-header {
+  margin-top: 20px;
+  display: grid;
+}
+.table-header .left-header, .table-header .right-header {
+  display: flex;
+}
+.table-header .left-header .table-header-item, .table-header .right-header .table-header-item {
+  display: flex;
+  margin: 10px;
+}
+.table-header .left-header .table-header-item input[type=checkbox], .table-header .left-header .table-header-item button, .table-header .left-header .table-header-item label, .table-header .left-header .table-header-item h3, .table-header .right-header .table-header-item input[type=checkbox], .table-header .right-header .table-header-item button, .table-header .right-header .table-header-item label, .table-header .right-header .table-header-item h3 {
+  color: #606060;
+  font-size: 15px;
+}
+.table-header .left-header .table-header-item input[type=checkbox], .table-header .right-header .table-header-item input[type=checkbox] {
+  margin-top: 6px !important;
+}
+.table-header .left-header .table-header-item h3, .table-header .right-header .table-header-item h3 {
+  color: black;
+  font-weight: 500;
+  margin-top: 3px;
+  margin-left: 5px;
+}
+.table-header .left-header .table-header-item input:hover, .table-header .left-header .table-header-item button:hover, .table-header .right-header .table-header-item input:hover, .table-header .right-header .table-header-item button:hover {
+  cursor: pointer;
+  color: #5D5FEF;
+}
+.table-header .left-header .table-header-item input[type=checkbox], .table-header .right-header .table-header-item input[type=checkbox] {
+  margin: 0 7.5px;
+  border-radius: 3px;
+  border: 1.5px solid #ACACAC;
+}
+.table-header .left-header .table-header-item input[type=checkbox]:checked, .table-header .right-header .table-header-item input[type=checkbox]:checked {
+  background-color: #2196F3;
+}
+.table-header .left-header .table-header-item button, .table-header .right-header .table-header-item button {
+  background-color: transparent;
+  border: none;
+}
+.table-header .right-header {
+  display: flex;
+  float: right;
+  margin-left: auto;
+}
+.table-header hr {
+  width: 100%;
+}
+
+.empty-table {
+  width: 100%;
+  display: flex;
+  height: calc(100% - 150px);
+  padding: 20px 0;
+  overflow: scroll;
+}
+.empty-table .empty-table-content {
+  display: grid;
+  margin: auto;
+}
+.empty-table .empty-table-content img {
+  height: 15vh;
+  margin: auto;
+}
+.empty-table .empty-table-content h2 {
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 15px;
+}
+.empty-table .empty-table-content button {
+  padding: 10px 25px;
+  margin: auto;
+  width: -moz-fit-content;
+  width: fit-content;
+}/*# sourceMappingURL=table.css.map */

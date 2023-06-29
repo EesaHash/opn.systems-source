@@ -6,14 +6,6 @@ export const Pane = (props) => {
     if(props.businesses.length === 0)
         return emptyPane(props.user)
     else{
-        // return filledPane(
-        //     props.activeLink, 
-        //     props.activeLink2, props.setActiveLink2, 
-        //     props.createNewBusinessForm, 
-        //     props.businesses, props.setBusinesses, 
-        //     props.business, props.setBusiness,
-        //     props.activeLink3, props.setActiveLink3, 
-        //     props.user)
         switch(props.activeLink){
             case "business":
                 if(props.activeLink2){
@@ -101,16 +93,4 @@ const peopleTemplate = (gender) => {
             <div className="emptyname"></div>
         </div>
     );
-};
-const filledPane = (activeLink, activeLink2, setActiveLink2, createNewBusinessForm, businesses, setBusinesses, business, setBusiness, activeLink3, setActiveLink3, user) => {
-    switch(activeLink){
-        case "business":
-            if(activeLink2){
-                return BusinessDashboard(business, setBusiness, businesses, setBusinesses, activeLink2, setActiveLink2, activeLink3, setActiveLink3);
-            }else{
-                return emptyPane(user);
-            }
-        default:
-            return emptyPane(user);
-    }
 };

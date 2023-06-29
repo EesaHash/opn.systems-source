@@ -3,6 +3,7 @@ import "../style/business.css";
 import { closePopUpForm } from '../../dashboard/page/dashboard_main';
 import { DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown } from "reactstrap";
 import { getBusinessTypeList, getCompanySizeList } from '../../App';
+import { loadingPage } from './loadingPage';
 
 export const CreateBusiness = (props) => {
     const [teamList, setTeamList] = useState([]);
@@ -19,6 +20,7 @@ export const CreateBusiness = (props) => {
         fundingStrategy: "",
         email: props.userID
     });
+    const [loading, setLoading] = useState(false);
 
     const handleKeypress = e => {
         if(e.key === "Enter"){
@@ -101,6 +103,8 @@ export const CreateBusiness = (props) => {
     };
     const createNewBusiness = _ => {
         try{
+            setLoading(true);
+            document.getElementById("create-business-step3").style.display = "none";
             fetch("/api/business/addNewBusiness", {
                 method: "POST",
                 headers: {
@@ -110,7 +114,6 @@ export const CreateBusiness = (props) => {
             })
                 .then((res) => {return res.json(); })
                 .then((data) => {
-                    alert(data.message);
                     if(data.status){
                         const business = {
                             ...businessOverviewInput,
@@ -119,8 +122,9 @@ export const CreateBusiness = (props) => {
                         };
                         props.setBusinesses([...props.businesses, business]);
                     }
+                    closeCreateBusinessForm();
+                    alert(data.message);
                 });
-            closeCreateBusinessForm();
         }catch(error){
             alert(error);
         }
@@ -143,6 +147,7 @@ export const CreateBusiness = (props) => {
         document.getElementById("create-business-step1").style.display = "block";
         document.getElementById("create-business-step2").style.display = "none";
         document.getElementById("create-business-step3").style.display = "none";
+        setLoading(false);
         document.getElementById("createAccountForm").style.display = "none";
         closePopUpForm();
     };
@@ -300,6 +305,7 @@ export const CreateBusiness = (props) => {
             {step1()}
             {step2()}
             {step3()}
+            {loading && loadingPage()}
         </section>
     );
 };

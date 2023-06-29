@@ -10,6 +10,35 @@ button {
   color: #F7F8FC;
 }
 
+.loading-page {
+  display: grid;
+}
+.loading-page .loading-message {
+  white-space: nowrap;
+  display: flex;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: auto;
+  margin-top: 20px;
+}
+.loading-page .loading-message img {
+  height: 25px;
+  margin-right: 10px;
+}
+.loading-page .loading-message h2 {
+  font-size: 16px;
+  color: #5D5FEF;
+  margin: 0 !important;
+}
+.loading-page input {
+  margin-top: 20px !important;
+  margin-bottom: 20px !important;
+  margin: auto;
+  background-color: #F1F4F9 !important;
+  border-radius: 4px !important;
+  color: #8496AE !important;
+}
+
 .dropdown-arrow-area {
   height: 100px;
 }

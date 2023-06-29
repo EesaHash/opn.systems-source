@@ -79,9 +79,11 @@
 .business-dashboard .business-dashboard-title .business-dashboard-title-content .business-title h1 {
   margin: 0;
   margin-top: -10px;
-  font-size: 6vh;
+  font-size: 5vh;
   font-weight: 900;
   line-height: 64px;
+  white-space: nowrap;
+  overflow: scroll;
 }
 .business-dashboard .business-dashboard-title .business-dashboard-title-content .business-title .dropdown-arrow {
   border-top-color: black;
@@ -108,7 +110,7 @@
 }
 .business-dashboard .business-dashboard-body .business-dashboard-body-content {
   display: block;
-  padding: 20px 30px;
+  padding: 10px 30px;
   height: 100%;
 }
 .business-dashboard .business-dashboard-body .business-dashboard-body-content hr {
@@ -119,7 +121,7 @@
 }
 .business-dashboard .business-dashboard-body .business-dashboard-body-content .business-dashboard-navbar {
   width: 100%;
-  height: auto;
+  height: 70px;
   display: flex;
   overflow-y: hidden;
   overflow-x: scroll;

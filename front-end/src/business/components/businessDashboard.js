@@ -4,6 +4,9 @@ import "../style/business.css";
 import { businessDetails } from './businessDetails';
 import { openPopUpForm } from '../../dashboard/page/dashboard_main';
 import { businessOverview } from './businessOverview';
+import { ClientJourneyDashboard } from '../../client_journey/components/clientJourneyDashboard';
+import { ProceduresDashboard } from '../../client_journey/components/ProceduresDashboard';
+import { PoliciesDashboard } from '../../client_journey/components/PoliciesDashboard';
 
 export const BusinessDashboard = (business, setBusiness, businesses, setBusinesses, activeLink2, setActiveLink2, activeLink3, setActiveLink3) => {
     const deleteBusiness = _ => {
@@ -97,11 +100,11 @@ const body = (business, activeLink3, setActiveLink3) => {
                     activeLink3 === "Details" ?
                         businessDetails(business) :
                     activeLink3 === "Client Journey" ?
-                        null :
+                        <ClientJourneyDashboard/> :
                     activeLink3 === "Procedures" ?
-                        null :
+                        <ProceduresDashboard/> :
                     activeLink3 === "Policies" ?
-                        null :
+                        <PoliciesDashboard/> :
                     activeLink3 === "Team Members" ?
                         null :
                     activeLink3 === "Department & Roles" &&

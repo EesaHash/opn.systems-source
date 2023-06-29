@@ -1,13 +1,13 @@
 $mainbox-height: calc(96vh - 50px - 1vw);
-$mainbox-width: calc(100vw - 240px - 8vw);
-$halfbox-width: calc($mainbox-width * 0.5 - 15px - 12vw);
+$mainbox-width: calc(100vw - 240px - 6vw);
+$halfbox-width: calc($mainbox-width * 0.5 - 15px);
 
 * {
   box-sizing: border-box;
 }
 
 .pane{
-    padding: 1vw;
+    padding: 1vh 0 1vw 1vw;
 }
 
 .mainpane{
@@ -61,9 +61,9 @@ $halfbox-width: calc($mainbox-width * 0.5 - 15px - 12vw);
 .businesses-overview{
     display: flex;
     margin-top: 16px;
-    height: 30vh;
+    height: 33vh;
     & .yourbusiness, .update{
-        width: $halfbox-width !important;
+        width: $halfbox-width;
     }
     & .yourbusiness{
         display: flex;
@@ -75,16 +75,10 @@ $halfbox-width: calc($mainbox-width * 0.5 - 15px - 12vw);
         flex: 1 0 0;
         border-radius: 20px;
         background: #FFF; 
-        height: 100% !important;     
-        & .businesstitle{
-            color: #000;
-            font-size: 30px;
-            font-family: DM Sans;
-            font-weight: 500;
-        } 
+        height: 100% !important;
     }
     & .updates{
-        margin-left: 15px;
+        margin: 0 15px;
         display: flex;
         padding: 2vh 20.956px;
         flex-direction: column;
@@ -141,10 +135,17 @@ $halfbox-width: calc($mainbox-width * 0.5 - 15px - 12vw);
     }
 
 }
+.businesstitle{
+    color: #000;
+    font-size: 30px;
+    font-family: DM Sans;
+    font-weight: 500;
+} 
 
- .main-dashboard-people{
+$people-height: calc(96vh - 50px - 1vh - 12vh - 33vh - 32px);
+.main-dashboard-people{
     margin-top: 16px;
-    height: calc(96vh - 50px - 12vh - 50px - 30vh);
+    height: $people-height;
     width: $mainbox-width;
     display: flex;
     padding: 20px 30px 40px 30px;
@@ -154,9 +155,8 @@ $halfbox-width: calc($mainbox-width * 0.5 - 15px - 12vw);
     align-self: stretch;
     border-radius: 20px;
     background: #FFF;   
-    overflow:scroll;
-    overflow-y:visible;
-    max-height: fit-content;
+    overflow: scroll;
+    overflow-y: visible;
 }
 
 .teammember{
@@ -164,8 +164,7 @@ $halfbox-width: calc($mainbox-width * 0.5 - 15px - 12vw);
     & .team-member-icon {
         display: flex;
         & img{
-            width: 60px;
-            height: 60px;
+            height: calc($people-height * 0.20);
             border-radius: 100px;
             background: #FFF;
             opacity: 60%;
@@ -174,11 +173,10 @@ $halfbox-width: calc($mainbox-width * 0.5 - 15px - 12vw);
     }
     
     & .emptyname{
-        min-width: 140px;
-        max-width: fit-content;
-        height: 42px;
-        margin-right: 35px;
-        margin-left: 35px;
+        width: calc(($mainbox-width / 4) - ($people-height * 0.20) - ($mainbox-width * 0.04) - 60px);
+        min-width: fit-content;
+        height: calc($people-height * 0.10);
+        margin: 0 calc($mainbox-width * 0.04);
         margin-top: 16px;
         border-radius: 9px;
         background: rgba(217, 217, 217, 0.30);
