@@ -260,7 +260,7 @@ async function retryStage(stageString, businessDetailsString) {
 router.post("/save", clientJourney.saveClientJourney);
 router.post("/get", clientJourney.getClientJourneyByBusinessID);
 router.post("/getall", clientJourney.getAllClientJourneyByBusinessID);
-router.put("/update", clientJourney.updateClientJourneyStageByBusinessID);
-router.delete("/delete", clientJourney.deleteClientJourneyByBusinessID);
+router.post("/update", clientJourney.updateClientJourneyStageByBusinessID);
+router.post("/delete", clientJourney.deleteClientJourneyByBusinessID);
 
 module.exports = router;

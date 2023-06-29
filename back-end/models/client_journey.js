@@ -1,6 +1,5 @@
 const sequelize = require('../controllers/accountController/connectDatabase').sequelize;
 const {DataTypes} = require('sequelize');
-const Business = require('./business');
 
 const ClientJourney = sequelize.define('Client Journey', {
     id: {
@@ -10,6 +9,7 @@ const ClientJourney = sequelize.define('Client Journey', {
     },
     title: {
         type: DataTypes.STRING,
+        allowNull: false
     },
     overview: {
         type: DataTypes.TEXT,
@@ -43,7 +43,5 @@ const ClientJourney = sequelize.define('Client Journey', {
         foreignKey: true,
     },
 });
-
-
 
 module.exports = ClientJourney;
