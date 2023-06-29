@@ -18,13 +18,9 @@ app.use("/api/forgetpassword", require("./controllers/accountController/forgetPa
 app.use("/api/authenticateuser", require("./controllers/accountController/authenticateUserController"));
 app.use("/api/getuserdata", require("./controllers/accountController/getUserDataController"));
 
-// GPT API's CONTROLLERS
-app.use("/api/gptest", require("./controllers/gptController/gptTestController"));
+// BUSINESS APIs CONTROLLERS
 app.use("/api/business", require("./controllers/businessControllers/businessController"));
 app.use("/api/clientjourney", require("./controllers/businessControllers/clientJourneyController"));
-app.use("/api/langJourney", require("./controllers/gptController/langchainTestController"));
-
-
 
 app.listen(PORT, () => {
     console.log(`Server listening on ${PORT}`);
