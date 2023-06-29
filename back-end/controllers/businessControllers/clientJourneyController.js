@@ -9,7 +9,6 @@ const {
     StructuredOutputParser,
     OutputFixingParser,
 } = require("langchain/output_parsers");
-const { json } = require("sequelize");
 
 require('dotenv').config()
 
@@ -20,7 +19,7 @@ clientJourney.saveClientJourney = async (req, res) => {
     try {
         const clientJourney = await ClientJourney.findOne({ where: { businessId: req.body.id } });
         if (clientJourney == null) {
-            isSuccess = await generateClientJourney(req.body.id);
+            isSuccess = await generateClientJourney(req.body.id, req.body.title);
             return res.status(200).json({"Client Journey Saved": isSuccess});
         } else {
             return res.status(403).json({"Client Journey already exists!": true});
@@ -75,15 +74,13 @@ clientJourney.updateClientJourneyStageByBusinessID = async (req, res) => {
     }
 }
 
-const generateClientJourney = async (id) => {
+const generateClientJourney = async (id, title) => {
     try {
         const business = await Business.findOne({ where: { id: id } });
         if (business === null || business === undefined) {
-            console.log("Business not found");
             return false;
         }
         const businessDetails = "Business Name:" + business.businessName + "\n Business Type:" + business.businessType + "\n Industry:" + business.industry + "\n Company Size:" + business.companySize + "\n Business Objective:" + business.businessObjective + "\n Core Services:" + business.coreServices + "\n Target Market:" + business.targetMarket + "\n Product or Service Description:" + business.productOrServiceDescription +  "\n Funding Strategy:" + business.fundingStrategy;
-        console.log(businessDetails);
         let Overview = await generateOverview(businessDetails);
         let Awareness = await generateStage("awareness", businessDetails);
         let Interest = await generateStage("interest", businessDetails);
@@ -99,11 +96,11 @@ const generateClientJourney = async (id) => {
         while (i < stages.length) {
             if (stages[i] == null) {
                 stages[i] = await retryStage(stringStages[i], businessDetails);
-                console.log(stages[i]);
             }
             i++;
         }
         const clientJourney = await new ClientJourney({
+            title: title,
             overview: JSON.stringify(Overview),
             awareness: JSON.stringify(stages[0]),
             interest: JSON.stringify(stages[1]),
@@ -225,13 +222,11 @@ async function retryStage(stageString, businessDetailsString) {
     let i = 0;
     while (i < 10) {
         output = await generateStage(stageString, businessDetailsString);
-        console.log(stageString)
         if (output != null) {
             break;
         }
         i++;
     }
-    console.log(output)
     return output;
 }
 
