@@ -167,7 +167,7 @@ $halfbox-width: calc($mainbox-width * 0.5 - 15px);
 $people-height: calc(96vh - 50px - 1vh - 12vh - 33vh - 32px);
 .main-dashboard-people{
     margin-top: 16px;
-    height: $people-height;
+    height: $people-height !important;
     width: $mainbox-width;
     display: flex;
     padding: 20px 30px 40px 30px;

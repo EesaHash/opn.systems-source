@@ -185,7 +185,7 @@
 
 .main-dashboard-people {
   margin-top: 16px;
-  height: calc(96vh - 50px - 1vh - 12vh - 33vh - 32px);
+  height: calc(96vh - 50px - 1vh - 12vh - 33vh - 32px) !important;
   width: calc(100vw - 240px - 8vw);
   display: flex;
   padding: 20px 30px 40px 30px;
@@ -316,7 +316,7 @@
 }
 .profile-header .dropdown-arrow .dropdown-content {
   margin-top: 30px;
-  right: 100px;
+  right: 150px;
 }
 .profile-header .dropdown-arrow .dropdown-content a {
   text-decoration: none;
