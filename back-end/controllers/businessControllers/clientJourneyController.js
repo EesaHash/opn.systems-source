@@ -15,18 +15,28 @@ require('dotenv').config()
 const clientJourney = {};
 
 clientJourney.saveClientJourney = async (req, res) => {
-    let isSuccess = false;
+    let journey;
     try {
         const clientJourney = await ClientJourney.findOne({ where: { businessId: req.body.id } });
         if (clientJourney == null) {
-            isSuccess = await generateClientJourney(req.body.id, req.body.title);
-            return res.status(200).json({"Client Journey Saved": isSuccess});
+            journey = await generateClientJourney(req.body.id, req.body.title);
+            return res.status(200).json({
+                status: true,
+                message: "Successfully add new client journey!",
+                journey: journey
+            });
         } else {
-            return res.status(403).json({"Client Journey already exists!": true});
+            return res.status(403).json({
+                status: false,
+                message: "Client Journey already exists!",
+            });
         }
     } catch (error) {
         console.log(error);
-        return res.status(403).json({"Client Journey Saved": isSuccess});
+        return res.status(403).json({
+            status: false,
+            message: error,
+        });
     }
 }
 
@@ -40,6 +50,22 @@ clientJourney.getClientJourneyByBusinessID = async (req, res) => {
         });
     }
 }
+
+clientJourney.getAllClientJourneyByBusinessID = async (req, res) => {
+    try{
+        const clientJourney = await ClientJourney.findAll({ where: { businessId: req.body.businessId } });
+        return res.status(200).json({
+            status: true,
+            message: "Successfully retrieve client journey!",
+            clientJourneys: clientJourney
+        });
+    }catch (error) {
+        return res.status(403).json({
+            status: false,
+            message: error
+        });
+    }
+};
 
 clientJourney.deleteClientJourneyByBusinessID = async (req, res) => {
     try {
@@ -113,10 +139,10 @@ const generateClientJourney = async (id, title) => {
             businessId: id,
         });
         clientJourney.save();
-        return true;
+        return clientJourney;
     } catch (error) {
         console.log("Error saving client journey: ", error);
-        return false;
+        return null;
     }
 }
 
@@ -233,6 +259,7 @@ async function retryStage(stageString, businessDetailsString) {
 
 router.post("/save", clientJourney.saveClientJourney);
 router.post("/get", clientJourney.getClientJourneyByBusinessID);
+router.post("/getall", clientJourney.getAllClientJourneyByBusinessID);
 router.put("/update", clientJourney.updateClientJourneyStageByBusinessID);
 router.delete("/delete", clientJourney.deleteClientJourneyByBusinessID);
 

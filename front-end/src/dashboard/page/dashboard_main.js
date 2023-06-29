@@ -77,6 +77,31 @@ export const DashboardPage = () => {
             console.log(error);
         }
     }, [userID]);
+
+    useEffect(() => {
+        try{
+            const getClientJourneyList = async _ => {
+                const res = await fetch("/api/clientjourney/getall", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        businessId: business.id
+                    })
+                });
+                const data = await res.json();
+                console.log(data);
+                if(data.status){
+                    setJourneys(data.clientJourneys);
+                }
+            };
+            if(business.id)
+                getClientJourneyList();
+        }catch(error){
+            alert(error);
+        }
+    }, [business])
     
     if(userID === "none") return window.location.href = "/";
     return (
@@ -98,6 +123,7 @@ export const DashboardPage = () => {
                     />
                     <CreateClientJourney  
                         journeys = {journeys} setJourneys = {setJourneys}
+                        business = {business}
                     />
                     <div id="dashboard-content">
                         <div style={{display: "flex"}}>

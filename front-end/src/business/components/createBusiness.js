@@ -121,8 +121,8 @@ export const CreateBusiness = (props) => {
                             teamMember: teamList
                         };
                         props.setBusinesses([...props.businesses, business]);
+                        closeCreateBusinessForm();
                     }
-                    closeCreateBusinessForm();
                     alert(data.message);
                 });
         }catch(error){

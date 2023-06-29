@@ -6,13 +6,29 @@ import { closePopUpForm } from '../../dashboard/page/dashboard_main';
 export const CreateClientJourney = (props) => {
     const [loading, setLoading] = useState(false);
     const generate = _ => {
-        // document.getElementById("create-client-journey-step1").style.display = "none";
-        // setLoading(true);
         const title = document.getElementById("client-journey-title").value;
         if(!title)
             return alert("Please fill in all fields!");
-        props.setJourneys([...props.journeys, {title: title}]);
-        closeForm();
+        document.getElementById("create-client-journey-step1").style.display = "none";
+        setLoading(true);
+        fetch("/api/clientjourney/save", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                id: props.business.id,
+                title: title
+            })
+        })
+            .then((res) => { return res.json(); })
+            .then((data) => {
+                if(data.status){
+                    props.setJourneys([...props.journeys, data.journey]);
+                }
+                closeForm();
+                alert(data.message);
+            }); 
     };
     const closeForm = _ => {
         document.getElementById("client-journey-title").value = "";
@@ -20,6 +36,11 @@ export const CreateClientJourney = (props) => {
         setLoading(false);
         document.getElementById("createClientJourney").style.display = "none";
         closePopUpForm();
+    };;
+    const handleKeypress = e => {
+        if(e.key === "Enter"){
+            generate();
+        }
     };
     const step1 = _ => {
         return(
@@ -31,6 +52,7 @@ export const CreateClientJourney = (props) => {
                     <input 
                         id = "client-journey-title"
                         type='text'
+                        onKeyPress={handleKeypress} 
                     />
                 </div>
                 <div className='pop-up-button'>
