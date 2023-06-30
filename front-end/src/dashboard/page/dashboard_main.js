@@ -11,6 +11,7 @@ import { getUserID } from "../../App";
 import { CreateBusiness } from "../../business/components/createBusiness";
 import { EditBusinessDetail } from "../../business/components/editBusinessDetail";
 import { CreateClientJourney } from "../../client_journey/components/createClientJourney";
+import { ModifyAccountDetails } from "../components/account_settings";
 
 export const DashboardPage = () => {
     const [userID, setUserID] = useState();
@@ -107,7 +108,7 @@ export const DashboardPage = () => {
     return (
         <div className="background">
             <div id="bash" className="bash">
-                <Sidebar 
+                <Sidebar
                     businesses = {businesses} 
                     activeLink = {activeLink}   setActiveLink = {setActiveLink} 
                     activeLink2 = {activeLink2} setActiveLink2 = {setActiveLink2}
@@ -115,6 +116,7 @@ export const DashboardPage = () => {
             </div>
             {!loading &&
                 <div>
+                    <ModifyAccountDetails/>
                     <CreateBusiness businesses = {businesses} setBusinesses = {setBusinesses} userID = {userID} />
                     <EditBusinessDetail 
                         businesses = {businesses} setBusinesses = {setBusinesses} 
@@ -125,7 +127,7 @@ export const DashboardPage = () => {
                         journeys = {journeys} setJourneys = {setJourneys}
                         business = {business}
                     />
-                    <div id="dashboard-content">
+                    <div id="dashboard-content" className="dashboard-content">
                         <div style={{display: "flex"}}>
                             <div className="search">
                                 <SearchBar />

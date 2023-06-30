@@ -5,10 +5,6 @@
   overflow-y: auto;
 }
 
-.search-div {
-  float: right;
-}
-
 .empty_page {
   width: 1110px;
   height: 765px;
@@ -26,6 +22,11 @@
 }
 
 .search, .profile {
-  margin-top: 2vh;
   padding: 0 1vw;
+}
+
+.dashboard-content {
+  height: 96vh;
+  margin-top: 2vh;
+  overflow: scroll;
 }/*# sourceMappingURL=dashboard_main.css.map */

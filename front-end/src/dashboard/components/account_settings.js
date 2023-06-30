@@ -1,22 +1,38 @@
 import React, { useState } from 'react';
 import "../style/acc_set.css";
+import { closePopUpForm } from '../page/dashboard_main';
 
 
 export const ModifyAccountDetails = (props) => {
     const [accountDetailsInput, setAccountDetailsInput] = useState({
         username: "",
-        fullName: "",
+        firstname: "",
+        lastname:  ""
     });
+
+    const closeForm = _ => {
+        // Reset the input fields
+        setAccountDetailsInput({
+            username: "",
+            firstname: "",
+            lastname:  ""
+        });
+        // Reset the form to step 1
+        // document.getElementById("setup_acc").style.display = "block";
+        // Close the form
+        document.getElementById("account-setting-Form").style.display = "none";
+        closePopUpForm();
+    };
 
     const accountPanel = _ => {
         return(
-            <div id="create-business-step1" className="content-form">
+            <div id="setup_acc" className="content-form" style={{justifyContent:"center"}}>
                 <h2>Account Settings</h2>
                 <hr/>
                 <h3>Step 1 of 2</h3>
          
                 <div className="pop-up-input">
-                    <label>Username</label>
+                    <label>Name</label>
                     <input 
                         type="text" 
                         value={accountDetailsInput.username}
@@ -25,8 +41,13 @@ export const ModifyAccountDetails = (props) => {
                     />
                 </div>
                 <div className="pop-up-input">
-                    <label>Full Name</label>
-                    {/* {businessTypeListDrowdown(businessOverviewInput, setBusinessOverviewInput)} */}
+                    <label>Last Name</label>
+                    <input 
+                        type="text" 
+                        value={accountDetailsInput.lastname}
+                        // onKeyPress={handleKeypress} 
+                        // onChange={event => setBusinessOverviewInput({...businessOverviewInput, businessName: event.target.value})}
+                    />
                 </div>
                 <div className="pop-up-input">
                     <label>Email Id</label>
@@ -37,9 +58,13 @@ export const ModifyAccountDetails = (props) => {
                         // onChange={event => setBusinessOverviewInput({...businessOverviewInput, industry: event.target.value})}
                     />
                 </div>
+                <div className="pop-up-input">
+                    <href>Forgot Password</href>
+
+                </div>
                 <div className='pop-up-button'>
-                    {/* <button className='cancel-button' onClick={closeCreateBusinessForm}>Cancel</button>
-                    <button className='next-button' onClick={nextAction} >Next</button> */}
+                    <button className='cancel-button' onClick={closeForm}>Cancel</button>
+                    <button className='next-button' onClick={null} >Next</button>
                 </div>
             </div>
         );
@@ -47,7 +72,7 @@ export const ModifyAccountDetails = (props) => {
 
 
     return (<>
-            <section id="createAccountForm" className="form-popup center form-container create-account">
+        <section id="account-setting-Form" className="form-popup center form-container account-setting" >
             {accountPanel()}
         </section></>);
 }

@@ -1,6 +1,7 @@
 $mainbox-height: calc(96vh - 50px - 1vw);
 $mainbox-width: calc(100vw - 240px - 8vw);
 $halfbox-width: calc($mainbox-width * 0.5 - 15px);
+$somewhat-grey: grey;
 
 * {
   box-sizing: border-box;
@@ -167,7 +168,8 @@ $halfbox-width: calc($mainbox-width * 0.5 - 15px);
 $people-height: calc(96vh - 50px - 1vh - 12vh - 33vh - 32px);
 .main-dashboard-people{
     margin-top: 16px;
-    height: $people-height !important;
+    // height: $people-height !important;
+    height: fit-content !important;
     width: $mainbox-width;
     display: flex;
     padding: 20px 30px 40px 30px;
@@ -177,8 +179,8 @@ $people-height: calc(96vh - 50px - 1vh - 12vh - 33vh - 32px);
     align-self: stretch;
     border-radius: 20px;
     background: #FFF;   
-    overflow: scroll;
-    overflow-y: visible;
+    // overflow: scroll;
+    // overflow-y: visible;
 }
 
 .teammember{

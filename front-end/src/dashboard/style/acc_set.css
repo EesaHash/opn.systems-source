@@ -1,41 +1,10 @@
-#create-business-step1 {
-  background-color: #f2f2f2;
-  padding: 20px;
-  border-radius: 5px;
-}
-
-#create-business-step1 h2 {
-  font-size: 24px;
-  margin-bottom: 10px;
-}
-
-#create-business-step1 hr {
-  margin: 20px 0;
-  border: none;
-  border-top: 1px solid #ccc;
-}
-
-#create-business-step1 h3 {
-  font-size: 18px;
-  margin-bottom: 10px;
-}
-
-.pop-up-input {
-  margin-bottom: 15px;
-}
-
-.pop-up-input label {
-  display: block;
-  font-weight: bold;
-}
-
-.pop-up-input input {
-  width: 100%;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.pop-up-button {
-  text-align: right;
+.account-setting {
+  margin-top: 5vh;
+  max-height: 90vh;
+  width: 20vw;
+  min-width: -moz-fit-content;
+  min-width: fit-content;
+  margin-left: 25vw;
+  margin-right: 25vw;
+  overflow: scroll;
 }/*# sourceMappingURL=acc_set.css.map */

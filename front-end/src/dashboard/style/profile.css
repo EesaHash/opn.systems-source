@@ -185,7 +185,8 @@
 
 .main-dashboard-people {
   margin-top: 16px;
-  height: calc(96vh - 50px - 1vh - 12vh - 33vh - 32px) !important;
+  height: -moz-fit-content !important;
+  height: fit-content !important;
   width: calc(100vw - 240px - 8vw);
   display: flex;
   padding: 20px 30px 40px 30px;
@@ -195,8 +196,6 @@
   align-self: stretch;
   border-radius: 20px;
   background: #FFF;
-  overflow: scroll;
-  overflow-y: visible;
 }
 
 .teammember {

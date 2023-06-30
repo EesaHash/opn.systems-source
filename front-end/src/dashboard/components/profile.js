@@ -6,7 +6,12 @@ import { Logout } from "@mui/icons-material";
 import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
 import TuneSharpIcon from '@mui/icons-material/TuneSharp';
 import NotificationsSharpIcon from '@mui/icons-material/NotificationsSharp';
-import { ModifyAccountDetails } from "./account_settings";
+import { openPopUpForm } from "../page/dashboard_main";
+
+const openAccountSettingForm = _ => {
+  document.getElementById("account-setting-Form").style.display = "block";
+  openPopUpForm();
+}
 
 export const Profile = (props) => {
     return(
@@ -23,9 +28,9 @@ export const Profile = (props) => {
           <div className="dropdown-arrow-area">
               <div className="dropdown-arrow">
               <div className="dropdown-content">
-                  <a href="/" onClick={logOut}><TuneSharpIcon/>Admin Console</a>
-                  <a href="/" onClick={ModifyAccountDetails}><SettingsRoundedIcon/>Account Settings</a>
-                  <a href="/" onClick={logOut} ><NotificationsSharpIcon/>Notifications</a>
+                  <button onClick={logOut}><TuneSharpIcon/>Admin Console</button>
+                  <button onClick={openAccountSettingForm}><SettingsRoundedIcon/>Account Settings</button>
+                  <button onClick={null} ><NotificationsSharpIcon/>Notifications</button>
                   <a href="/" onClick={logOut} style={{ color: 'red' }}><MeetingRoom/>Log Out</a>
               </div>
               </div>
