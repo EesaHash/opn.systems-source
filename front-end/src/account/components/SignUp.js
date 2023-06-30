@@ -116,7 +116,7 @@ export const SignUp = _ => {
                             <label htmlFor="username">Username</label>
                             <input type ="text" id="username" placeholder="John Doe" onKeyPress={handleKeypress} />
                         </div>
-                        <div className="user-authentication-input">
+                        <div className="user-authentication-input password">
                             <label htmlFor="password">Password</label>
                             <input type="password" id ="password" onKeyPress={handleKeypress} />
                         </div>
@@ -128,9 +128,9 @@ export const SignUp = _ => {
                                 <label htmlFor="firstName">First Name</label>
                                 <input type="text" id ="firstName" placeholder="John" onKeyPress={handleKeypress} />
                             </div>
-                            <div className="half-input right">
-                                <label htmlFor="firstName">Last Name</label>
-                                <input type="text" id ="firstName" placeholder="Doe" onKeyPress={handleKeypress} />
+                            <div className="half-input">
+                                <label htmlFor="lastName">Last Name</label>
+                                <input type="text" id ="lastName" placeholder="Doe" onKeyPress={handleKeypress} />
                             </div>
                         </div>
                         <div>

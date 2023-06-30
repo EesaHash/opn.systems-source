@@ -17,17 +17,16 @@ $grey: #A4A4A4;
         text-align: left;
         width: 300px;
         display: grid;
+        &.password{
+            margin-bottom: 5px;
+        }
         & .half-input{
-            width: 140px;
+            width: 145px;
+            &.left{
+                margin-right: 10px;
+            }
             & input{
-                width: 150px;
-            }
-            & .left{
-                float: left;
-                margin-right: 20px;
-            }
-            & .right{
-                float: right;
+                width: 140px;
             }
         }
     }
@@ -214,8 +213,8 @@ $grey: #A4A4A4;
 }
 
 .pass label{
-    margin-bottom: 12px !important;
-    margin-top: 0%;
+    margin-bottom: 25px !important;
+    margin-top: 0;
     font-size: 12px !important;
     color: #eb5757
 }
