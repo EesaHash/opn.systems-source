@@ -1,0 +1,32 @@
+.warning-pages{
+    display: grid;
+    margin-top: 10vh;
+    width: 40vw;
+    margin-left: 30vw;
+    margin-right: 30vw;
+    left: 0;
+    height: 70vh;
+    background-color: #5C5FFF !important;
+    border-color: #5C5FFF;
+    & .close-button{
+        width: 100%;
+        text-align: right;
+        margin: auto;
+        & button{
+            background-color: transparent;
+            font-weight: 900;
+            border-color: transparent;
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+    }
+    & .warning-icon{
+        color: white;
+        width: fit-content;
+        margin: auto;
+        & .css-i4bv87-MuiSvgIcon-root{
+            height: 100px !important;
+            width: 100px !important;
+        }
+    }
+}

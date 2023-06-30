@@ -12,6 +12,7 @@ import { CreateBusiness } from "../../business/components/createBusiness";
 import { EditBusinessDetail } from "../../business/components/editBusinessDetail";
 import { CreateClientJourney } from "../../client_journey/components/createClientJourney";
 import { ModifyAccountDetails } from "../components/account_settings";
+import { AccessLimit } from "../../warning_pages/components/AccessLimit";
 
 export const DashboardPage = () => {
     const [userID, setUserID] = useState();
@@ -116,6 +117,7 @@ export const DashboardPage = () => {
             </div>
             {!loading &&
                 <div>
+                    <AccessLimit/>
                     <ModifyAccountDetails/>
                     <CreateBusiness businesses = {businesses} setBusinesses = {setBusinesses} userID = {userID} />
                     <EditBusinessDetail 
@@ -155,6 +157,10 @@ export const DashboardPage = () => {
     );
 }
 
+export const openAccessLimitForm = _ => {
+    document.getElementById("access-limit-form").style.display = "block";
+    openPopUpForm();
+};
 export const createNewBusinessForm = _ => {
     document.getElementById("createAccountForm").style.display = "block";
     openPopUpForm();
