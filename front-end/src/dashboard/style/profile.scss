@@ -49,6 +49,9 @@ $profile-name-width: calc(15vw - 30px - 35px - 1vw);
         }
         margin-right: 1vw;
     }
+    & .dropdown-arrow-area{
+        height: 250px;
+    }
     & .dropdown-arrow{
         border-top-color: black;
         top: 15px;
@@ -59,8 +62,8 @@ $profile-name-width: calc(15vw - 30px - 35px - 1vw);
         }
         & .dropdown-content{
             margin-top: 30px;
-            right: 150px;
-            & a{
+            right: 200px;
+            & a, button{
                 text-decoration: none;
                 &:hover{
                     border-bottom: transparent;

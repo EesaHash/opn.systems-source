@@ -81,6 +81,8 @@
 .nametitle h1 {
   color: rgb(0, 0, 0);
   font-size: 38.4px;
+  white-space: nowrap;
+  overflow: scroll;
   font-family: DM Sans;
   font-weight: 500;
   align-items: center;
@@ -308,6 +310,9 @@
   font-size: 9px;
   color: #808080;
 }
+.profile-header .dropdown-arrow-area {
+  height: 250px;
+}
 .profile-header .dropdown-arrow {
   border-top-color: black;
   top: 15px;
@@ -319,12 +324,12 @@
 }
 .profile-header .dropdown-arrow .dropdown-content {
   margin-top: 30px;
-  right: 150px;
+  right: 200px;
 }
-.profile-header .dropdown-arrow .dropdown-content a {
+.profile-header .dropdown-arrow .dropdown-content a, .profile-header .dropdown-arrow .dropdown-content button {
   text-decoration: none;
 }
-.profile-header .dropdown-arrow .dropdown-content a:hover {
+.profile-header .dropdown-arrow .dropdown-content a:hover, .profile-header .dropdown-arrow .dropdown-content button:hover {
   border-bottom: transparent;
   display: block;
 }

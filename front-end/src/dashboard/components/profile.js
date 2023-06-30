@@ -28,7 +28,7 @@ export const Profile = (props) => {
           <div className="dropdown-arrow-area">
               <div className="dropdown-arrow">
               <div className="dropdown-content">
-                  <button onClick={logOut}><TuneSharpIcon/>Admin Console</button>
+                  <button ><TuneSharpIcon/>Admin Console</button>
                   <button onClick={openAccountSettingForm}><SettingsRoundedIcon/>Account Settings</button>
                   <button onClick={null} ><NotificationsSharpIcon/>Notifications</button>
                   <a href="/" onClick={logOut} style={{ color: 'red' }}><MeetingRoom/>Log Out</a>
