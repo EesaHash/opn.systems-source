@@ -15,6 +15,13 @@ const User = sequelize.define('User', {
         type: DataTypes.STRING(20),
         allowNull: false
     },
+    first_name: {
+        type: DataTypes.STRING(50),
+        allowNull: false
+    },
+    last_name: {
+        type: DataTypes.STRING(50)
+    },
     email_verification: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
