@@ -123,6 +123,16 @@ export const SignUp = _ => {
                         <div className="pass">
                             <label style={{marginRight: "150px"}}>Minimum of 8 characters</label>
                         </div>
+                        <div className="user-authentication-input" style={{display: "flex"}} >
+                            <div className="half-input left">
+                                <label htmlFor="firstName">First Name</label>
+                                <input type="text" id ="firstName" placeholder="John" onKeyPress={handleKeypress} />
+                            </div>
+                            <div className="half-input right">
+                                <label htmlFor="firstName">Last Name</label>
+                                <input type="text" id ="firstName" placeholder="Doe" onKeyPress={handleKeypress} />
+                            </div>
+                        </div>
                         <div>
                             <button onClick={nextAction}> Next</button>
                         </div>

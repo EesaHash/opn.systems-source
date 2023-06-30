@@ -11,6 +11,19 @@
   width: 300px;
   display: grid;
 }
+.user-authentication .user-authentication-input .half-input {
+  width: 140px;
+}
+.user-authentication .user-authentication-input .half-input input {
+  width: 150px;
+}
+.user-authentication .user-authentication-input .half-input .left {
+  float: left;
+  margin-right: 20px;
+}
+.user-authentication .user-authentication-input .half-input .right {
+  float: right;
+}
 .user-authentication h1 {
   text-align: center;
   white-space: nowrap;
