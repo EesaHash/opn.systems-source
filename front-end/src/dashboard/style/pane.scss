@@ -59,11 +59,13 @@ $somewhat-grey: grey;
     & h1 {
         color: rgb(0, 0, 0);
         font-size: 38.4px;
-    font-family: DM Sans;
-    font-weight: 500;
-    //line-height: 140%;
-    align-items: center;
-    margin-top: -10px;
+        white-space: nowrap;
+        overflow: scroll;
+        font-family: DM Sans;
+        font-weight: 500;
+        //line-height: 140%;
+        align-items: center;
+        margin-top: -10px;
     }
 }
 

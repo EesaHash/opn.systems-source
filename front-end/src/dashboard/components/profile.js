@@ -22,7 +22,7 @@ export const Profile = (props) => {
           )}
         </div>
           <div className="profile-name">
-              <h1>{props.user && `${props.user.first_name} ${props.user.last_name ? props.user.last_name : ""}`}</h1>
+              <h1>{props.user && `${props.user.first_name}`}</h1>
               <h2>Business Owner</h2>
           </div>
           <div className="dropdown-arrow-area">

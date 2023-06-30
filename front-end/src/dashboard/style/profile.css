@@ -65,6 +65,7 @@
   justify-content: center;
   align-items: center;
   font-weight: 1000;
+  text-transform: uppercase;
 }
 
 /*.profilepicture{
@@ -300,6 +301,8 @@
 }
 .profile-header .profile-name h1 {
   font-size: 16px;
+  white-space: nowrap;
+  overflow: scroll;
 }
 .profile-header .profile-name h2 {
   font-size: 9px;

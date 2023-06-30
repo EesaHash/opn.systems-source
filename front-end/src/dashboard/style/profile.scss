@@ -40,6 +40,8 @@ $profile-name-width: calc(15vw - 30px - 35px - 1vw);
         overflow: scroll;
         & h1{
             font-size: 16px;
+            white-space: nowrap;
+            overflow: scroll;
         }
         & h2{
             font-size: 9px;
