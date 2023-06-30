@@ -7,10 +7,10 @@ const { isEmailExist } = require("./UserController");
 
 router.post("/", async (req, res) => {
     try{
-        const {username, email, password, emails} = req.body;
+        const {username, email, password, firstName, lastName, emails} = req.body;
         
         // Create new account
-        const user = await createAccount(username, email, password);
+        const user = await createAccount(username, email, password, firstName, lastName);
         if(!user){
             return res.status(400).json({
                 status: false,
@@ -45,17 +45,21 @@ router.post("/", async (req, res) => {
 });
 module.exports = router;
 
-const createAccount = async (username, email, password) => {
+const createAccount = async (username, email, password, firstName, lastName) => {
     try{
         const user = {
             username: String(username).toLowerCase(),
             email: String(email).toLowerCase(),
-            password: password
+            password: password,
+            firstName: firstName,
+            lastName: lastName
         };
         return await User.create({
             email: user.email,
             username: user.username,
-            password: user.password
+            password: user.password,
+            first_name: user.firstName,
+            last_name: user.lastName
         });
     }catch(error){
         console.log(error);

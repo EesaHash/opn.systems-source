@@ -7,11 +7,13 @@ export const SignUp = _ => {
     const [userInput, setUserInput] = useState({
         email: "",
         username: "",
-        password: ""
+        password: "",
+        firstName: "",
+        lastName: ""
     });
     const [emailList, setEmailList] = useState([]);
     const [invitationList, setInvitationList] = useState([]);
-    const [queryParameters] = useSearchParams()
+    const [queryParameters] = useSearchParams();
 
     getUserID().then(res => setUserID(res));
 
@@ -20,9 +22,11 @@ export const SignUp = _ => {
             const email = document.getElementById("email").value;
             const username = document.getElementById("username").value;
             const password = document.getElementById("password").value;
+            const firstName = document.getElementById("firstName").value;
+            const lastName = document.getElementById("lastName").value;
 
             // Check if the required fields are filled
-            if(!email || !username || !password){
+            if(!email || !username || !password || !firstName){
                 return alert("Please fill in all non-optional fields!");
             }
 
@@ -33,7 +37,9 @@ export const SignUp = _ => {
             const data = {
                 email: email,
                 username: username,
-                password: password
+                password: password,
+                firstName: firstName,
+                lastName: lastName
             };
             setUserInput(data);
 
@@ -73,9 +79,7 @@ export const SignUp = _ => {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    username: userInput.username,
-                    email: userInput.email,
-                    password: userInput.password,
+                    ...userInput,
                     emails: invitationList
                 })
             })
