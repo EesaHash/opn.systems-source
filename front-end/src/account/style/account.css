@@ -11,6 +11,9 @@
   width: 300px;
   display: grid;
 }
+.user-authentication .user-authentication-input label {
+  white-space: nowrap;
+}
 .user-authentication .user-authentication-input.password {
   margin-bottom: 5px;
 }

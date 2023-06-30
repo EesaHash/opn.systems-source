@@ -17,6 +17,9 @@ $grey: #A4A4A4;
         text-align: left;
         width: 300px;
         display: grid;
+        & label{
+            white-space: nowrap;
+        }
         &.password{
             margin-bottom: 5px;
         }

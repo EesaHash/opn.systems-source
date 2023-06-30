@@ -133,7 +133,7 @@ export const SignUp = _ => {
                                 <input type="text" id ="firstName" placeholder="John" onKeyPress={handleKeypress} />
                             </div>
                             <div className="half-input">
-                                <label htmlFor="lastName">Last Name</label>
+                                <label htmlFor="lastName">{`Last Name (optional)`}</label>
                                 <input type="text" id ="lastName" placeholder="Doe" onKeyPress={handleKeypress} />
                             </div>
                         </div>
