@@ -32,9 +32,9 @@ const emptyPane = (user) => {
             <div className="nameheader" style={{display: "flex", alignItems: 'center'}}>
                 {user && user.username && (
                     <>
-                    <div className="initials">{user.username.charAt(0)}</div>
+                    <div className="initials">{`${user.first_name.charAt(0)}${user.last_name ? user.last_name.charAt(0) : ""}`}</div>
                     <div className="nametitle" style={{marginLeft:"30px"}}>
-                        <h1 >{user.username}</h1>
+                        <h1 >{`${user.first_name} ${user.last_name ? user.last_name : ""}`}</h1>
                         <div className="email">
                         <MailOutlineIcon className="icon"/>
                         <span className="email-text">{user.email}</span>

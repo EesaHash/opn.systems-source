@@ -17,12 +17,12 @@ export const Profile = (props) => {
     return(
         <div className="profile-header">
         <div className="profile-picture">
-          {props.user && props.user.username && (
-            <div className="profile_in">{props.user.username.charAt(0)}</div>
+          {props.user && props.user.first_name && (
+            <div className="profile_in">{`${props.user.first_name.charAt(0)}${props.user.last_name ? props.user.last_name.charAt(0) : ""}`}</div>
           )}
         </div>
           <div className="profile-name">
-              <h1>{props.user && props.user.username}</h1>
+              <h1>{props.user && `${props.user.first_name} ${props.user.last_name ? props.user.last_name : ""}`}</h1>
               <h2>Business Owner</h2>
           </div>
           <div className="dropdown-arrow-area">
