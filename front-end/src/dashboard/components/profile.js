@@ -2,7 +2,6 @@ import React from "react";
 import "../style/profile.css";
 import { logOut } from "../../App";
 import MeetingRoom from '@mui/icons-material/MeetingRoom';
-import { Logout } from "@mui/icons-material";
 import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
 import TuneSharpIcon from '@mui/icons-material/TuneSharp';
 import NotificationsSharpIcon from '@mui/icons-material/NotificationsSharp';
