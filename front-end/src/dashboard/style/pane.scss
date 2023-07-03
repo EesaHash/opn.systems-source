@@ -16,32 +16,67 @@ $somewhat-grey: grey;
 }
 
 .nameheader{
-    height: 12vh;
+    display:flex;
     position:relative;
+    align-items: center !important;
+    height: 110px;
+    min-height:max-content;
     width: $mainbox-width;
-    display: flex;
     padding: 30px;
-    align-items: flex-start;
+    //align-items: flex-start;
     //gap: 10px;
     align-self: stretch;
     border-radius: 20px;
     background: #FFF;
-}
-
-.initials {
-    font-size: 50px;
-    color: #000000;
-    background-color: #7DDED8;
-    width: 90px;
-    height: 90px;
-    line-height: 140%;
-    border-radius: 50%;
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: 1000;
-    text-transform: uppercase;
+    
+    @media (max-width: 1000px) {
+          display: none;
+      }
+    @media (max-height:auto) {
+          background-color:#ffffff;
+      }
+    
+    & .initials {
+        font-size: 50px;
+        color: black;
+        background-color: #7DDED8;
+        width: 80px;
+        height: 80px;
+        //line-height: 40%;
+        border-radius: 50%;
+        //background-position: left;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: 500;
+        text-transform: uppercase;
+      }
+  
+      & .nametitle {
+      & h1 {
+        color: rgb(0, 0, 0);
+        font-size: 38.4px;
+        white-space: nowrap;
+        overflow: scroll;
+        font-family: DM Sans;
+        font-weight: 500;
+        //line-height: 140%;
+        align-items: center;
+        margin-top: -10px;
+        text-size-adjust: 100%;
+    }
+        & .email-text{
+        color: var(--text-subdued-text, #ACACAC);
+        font-size: 14px;
+        font-family: Inter;
+        line-height: 24px;
+        }
+        & .icon{
+        color:#ACACAC;
+        margin-right: 3px;
+        } 
   }
+}  
   
 /*.profilepicture{
     display: flex;
@@ -53,35 +88,6 @@ $somewhat-grey: grey;
         width: 50px;
 }
 }*/
-
-.nametitle {
-    
-    & h1 {
-        color: rgb(0, 0, 0);
-        font-size: 38.4px;
-        white-space: nowrap;
-        overflow: scroll;
-        font-family: DM Sans;
-        font-weight: 500;
-        //line-height: 140%;
-        align-items: center;
-        margin-top: -10px;
-    }
-}
-
-
-.email-text{
-    color: var(--text-subdued-text, #ACACAC);
-    /* Inter/Body 2 */
-    //margin-top: -12px;
-    font-size: 14px;
-    font-family: Inter;
-    line-height: 24px;
-}
-.icon{
-    color:#ACACAC;
-    margin-right: 3px;
-}
 
 
 .businesses-overview{
@@ -239,4 +245,6 @@ $people-height: calc(96vh - 50px - 1vh - 12vh - 33vh - 32px);
         margin: auto;
     }
 }
+
+
 

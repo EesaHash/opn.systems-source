@@ -3,6 +3,8 @@ import "../style/pane.css";
 import { BusinessDashboard } from "../../business/components/businessDashboard";
 //import { FormatAlignJustify } from "@mui/icons-material";
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
+import CreateIcon from '@mui/icons-material/Create';
+
 export const Pane = (props) => {
     if(props.businesses.length === 0)
         return emptyPane(props.user)
@@ -29,7 +31,7 @@ export const Pane = (props) => {
 const emptyPane = (user) => {
     return(
         <div className="mainpane">
-            <div className="nameheader" style={{display: "flex", alignItems: 'center'}}>
+            <div className="nameheader">
                 {user && user.username && (
                     <>
                     <div className="initials">{`${user.first_name.charAt(0)}${user.last_name ? user.last_name.charAt(0) : ""}`}</div>
