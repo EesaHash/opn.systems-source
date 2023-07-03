@@ -7,9 +7,11 @@ import { SecondaryTable } from '../../table/components/SecondaryTable';
 export const ClientJourneyDashboard = (props) => {
     const [journey, setJourney] = useState({});
     useEffect(() => {
-        document.getElementById("client-journey-main-table").style.display = "block";
-        setJourney({});
-        document.getElementById("client-journey-secondary-table").style.display = "none";
+        if(document.getElementById("client-journey-main-table") && document.getElementById("client-journey-secondary-table")){
+            document.getElementById("client-journey-main-table").style.display = "block";
+            setJourney({});
+            document.getElementById("client-journey-secondary-table").style.display = "none";
+        }
     }, [props.activeLink2]);
 
     const openCreateJourneyForm = _ => {
@@ -19,9 +21,11 @@ export const ClientJourneyDashboard = (props) => {
         openPopUpForm();
     };
     const openClientJourneyDetails = (param) => {
-        document.getElementById("client-journey-main-table").style.display = "none";
-        setJourney(param);
-        document.getElementById("client-journey-secondary-table").style.display = "block";
+        if(document.getElementById("client-journey-main-table") && document.getElementById("client-journey-secondary-table")){
+            document.getElementById("client-journey-main-table").style.display = "none";
+            setJourney(param);
+            document.getElementById("client-journey-secondary-table").style.display = "block";
+        }
     };
     return(
         <div className='client-journey'>
