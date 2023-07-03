@@ -42,30 +42,63 @@
 }
 
 .nameheader {
-  height: 12vh;
-  position: relative;
-  width: calc(100vw - 240px - 8vw);
   display: flex;
+  position: relative;
+  align-items: center !important;
+  height: 110px;
+  min-height: -moz-max-content;
+  min-height: max-content;
+  width: calc(100vw - 240px - 8vw);
   padding: 30px;
-  align-items: flex-start;
   align-self: stretch;
   border-radius: 20px;
   background: #FFF;
 }
-
-.initials {
+@media (max-width: 1000px) {
+  .nameheader {
+    display: none;
+  }
+}
+@media (max-height: auto) {
+  .nameheader {
+    background-color: #a91d1d;
+  }
+}
+.nameheader .initials {
   font-size: 50px;
-  color: #000000;
+  color: black;
   background-color: #7DDED8;
-  width: 90px;
-  height: 90px;
-  line-height: 140%;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-weight: 1000;
+  font-weight: 500;
   text-transform: uppercase;
+}
+.nameheader .nametitle h1 {
+  color: rgb(0, 0, 0);
+  font-size: 38.4px;
+  white-space: nowrap;
+  overflow: scroll;
+  font-family: DM Sans;
+  font-weight: 500;
+  align-items: center;
+  margin-top: -10px;
+  -webkit-text-size-adjust: 100%;
+     -moz-text-size-adjust: 100%;
+          text-size-adjust: 100%;
+}
+.nameheader .nametitle .email-text {
+  color: var(--text-subdued-text, #ACACAC);
+  font-size: 14px;
+  font-family: Inter;
+  line-height: 24px;
+}
+.nameheader .nametitle .icon {
+  color: #ACACAC;
+  margin-right: 3px;
 }
 
 /*.profilepicture{
@@ -78,30 +111,6 @@
         width: 50px;
 }
 }*/
-.nametitle h1 {
-  color: rgb(0, 0, 0);
-  font-size: 38.4px;
-  white-space: nowrap;
-  overflow: scroll;
-  font-family: DM Sans;
-  font-weight: 500;
-  align-items: center;
-  margin-top: -10px;
-}
-
-.email-text {
-  color: var(--text-subdued-text, #ACACAC);
-  /* Inter/Body 2 */
-  font-size: 14px;
-  font-family: Inter;
-  line-height: 24px;
-}
-
-.icon {
-  color: #ACACAC;
-  margin-right: 3px;
-}
-
 .businesses-overview {
   display: flex;
   margin-top: 16px;
