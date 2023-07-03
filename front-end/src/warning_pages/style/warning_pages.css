@@ -30,4 +30,30 @@
 .warning-pages .warning-icon .css-i4bv87-MuiSvgIcon-root {
   height: 100px !important;
   width: 100px !important;
+}
+.warning-pages h1, .warning-pages h3 {
+  text-align: center;
+}
+.warning-pages h1 {
+  font-size: 28px;
+  color: #F7F8FC;
+  font-weight: 900;
+}
+.warning-pages h3 {
+  font-size: 18px;
+  color: #d1d2d6;
+}
+.warning-pages .upgrade-plan-btn {
+  width: 100%;
+  text-align: center;
+  margin: auto;
+  padding-top: 15px;
+}
+.warning-pages .upgrade-plan-btn button {
+  background-color: #FFF;
+  color: #3235FF;
+  padding: 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
 }/*# sourceMappingURL=warning_pages.css.map */

@@ -13,6 +13,7 @@ import { EditBusinessDetail } from "../../business/components/editBusinessDetail
 import { CreateClientJourney } from "../../client_journey/components/createClientJourney";
 import { ModifyAccountDetails } from "../components/account_settings";
 import { AccessLimit } from "../../warning_pages/components/AccessLimit";
+import { FutureFeature } from "../../warning_pages/components/FutureFeature";
 
 export const DashboardPage = () => {
     const [userID, setUserID] = useState();
@@ -82,6 +83,7 @@ export const DashboardPage = () => {
 
     useEffect(() => {
         try{
+            setLoading(true);
             const getClientJourneyList = async _ => {
                 const res = await fetch("/api/clientjourney/getall", {
                     method: "POST",
@@ -96,6 +98,7 @@ export const DashboardPage = () => {
                 console.log(data);
                 if(data.status){
                     setJourneys(data.clientJourneys);
+                    setLoading(false);
                 }
             };
             if(business.id)
@@ -118,6 +121,7 @@ export const DashboardPage = () => {
             {!loading &&
                 <div>
                     <AccessLimit/>
+                    <FutureFeature/>
                     <ModifyAccountDetails/>
                     <CreateBusiness businesses = {businesses} setBusinesses = {setBusinesses} userID = {userID} />
                     <EditBusinessDetail 
@@ -140,7 +144,6 @@ export const DashboardPage = () => {
                         </div>
                         <div className="pane">
                             <Pane 
-                                createNewBusinessForm = {createNewBusinessForm} 
                                 business = {business} setBusiness = {setBusiness}
                                 businesses = {businesses} setBusinesses = {setBusinesses} 
                                 activeLink = {activeLink} 
@@ -161,7 +164,13 @@ export const openAccessLimitForm = _ => {
     document.getElementById("access-limit-form").style.display = "block";
     openPopUpForm();
 };
-export const createNewBusinessForm = _ => {
+export const openFutureFeatureWarningForm = _ => {
+    document.getElementById("future-feature-warning-form").style.display = "block";
+    openPopUpForm();
+};
+export const createNewBusinessForm = (businesses) => {
+    if(businesses.length > 0)
+        return openAccessLimitForm();
     document.getElementById("createAccountForm").style.display = "block";
     openPopUpForm();
 };

@@ -109,7 +109,8 @@ $navbaritem-width: calc(pane.$mainbox-width / 7 + 1.5vw);
         }
     }
     & .business-dashboard-body{
-        height: $body-height;
+        min-height: $body-height;
+        height: fit-content;
         & .business-dashboard-body-content{
             display: block;
             padding: 10px 30px;

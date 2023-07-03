@@ -17,6 +17,11 @@ export const AccessLimit = _ => {
                 <div className='warning-icon'>
                     <Warning/>
                 </div>
+                <h1>Oops, you can't access this feature!</h1>
+                <h3>You can access this feature by upgrading your plan.</h3>
+                <div className='upgrade-plan-btn'>
+                    <button >Join the Waitlist</button>
+                </div>
             </div>
         </section>
     );

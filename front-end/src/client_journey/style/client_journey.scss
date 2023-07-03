@@ -1,6 +1,7 @@
 .client-journey, .procedure, .policies{
     width: 100%;
-    height: calc(100% - 70px - 23px);
+    min-height: calc(100% - 70px - 23px);
+    height: fit-content;
     overflow: scroll;
 }
 
