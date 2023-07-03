@@ -6,7 +6,7 @@ import { TableContent1 } from './TableContent1';
 
 export const MainTableHeader = (props) => {
     return(
-        <div className='main-table'>
+        <div className='main-table' id = {props.id}>
             <div className='main-table-title'>
                 <h1>{props.title}</h1>
                 <div className='main-table-right-header'>
@@ -16,7 +16,7 @@ export const MainTableHeader = (props) => {
             <TableHeader list = {props.list}/>
             {props.list.length <= 0 ?
                 <EmptyTableContent addNewBtn = {props.addNewBtn}/> :
-                <TableContent1 list = {props.list}/>
+                <TableContent1 list = {props.list} itemActionBtn = {props.itemActionBtn} />
             }
         </div>
     );

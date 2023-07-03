@@ -51,7 +51,7 @@ export const BusinessDashboard = (props) => {
     return(
         <div className='business-dashboard'>
             {title(props.business, (props.activeLink2 - 1), deleteBusiness)}
-            {body(props.business, props.activeLink3, props.setActiveLink3, props.journeys, props.setJourneys)}
+            {body(props.business, props.activeLink2, props.activeLink3, props.setActiveLink3, props.journeys, props.setJourneys)}
         </div>
     );
 };
@@ -80,7 +80,7 @@ const title = (business, businessIndex, deleteBusiness) => {
         </div>
     );
 };
-const body = (business, activeLink3, setActiveLink3, journeys, setJourneys) => {
+const body = (business, activeLink2, activeLink3, setActiveLink3, journeys, setJourneys) => {
     return(
         <div className='business-dashboard-body'>
             <div className='business-dashboard-body-content'>
@@ -101,6 +101,7 @@ const body = (business, activeLink3, setActiveLink3, journeys, setJourneys) => {
                         businessDetails(business) :
                     activeLink3 === "Client Journey" ?
                         <ClientJourneyDashboard
+                            activeLink2 = {activeLink2}
                             journeys = {journeys} setJourneys = {setJourneys}
                         /> :
                     activeLink3 === "Procedures" ?

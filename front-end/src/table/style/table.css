@@ -1,8 +1,96 @@
-.main-table {
+.main-table, .secondary-table {
   width: 100%;
-  height: 100%;
-  overflow: scroll;
 }
+.main-table h1, .secondary-table h1 {
+  font-size: 32px;
+  font-weight: 700;
+  float: left;
+}
+.main-table h2, .secondary-table h2 {
+  padding: 5px;
+  font-size: 16px;
+  text-align: justify;
+}
+.main-table .table-directory, .secondary-table .table-directory {
+  margin-bottom: 10px;
+  display: flex;
+}
+.main-table .table-directory h3, .secondary-table .table-directory h3 {
+  height: 35px;
+  font-size: 12px;
+  color: #929292;
+  align-items: center;
+  margin: auto;
+  margin-left: 0;
+}
+.main-table .table-directory h3 .css-i4bv87-MuiSvgIcon-root, .secondary-table .table-directory h3 .css-i4bv87-MuiSvgIcon-root {
+  color: #2173DF;
+  margin-left: 5px;
+  font-size: 13px;
+}
+.main-table .table-directory .table-directory-right-header, .secondary-table .table-directory .table-directory-right-header {
+  display: flex;
+  float: right;
+  margin-left: auto;
+}
+.main-table .table-directory .table-directory-right-header button, .main-table .table-directory .table-directory-right-header hr, .secondary-table .table-directory .table-directory-right-header button, .secondary-table .table-directory .table-directory-right-header hr {
+  margin-right: 8px;
+  height: 35px;
+}
+.main-table .table-directory .table-directory-right-header button, .secondary-table .table-directory .table-directory-right-header button {
+  background-color: transparent;
+  border: none;
+  color: black;
+}
+.main-table .table-directory .table-directory-right-header button:hover, .secondary-table .table-directory .table-directory-right-header button:hover {
+  cursor: pointer;
+  color: #5D5FEF;
+}
+.main-table .table-directory .table-directory-right-header hr, .secondary-table .table-directory .table-directory-right-header hr {
+  border: none;
+  border-left: 2px solid hsl(200, 10%, 50%);
+  width: 2px;
+}
+.main-table .table-directory .table-directory-right-header .edit-btn, .secondary-table .table-directory .table-directory-right-header .edit-btn {
+  padding: 5px;
+  font-size: 14px;
+  border-radius: 4px;
+  background-color: #FEC514;
+  border-color: transparent;
+  color: black;
+  margin-right: 0;
+}
+.main-table .table-directory .table-directory-right-header .edit-btn .css-i4bv87-MuiSvgIcon-root, .secondary-table .table-directory .table-directory-right-header .edit-btn .css-i4bv87-MuiSvgIcon-root {
+  margin-right: 4px;
+}
+.main-table .table-directory .table-directory-right-header .ai-edit-btn, .secondary-table .table-directory .table-directory-right-header .ai-edit-btn {
+  background-color: #A5A6F6;
+  background: rgba(165, 166, 246, 0.2);
+  border-radius: 18px;
+  border: 0.75px solid #5D5FEF;
+  padding: 0 10px;
+}
+.main-table .table-directory .table-directory-right-header .ai-edit-btn img, .secondary-table .table-directory .table-directory-right-header .ai-edit-btn img {
+  height: 20px;
+  margin-top: -5px;
+  margin-right: 5px;
+}
+.main-table .table-directory .table-directory-right-header .save-btn, .secondary-table .table-directory .table-directory-right-header .save-btn {
+  background-color: #2173DF;
+  border-radius: 4px;
+  padding: 0 10px;
+  color: white;
+}
+.main-table .table-directory .table-directory-right-header .save-btn:hover, .secondary-table .table-directory .table-directory-right-header .save-btn:hover {
+  color: black;
+}
+.main-table .table-directory .table-directory-right-header .save-btn .css-i4bv87-MuiSvgIcon-root, .secondary-table .table-directory .table-directory-right-header .save-btn .css-i4bv87-MuiSvgIcon-root {
+  margin-right: 5px;
+}
+.main-table .table-directory .table-directory-right-header .css-i4bv87-MuiSvgIcon-root, .secondary-table .table-directory .table-directory-right-header .css-i4bv87-MuiSvgIcon-root {
+  font-size: 16px;
+}
+
 .main-table button {
   border-radius: 4px;
   padding: 4px 5px;
@@ -17,15 +105,49 @@
   display: flex;
   margin: 10px 0;
 }
-.main-table .main-table-title h1 {
-  font-size: 32px;
-  font-weight: 500;
-  float: left;
-}
 .main-table .main-table-title .main-table-right-header {
   display: flex;
   float: right;
   margin-left: auto;
+}
+
+.secondary-table {
+  display: none;
+}
+.secondary-table .secondary-table-content {
+  display: grid;
+}
+.secondary-table .secondary-table-content .secondary-table-items {
+  width: 100%;
+  height: 100%;
+  padding: 10px 20px;
+  background-color: #F8F8F8;
+  border-radius: 20px;
+}
+.secondary-table .secondary-table-content .secondary-table-items .items-title {
+  display: flex;
+  height: 30px;
+}
+.secondary-table .secondary-table-content .secondary-table-items .items-title h1, .secondary-table .secondary-table-content .secondary-table-items .items-title button {
+  height: 30px;
+  margin: auto;
+}
+.secondary-table .secondary-table-content .secondary-table-items .items-title h1 {
+  font-size: 20px;
+  margin-left: 0;
+}
+.secondary-table .secondary-table-content .secondary-table-items .items-title button {
+  font-size: 12px;
+  margin: auto;
+  float: right;
+  margin-right: 0;
+  color: black;
+  background-color: transparent;
+  border: none;
+}
+.secondary-table .secondary-table-content .secondary-table-items .items-title button .css-i4bv87-MuiSvgIcon-root {
+  color: #A2ABBA;
+  font-size: 20px;
 }
 
 .table-header {
@@ -124,4 +246,113 @@
 .table-content-1 .table-content-1-item button img {
   height: 25px;
   margin-right: 15px;
+}
+
+.collapsed-table-item, .expanded-table-item {
+  display: flex;
+  padding: 20px 10px;
+  background-color: #FFF;
+  border-radius: 12px;
+  border: 1px solid transparent;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+.collapsed-table-item h1, .expanded-table-item h1 {
+  font-size: 24px;
+  text-transform: capitalize;
+}
+.collapsed-table-item h2, .expanded-table-item h2 {
+  font-size: 20px;
+  color: #ACACAC;
+  padding: 10px;
+  margin-left: 0 !important;
+  margin-right: 10px !important;
+}
+.collapsed-table-item h3, .expanded-table-item h3 {
+  font-size: 16px;
+  margin-left: 5px;
+}
+.collapsed-table-item button, .expanded-table-item button {
+  background-color: transparent;
+  border: none;
+  color: black;
+  height: auto;
+  float: right;
+  padding-left: 20px;
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.collapsed-table-item h1 {
+  padding: 10px 0;
+  margin: auto;
+}
+.collapsed-table-item h2 {
+  margin: auto;
+}
+
+.expanded-table-item h1 {
+  margin-bottom: 25px;
+}
+.expanded-table-item h2 {
+  margin-top: 0;
+}
+.expanded-table-item .expanded-table-subitem {
+  display: flex;
+  margin-bottom: 15px;
+}
+.expanded-table-item .expanded-table-subitem .expanded-table-subitem-content {
+  width: 100%;
+  display: grid;
+}
+.expanded-table-item .expanded-table-subitem h2 {
+  font-size: 16px;
+  width: 35px;
+  margin-right: 5px;
+  margin-top: 0;
+  padding-top: 0;
+  padding-left: 0;
+}
+.expanded-table-item .expanded-table-subitem h1 {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+.expanded-table-item .expanded-table-subitem h3 {
+  font-size: 16px;
+  text-align: justify;
+}
+.expanded-table-item .expanded-table-sub-subitem {
+  display: flex;
+  margin-bottom: 5px;
+}
+.expanded-table-item .expanded-table-sub-subitem h1, .expanded-table-item .expanded-table-sub-subitem h2 {
+  font-size: 16px;
+  white-space: nowrap;
+  min-width: 70px;
+  padding: 0;
+  margin: 0;
+  margin-left: 5px;
+  font-weight: 400;
+}
+.expanded-table-item .expanded-table-sub-subitem h3 {
+  margin-left: 20px;
+  text-align: justify;
+}
+
+.edit-prompt img, .edit-prompt input, .edit-prompt button {
+  height: 25px;
+}
+.edit-prompt img {
+  margin-right: 10px;
+}
+.edit-prompt input, .edit-prompt input:focus {
+  width: calc(80% - 45px);
+  border: 1px solid transparent !important;
+  margin-right: 10px;
+  outline: none;
+}
+.edit-prompt button {
+  width: calc(20% - 45px);
+  color: #ACACAC;
+  text-align: right;
 }/*# sourceMappingURL=table.css.map */

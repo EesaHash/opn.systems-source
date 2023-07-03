@@ -1,7 +1,96 @@
-.main-table{
+.main-table, .secondary-table{
     width: 100%;
-    height: 100%;
-    overflow: scroll;
+    & h1{
+        font-size: 32px;
+        font-weight: 700;
+        float: left;
+    }
+    & h2{
+        padding: 5px;
+        font-size: 16px;
+        text-align: justify;
+    }
+    & .table-directory{
+        margin-bottom: 10px;
+        display: flex;
+        & h3{
+            height: 35px;
+            font-size: 12px;
+            color: #929292;
+            align-items: center;
+            margin: auto;
+            margin-left: 0;
+            & .css-i4bv87-MuiSvgIcon-root{
+                color: #2173DF;
+                margin-left: 5px;
+                font-size: 13px;
+            }
+        }
+        & .table-directory-right-header{
+            display: flex;
+            float: right;
+            margin-left: auto;
+            & button, hr{
+                margin-right: 8px;
+                height: 35px;
+            }
+            & button{
+                background-color: transparent;
+                border: none;
+                color: black;
+                &:hover{
+                    cursor: pointer;
+                    color: #5D5FEF;
+                }
+            }
+            & hr{ 
+                border: none;
+                border-left: 2px solid hsla(200, 10%, 50%,100);
+                width: 2px;
+            }
+            & .edit-btn{
+                padding: 5px;
+                font-size: 14px;
+                border-radius: 4px;
+                background-color: #FEC514;
+                border-color: transparent;
+                color: black;
+                margin-right: 0;
+                & .css-i4bv87-MuiSvgIcon-root{
+                    margin-right: 4px;
+                }
+            }
+            & .ai-edit-btn{
+                background-color: #A5A6F6;
+                background: rgba(165, 166, 246, 0.20);
+                border-radius: 18px;
+                border: 0.75px solid #5D5FEF;
+                padding: 0 10px;
+                & img{
+                    height: 20px;
+                    margin-top: -5px;
+                    margin-right: 5px;
+                }
+            }
+            & .save-btn{
+                background-color: #2173DF;
+                border-radius: 4px;
+                padding: 0 10px;
+                color: white;
+                &:hover{
+                    color: black;
+                }
+                & .css-i4bv87-MuiSvgIcon-root{
+                    margin-right: 5px;
+                }
+            }
+            & .css-i4bv87-MuiSvgIcon-root{
+                font-size: 16px;
+            }
+        }
+    }
+}
+.main-table{
     & button{
         border-radius: 4px;
         padding: 4px 5px;
@@ -15,15 +104,48 @@
         width: 100%;
         display: flex;
         margin: 10px 0;
-        & h1{
-            font-size: 32px;
-            font-weight: 500;
-            float: left;
-        }
         & .main-table-right-header{
             display: flex;
             float: right;
             margin-left: auto;
+        }
+    }
+}
+.secondary-table{
+    display: none;
+    & .secondary-table-content{
+        display: grid;
+        & .secondary-table-items{
+            width: 100%;
+            height: 100%;
+            padding: 10px 20px;
+            background-color: #F8F8F8;
+            border-radius: 20px;
+            & .items-title{
+                display: flex;
+                height: 30px;
+                & h1, button{
+                    height: 30px;
+                    margin: auto;
+                }
+                & h1{
+                    font-size: 20px;
+                    margin-left: 0;
+                }
+                & button{
+                    font-size: 12px;
+                    margin: auto;
+                    float: right;
+                    margin-right: 0;
+                    color: black;
+                    background-color: transparent;
+                    border: none;
+                    & .css-i4bv87-MuiSvgIcon-root{
+                        color: #A2ABBA;
+                        font-size: 20px;
+                    }
+                }
+            }
         }
     }
 }
@@ -121,5 +243,116 @@
                 margin-right: 15px;
             }
         }
+    }
+}
+.collapsed-table-item, .expanded-table-item{
+    display: flex;
+    padding: 20px 10px;
+    background-color: #FFF;
+    border-radius: 12px;
+    border: 1px solid transparent;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    & h1{
+        font-size: 24px;
+        text-transform: capitalize;
+    }
+    & h2{
+        font-size: 20px;
+        color: #ACACAC;
+        padding: 10px;
+        margin-left: 0 !important;
+        margin-right: 10px !important;
+    }
+    & h3{
+        font-size: 16px;
+        margin-left: 5px;
+    }
+    & button{
+        background-color: transparent;
+        border: none;
+        color: black;
+        height: auto;
+        float: right;
+        padding-left: 20px;
+        margin-left: auto;
+        margin-right: 0;
+    }
+}
+.collapsed-table-item{
+    & h1{
+        padding: 10px 0;
+        margin: auto;
+    }
+    & h2{
+        margin: auto;
+    }
+}
+.expanded-table-item{
+    & h1{
+        margin-bottom: 25px;
+    }
+    & h2{
+        margin-top: 0;
+    }
+    & .expanded-table-subitem{
+        display: flex;
+        margin-bottom: 15px;
+        & .expanded-table-subitem-content{
+            width: 100%;
+            display: grid;
+        }
+        & h2{
+            font-size: 16px;
+            width: 35px;
+            margin-right: 5px;
+            margin-top: 0;
+            padding-top: 0;
+            padding-left: 0;
+        }
+        & h1{
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+        & h3{
+            font-size: 16px;
+            text-align: justify;
+        }
+    }
+    & .expanded-table-sub-subitem{
+        display: flex;
+        margin-bottom: 5px;
+        & h1, h2{
+            font-size: 16px;
+            white-space: nowrap;
+            min-width: 70px;
+            padding: 0;
+            margin: 0;
+            margin-left: 5px;
+            font-weight: 400;
+        }
+        & h3{
+            margin-left: 20px;
+            text-align: justify;
+        }
+    }
+}
+.edit-prompt{
+    & img, input, button{
+        height: 25px;
+    }
+    & img{
+        margin-right: 10px;
+    }
+    & input, input:focus{
+        width: calc(80% - 45px);
+        border: 1px solid transparent !important;
+        margin-right: 10px;
+        outline: none;
+    }
+    & button{
+        width: calc(20% - 45px);
+        color: #ACACAC;
+        text-align: right;
     }
 }
