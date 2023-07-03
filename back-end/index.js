@@ -21,6 +21,7 @@ app.use("/api/getuserdata", require("./controllers/accountController/getUserData
 // BUSINESS APIs CONTROLLERS
 app.use("/api/business", require("./controllers/businessControllers/businessController"));
 app.use("/api/clientjourney", require("./controllers/businessControllers/clientJourneyController"));
+app.use("/api/sop", require("./controllers/businessControllers/prelimSOPController"));
 
 app.listen(PORT, () => {
     console.log(`Server listening on ${PORT}`);
