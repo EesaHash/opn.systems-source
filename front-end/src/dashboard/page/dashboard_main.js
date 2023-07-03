@@ -118,7 +118,10 @@ export const DashboardPage = () => {
             {!loading &&
                 <div>
                     <AccessLimit/>
-                    <ModifyAccountDetails/>
+                    <ModifyAccountDetails
+                        user = {user}
+                        setUser = {setUser}
+                    />
                     <CreateBusiness businesses = {businesses} setBusinesses = {setBusinesses} userID = {userID} />
                     <EditBusinessDetail 
                         businesses = {businesses} setBusinesses = {setBusinesses} 

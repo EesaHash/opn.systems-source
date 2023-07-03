@@ -88,7 +88,6 @@ button{
 .form-popup {
     display: none;
     position: fixed !important;
-    border: 3px solid #f1f1f1;
     z-index: 9;
     padding: auto;
     overflow: scroll;
@@ -114,7 +113,7 @@ button{
     & hr{
         margin: 20px -40px;
         width: auto;
-        border: 1.5px solid #a8a7a7;
+       
     }
     & .pop-up-input{
         display: grid;
@@ -123,19 +122,23 @@ button{
             text-align: left;
         }
         & input, button, .dropdown, textarea{
-            height: 5vh !important;
+            height: 48px  !important;
             border-radius: 4px;
+         
         }
         & input, .dropdown, .dropdown-menu, textarea{
             background-color: #f1f1f1;
+            
         }
         & textarea{
             height: 10vh !important;
+
         }
     }
     & .pop-up-button{
         display: flex;
         float: right;
+        margin-bottom: 12px;
         & button{
             min-height: fit-content;
             height: 5vh;

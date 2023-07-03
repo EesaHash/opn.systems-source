@@ -88,7 +88,6 @@ button {
 .form-popup {
   display: none;
   position: fixed !important;
-  border: 3px solid #f1f1f1;
   z-index: 9;
   padding: auto;
   overflow: scroll;
@@ -119,7 +118,6 @@ button {
 .form-popup hr {
   margin: 20px -40px;
   width: auto;
-  border: 1.5px solid #a8a7a7;
 }
 .form-popup .pop-up-input {
   display: grid;
@@ -129,7 +127,7 @@ button {
   text-align: left;
 }
 .form-popup .pop-up-input input, .form-popup .pop-up-input button, .form-popup .pop-up-input .dropdown, .form-popup .pop-up-input textarea {
-  height: 5vh !important;
+  height: 48px !important;
   border-radius: 4px;
 }
 .form-popup .pop-up-input input, .form-popup .pop-up-input .dropdown, .form-popup .pop-up-input .dropdown-menu, .form-popup .pop-up-input textarea {
@@ -141,6 +139,7 @@ button {
 .form-popup .pop-up-button {
   display: flex;
   float: right;
+  margin-bottom: 12px;
 }
 .form-popup .pop-up-button button {
   min-height: -moz-fit-content;
