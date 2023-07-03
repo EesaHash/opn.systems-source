@@ -4,10 +4,6 @@ import { SidebarData } from './SidebarData';
 import { createNewBusinessForm } from '../page/dashboard_main';
 
 export const Sidebar = (props) => {
-    const addBusiness = _ => {
-        createNewBusinessForm();
-    };
-  
     return (
         <div className="sidebar">
             <ul className="sidebar-list">
@@ -44,7 +40,7 @@ export const Sidebar = (props) => {
                                 </div>
                             </li>
                             ))}
-                            {(val.title === "Business") && <button onClick={addBusiness}>+ Add Business</button>}
+                            {(val.title === "Business") && <button onClick={() => createNewBusinessForm(props.businesses)}>+ Add Business</button>}
                         </ul>
                         )}
                     </li>

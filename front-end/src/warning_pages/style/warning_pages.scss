@@ -29,4 +29,30 @@
             width: 100px !important;
         }
     }
+    & h1, h3{
+        text-align: center;
+    }
+    & h1{
+        font-size: 28px;
+        color: #F7F8FC;
+        font-weight: 900;
+    }
+    & h3{
+        font-size: 18px;
+        color: #d1d2d6;
+    }
+    & .upgrade-plan-btn{
+        width: 100%;
+        text-align: center;
+        margin: auto;
+        padding-top: 15px;
+        & button{
+            background-color: #FFF;
+            color: #3235FF;
+            padding: 20px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+        }
+    }
 }

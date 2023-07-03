@@ -140,7 +140,6 @@ export const DashboardPage = () => {
                         </div>
                         <div className="pane">
                             <Pane 
-                                createNewBusinessForm = {createNewBusinessForm} 
                                 business = {business} setBusiness = {setBusiness}
                                 businesses = {businesses} setBusinesses = {setBusinesses} 
                                 activeLink = {activeLink} 
@@ -161,7 +160,9 @@ export const openAccessLimitForm = _ => {
     document.getElementById("access-limit-form").style.display = "block";
     openPopUpForm();
 };
-export const createNewBusinessForm = _ => {
+export const createNewBusinessForm = (businesses) => {
+    if(businesses.length > 0)
+        return openAccessLimitForm();
     document.getElementById("createAccountForm").style.display = "block";
     openPopUpForm();
 };
