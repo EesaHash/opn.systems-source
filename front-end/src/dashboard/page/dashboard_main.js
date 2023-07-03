@@ -122,7 +122,10 @@ export const DashboardPage = () => {
                 <div>
                     <AccessLimit/>
                     <FutureFeature/>
-                    <ModifyAccountDetails/>
+                    <ModifyAccountDetails
+                        user = {user}
+                        setUser = {setUser}
+                    />
                     <CreateBusiness businesses = {businesses} setBusinesses = {setBusinesses} userID = {userID} />
                     <EditBusinessDetail 
                         businesses = {businesses} setBusinesses = {setBusinesses} 

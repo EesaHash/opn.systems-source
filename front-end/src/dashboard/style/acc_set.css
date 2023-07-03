@@ -1,10 +1,56 @@
+/*comments (things to remember to include)*/
+/*when fields get filled there's supposed to be a purple underline underneath*/
 .account-setting {
-  margin-top: 5vh;
+  margin-top: 15vh;
   max-height: 90vh;
-  width: 20vw;
+  width: 35vw;
   min-width: -moz-fit-content;
   min-width: fit-content;
-  margin-left: 25vw;
-  margin-right: 25vw;
+  left: 0;
+  margin-left: 30vw;
+  margin-right: 30vw;
   overflow: scroll;
+}
+.account-setting .close-button {
+  color: black;
+  background: transparent;
+  border: 0;
+  align-items: right;
+  float: right;
+  margin-top: 0;
+}
+
+.pop-up-input {
+  margin-top: auto;
+  margin-left: 180px !important;
+  width: 20vw;
+}
+.pop-up-input .email-placeholder {
+  color: #8496AE;
+}
+.pop-up-input .change-pass-button {
+  color: #2173DF;
+  font-size: 14px;
+  background: transparent;
+  border: transparent;
+  width: 395px;
+  height: auto;
+  padding: 0 0 0 0;
+  margin-top: auto;
+  text-align: left;
+}
+
+.initial {
+  font-size: 30px;
+  color: #000000;
+  background-color: #7DDED8;
+  width: 70px;
+  height: 70px;
+  padding-top: 12px;
+  border-radius: 50%;
+  text-align: center;
+  font-weight: 1000;
+  text-transform: uppercase;
+  margin-top: 20px;
+  margin-left: 20px;
 }/*# sourceMappingURL=acc_set.css.map */

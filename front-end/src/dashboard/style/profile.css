@@ -311,7 +311,7 @@
   color: #808080;
 }
 .profile-header .dropdown-arrow-area {
-  height: 250px;
+  height: 300px;
 }
 .profile-header .dropdown-arrow {
   border-top-color: black;
@@ -323,8 +323,9 @@
   margin-top: -15px;
 }
 .profile-header .dropdown-arrow .dropdown-content {
-  margin-top: 30px;
-  right: 200px;
+  margin-top: 15px;
+  right: 50px;
+  position: fixed;
 }
 .profile-header .dropdown-arrow .dropdown-content a, .profile-header .dropdown-arrow .dropdown-content button {
   text-decoration: none;
