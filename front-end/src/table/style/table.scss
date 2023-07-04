@@ -270,7 +270,7 @@
         }
     }
 }
-.collapsed-table-item, .expanded-table-item{
+.minimised-table-item, .expanded-table-item{
     display: flex;
     padding: 20px 10px;
     background-color: #FFF;
@@ -297,14 +297,16 @@
         background-color: transparent;
         border: none;
         color: black;
-        height: auto;
+        height: fit-content;
+        margin-top: 10px;
         float: right;
         padding-left: 20px;
         margin-left: auto;
         margin-right: 0;
     }
 }
-.collapsed-table-item{
+.minimised-table-item{
+    cursor: pointer;
     & h1{
         padding: 10px 0;
         margin: auto;
@@ -350,7 +352,7 @@
         & h1, h2{
             font-size: 16px;
             white-space: nowrap;
-            min-width: 70px;
+            min-width: 60px;
             padding: 0;
             margin: 0;
             margin-left: 5px;

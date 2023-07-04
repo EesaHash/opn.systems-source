@@ -34,6 +34,68 @@ export const ClientJourneyDashboard = (props) => {
             document.getElementById("client-journey-secondary-table").style.display = "none";
         }
     };
+    const automaticallyRegenerate = (stage) => {
+        regenerateClientJourney(stage, null);
+    };
+    const regenerateByPrompt = (stage, prompt) => {
+        if(prompt){
+            regenerateClientJourney(stage, prompt);
+        }
+    };
+    const regenerateClientJourney = (stage, prompt) => {
+        try{
+            fetch("/api/clientjourney/regenerate_stage", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    id: journey.id,
+                    businessId: journey.businessId,
+                    stage: stage,
+                    prompt: prompt
+                })
+            })
+                .then((res) => {return res.json(); })
+                .then((data) => {
+                    if(data.status){
+                        const temp = {...journey};
+                        switch(stage){
+                            case "awareness":
+                                temp.awareness = JSON.stringify(data.output);
+                                break;
+                            case "interest":
+                                temp.interest = JSON.stringify(data.output);
+                                break;
+                            case "evaluation":
+                                temp.evaluation = JSON.stringify(data.output);
+                                break;
+                            case "decision":
+                                temp.decision = JSON.stringify(data.output);
+                                break;
+                            case "purchase":
+                                temp.purchase = JSON.stringify(data.output);
+                                break;
+                            case "implementation":
+                                temp.implementation = JSON.stringify(data.output);
+                                break;
+                            case "postPurchase":
+                                temp.postPurchase = JSON.stringify(data.output);
+                                break;
+                            case "retention":
+                                temp.retention = JSON.stringify(data.output);
+                                break;
+                            default: 
+                                console.log("Unexisting column");
+                                break;
+                        }
+                        setJourney(temp);
+                    }
+                });
+        }catch(error){
+            alert(error);
+        }
+    };
     return(
         <div className='client-journey'>
             <MainTableHeader 
@@ -50,6 +112,8 @@ export const ClientJourneyDashboard = (props) => {
                 description = {journey.overview ? JSON.parse(journey.overview).overview : ""}
                 data = {journey}
                 button1 = {showJourneyList}
+                automaticallyRegenerate = {automaticallyRegenerate}
+                regenerateByPrompt = {regenerateByPrompt}
             />
         </div>
     );

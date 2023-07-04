@@ -121,45 +121,51 @@ clientJourney.saveRegeneratedStage = async (req, res) => {
 /*
 Example JSON body:
  {
+    id: 1,
     businessId: 1,
-    stage: "awareness" -- all lowercase
+    stage: "awareness" -- all lowercase,
+    prompt: "user prompt"
  }
 */
 clientJourney.regenerateStage = async (req, res) => {
     try {
-        const clientJourneyList = await ClientJourney.findAll({ where: { businessId: req.body.businessId } });
+        const { id, businessId, prompt } = req.body;
+        const clientJourneyList = await ClientJourney.findAll({ where: { id: id } });
         const clientJourney = clientJourneyList[0];
         if (clientJourney == null) {
             throw "Client Journey or Business not found!";
         }
-        const { businessId, prompt } = req.body;
         if (prompt == null) {
-        const business = await Business.findOne({ where: { id: businessId } });
-        if (business == null) {
-            throw "Client Journey or Business not found!";
+            const business = await Business.findOne({ where: { id: businessId } });
+            if (business == null) {
+                throw "Client Journey or Business not found!";
+            }
+            const businessDetails = "Business Name:" + business.businessName + "\n Business Type:" + business.businessType + "\n Industry:" + business.industry + "\n Company Size:" + business.companySize + "\n Business Objective:" + business.businessObjective + "\n Core Services:" + business.coreServices + "\n Target Market:" + business.targetMarket + "\n Product or Service Description:" + business.productOrServiceDescription +  "\n Funding Strategy:" + business.fundingStrategy;
+            const stage = req.body.stage.toLowerCase();
+            const output = await retryStage(stage, businessDetails);
+            if (output == null) {
+                throw "Failed to generate stage!";
+            }
+            return res.status(200).json({
+                status: true,
+                output
+            });
+        } else {
+            const stage = req.body.stage.toLowerCase();
+            const output = await regenerateStageWithContext(stage, clientJourney[stage], prompt);
+            if (output == null) {
+                throw "Failed to generate stage!";
+            }
+            console.log(output);
+            return res.status(200).json({
+                status: true,
+                output
+            });
         }
-        const businessDetails = "Business Name:" + business.businessName + "\n Business Type:" + business.businessType + "\n Industry:" + business.industry + "\n Company Size:" + business.companySize + "\n Business Objective:" + business.businessObjective + "\n Core Services:" + business.coreServices + "\n Target Market:" + business.targetMarket + "\n Product or Service Description:" + business.productOrServiceDescription +  "\n Funding Strategy:" + business.fundingStrategy;
-        const stage = req.body.stage.toLowerCase();
-        const output = await retryStage(stage, businessDetails);
-        if (output == null) {
-            throw "Failed to generate stage!";
-        }
-        return res.status(200).json({
-            output
-        });
-    } else {
-        const stage = req.body.stage.toLowerCase();
-        const output = await regenerateStageWithContext(stage, clientJourney[stage], prompt);
-        if (output == null) {
-            throw "Failed to generate stage!";
-        }
-        return res.status(200).json({
-            output
-        });
-    }
     } catch (error) {
         console.log(error);
         return res.status(403).json({
+            status: false,
             result: `Failed`
         });
     }
@@ -288,22 +294,27 @@ async function generateStage(stageString, businessDetailsString) {
     const input = await prompt.format({
         businessDetails: businessDetailsString,
     });
-    const response = await model.call(input);
-    try {
-        parsedResponse = await parser.parse(response);
-        return parsedResponse;
-    } catch (e) {
+    try{
+        const response = await model.call(input);
         try {
-            const fixParser = OutputFixingParser.fromLLM(
-                new OpenAI({ temperature: 0, model: "gpt-3.5-turbo-16k" }),
-                parser
-            );
-            const output = await fixParser.parse(response);
-            return output;
+            parsedResponse = await parser.parse(response);
+            return parsedResponse;
+        } catch (e) {
+            try {
+                const fixParser = OutputFixingParser.fromLLM(
+                    new OpenAI({ temperature: 0, model: "gpt-3.5-turbo-16k" }),
+                    parser
+                );
+                const output = await fixParser.parse(response);
+                return output;
+            }
+            catch (e) {
+                return null;
+            }
         }
-        catch (e) {
-            return null;
-        }
+    }catch(error){
+        console.log(error);
+        return null;
     }
 }
 

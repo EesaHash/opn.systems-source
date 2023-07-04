@@ -274,7 +274,7 @@
   margin-right: 15px;
 }
 
-.collapsed-table-item, .expanded-table-item {
+.minimised-table-item, .expanded-table-item {
   display: flex;
   padding: 20px 10px;
   background-color: #FFF;
@@ -283,37 +283,42 @@
   margin-top: 8px;
   margin-bottom: 8px;
 }
-.collapsed-table-item h1, .expanded-table-item h1 {
+.minimised-table-item h1, .expanded-table-item h1 {
   font-size: 24px;
   text-transform: capitalize;
 }
-.collapsed-table-item h2, .expanded-table-item h2 {
+.minimised-table-item h2, .expanded-table-item h2 {
   font-size: 20px;
   color: #ACACAC;
   padding: 10px;
   margin-left: 0 !important;
   margin-right: 10px !important;
 }
-.collapsed-table-item h3, .expanded-table-item h3 {
+.minimised-table-item h3, .expanded-table-item h3 {
   font-size: 16px;
   margin-left: 5px;
 }
-.collapsed-table-item button, .expanded-table-item button {
+.minimised-table-item button, .expanded-table-item button {
   background-color: transparent;
   border: none;
   color: black;
-  height: auto;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin-top: 10px;
   float: right;
   padding-left: 20px;
   margin-left: auto;
   margin-right: 0;
 }
 
-.collapsed-table-item h1 {
+.minimised-table-item {
+  cursor: pointer;
+}
+.minimised-table-item h1 {
   padding: 10px 0;
   margin: auto;
 }
-.collapsed-table-item h2 {
+.minimised-table-item h2 {
   margin: auto;
 }
 
@@ -354,7 +359,7 @@
 .expanded-table-item .expanded-table-sub-subitem h1, .expanded-table-item .expanded-table-sub-subitem h2 {
   font-size: 16px;
   white-space: nowrap;
-  min-width: 70px;
+  min-width: 60px;
   padding: 0;
   margin: 0;
   margin-left: 5px;

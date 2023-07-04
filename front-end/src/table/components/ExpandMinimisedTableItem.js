@@ -2,16 +2,28 @@ import React, { useState } from 'react';
 import "../style/table.css";
 import { KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material';
 
-export const ExpandCollapseTableItem = (props) => {
-    const [itemClassName, setItemClassName] = useState("collapsed-table-item");
+export const ExpandMinimisedTableItem = (props) => {
+    const [itemClassName, setItemClassName] = useState("minimised-table-item");
     const expandCollapseBtn = _ => {
-        if(itemClassName === "collapsed-table-item")
+        if(itemClassName === "minimised-table-item")
             setItemClassName("expanded-table-item");
         else
-            setItemClassName("collapsed-table-item");
+            setItemClassName("minimised-table-item");
+    };
+    const sendPrompt = _ => {
+        const prompt = document.getElementById(`prompt${props.index}`).value;
+        if(!prompt)
+            return alert("Prompt cannot be empty");
+        props.regenerateByPrompt(props.title, prompt);
+        document.getElementById(`prompt${props.index}`).value = "";
+    };
+    const handleKeypress = e => {
+        if(e.key === "Enter"){
+            sendPrompt();
+        }
     };
     return(
-        <div key = {props.index} className={itemClassName}>
+        <div key = {props.index} className={itemClassName} onClick={() => itemClassName === "minimised-table-item" && expandCollapseBtn()}>
             <h2>{props.index}</h2>
             <div style={{display: "grid"}}>
                 <h1>{props.title}</h1>
@@ -23,19 +35,19 @@ export const ExpandCollapseTableItem = (props) => {
                 {(props.editStatus && itemClassName === "expanded-table-item") && 
                     <div className='edit'>
                         <div className='edit-suggestion'>
-                            <button>Regenerate</button>
+                            <button onClick={() => props.automaticallyRegenerate(props.title)}>Regenerate</button>
                             <h3><img src="./images/loadingIcon.png" alt = "icon"/>AI powered</h3>
                         </div>
                         <div className='edit-prompt'>
                             <img src="./images/loadingIcon.png" alt = "icon"/>
-                            <input type='text' placeholder='Ask AI to write anything' />
-                            <button>Send</button>
+                            <input type='text' id={`prompt${props.index}`} placeholder='Ask AI to write anything' onKeyPress={handleKeypress} />
+                            <button onClick={sendPrompt} >Send</button>
                         </div>
                     </div>
                 }
             </div>
             <button onClick={expandCollapseBtn}>
-                {itemClassName === "collapsed-table-item" ? <KeyboardArrowDown/> : <KeyboardArrowUp/>}
+                {itemClassName === "minimised-table-item" ? <KeyboardArrowDown/> : <KeyboardArrowUp/>}
             </button>
         </div>
     );
@@ -62,7 +74,7 @@ const arraySubItem = (data) => {
             {data.map((data, index) => (
                 <div className='expanded-table-sub-subitem'>
                     <h1>{`Step ${index + 1}`}</h1>
-                    <h1 style={{minWidth: "5px", margin: 0}}>:</h1>
+                    <h1 style={{minWidth: "1px", margin: 0}}>:</h1>
                     <h3>{data}</h3>
                 </div>
             ))}
