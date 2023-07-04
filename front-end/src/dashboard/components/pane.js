@@ -3,9 +3,13 @@ import "../style/pane.css";
 import { BusinessDashboard } from "../../business/components/businessDashboard";
 //import { FormatAlignJustify } from "@mui/icons-material";
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
-import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import CreateIcon from '@mui/icons-material/Create';
+import { openPopUpForm } from "../page/dashboard_main";
 
+const openAccountSettingForm = _ => {
+    document.getElementById("account-setting-Form").style.display = "block";
+    openPopUpForm();
+  }
 export const Pane = (props) => {
     if(props.businesses.length === 0)
         return emptyPane(props.user)
@@ -35,7 +39,9 @@ const emptyPane = (user) => {
             <div className="nameheader">
                 {user && user.username && (
                     <>
-                    <div className="initials">{`${user.first_name.charAt(0)}${user.last_name ? user.last_name.charAt(0) : ""}`}</div>
+                    <div className="initials">{`${user.first_name.charAt(0)}${user.last_name ? user.last_name.charAt(0) : ""}`} </div>                
+                    <button onClick={openAccountSettingForm} className="editbutton"> <CreateIcon className="icon"/></button>
+                    
                     <div className="nametitle" style={{marginLeft:"30px"}}>
                         <h1 >{`${user.first_name} ${user.last_name ? user.last_name : ""}`}</h1>
                         <div className="email">

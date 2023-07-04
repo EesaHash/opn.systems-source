@@ -45,7 +45,7 @@
   display: flex;
   position: relative;
   align-items: center !important;
-  height: 110px;
+  height: 120px;
   min-height: -moz-max-content;
   min-height: max-content;
   width: calc(100vw - 240px - 8vw);
@@ -68,14 +68,35 @@
   font-size: 50px;
   color: black;
   background-color: #7DDED8;
-  width: 80px;
-  height: 80px;
+  width: 90px;
+  height: 90px;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   font-weight: 500;
   text-transform: uppercase;
+}
+.nameheader .editbutton {
+  background-color: #ffffff;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  position: absolute;
+  left: 92px;
+  top: 80px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+.nameheader .editbutton .icon {
+  color: #000;
+  height: 25px;
+  width: 25px;
 }
 .nameheader .nametitle h1 {
   color: rgb(0, 0, 0);
@@ -276,6 +297,9 @@
   align-items: center;
   font-weight: 1000;
   text-transform: uppercase;
+  -webkit-text-size-adjust: auto;
+     -moz-text-size-adjust: auto;
+          text-size-adjust: auto;
 }
 
 .profile-header {
