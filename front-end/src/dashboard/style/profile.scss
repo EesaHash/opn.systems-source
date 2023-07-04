@@ -4,7 +4,7 @@ $profile-width: calc(pane.$mainbox-width - searchbar.$search-bar-width - 2vw);
 $profile-name-width: calc(15vw - 30px - 35px - 1vw);
 
 .profile_in{
-    font-size: 30px;
+    font-size: auto;
     color: #000000;
     background-color: #7DDED8;
     width: 40px;
@@ -16,6 +16,7 @@ $profile-name-width: calc(15vw - 30px - 35px - 1vw);
     align-items: center;
     font-weight: 1000;
     text-transform: uppercase;
+    
 }
 .profile-header{
     margin-top: 5px;
@@ -42,10 +43,12 @@ $profile-name-width: calc(15vw - 30px - 35px - 1vw);
             font-size: 16px;
             white-space: nowrap;
             overflow: scroll;
+            margin-top: 3px;
         }
         & h2{
             font-size: 9px;
             color: #808080;
+            margin-top: -5px;
         }
         margin-right: 1vw;
     }

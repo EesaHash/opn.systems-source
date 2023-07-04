@@ -24,7 +24,7 @@ $somewhat-grey: grey;
     width: $mainbox-width;
     padding: 30px;
     //align-items: flex-start;
-    //gap: 10px;
+    //gap: 0px;
     align-self: stretch;
     border-radius: 20px;
     background: #FFF;
@@ -62,22 +62,25 @@ $somewhat-grey: grey;
         font-weight: 500;
         //line-height: 140%;
         align-items: center;
-        margin-top: -10px;
+        margin-top: 10px;
+        margin-bottom: 0;
         text-size-adjust: 100%;
     }
         & .email-text{
         color: var(--text-subdued-text, #ACACAC);
         font-size: 14px;
         font-family: Inter;
-        line-height: 24px;
+        //line-height: 24px;
+        margin-bottom: 20px;
+        margin-left: 8px;
         }
         & .icon{
         color:#ACACAC;
-        margin-right: 3px;
+        //margin-right: 3px;
+        //margin-top: -10px;
         } 
   }
 }  
-  
 /*.profilepicture{
     display: flex;
     margin-left: 0.5vw;
@@ -88,8 +91,6 @@ $somewhat-grey: grey;
         width: 50px;
 }
 }*/
-
-
 .businesses-overview{
     display: flex;
     margin-top: 16px;
@@ -124,6 +125,7 @@ $somewhat-grey: grey;
         color: #F7F8FC;
         text-align: center;
         overflow: scroll;
+        
         & .updateslogo{
             align-items: center;
             flex-shrink: 0;
@@ -137,16 +139,16 @@ $somewhat-grey: grey;
             font-weight: 500;
         }
         & .uptext{
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             display: flex;
-            width: 358px;
+            width: 400px;
             flex-direction: column;
             align-self: center;
             color: #F7F8FC;
             text-align: center;
-            font-size: calc(3vh * 0.7);
+            font-size: calc(2vh * 0.9);
             font-family: Inter;
-            font-weight: 100;
+            font-weight: lighter;
             line-height: 140%;
         }
         & .updatesbutton{
@@ -245,6 +247,5 @@ $people-height: calc(96vh - 50px - 1vh - 12vh - 33vh - 32px);
         margin: auto;
     }
 }
-
 
 

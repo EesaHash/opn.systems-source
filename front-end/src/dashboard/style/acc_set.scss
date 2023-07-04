@@ -6,7 +6,7 @@
 
   margin-top: 15vh;
   max-height: 90vh;
-  width: 35vw;
+  width: 39vw;
   min-width: fit-content;
   left: 0;
   margin-left: 30vw;
@@ -22,12 +22,11 @@
     }
   }
 
-
 .pop-up-input{
   //margin-right: 0;
   margin-top: auto;
-  margin-left: 180px !important;
-  width: 20vw;
+  margin-left: 150px !important;
+  width: 23vw;
   & .email-placeholder{
     color: #8496AE;
   }
@@ -58,9 +57,26 @@
     margin-top: 20px;
     margin-left: 20px;
   }
+ 
+ .back-button{
+  background: transparent;
+  color: #000000;
+  border: none;
+ }
 
  
-
  
+.pop-up-input2{
+  margin-left: 0;
+  & .input[type]{
+    margin-left:0px;
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    border-radius: 4px;
+  }
 
-
+  & .pass-placeholder-color{
+    color: #8496AE;
+  }
+}
