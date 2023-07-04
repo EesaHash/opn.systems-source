@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import "../style/client_journey.css";
 import { ThirdlyTable } from '../../table/components/ThirdlyTable';
 import { openAccessLimitForm, openPopUpForm } from '../../dashboard/page/dashboard_main';
@@ -6,6 +6,15 @@ import { FourthTable } from '../../table/components/FourthTable';
 
 export const PoliciesDashboard = (props) => {
     const [journey, setJourney] = useState({});
+    useEffect(() => {
+        const mainTable = document.getElementById("policies-main-table");
+        const secondaryTable = document.getElementById("policies-secondary-table");
+        if(mainTable && secondaryTable){
+            mainTable.style.display = "block";
+            setJourney({});
+            secondaryTable.style.display = "none";
+        }
+    }, [props.activeLink2]);
     const openCreateJourneyForm = _ => {
         if(props.journeys.length > 0)
             return openAccessLimitForm();
