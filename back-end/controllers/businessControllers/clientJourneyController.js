@@ -83,19 +83,84 @@ clientJourney.deleteClientJourneyByBusinessID = async (req, res) => {
     }
 }
 
-clientJourney.updateClientJourneyStageByBusinessID = async (req, res) => {
+/*
+Example JSON body:
+{
+    businessId: 1,
+    stage: "awareness"
+    content: {
+        department: "Marketing",
+        role: "Marketing Manager",
+        steps: ["Step 1", "Step 2", "Step 3"]
+    }
+}
+*/
+
+clientJourney.saveRegeneratedStage = async (req, res) => {
     try {
-        const clientJourney = await ClientJourney.findOne({ where: { businessId: req.body.businessId } });
+        const clientJourneyList = await ClientJourney.findAll({ where: { businessId: req.body.businessId } });
+        const clientJourney = clientJourneyList[0];
+        if (clientJourney == null) {
+            throw "Client Journey or Business not found!";
+        }
         const stage = req.body.stage;
-        const data = req.body.data;
-        clientJourney[stage] = JSON.stringify(data);
+        const content = req.body.content;
+        clientJourney[stage] = JSON.stringify(content);
         await clientJourney.save();
         return res.status(200).json({
-            result: `Client Journey for Business ID: ${businessId} updated}`
+
         });
     } catch (error) {
+        console.log(error);
         return res.status(403).json({
-            result: `Client Journey for Business ID: ${businessId} not found}`
+            result: `Failed`
+        });
+    }
+}
+
+/*
+Example JSON body:
+ {
+    businessId: 1,
+    stage: "awareness" -- all lowercase
+ }
+*/
+clientJourney.regenerateStage = async (req, res) => {
+    try {
+        const clientJourneyList = await ClientJourney.findAll({ where: { businessId: req.body.businessId } });
+        const clientJourney = clientJourneyList[0];
+        if (clientJourney == null) {
+            throw "Client Journey or Business not found!";
+        }
+        const { businessId, prompt } = req.body;
+        if (prompt == null) {
+        const business = await Business.findOne({ where: { id: businessId } });
+        if (business == null) {
+            throw "Client Journey or Business not found!";
+        }
+        const businessDetails = "Business Name:" + business.businessName + "\n Business Type:" + business.businessType + "\n Industry:" + business.industry + "\n Company Size:" + business.companySize + "\n Business Objective:" + business.businessObjective + "\n Core Services:" + business.coreServices + "\n Target Market:" + business.targetMarket + "\n Product or Service Description:" + business.productOrServiceDescription +  "\n Funding Strategy:" + business.fundingStrategy;
+        const stage = req.body.stage.toLowerCase();
+        const output = await retryStage(stage, businessDetails);
+        if (output == null) {
+            throw "Failed to generate stage!";
+        }
+        return res.status(200).json({
+            output
+        });
+    } else {
+        const stage = req.body.stage.toLowerCase();
+        const output = await regenerateStageWithContext(stage, clientJourney[stage], prompt);
+        if (output == null) {
+            throw "Failed to generate stage!";
+        }
+        return res.status(200).json({
+            output
+        });
+    }
+    } catch (error) {
+        console.log(error);
+        return res.status(403).json({
+            result: `Failed`
         });
     }
 }
@@ -242,8 +307,68 @@ async function generateStage(stageString, businessDetailsString) {
     }
 }
 
+async function regenerateStageWithContextSingle(stageString, previousStageContent, userPromptString) {
+    const parser = StructuredOutputParser.fromZodSchema(
+        z.object({
+            department: z.string().describe(`Identify responsible department for ${stageString} stage. These are the main sectors or divisions within the company. Each department represents a specific function of the business, such as Marketing, Sales, Human Resources, Operations, Finance, etc.`),
+            role: z.string().describe(`Identify responsible roles for the ${stageString} stage. Within each department, there are several roles. Roles are the specific job titles or positions that individuals hold within the department. For example, in the Marketing department, roles might include Marketing Manager, Content Strategist, SEO Specialist, etc.`),
+            steps: z
+                .array(z.string())
+                .describe("Steps to follow in this stage. Be ellaborate by providing a lot of detail."),
+        })
+    );
+    const formatInstructions = parser.getFormatInstructions();
+    const prompt = new PromptTemplate({
+        template:
+        `You are tasked with regenerating a client journey's ${stageString} stage, improving the users existing client journey stage, according to their preferences.
+         Old Client Journey Stage: {oldClientJourneyStage}
+         User's Preference: {userPreference}
+         {format_instructions};`,
+        inputVariables: ["userPreference", "oldClientJourneyStage"],
+        partialVariables: { format_instructions: formatInstructions },
+    });
+
+    const model = new OpenAI({ temperature: 1, model: "gpt-3.5-turbo-16k" });
+    const input = await prompt.format({
+        userPreference: userPromptString,
+        oldClientJourneyStage: JSON.stringify(previousStageContent),
+    });
+    const response = await model.call(input);
+    try {
+        parsedResponse = await parser.parse(response);
+        return parsedResponse;
+    } catch (e) {
+        try {
+            const fixParser = OutputFixingParser.fromLLM(
+                new OpenAI({ temperature: 0, model: "gpt-3.5-turbo-16k" }),
+                parser
+            );
+            const output = await fixParser.parse(response);
+            return output;
+        }
+        catch (e) {
+            return null;
+        }
+    }
+
+}
+
+async function regenerateStageWithContext(stageString, previousStageContent, userPromptString) {
+    let output = null;
+    let i = 0;
+    while (i < 10) {
+        output = await regenerateStageWithContextSingle(stageString, previousStageContent, userPromptString);
+        if (output != null) {
+            break;
+        }
+        i++;
+    }
+    return output;
+}
+
 
 async function retryStage(stageString, businessDetailsString) {
+
     let output = null;
     let i = 0;
     while (i < 10) {
@@ -260,7 +385,8 @@ async function retryStage(stageString, businessDetailsString) {
 router.post("/save", clientJourney.saveClientJourney);
 router.post("/get", clientJourney.getClientJourneyByBusinessID);
 router.post("/getall", clientJourney.getAllClientJourneyByBusinessID);
-router.post("/update", clientJourney.updateClientJourneyStageByBusinessID);
+router.post("/regenerate_stage", clientJourney.regenerateStage);
+router.post("/save_regenerated_stage", clientJourney.saveRegeneratedStage);
 router.post("/delete", clientJourney.deleteClientJourneyByBusinessID);
 
 module.exports = router;
