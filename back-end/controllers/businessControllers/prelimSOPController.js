@@ -1,8 +1,9 @@
+const ClientJourney = require('../../models/client_journey');
 const express = require("express");
 const router = express.Router();
 const { z } = require("zod");
 const { OpenAI } = require("langchain/llms/openai");
-const ClientJourney = require('../../models/client_journey');
+
 require('dotenv').config()
 
 const { PromptTemplate } = require("langchain/prompts");
@@ -18,7 +19,8 @@ sopController.printSOP = async (req, res) => {
     try {
         // const { step, role, department } = req.body;
         // const output = await generateProcedure(step, role, department);
-        generateProcedure(req.body.id);
+        const {businessId} = req.body;
+        const output = generateProcedure(businessId);
         res.status(200).json({ output });
     } catch (error) {
         console.log(error);
@@ -30,8 +32,18 @@ sopController.printSOP = async (req, res) => {
 };
 
 
-const generateProcedure = async (clientJourneyID) => {
-    
+const generateProcedure = async (id) => {
+    try {
+        const clientJourney = await ClientJourney.findAll({ where: { businessId: id } });
+        const res = JSON.parse(JSON.stringify(clientJourney[0]));
+        for (const [key, value] of Object.entries(res)) {
+            console.log(`${key}: ${value}`);
+        }
+
+
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 const generateProcedureStep = async (singleClientJourneyStepAsString, role, department) => {
