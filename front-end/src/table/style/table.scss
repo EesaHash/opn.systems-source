@@ -362,24 +362,54 @@
         }
     }
 }
-.edit-prompt{
-    & img, input, button{
-        height: 25px;
+.edit{
+    display: grid;
+    & .edit-suggestion{
+        margin-bottom: 15px;
+        & button{
+            float: left;
+            border-radius: 35px;
+            background-color: rgba(165, 166, 246, 0.20);
+            padding: 7.5px 20px;
+            text-align: center;
+            align-items: flex-start;
+            gap: 12px;
+            color: #5D5FEF;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        & h3{
+            float: right;
+            margin-top: 5px;
+            & img{
+                height: 25px;
+                margin-top: -2px;
+                margin-right: 5px;
+            }
+        }
     }
-    & img{
-        margin-right: 10px;
-    }
-    & input, input:focus{
-        width: calc(90% - 45px);
-        border: 1px solid transparent !important;
-        margin-right: 10px;
-        outline: none;
-    }
-    & button{
-        width: calc(10% - 45px);
-        color: #ACACAC;
-        text-align: right;
-        padding: 0;
-        margin: 0;
+    & .edit-prompt{
+        display: flex;
+        & img, input, button{
+            height: 25px;
+        }
+        & img{
+            margin-right: 10px;
+        }
+        & input, input:focus{
+            width: calc(85% - 45px);
+            border: 1px solid transparent !important;
+            margin-right: 10px;
+            outline: none;
+        }
+        & button{
+            width: calc(15% - 45px);
+            color: #ACACAC;
+            text-align: right;
+            padding: 0;
+            float: right;
+            margin: auto;
+            margin-right: 0;
+        }
     }
 }

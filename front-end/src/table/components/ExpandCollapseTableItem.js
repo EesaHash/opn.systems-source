@@ -21,10 +21,16 @@ export const ExpandCollapseTableItem = (props) => {
                     ))
                 }
                 {(props.editStatus && itemClassName === "expanded-table-item") && 
-                    <div className='edit-prompt'>
-                        <img src="./images/loadingIcon.png" alt = "icon"/>
-                        <input type='text' placeholder='Ask AI to write anything' />
-                        <button>Send</button>
+                    <div className='edit'>
+                        <div className='edit-suggestion'>
+                            <button>Regenerate</button>
+                            <h3><img src="./images/loadingIcon.png" alt = "icon"/>AI powered</h3>
+                        </div>
+                        <div className='edit-prompt'>
+                            <img src="./images/loadingIcon.png" alt = "icon"/>
+                            <input type='text' placeholder='Ask AI to write anything' />
+                            <button>Send</button>
+                        </div>
                     </div>
                 }
             </div>
