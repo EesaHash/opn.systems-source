@@ -27,6 +27,13 @@ export const ClientJourneyDashboard = (props) => {
             document.getElementById("client-journey-secondary-table").style.display = "block";
         }
     };
+    const showJourneyList = _ => {
+        if(document.getElementById("client-journey-main-table") && document.getElementById("client-journey-secondary-table")){
+            document.getElementById("client-journey-main-table").style.display = "block";
+            setJourney({});
+            document.getElementById("client-journey-secondary-table").style.display = "none";
+        }
+    };
     return(
         <div className='client-journey'>
             <MainTableHeader 
@@ -42,6 +49,7 @@ export const ClientJourneyDashboard = (props) => {
                 title = {journey.title}
                 description = {journey.overview ? JSON.parse(journey.overview).overview : ""}
                 data = {journey}
+                button1 = {showJourneyList}
             />
         </div>
     );

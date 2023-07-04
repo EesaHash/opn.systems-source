@@ -113,51 +113,52 @@ export const DashboardPage = () => {
         <div className="background">
             <div id="bash" className="bash">
                 <Sidebar
+                    loading = {loading}
                     businesses = {businesses} 
                     activeLink = {activeLink}   setActiveLink = {setActiveLink} 
                     activeLink2 = {activeLink2} setActiveLink2 = {setActiveLink2}
                 />
             </div>
             {!loading &&
-                <div>
-                    <AccessLimit/>
-                    <FutureFeature/>
-                    <ModifyAccountDetails
-                        user = {user}
-                        setUser = {setUser}
-                    />
-                    <CreateBusiness businesses = {businesses} setBusinesses = {setBusinesses} userID = {userID} />
-                    <EditBusinessDetail 
-                        businesses = {businesses} setBusinesses = {setBusinesses} 
-                        index = {activeLink2 - 1}
-                        business = {business} setBusiness = {setBusiness}
-                    />
-                    <CreateClientJourney  
-                        journeys = {journeys} setJourneys = {setJourneys}
-                        business = {business}
-                    />
-                    <div id="dashboard-content" className="dashboard-content">
-                        <div style={{display: "flex"}}>
-                            <div className="search">
-                                <SearchBar />
-                            </div>
-                            <div className="profile">
-                                <Profile user = {user} />
-                            </div>
+            <div>
+                <AccessLimit/>
+                <FutureFeature/>
+                <ModifyAccountDetails
+                    user = {user}
+                    setUser = {setUser}
+                />
+                <CreateBusiness businesses = {businesses} setBusinesses = {setBusinesses} userID = {userID} />
+                <EditBusinessDetail 
+                    businesses = {businesses} setBusinesses = {setBusinesses} 
+                    index = {activeLink2 - 1}
+                    business = {business} setBusiness = {setBusiness}
+                />
+                <CreateClientJourney  
+                    journeys = {journeys} setJourneys = {setJourneys}
+                    business = {business}
+                />
+                <div id="dashboard-content" className="dashboard-content">
+                    <div style={{display: "flex"}}>
+                        <div className="search">
+                            <SearchBar />
                         </div>
-                        <div className="pane">
-                            <Pane 
-                                business = {business} setBusiness = {setBusiness}
-                                businesses = {businesses} setBusinesses = {setBusinesses} 
-                                activeLink = {activeLink} 
-                                activeLink2 = {activeLink2} setActiveLink2 = {setActiveLink2}
-                                activeLink3 = {activeLink3} setActiveLink3 = {setActiveLink3} 
-                                user = {user} 
-                                journeys = {journeys} setJourneys = {setJourneys}
-                            />
+                        <div className="profile">
+                            <Profile user = {user} />
                         </div>
                     </div>
+                    <div className="pane">
+                        <Pane 
+                            business = {business} setBusiness = {setBusiness}
+                            businesses = {businesses} setBusinesses = {setBusinesses} 
+                            activeLink = {activeLink} 
+                            activeLink2 = {activeLink2} setActiveLink2 = {setActiveLink2}
+                            activeLink3 = {activeLink3} setActiveLink3 = {setActiveLink3} 
+                            user = {user} 
+                            journeys = {journeys} setJourneys = {setJourneys}
+                        />
+                    </div>
                 </div>
+            </div>
             }
         </div>
     );

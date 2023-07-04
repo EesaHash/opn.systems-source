@@ -31,11 +31,20 @@ export const SecondaryTable = (props) => {
             </div>
         );
     };
+    const closeEditMode = _ => {
+        setEditStatus(false);
+    };
     return(
         <div className='secondary-table' id = {props.id}>
             <div className='secondary-table-content'>
                 <div className='table-directory'>
-                    <h3>{`${props.type} / ${props.title}${editStatus ? ` / Editting` : ""}`}{editStatus && <Edit/>}</h3>
+                    <div className='table-directory-left-header'>
+                        <button onClick={props.button1}>{`${props.type}`}</button>
+                        <h3>/</h3>
+                        <button onClick={closeEditMode}>{`${props.title}`}</button>
+                        {editStatus && <h3>/</h3>}
+                        {editStatus && <button>Editting<Edit/></button>}
+                    </div>
                     {editStatus ? editDirectory() : mainDirectory()}
                 </div>
                 <h1>{props.title}</h1>
@@ -47,7 +56,7 @@ export const SecondaryTable = (props) => {
                     </div>
                     {props.data && 
                         Object.keys(props.data).map((data, index) => (
-                            (index > 2 && index < Object.keys(props.data).length - 3) &&
+                            (!("id overview businessId createdAt updatedAt title").includes(data)) &&
                                 <ExpandCollapseTableItem
                                     index = {index - 2}
                                     title = {data}

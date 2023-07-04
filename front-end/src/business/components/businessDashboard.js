@@ -105,7 +105,9 @@ const body = (business, activeLink2, activeLink3, setActiveLink3, journeys, setJ
                             journeys = {journeys} setJourneys = {setJourneys}
                         /> :
                     activeLink3 === "Procedures" ?
-                        <ProceduresDashboard/> :
+                        <ProceduresDashboard
+                            
+                        /> :
                     activeLink3 === "Policies" ?
                         <PoliciesDashboard/> :
                     activeLink3 === "Team Members" ?

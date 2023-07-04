@@ -7,7 +7,7 @@ export const ProceduresDashboard = _ => {
     return(
         <div className='procedure'>
             <MainTableHeader 
-                title = "Procedure" 
+                title = "Procedures" 
                 list = {procedures}
                 addNewBtn = {null}
             />
