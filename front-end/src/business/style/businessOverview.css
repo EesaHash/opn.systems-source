@@ -1,0 +1,76 @@
+.businesses-overview {
+  display: flex;
+  margin-top: 16px;
+  height: 33vh;
+}
+.businesses-overview .yourbusiness, .businesses-overview .update {
+  width: calc((100vw - 240px - 8vw) * 0.5 - 15px);
+}
+.businesses-overview .yourbusiness {
+  display: flex;
+  padding: 20px 30px 40px 30px;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: stretch;
+  gap: 16px;
+  flex: 1 0 0;
+  border-radius: 20px;
+  background: #FFF;
+  height: 100% !important;
+}
+.businesses-overview .updates {
+  margin: 0 15px;
+  display: flex;
+  padding: 2vh 20.956px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  flex: 1 0 0;
+  align-self: stretch;
+  border-radius: 13.971px;
+  background: linear-gradient(133deg, #3235FF 0%, #5C5FFF 100%);
+  color: #F7F8FC;
+  text-align: center;
+  overflow: scroll;
+}
+.businesses-overview .updates .updateslogo {
+  align-items: center;
+  flex-shrink: 0;
+  width: 7vh;
+  height: 7vh;
+}
+.businesses-overview .updates .updatestitle {
+  color: var(--text-bod, #F7F8FC);
+  font-size: 3.5vh;
+  font-family: DM Sans;
+  font-weight: 500;
+}
+.businesses-overview .updates .uptext {
+  margin-bottom: 10px;
+  display: flex;
+  width: 400px;
+  flex-direction: column;
+  align-self: center;
+  color: #F7F8FC;
+  text-align: center;
+  font-size: 1.8vh;
+  font-family: Inter;
+  font-weight: lighter;
+  line-height: 140%;
+}
+.businesses-overview .updates .updatesbutton {
+  display: flex;
+  height: 4vh;
+  padding: 2vh;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 8px;
+  border-color: transparent;
+  color: #3235FF;
+  background-color: #FFF;
+  margin-top: -10px;
+}/*# sourceMappingURL=businessOverview.css.map */

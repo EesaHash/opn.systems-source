@@ -3,7 +3,7 @@
 .account-setting {
   margin-top: 15vh;
   max-height: 90vh;
-  width: 35vw;
+  width: 39vw;
   min-width: -moz-fit-content;
   min-width: fit-content;
   left: 0;
@@ -22,8 +22,8 @@
 
 .pop-up-input {
   margin-top: auto;
-  margin-left: 180px !important;
-  width: 20vw;
+  margin-left: 150px !important;
+  width: 23vw;
 }
 .pop-up-input .email-placeholder {
   color: #8496AE;
@@ -53,4 +53,24 @@
   text-transform: uppercase;
   margin-top: 20px;
   margin-left: 20px;
+}
+
+.back-button {
+  background: transparent;
+  color: #000000;
+  border: none;
+}
+
+.pop-up-input2 {
+  margin-left: 0;
+}
+.pop-up-input2 .input[type] {
+  margin-left: 0px;
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  border-radius: 4px;
+}
+.pop-up-input2 .pass-placeholder-color {
+  color: #8496AE;
 }/*# sourceMappingURL=acc_set.css.map */
