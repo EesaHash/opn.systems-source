@@ -14,6 +14,7 @@ import { CreateClientJourney } from "../../client_journey/components/createClien
 import { ModifyAccountDetails } from "../components/account_settings";
 import { AccessLimit } from "../../warning_pages/components/AccessLimit";
 import { FutureFeature } from "../../warning_pages/components/FutureFeature";
+import { CreateProcedure } from "../../client_journey/components/CreateProcedure";
 
 export const DashboardPage = () => {
     const [userID, setUserID] = useState();
@@ -25,6 +26,8 @@ export const DashboardPage = () => {
     const [activeLink2, setActiveLink2] = useState(0);
     const [activeLink3, setActiveLink3] = useState('Overview');
     const [journeys, setJourneys] = useState([]);
+    const [procedures, setProcedures] = useState([]);
+    const [policies, setPolicies] = useState([]);
 
     useEffect(() => {
         try{
@@ -137,6 +140,9 @@ export const DashboardPage = () => {
                     journeys = {journeys} setJourneys = {setJourneys}
                     business = {business}
                 />
+                <CreateProcedure
+                    procedures = {procedures} setProcedures = {setProcedures}
+                />
                 <div id="dashboard-content" className="dashboard-content">
                     <div style={{display: "flex"}}>
                         <div className="search">
@@ -155,6 +161,8 @@ export const DashboardPage = () => {
                             activeLink3 = {activeLink3} setActiveLink3 = {setActiveLink3} 
                             user = {user} 
                             journeys = {journeys} setJourneys = {setJourneys}
+                            procedures = {procedures} setProcedures = {setProcedures}
+                            policies = {policies} setPolicies = {setPolicies}
                         />
                     </div>
                 </div>

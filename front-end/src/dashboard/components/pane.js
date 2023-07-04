@@ -1,10 +1,7 @@
 import React from "react";
 import "../style/pane.css";
 import { BusinessDashboard } from "../../business/components/businessDashboard";
-//import { FormatAlignJustify } from "@mui/icons-material";
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
-import ModeEditIcon from '@mui/icons-material/ModeEdit';
-import CreateIcon from '@mui/icons-material/Create';
 
 export const Pane = (props) => {
     if(props.businesses.length === 0)
@@ -19,6 +16,8 @@ export const Pane = (props) => {
                                 activeLink2 = {props.activeLink2}   setActiveLink2 = {props.setActiveLink2}
                                 activeLink3 = {props.activeLink3}   setActiveLink3 = {props.setActiveLink3}
                                 journeys = {props.journeys} setJourneys = {props.setJourneys}
+                                procedures = {props.procedures} setProcedures = {props.setProcedures}
+                                policies = {props.policies} setPolicies = {props.setPolicies}
                             />
                 }else{
                     return emptyPane(props.user);

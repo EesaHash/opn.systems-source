@@ -7,10 +7,12 @@ import { SecondaryTable } from '../../table/components/SecondaryTable';
 export const ClientJourneyDashboard = (props) => {
     const [journey, setJourney] = useState({});
     useEffect(() => {
-        if(document.getElementById("client-journey-main-table") && document.getElementById("client-journey-secondary-table")){
-            document.getElementById("client-journey-main-table").style.display = "block";
+        const mainTable = document.getElementById("client-journey-main-table");
+        const secondaryTable = document.getElementById("client-journey-secondary-table");
+        if(mainTable && secondaryTable){
+            mainTable.style.display = "block";
             setJourney({});
-            document.getElementById("client-journey-secondary-table").style.display = "none";
+            secondaryTable.style.display = "none";
         }
     }, [props.activeLink2]);
 
@@ -21,17 +23,21 @@ export const ClientJourneyDashboard = (props) => {
         openPopUpForm();
     };
     const openClientJourneyDetails = (param) => {
-        if(document.getElementById("client-journey-main-table") && document.getElementById("client-journey-secondary-table")){
-            document.getElementById("client-journey-main-table").style.display = "none";
+        const mainTable = document.getElementById("client-journey-main-table");
+        const secondaryTable = document.getElementById("client-journey-secondary-table");
+        if(mainTable && secondaryTable){
+            mainTable.style.display = "none";
             setJourney(param);
-            document.getElementById("client-journey-secondary-table").style.display = "block";
+            secondaryTable.style.display = "block";
         }
     };
     const showJourneyList = _ => {
-        if(document.getElementById("client-journey-main-table") && document.getElementById("client-journey-secondary-table")){
-            document.getElementById("client-journey-main-table").style.display = "block";
+        const mainTable = document.getElementById("client-journey-main-table");
+        const secondaryTable = document.getElementById("client-journey-secondary-table");
+        if(mainTable && secondaryTable){
+            mainTable.style.display = "block";
             setJourney({});
-            document.getElementById("client-journey-secondary-table").style.display = "none";
+            secondaryTable.style.display = "none";
         }
     };
     const automaticallyRegenerate = (stage) => {

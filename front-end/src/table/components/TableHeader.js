@@ -1,6 +1,7 @@
 import React from 'react';
 import "../style/table.css";
 import { FilterAlt, MoreHoriz, Search, Sort } from '@mui/icons-material';
+import { openFutureFeatureWarningForm } from '../../dashboard/page/dashboard_main';
 
 export const TableHeader = (props) => {
     return(
@@ -15,16 +16,16 @@ export const TableHeader = (props) => {
                 </div>
                 <div className='right-header'>
                     <div className='table-header-item'>
-                        <button><Search/> Search</button>
+                        <button onClick={openFutureFeatureWarningForm}><Search/> Search</button>
                     </div>
                     <div className='table-header-item'>
-                        <button><FilterAlt/> Filter</button>
+                        <button onClick={openFutureFeatureWarningForm}><FilterAlt/> Filter</button>
                     </div>
                     <div className='table-header-item'>
-                        <button><Sort/> Sort</button>
+                        <button onClick={openFutureFeatureWarningForm}><Sort/> Sort</button>
                     </div>
                     <div className='table-header-item'>
-                        <button><MoreHoriz/></button>
+                        <button onClick={openFutureFeatureWarningForm}><MoreHoriz/></button>
                     </div>
                 </div>
             </div>
