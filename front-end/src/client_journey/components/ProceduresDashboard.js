@@ -31,7 +31,7 @@ export const ProceduresDashboard = (props) => {
     const openProcedureList = (param, index) => {
         const mainTable = document.getElementById("procedure-main-table");
         const secondaryTable = document.getElementById("procedure-secondary-table");
-        if(mainTable && secondaryTable && (props.procedures.length > 0 && props.procedures[index].length > 0)){
+        if(mainTable && secondaryTable){
             mainTable.style.display = "none";
             setJourney(param);
             setIndex(index);

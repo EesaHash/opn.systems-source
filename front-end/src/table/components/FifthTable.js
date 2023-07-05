@@ -5,6 +5,12 @@ import { openAccessLimitForm, openFutureFeatureWarningForm } from '../../dashboa
 
 export const FifthTable = (props) => {
     const [editStatus, setEditStatus] = useState(false);
+    const saveBtn = _ => {
+        closeEditMode();
+    };
+    const closeEditMode = _ => {
+        setEditStatus(false);
+    };
     const mainDirectory = _ => {
         return(
             <div className='table-directory-right-header'>
@@ -23,7 +29,7 @@ export const FifthTable = (props) => {
             <div className='table-directory-right-header'>
                 <button className='ai-edit-btn'><img src="./images/ai_icon.png" alt = "icon"/>AI Editing Mode</button>
                 <hr/>
-                <button className='save-btn' onClick={openFutureFeatureWarningForm}><SimCardDownload/>Save</button>
+                <button className='save-btn' onClick={saveBtn}><SimCardDownload/>Save</button>
             </div>
         );
     };
@@ -36,7 +42,7 @@ export const FifthTable = (props) => {
                         <h3>/</h3>
                         <button onClick={props.button2} >{`${props.title}`}</button>
                         <h3>/</h3>
-                        <button >{`${props.sub_title}`}</button>
+                        <button onClick={closeEditMode}>{`${props.sub_title}`}</button>
                         {editStatus && <h3>/</h3>}
                         {editStatus && <button>Editing<Edit/></button>}
                     </div>
