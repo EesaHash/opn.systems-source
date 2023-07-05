@@ -1,20 +1,12 @@
-.client-journey, .procedure, .policies{
-    width: 100%;
-    min-height: calc(100% - 70px - 23px);
-    height: fit-content;
-    overflow: scroll;
+.Team_Header{
+    h1{
+    font-size: 32px;
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight:bold;
+    line-height: normal;
+    }
+
+
 }
 
-.create-form{
-    width: 40vw;
-    margin-top: 15vh;
-    max-height: 70vh;
-    left: 0;
-    margin-left: 30vw;
-    margin-right: 30vw;
-    overflow: scroll;
-    & button{
-        width: fit-content !important;
-        padding: 10px 20px;
-    }
-}

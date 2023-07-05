@@ -3,8 +3,22 @@
   margin-top: 16px;
   height: 33vh;
 }
+.businesses-overview .editB {
+  display: flex;
+  width: 245px;
+  height: 64px;
+  padding: 8px 20px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 8px;
+  border-style: solid;
+  opacity: 80%;
+  border-color: rgba(165, 166, 246, 0.2);
+  background: #9ac71f;
+}
 .businesses-overview .yourbusiness, .businesses-overview .update {
-  width: calc((100vw - 240px - 8vw) * 0.5 - 15px);
+  width: calc(halfbox-width * 0.5 - 15px);
 }
 .businesses-overview .yourbusiness {
   display: flex;
@@ -73,4 +87,19 @@
   color: #3235FF;
   background-color: #FFF;
   margin-top: -10px;
+}
+
+.editB {
+  display: flex;
+  width: 245px;
+  height: 64px;
+  padding: 8px 20px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 8px;
+  border-style: solid;
+  opacity: 80%;
+  border-color: rgba(165, 166, 246, 0.2);
+  background: #a5a6f6;
 }/*# sourceMappingURL=businessOverview.css.map */

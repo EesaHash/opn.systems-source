@@ -15,6 +15,7 @@ import { ModifyAccountDetails } from "../components/account_settings";
 import { AccessLimit } from "../../warning_pages/components/AccessLimit";
 import { FutureFeature } from "../../warning_pages/components/FutureFeature";
 import { CreateProcedure } from "../../client_journey/components/CreateProcedure";
+import { InviteTeamMember } from "../../client_journey/components/InviteTeamMember";
 
 export const DashboardPage = () => {
     const [userID, setUserID] = useState();
@@ -175,6 +176,7 @@ export const DashboardPage = () => {
                 <CreateProcedure
                     procedures = {procedures} setProcedures = {setProcedures}
                 />
+                <InviteTeamMember />
                 <div id="dashboard-content" className="dashboard-content">
                     <div style={{display: "flex"}}>
                         <div className="search">
