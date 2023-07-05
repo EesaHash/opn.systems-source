@@ -123,16 +123,6 @@
   color: #ACACAC;
 }
 
-/*.profilepicture{
-    display: flex;
-    margin-left: 0.5vw;
-    background-color: #FFF;
-    align-items: left;
-    align-content: center;
-    & img{
-        width: 50px;
-}
-}*/
 .businesses-overview {
   display: flex;
   margin-top: 16px;

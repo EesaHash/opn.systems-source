@@ -395,7 +395,7 @@ const manufactureDropdown = (businessOverviewInput, setBusinessOverviewInput) =>
         </UncontrolledDropdown>
     );
 };
-const teamMemberInputElements = (teamList, setTeamList, index, removeTeamMember) => {
+export const teamMemberInputElements = (teamList, setTeamList, index, removeTeamMember) => {
     const modifyEmail = (value) => {
         let newList = [...teamList];
         newList[index] = {

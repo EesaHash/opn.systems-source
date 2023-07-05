@@ -377,9 +377,8 @@
 }
 .table-content-1{
     width: 100%;
-    display: flex;
+    display: grid;
     height: calc(100% - 150px);
-    overflow: scroll;
     & .table-content-1-item{
         width: 100%;
         & button{

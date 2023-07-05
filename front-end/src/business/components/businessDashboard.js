@@ -7,6 +7,7 @@ import { businessOverview } from './businessOverview';
 import { ClientJourneyDashboard } from '../../client_journey/components/clientJourneyDashboard';
 import { ProceduresDashboard } from '../../client_journey/components/ProceduresDashboard';
 import { PoliciesDashboard } from '../../client_journey/components/PoliciesDashboard';
+import { TeamMembers } from '../../client_journey/components/TeamMembers';
 
 export const BusinessDashboard = (props) => {
     const deleteBusiness = _ => {
@@ -127,7 +128,9 @@ const body = (  business, activeLink2,
                             policies = {policies} setPolicies = {setPolicies}
                         /> :
                     activeLink3 === "Team Members" ?
-                        null :
+                    <TeamMembers
+                             activeLink2 = {activeLink2}
+                    /> :
                     activeLink3 === "Department & Roles" &&
                         null
                 }

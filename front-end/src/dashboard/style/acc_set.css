@@ -19,16 +19,15 @@
   float: right;
   margin-top: 0;
 }
-
-.pop-up-input {
+.account-setting .pop-up-input {
   margin-top: auto;
-  margin-left: 150px !important;
+  margin-left: 150px;
   width: 23vw;
 }
-.pop-up-input .email-placeholder {
+.account-setting .pop-up-input .email-placeholder {
   color: #8496AE;
 }
-.pop-up-input .change-pass-button {
+.account-setting .pop-up-input .change-pass-button {
   color: #2173DF;
   font-size: 14px;
   background: transparent;
