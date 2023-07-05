@@ -129,6 +129,7 @@ const body = (  business, activeLink2,
                         /> :
                     activeLink3 === "Team Members" ?
                     <TeamMembers
+                            business = {business}
                              activeLink2 = {activeLink2}
                     /> :
                     activeLink3 === "Department & Roles" &&

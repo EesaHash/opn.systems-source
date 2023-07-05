@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Business = require('../../models/business');
-const { addTeamMembers } = require("./addTeamMemberController");
+const { addTeamMembers } = require("../teamMemberController/addTeamMemberController");
 
 const business = {};
 

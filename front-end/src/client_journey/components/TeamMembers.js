@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import "../style/TeamMembers.css";
 import { MainTableHeader } from '../../table/components/MainTable';
 import { openPopUpForm } from '../../dashboard/page/dashboard_main';
@@ -10,6 +10,32 @@ const inviteTeam = _ =>{
 
 export const TeamMembers = (props) => {
     const [teamMembers, setTeamMembers] = useState([]);
+    useEffect(() => {
+        try{
+        const getTeamMembers = async _ => {
+            const res = await fetch("/api/teammember/getbusinessteam", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    businessID: props.business.id
+                })
+            });
+            const data = await res.json();
+            if(data.status){
+                setTeamMembers(data.teamMembers);
+            }else{
+                throw data.message;
+            }
+        };
+        if(props.business.id){
+            getTeamMembers();
+        }
+        }catch(error){
+            alert(error);
+        }
+    }, [props.business]);
     return(
         <div className='Team_Member'>
             <MainTableHeader 

@@ -18,6 +18,9 @@ app.use("/api/forgetpassword", require("./controllers/accountController/forgetPa
 app.use("/api/authenticateuser", require("./controllers/accountController/authenticateUserController"));
 app.use("/api/getuserdata", require("./controllers/accountController/getUserDataController"));
 
+// TEAM MEMBERS APIs CONTROLLERS
+app.use("/api/teammember/getbusinessteam", require("./controllers/teamMemberController/getTeamMemberController"));
+
 // BUSINESS APIs CONTROLLERS
 app.use("/api/business", require("./controllers/businessControllers/businessController"));
 app.use("/api/clientjourney", require("./controllers/businessControllers/clientJourneyController"));
