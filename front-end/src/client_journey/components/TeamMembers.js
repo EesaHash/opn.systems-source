@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import "../style/TeamMembers.css";
 import { MainTableHeader } from '../../table/components/MainTable';
-import { changePasswordForm } from '../../dashboard/components/account_settings';
 import { openPopUpForm } from '../../dashboard/page/dashboard_main';
 
 const inviteTeam = _ =>{
