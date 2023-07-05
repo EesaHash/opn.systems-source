@@ -3,6 +3,7 @@ const express = require("express");
 const router = express.Router();
 const { z } = require("zod");
 const { OpenAI } = require("langchain/llms/openai");
+const SOP = require("../../models/sop");
 
 require('dotenv').config()
 
@@ -112,6 +113,32 @@ async function retry(singleClientJourneyStepAsString, role, department) {
     return output;
 }
 
+sopController.getAllSOPByClientJourneyID = async (req, res) => {
+    try{
+        const {ClientJourneyId} = req.body;
+        const sops = await SOP.findAll({ where : {ClientJourneyId}, order: ['id'] });
+        if(sops.length <=0){
+            return res.status(403).json({
+                status: false,
+                message: `No SOPs for client id: ${ClientJourneyId}`
+            });
+        }
+        console.log(`Successfully retrieve SOPs for ${ClientJourneyId}`);
+        return res.status(200).json({
+            status: true,
+            message: `Successfully retrieve SOPs for ${ClientJourneyId}`,
+            sops
+        });
+    }catch(error){
+        console.log(error);
+        return res.status(403).json({
+            status: false,
+            message: error
+        });
+    }
+};
+
 router.post("/printSOP", sopController.printSOP);
+router.post("/getall", sopController.getAllSOPByClientJourneyID);
 
 module.exports = router;

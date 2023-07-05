@@ -1,21 +1,21 @@
-.main-table, .secondary-table, .thirdly-table, .fourth-table {
+.main-table, .secondary-table, .thirdly-table, .fourth-table, .fifth-table {
   width: 100%;
 }
-.main-table h1, .secondary-table h1, .thirdly-table h1, .fourth-table h1 {
+.main-table h1, .secondary-table h1, .thirdly-table h1, .fourth-table h1, .fifth-table h1 {
   font-size: 32px;
   font-weight: 700;
   float: left;
 }
-.main-table h2, .secondary-table h2, .thirdly-table h2, .fourth-table h2 {
+.main-table h2, .secondary-table h2, .thirdly-table h2, .fourth-table h2, .fifth-table h2 {
   padding: 5px;
   font-size: 16px;
   text-align: justify;
 }
-.main-table .table-directory, .secondary-table .table-directory, .thirdly-table .table-directory, .fourth-table .table-directory {
+.main-table .table-directory, .secondary-table .table-directory, .thirdly-table .table-directory, .fourth-table .table-directory, .fifth-table .table-directory {
   margin-bottom: 10px;
   display: flex;
 }
-.main-table .table-directory h3, .secondary-table .table-directory h3, .thirdly-table .table-directory h3, .fourth-table .table-directory h3 {
+.main-table .table-directory h3, .secondary-table .table-directory h3, .thirdly-table .table-directory h3, .fourth-table .table-directory h3, .fifth-table .table-directory h3 {
   height: 35px;
   font-size: 12px;
   color: #929292;
@@ -23,18 +23,18 @@
   margin: auto;
   margin-left: 0;
 }
-.main-table .table-directory .table-directory-left-header, .secondary-table .table-directory .table-directory-left-header, .thirdly-table .table-directory .table-directory-left-header, .fourth-table .table-directory .table-directory-left-header {
+.main-table .table-directory .table-directory-left-header, .secondary-table .table-directory .table-directory-left-header, .thirdly-table .table-directory .table-directory-left-header, .fourth-table .table-directory .table-directory-left-header, .fifth-table .table-directory .table-directory-left-header {
   display: flex;
   height: 35px;
 }
-.main-table .table-directory .table-directory-left-header h3, .secondary-table .table-directory .table-directory-left-header h3, .thirdly-table .table-directory .table-directory-left-header h3, .fourth-table .table-directory .table-directory-left-header h3 {
+.main-table .table-directory .table-directory-left-header h3, .secondary-table .table-directory .table-directory-left-header h3, .thirdly-table .table-directory .table-directory-left-header h3, .fourth-table .table-directory .table-directory-left-header h3, .fifth-table .table-directory .table-directory-left-header h3 {
   height: 35px;
   margin-top: 10px;
 }
-.main-table .table-directory .table-directory-left-header button, .main-table .table-directory .table-directory-left-header h3, .secondary-table .table-directory .table-directory-left-header button, .secondary-table .table-directory .table-directory-left-header h3, .thirdly-table .table-directory .table-directory-left-header button, .thirdly-table .table-directory .table-directory-left-header h3, .fourth-table .table-directory .table-directory-left-header button, .fourth-table .table-directory .table-directory-left-header h3 {
+.main-table .table-directory .table-directory-left-header button, .main-table .table-directory .table-directory-left-header h3, .secondary-table .table-directory .table-directory-left-header button, .secondary-table .table-directory .table-directory-left-header h3, .thirdly-table .table-directory .table-directory-left-header button, .thirdly-table .table-directory .table-directory-left-header h3, .fourth-table .table-directory .table-directory-left-header button, .fourth-table .table-directory .table-directory-left-header h3, .fifth-table .table-directory .table-directory-left-header button, .fifth-table .table-directory .table-directory-left-header h3 {
   margin-right: 5px !important;
 }
-.main-table .table-directory .table-directory-left-header button, .secondary-table .table-directory .table-directory-left-header button, .thirdly-table .table-directory .table-directory-left-header button, .fourth-table .table-directory .table-directory-left-header button {
+.main-table .table-directory .table-directory-left-header button, .secondary-table .table-directory .table-directory-left-header button, .thirdly-table .table-directory .table-directory-left-header button, .fourth-table .table-directory .table-directory-left-header button, .fifth-table .table-directory .table-directory-left-header button {
   background-color: transparent;
   color: #929292;
   height: -moz-fit-content;
@@ -44,40 +44,42 @@
   margin: 0;
   margin-top: 7px;
   font-size: 12px;
+  max-width: 20vw;
+  white-space: nowrap;
 }
-.main-table .table-directory .table-directory-left-header button .css-i4bv87-MuiSvgIcon-root, .secondary-table .table-directory .table-directory-left-header button .css-i4bv87-MuiSvgIcon-root, .thirdly-table .table-directory .table-directory-left-header button .css-i4bv87-MuiSvgIcon-root, .fourth-table .table-directory .table-directory-left-header button .css-i4bv87-MuiSvgIcon-root {
+.main-table .table-directory .table-directory-left-header button .css-i4bv87-MuiSvgIcon-root, .secondary-table .table-directory .table-directory-left-header button .css-i4bv87-MuiSvgIcon-root, .thirdly-table .table-directory .table-directory-left-header button .css-i4bv87-MuiSvgIcon-root, .fourth-table .table-directory .table-directory-left-header button .css-i4bv87-MuiSvgIcon-root, .fifth-table .table-directory .table-directory-left-header button .css-i4bv87-MuiSvgIcon-root {
   color: #2173DF;
   margin-left: 5px;
   font-size: 13px;
 }
-.main-table .table-directory .table-directory-left-header button:hover, .secondary-table .table-directory .table-directory-left-header button:hover, .thirdly-table .table-directory .table-directory-left-header button:hover, .fourth-table .table-directory .table-directory-left-header button:hover {
+.main-table .table-directory .table-directory-left-header button:hover, .secondary-table .table-directory .table-directory-left-header button:hover, .thirdly-table .table-directory .table-directory-left-header button:hover, .fourth-table .table-directory .table-directory-left-header button:hover, .fifth-table .table-directory .table-directory-left-header button:hover {
   cursor: pointer;
   color: #5D5FEF;
 }
-.main-table .table-directory .table-directory-right-header, .secondary-table .table-directory .table-directory-right-header, .thirdly-table .table-directory .table-directory-right-header, .fourth-table .table-directory .table-directory-right-header {
+.main-table .table-directory .table-directory-right-header, .secondary-table .table-directory .table-directory-right-header, .thirdly-table .table-directory .table-directory-right-header, .fourth-table .table-directory .table-directory-right-header, .fifth-table .table-directory .table-directory-right-header {
   display: flex;
   float: right;
   margin-left: auto;
 }
-.main-table .table-directory .table-directory-right-header button, .main-table .table-directory .table-directory-right-header hr, .secondary-table .table-directory .table-directory-right-header button, .secondary-table .table-directory .table-directory-right-header hr, .thirdly-table .table-directory .table-directory-right-header button, .thirdly-table .table-directory .table-directory-right-header hr, .fourth-table .table-directory .table-directory-right-header button, .fourth-table .table-directory .table-directory-right-header hr {
+.main-table .table-directory .table-directory-right-header button, .main-table .table-directory .table-directory-right-header hr, .secondary-table .table-directory .table-directory-right-header button, .secondary-table .table-directory .table-directory-right-header hr, .thirdly-table .table-directory .table-directory-right-header button, .thirdly-table .table-directory .table-directory-right-header hr, .fourth-table .table-directory .table-directory-right-header button, .fourth-table .table-directory .table-directory-right-header hr, .fifth-table .table-directory .table-directory-right-header button, .fifth-table .table-directory .table-directory-right-header hr {
   margin-right: 8px;
   height: 35px;
 }
-.main-table .table-directory .table-directory-right-header button, .secondary-table .table-directory .table-directory-right-header button, .thirdly-table .table-directory .table-directory-right-header button, .fourth-table .table-directory .table-directory-right-header button {
+.main-table .table-directory .table-directory-right-header button, .secondary-table .table-directory .table-directory-right-header button, .thirdly-table .table-directory .table-directory-right-header button, .fourth-table .table-directory .table-directory-right-header button, .fifth-table .table-directory .table-directory-right-header button {
   background-color: transparent;
   border: none;
   color: black;
 }
-.main-table .table-directory .table-directory-right-header button:hover, .secondary-table .table-directory .table-directory-right-header button:hover, .thirdly-table .table-directory .table-directory-right-header button:hover, .fourth-table .table-directory .table-directory-right-header button:hover {
+.main-table .table-directory .table-directory-right-header button:hover, .secondary-table .table-directory .table-directory-right-header button:hover, .thirdly-table .table-directory .table-directory-right-header button:hover, .fourth-table .table-directory .table-directory-right-header button:hover, .fifth-table .table-directory .table-directory-right-header button:hover {
   cursor: pointer;
   color: #5D5FEF;
 }
-.main-table .table-directory .table-directory-right-header hr, .secondary-table .table-directory .table-directory-right-header hr, .thirdly-table .table-directory .table-directory-right-header hr, .fourth-table .table-directory .table-directory-right-header hr {
+.main-table .table-directory .table-directory-right-header hr, .secondary-table .table-directory .table-directory-right-header hr, .thirdly-table .table-directory .table-directory-right-header hr, .fourth-table .table-directory .table-directory-right-header hr, .fifth-table .table-directory .table-directory-right-header hr {
   border: none;
   border-left: 2px solid hsl(200, 10%, 50%);
   width: 2px;
 }
-.main-table .table-directory .table-directory-right-header .edit-btn, .secondary-table .table-directory .table-directory-right-header .edit-btn, .thirdly-table .table-directory .table-directory-right-header .edit-btn, .fourth-table .table-directory .table-directory-right-header .edit-btn {
+.main-table .table-directory .table-directory-right-header .edit-btn, .secondary-table .table-directory .table-directory-right-header .edit-btn, .thirdly-table .table-directory .table-directory-right-header .edit-btn, .fourth-table .table-directory .table-directory-right-header .edit-btn, .fifth-table .table-directory .table-directory-right-header .edit-btn {
   padding: 5px;
   font-size: 14px;
   border-radius: 4px;
@@ -86,34 +88,34 @@
   color: black;
   margin-right: 0;
 }
-.main-table .table-directory .table-directory-right-header .edit-btn .css-i4bv87-MuiSvgIcon-root, .secondary-table .table-directory .table-directory-right-header .edit-btn .css-i4bv87-MuiSvgIcon-root, .thirdly-table .table-directory .table-directory-right-header .edit-btn .css-i4bv87-MuiSvgIcon-root, .fourth-table .table-directory .table-directory-right-header .edit-btn .css-i4bv87-MuiSvgIcon-root {
+.main-table .table-directory .table-directory-right-header .edit-btn .css-i4bv87-MuiSvgIcon-root, .secondary-table .table-directory .table-directory-right-header .edit-btn .css-i4bv87-MuiSvgIcon-root, .thirdly-table .table-directory .table-directory-right-header .edit-btn .css-i4bv87-MuiSvgIcon-root, .fourth-table .table-directory .table-directory-right-header .edit-btn .css-i4bv87-MuiSvgIcon-root, .fifth-table .table-directory .table-directory-right-header .edit-btn .css-i4bv87-MuiSvgIcon-root {
   margin-right: 4px;
 }
-.main-table .table-directory .table-directory-right-header .ai-edit-btn, .secondary-table .table-directory .table-directory-right-header .ai-edit-btn, .thirdly-table .table-directory .table-directory-right-header .ai-edit-btn, .fourth-table .table-directory .table-directory-right-header .ai-edit-btn {
+.main-table .table-directory .table-directory-right-header .ai-edit-btn, .secondary-table .table-directory .table-directory-right-header .ai-edit-btn, .thirdly-table .table-directory .table-directory-right-header .ai-edit-btn, .fourth-table .table-directory .table-directory-right-header .ai-edit-btn, .fifth-table .table-directory .table-directory-right-header .ai-edit-btn {
   background-color: #A5A6F6;
   background: rgba(165, 166, 246, 0.2);
   border-radius: 18px;
   border: 0.75px solid #5D5FEF;
   padding: 0 10px;
 }
-.main-table .table-directory .table-directory-right-header .ai-edit-btn img, .secondary-table .table-directory .table-directory-right-header .ai-edit-btn img, .thirdly-table .table-directory .table-directory-right-header .ai-edit-btn img, .fourth-table .table-directory .table-directory-right-header .ai-edit-btn img {
+.main-table .table-directory .table-directory-right-header .ai-edit-btn img, .secondary-table .table-directory .table-directory-right-header .ai-edit-btn img, .thirdly-table .table-directory .table-directory-right-header .ai-edit-btn img, .fourth-table .table-directory .table-directory-right-header .ai-edit-btn img, .fifth-table .table-directory .table-directory-right-header .ai-edit-btn img {
   height: 20px;
   margin-top: -5px;
   margin-right: 5px;
 }
-.main-table .table-directory .table-directory-right-header .save-btn, .secondary-table .table-directory .table-directory-right-header .save-btn, .thirdly-table .table-directory .table-directory-right-header .save-btn, .fourth-table .table-directory .table-directory-right-header .save-btn {
+.main-table .table-directory .table-directory-right-header .save-btn, .secondary-table .table-directory .table-directory-right-header .save-btn, .thirdly-table .table-directory .table-directory-right-header .save-btn, .fourth-table .table-directory .table-directory-right-header .save-btn, .fifth-table .table-directory .table-directory-right-header .save-btn {
   background-color: #2173DF;
   border-radius: 4px;
   padding: 0 10px;
   color: white;
 }
-.main-table .table-directory .table-directory-right-header .save-btn:hover, .secondary-table .table-directory .table-directory-right-header .save-btn:hover, .thirdly-table .table-directory .table-directory-right-header .save-btn:hover, .fourth-table .table-directory .table-directory-right-header .save-btn:hover {
+.main-table .table-directory .table-directory-right-header .save-btn:hover, .secondary-table .table-directory .table-directory-right-header .save-btn:hover, .thirdly-table .table-directory .table-directory-right-header .save-btn:hover, .fourth-table .table-directory .table-directory-right-header .save-btn:hover, .fifth-table .table-directory .table-directory-right-header .save-btn:hover {
   color: black;
 }
-.main-table .table-directory .table-directory-right-header .save-btn .css-i4bv87-MuiSvgIcon-root, .secondary-table .table-directory .table-directory-right-header .save-btn .css-i4bv87-MuiSvgIcon-root, .thirdly-table .table-directory .table-directory-right-header .save-btn .css-i4bv87-MuiSvgIcon-root, .fourth-table .table-directory .table-directory-right-header .save-btn .css-i4bv87-MuiSvgIcon-root {
+.main-table .table-directory .table-directory-right-header .save-btn .css-i4bv87-MuiSvgIcon-root, .secondary-table .table-directory .table-directory-right-header .save-btn .css-i4bv87-MuiSvgIcon-root, .thirdly-table .table-directory .table-directory-right-header .save-btn .css-i4bv87-MuiSvgIcon-root, .fourth-table .table-directory .table-directory-right-header .save-btn .css-i4bv87-MuiSvgIcon-root, .fifth-table .table-directory .table-directory-right-header .save-btn .css-i4bv87-MuiSvgIcon-root {
   margin-right: 5px;
 }
-.main-table .table-directory .table-directory-right-header .css-i4bv87-MuiSvgIcon-root, .secondary-table .table-directory .table-directory-right-header .css-i4bv87-MuiSvgIcon-root, .thirdly-table .table-directory .table-directory-right-header .css-i4bv87-MuiSvgIcon-root, .fourth-table .table-directory .table-directory-right-header .css-i4bv87-MuiSvgIcon-root {
+.main-table .table-directory .table-directory-right-header .css-i4bv87-MuiSvgIcon-root, .secondary-table .table-directory .table-directory-right-header .css-i4bv87-MuiSvgIcon-root, .thirdly-table .table-directory .table-directory-right-header .css-i4bv87-MuiSvgIcon-root, .fourth-table .table-directory .table-directory-right-header .css-i4bv87-MuiSvgIcon-root, .fifth-table .table-directory .table-directory-right-header .css-i4bv87-MuiSvgIcon-root {
   font-size: 16px;
 }
 
@@ -174,6 +176,112 @@
 .secondary-table .secondary-table-content .secondary-table-items .items-title button .css-i4bv87-MuiSvgIcon-root {
   color: #A2ABBA;
   font-size: 20px;
+}
+
+.fifth-table {
+  display: none;
+}
+.fifth-table .fifth-table-content {
+  display: grid;
+}
+.fifth-table .fifth-table-content h1 {
+  margin-top: -10px;
+  margin-bottom: 0;
+}
+.fifth-table .fifth-table-content .fifth-table-desc {
+  height: -moz-fit-content;
+  height: fit-content;
+  display: grid;
+}
+.fifth-table .fifth-table-content .fifth-table-desc hr {
+  margin-top: 20px !important;
+  margin-bottom: 20px !important;
+  height: 1px;
+}
+.fifth-table .fifth-table-content .fifth-table-desc .fifth-table-desc-item {
+  display: flex;
+  padding: 8px 15px;
+}
+.fifth-table .fifth-table-content .fifth-table-desc .fifth-table-desc-item h2, .fifth-table .fifth-table-content .fifth-table-desc .fifth-table-desc-item text, .fifth-table .fifth-table-content .fifth-table-desc .fifth-table-desc-item .css-i4bv87-MuiSvgIcon-root, .fifth-table .fifth-table-content .fifth-table-desc .fifth-table-desc-item .desc-item-list {
+  font-size: 16px;
+  padding: 0;
+}
+.fifth-table .fifth-table-content .fifth-table-desc .fifth-table-desc-item h2, .fifth-table .fifth-table-content .fifth-table-desc .fifth-table-desc-item .css-i4bv87-MuiSvgIcon-root {
+  height: 20px;
+}
+.fifth-table .fifth-table-content .fifth-table-desc .fifth-table-desc-item h2 {
+  color: #ACACAC;
+  width: 170px;
+}
+.fifth-table .fifth-table-content .fifth-table-desc .fifth-table-desc-item text, .fifth-table .fifth-table-content .fifth-table-desc .fifth-table-desc-item .desc-item-list {
+  width: calc(100% - 170px);
+  text-align: justify;
+}
+.fifth-table .fifth-table-content .fifth-table-desc .fifth-table-desc-item .css-i4bv87-MuiSvgIcon-root {
+  margin-top: -1.5px;
+  margin-right: 5px;
+  font-size: 18px;
+}
+.fifth-table .fifth-table-content .fifth-table-desc .fifth-table-desc-item .desc-item-list {
+  display: grid;
+}
+.fifth-table .fifth-table-content .fifth-table-desc .fifth-table-desc-item .desc-item-list .desc-item-list-item {
+  display: flex;
+  margin-bottom: 5px;
+}
+.fifth-table .fifth-table-content .fifth-table-desc .fifth-table-desc-item .desc-item-list .desc-item-list-item h3 {
+  min-width: 30px;
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+  margin-top: 3px;
+}
+.fifth-table .fifth-table-content .fifth-table-desc .fifth-table-desc-item .desc-item-list .desc-item-list-item text {
+  margin-bottom: 2px;
+}
+.fifth-table .fifth-table-content .fifth-table-list {
+  background-color: #F8F8F8;
+  width: 100%;
+  min-height: 100%;
+  height: -moz-fit-content;
+  height: fit-content;
+  border-radius: 20px;
+  padding: 10px 20px;
+  display: grid;
+}
+.fifth-table .fifth-table-content .fifth-table-list h2 {
+  color: #343741;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 140%;
+}
+.fifth-table .fifth-table-content .fifth-table-list .fifth-table-list-item {
+  display: flex;
+  padding: 10px;
+  border-radius: 12px;
+  background-color: #FFFFFF;
+  margin-bottom: 10px;
+}
+.fifth-table .fifth-table-content .fifth-table-list .fifth-table-list-item:hover {
+  cursor: pointer;
+  background-color: #e2e1e1;
+}
+.fifth-table .fifth-table-content .fifth-table-list .fifth-table-list-item h3 {
+  margin: auto;
+  margin-left: 0;
+  margin-right: 0;
+  font-size: 20px;
+  color: #ACACAC;
+  min-width: 50px;
+  padding: 10px;
+}
+.fifth-table .fifth-table-content .fifth-table-list .fifth-table-list-item text {
+  margin: auto;
+  margin-left: 0;
+  margin-right: 10px;
+  font-size: 16px;
+  color: #343741;
+  text-align: justify;
 }
 
 .thirdly-table button {
@@ -246,6 +354,7 @@
 }
 .thirdly-table .thirdly-table-content .thirdly-table-content-item:hover {
   cursor: pointer;
+  background-color: #F7F8FC;
 }
 .thirdly-table .thirdly-table-content .thirdly-table-content-item img {
   width: 3vw;
@@ -254,6 +363,7 @@
   margin: auto;
   margin-right: 0;
   margin-left: 0;
+  border-radius: 4px;
 }
 .thirdly-table .thirdly-table-content .thirdly-table-content-item .thirdly-table-item-desc {
   display: grid;
@@ -380,12 +490,12 @@
 
 .table-content-1 {
   width: 100%;
-  display: flex;
+  display: grid;
   height: calc(100% - 150px);
-  overflow: scroll;
 }
 .table-content-1 .table-content-1-item {
   width: 100%;
+  margin-bottom: 15px;
 }
 .table-content-1 .table-content-1-item button {
   border-radius: 28px;
@@ -398,6 +508,10 @@
 .table-content-1 .table-content-1-item button img {
   height: 25px;
   margin-right: 15px;
+  border-radius: 5px;
+}
+.table-content-1 .table-content-1-item button:hover {
+  background-color: #E2E2E2;
 }
 
 .minimised-table-item, .expanded-table-item {

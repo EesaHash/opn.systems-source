@@ -84,6 +84,7 @@ export const DashboardPage = () => {
         }
     }, [userID]);
 
+    // Get client journeys from database
     useEffect(() => {
         try{
             setLoading(true);
@@ -109,7 +110,38 @@ export const DashboardPage = () => {
         }catch(error){
             alert(error);
         }
-    }, [business])
+    }, [business]);
+
+    // Get client journeys' SOPs from database
+    useEffect(() => {
+        const fetchData = async _ => {
+            try{
+                const getSOPs = async (id) => {
+                    const res = await fetch("/api/sop/getall", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                            ClientJourneyId: id
+                        })
+                    });
+                    const data = await res.json();
+                    console.log(data);
+                    if(data.status){
+                        setProcedures((prevProcedures) => [...prevProcedures, data.sops]);
+                    }
+                };
+                setProcedures([]);
+                journeys.forEach(async (item) => {
+                    await getSOPs(item.id);
+                });
+            }catch(error){
+                alert(error);
+            }
+        }
+        fetchData();
+    }, [journeys]);
     
     if(userID === "none") return window.location.href = "/";
     return (

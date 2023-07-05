@@ -21,7 +21,7 @@ export const ThirdlyTable = (props) => {
                 {props.list.length <= 0 ? 
                     <EmptyTableContent addNewBtn = {props.addNewBtn}/> :
                     props.list.map((data, index) => (
-                        item(data, index, props.list2, props.itemActionBtn)
+                        item(data, index, props.list2[index], props.itemActionBtn)
                     ))
                 }
             </div>
@@ -31,7 +31,7 @@ export const ThirdlyTable = (props) => {
 
 const item = (data, index, list2, itemActionBtn) => {
     return(
-        <div key={index} className='thirdly-table-content-item' onClick={() => itemActionBtn(data)}>
+        <div key={index} className='thirdly-table-content-item' onClick={() => itemActionBtn(data, index)}>
             <img src="./images/folder_icon.png" alt="icon"/>
             <div className='thirdly-table-item-desc'>
                 <h2>{data.title}</h2>
