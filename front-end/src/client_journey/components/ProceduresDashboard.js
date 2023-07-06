@@ -56,7 +56,7 @@ export const ProceduresDashboard = (props) => {
     const openProcedureDetail = (param) => {
         const secondTable = document.getElementById("procedure-secondary-table");
         const thirdTable = document.getElementById("procedure-third-table");
-        if(secondTable && thirdTable){
+        if(secondTable && thirdTable) {
             secondTable.style.display = "none";
             setProcedure(param);
             thirdTable.style.display = "block";
@@ -103,10 +103,10 @@ export const ProceduresDashboard = (props) => {
                 type = "Procedures"
                 title = {`${journey.title}'s Procedures`}
                 sub_title = {procedure.title}
-                button1 = {showJourneyList}
-                button2 = {showProcedureList}
-                data = {procedure}
-                desc = {descList}
+                button1 = { showJourneyList }
+                button2 = { showProcedureList }
+                data = { procedure }
+                desc = { descList }
                 list1Title = "Procedure"
                 list1 = {procedure.procedure ? procedure.procedure.split("\n\n") : []}
             />

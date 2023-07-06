@@ -1,13 +1,13 @@
-.content-form .input[type=text] {
+.input[type=text] {
   margin-left: 0px;
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
   border-radius: 4px;
 }
-.content-form .pop-up-input {
+
+.pop-up-input {
   width: 23vw;
-  background-color: pink;
   margin: auto auto 15px auto;
 }
 
