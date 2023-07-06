@@ -3,10 +3,7 @@ const express = require("express");
 const router = express.Router();
 const { z } = require("zod");
 const { OpenAI } = require("langchain/llms/openai");
-<<<<<<< HEAD
-=======
 const SOP = require("../../models/sop");
->>>>>>> 56a4d3b2082472ac6760edd5a175b54cfcc1053e
 
 require('dotenv').config()
 

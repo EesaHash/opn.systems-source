@@ -121,59 +121,20 @@ clientJourney.saveRegeneratedStage = async (req, res) => {
 /*
 Example JSON body:
  {
-<<<<<<< HEAD
-    businessId: 1,
-    stage: "awareness" -- all lowercase
-=======
     id: 1,
     businessId: 1,
     stage: "awareness" -- all lowercase,
     prompt: "user prompt"
->>>>>>> 56a4d3b2082472ac6760edd5a175b54cfcc1053e
  }
 */
 clientJourney.regenerateStage = async (req, res) => {
     try {
-<<<<<<< HEAD
-        const clientJourneyList = await ClientJourney.findAll({ where: { businessId: req.body.businessId } });
-=======
         const { id, businessId, prompt } = req.body;
         const clientJourneyList = await ClientJourney.findAll({ where: { id: id } });
->>>>>>> 56a4d3b2082472ac6760edd5a175b54cfcc1053e
         const clientJourney = clientJourneyList[0];
         if (clientJourney == null) {
             throw "Client Journey or Business not found!";
         }
-<<<<<<< HEAD
-        const { businessId, prompt } = req.body;
-        if (prompt == null) {
-        const business = await Business.findOne({ where: { id: businessId } });
-        if (business == null) {
-            throw "Client Journey or Business not found!";
-        }
-        const businessDetails = "Business Name:" + business.businessName + "\n Business Type:" + business.businessType + "\n Industry:" + business.industry + "\n Company Size:" + business.companySize + "\n Business Objective:" + business.businessObjective + "\n Core Services:" + business.coreServices + "\n Target Market:" + business.targetMarket + "\n Product or Service Description:" + business.productOrServiceDescription +  "\n Funding Strategy:" + business.fundingStrategy;
-        const stage = req.body.stage.toLowerCase();
-        const output = await retryStage(stage, businessDetails);
-        if (output == null) {
-            throw "Failed to generate stage!";
-        }
-        return res.status(200).json({
-            output
-        });
-    } else {
-        const stage = req.body.stage.toLowerCase();
-        const output = await regenerateStageWithContext(stage, clientJourney[stage], prompt);
-        if (output == null) {
-            throw "Failed to generate stage!";
-        }
-        return res.status(200).json({
-            output
-        });
-    }
-    } catch (error) {
-        console.log(error);
-        return res.status(403).json({
-=======
         if (prompt == null) {
             const business = await Business.findOne({ where: { id: businessId } });
             if (business == null) {
@@ -205,7 +166,6 @@ clientJourney.regenerateStage = async (req, res) => {
         console.log(error);
         return res.status(403).json({
             status: false,
->>>>>>> 56a4d3b2082472ac6760edd5a175b54cfcc1053e
             result: `Failed`
         });
     }
