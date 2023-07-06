@@ -33,6 +33,6 @@ const SOP = sequelize.define('Standard Operating Procedures', {
 });
 
 
-ClientJourney.hasMany(SOP);
+//ClientJourney.hasMany(SOP);
 
 module.exports = SOP;
