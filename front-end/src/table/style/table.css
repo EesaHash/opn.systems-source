@@ -240,14 +240,17 @@
   margin-bottom: 2px;
 }
 .fifth-table .fifth-table-content .fifth-table-list {
+  margin-bottom: 20px;
   background-color: #F8F8F8;
   width: 100%;
-  min-height: 100%;
   height: -moz-fit-content;
   height: fit-content;
   border-radius: 20px;
   padding: 10px 20px;
   display: grid;
+}
+.fifth-table .fifth-table-content .fifth-table-list:hover {
+  cursor: pointer;
 }
 .fifth-table .fifth-table-content .fifth-table-list h2 {
   color: #343741;

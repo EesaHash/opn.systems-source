@@ -235,13 +235,16 @@
             }
         }
         & .fifth-table-list{
+            margin-bottom: 20px;
             background-color: #F8F8F8;
             width: 100%;
-            min-height: 100%;
             height: fit-content;
             border-radius: 20px;
             padding: 10px 20px;
             display: grid;
+            &:hover{
+                cursor: pointer;
+            }
             & h2{
                 color: #343741;
                 font-size: 20px;

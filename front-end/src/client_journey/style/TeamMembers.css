@@ -1,16 +1,3 @@
-.content-form .input[type=text] {
-  margin-left: 0px;
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  border-radius: 4px;
-}
-.content-form .pop-up-input {
-  width: 23vw;
-  background-color: pink;
-  margin: auto auto 15px auto;
-}
-
 .Team_Member {
   width: 100%;
   min-height: calc(100% - 70px - 23px);

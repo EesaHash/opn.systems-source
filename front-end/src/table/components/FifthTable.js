@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import "../style/table.css";
 import { AccessTime, Chat, Download, Edit, MoreHoriz, Share, SimCardDownload } from '@mui/icons-material';
 import { openAccessLimitForm, openFutureFeatureWarningForm } from '../../dashboard/page/dashboard_main';
+import { ListItem } from './ListItem';
 
 export const FifthTable = (props) => {
     const [editStatus, setEditStatus] = useState(false);
@@ -54,43 +55,51 @@ export const FifthTable = (props) => {
                     {props.desc}
                     <hr/>
                 </div>
-                <div className='fifth-table-list'>
-                    <h2>{props.list1Title}</h2>
-                    {props.list1.map((data, index) => (
-                        listItem(index, data)
-                    ))}
-                </div>
+                <ListItem 
+                    listTitle = {props.list1Title}
+                    list = {props.list1}
+                />
+                <ListItem 
+                    listTitle = {props.list2Title}
+                    list = {props.list2}
+                />
+                <ListItem 
+                    listTitle = {props.list3Title}
+                    list = {props.list3}
+                />
             </div>
         </div>
     );
 };
-export const FifthTableDescAsNumberList = (icon, title, data) => {
-    const temp = data ? data.split("\n") : [];
-    return(
-        <div className='fifth-table-desc-item'>
-            <h2>{icon}{title}</h2>
-            <div className='desc-item-list'>
-                {temp.map((res, index) => (
-                    <div key={index} className='desc-item-list-item'>
-                        <h3>{index + 1}.</h3>
-                        <text>{res.substring(res.indexOf('.') + 2)}</text>
-                    </div>
-                ))}
-            </div>
-        </div>
-    )
-};
 export const FifthTableDescAsList = (icon, title, data) => {
     const temp = data ? data.split("\n") : [];
+    const pattern = /^\d+\.\s+/;
+    const pattern2 = /^[-•]\s+/;
     return(
         <div className='fifth-table-desc-item'>
             <h2>{icon}{title}</h2>
             <div className='desc-item-list'>
                 {temp.map((res, index) => (
-                    <div key={index} className='desc-item-list-item'>
-                        <h3>-</h3>
-                        <text>{res.substring(2)}</text>
-                    </div>
+                    (res.length > 0) && (
+                        pattern.test(res) ? (
+                            <div key={index} className='desc-item-list-item'>
+                                <h3>{index + 1}.</h3>
+                                <text>{res.substring(res.indexOf('.') + 2)}</text>
+                            </div> 
+                            ) : (
+                            pattern2.test(res) ? (
+                                <div key={index} className='desc-item-list-item'>
+                                    <h3>-</h3>
+                                    <text>{res.substring(2)}</text>
+                                </div> 
+                            ) : (
+                                <div key={index} className='desc-item-list-item'>
+                                    <h3>-</h3>
+                                    <text>{res}</text>
+                                </div>
+                            )
+                        )
+                    )
                 ))}
             </div>
         </div>
@@ -104,11 +113,35 @@ export const FifthTableDescItem = (icon, title, data) => {
         </div>
     )
 };
-const listItem = (index, data) => {
-    return(
-        <div key={index} className='fifth-table-list-item'>
-            <h3>{index + 1}</h3>
-            <text>{data.substring(data.indexOf('.') + 2)}</text>
-        </div>
-    );
-};
+
+// const listItem = (list, listTitle) => {
+//     const pattern = /^\d+\.\s+/;
+//     const pattern2 = /^[-•]\s+/;
+//     return(
+//         <div className='fifth-table-list'>
+//             <h2>{listTitle}</h2>
+//             {list.map((data, index) => (
+//                 (data.length > 0) && (
+//                     pattern.test(data) ? (
+//                         <div key={index} className='fifth-table-list-item'>
+//                             <h3>{index + 1}</h3>
+//                             <text>{data.substring(data.indexOf('.') + 2)}</text>
+//                         </div>
+//                     ) : (
+//                         pattern2.test(data) ? (
+//                             <div key={index} className='fifth-table-list-item'>
+//                                 <h3>-</h3>
+//                                 <text>{data.substring(2)}</text>
+//                             </div>
+//                         ) : (
+//                             <div key={index} className='fifth-table-list-item'>
+//                                 <h3>-</h3>
+//                                 <text>{data}</text>
+//                             </div>
+//                         )
+//                     )
+//                 )
+//             ))}
+//         </div>
+//     );
+// };
