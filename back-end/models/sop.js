@@ -12,7 +12,7 @@ const SOP = sequelize.define('Standard Operating Procedures', {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    objective: {
+    purpose: {
         type: DataTypes.TEXT,
     },
     definitions: {
@@ -22,9 +22,6 @@ const SOP = sequelize.define('Standard Operating Procedures', {
         type: DataTypes.TEXT,
     },
     procedure: {
-        type: DataTypes.TEXT,
-    },
-    interactionChannel: {
         type: DataTypes.TEXT,
     },
     documentation: {

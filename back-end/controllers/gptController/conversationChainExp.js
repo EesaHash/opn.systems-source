@@ -69,10 +69,10 @@ const generateFewSOPs = async (clientJourney, businessDetails) => {
       }
       steps = stages[i]["steps"];
       statement = steps[Math.floor(Math.random() * steps.length)];
-      console.log(statement)
-      sops.push(await generateSingleSOP(statement, businessDetails));
+      console.log(statement);
+      const sop = await generateSingleSOP(statement, businessDetails);
+      sops.push(sop);
     }
-    console.log(sops);
     for (let i = 0; i < sops.length; i++) {
       await SOP.create({
         title: sops[i].title,
@@ -81,7 +81,7 @@ const generateFewSOPs = async (clientJourney, businessDetails) => {
         responsibility: sops[i].responsibility,
         procedure: sops[i].procedure,
         documentation: sops[i].documentation,
-        clientJourneyId: clientJourney.id
+        ClientJourneyId: clientJourney.id
       });
     }
   }
@@ -91,118 +91,117 @@ const generateFewSOPs = async (clientJourney, businessDetails) => {
 }
 
 const generateSingleSOP = async (statement, businessDetails) => {
-  try {
-    const chat = new ChatOpenAI({ temperature: 0.9, maxTokens: "2000" });
-    const memory = new BufferMemory({ returnMessages: true, memoryKey: "history" });
-    const chatPrompt = ChatPromptTemplate.fromPromptMessages([
-      SystemMessagePromptTemplate.fromTemplate(
-        `Standard Operating Procedures (SOPs): For a given statement, generate a single SOP.
+    try {
+        const chat = new ChatOpenAI({ temperature: 0.9 });
+        const memory = new BufferMemory({ returnMessages: true, memoryKey: "history" });
+        const chatPrompt = ChatPromptTemplate.fromPromptMessages([
+            SystemMessagePromptTemplate.fromTemplate(
+            `Standard Operating Procedures (SOPs): For a given statement, generate a single SOP.
 
-        Produce in the following format
-        
-        Here's a general format for creating an SOP:
-        
-        1. Title: The title should clearly and concisely describe the procedure.
-        2. Purpose/Scope: This section explains why the SOP is necessary and under what circumstances it should be followed. It could include the potential benefits and the objectives the SOP is designed to achieve.
-        3. Definitions: This section includes any specific terms, abbreviations, or acronyms used within the SOP.
-        4. Responsibility: Detail who is responsible for executing the SOP, including any secondary roles that may be involved in supporting or overseeing the process.
-        5. Procedure: This is the core of the SOP. It provides a step-by-step guide on how to complete the procedure. It should be detailed and specific enough that someone unfamiliar with the process could complete it by following the instructions. It's often beneficial to break down complex procedures into smaller, manageable steps.
-        6. Documentation/Records: This section specifies any necessary documentation related to the procedure, such as forms to be filled out, records to be kept, or reports to be submitted.
+            Produce in the following format
+            
+            Here's a general format for creating an SOP:
+            
+            1. Title: The title should clearly and concisely describe the procedure.
+            2. Purpose/Scope: This section explains why the SOP is necessary and under what circumstances it should be followed. It could include the potential benefits and the objectives the SOP is designed to achieve.
+            3. Definitions: This section includes any specific terms, abbreviations, or acronyms used within the SOP.
+            4. Responsibility: Detail who is responsible for executing the SOP, including any secondary roles that may be involved in supporting or overseeing the process.
+            5. Procedure: This is the core of the SOP. It provides a step-by-step guide on how to complete the procedure. It should be detailed and specific enough that someone unfamiliar with the process could complete it by following the instructions. It's often beneficial to break down complex procedures into smaller, manageable steps.
+            6. Documentation/Records: This section specifies any necessary documentation related to the procedure, such as forms to be filled out, records to be kept, or reports to be submitted.
 
-        Here's the statement: "${statement}"`
-      ),
-      new MessagesPlaceholder("history"),
-      HumanMessagePromptTemplate.fromTemplate("{input}"),
-    ]);
+            Here's the statement: "${statement}"`
+            ),
+            new MessagesPlaceholder("history"),
+            HumanMessagePromptTemplate.fromTemplate("{input}"),
+        ]);
 
-    const primerChain = new ConversationChain({
-      memory: memory,
-      prompt: chatPrompt,
-      llm: chat,
-    });
-
-
-    const titleChain = new ConversationChain({
-      memory: memory,
-      prompt: chatPrompt,
-      llm: chat,
-      outputKey: "title",
-    });
-
-    const purposeChain = new ConversationChain({
-      memory: memory,
-      prompt: chatPrompt,
-      llm: chat,
-      outputKey: "purpose"
-    });
-
-    const definitionsChain = new ConversationChain({
-      memory: memory,
-      prompt: chatPrompt,
-      llm: chat,
-      outputKey: "definitions"
-    });
-
-    const responsibilityChain = new ConversationChain({
-      memory: memory,
-      prompt: chatPrompt,
-      llm: chat,
-      outputKey: "responsibility",
-    });
-
-    const procedureChain = new ConversationChain({
-      memory: memory,
-      prompt: chatPrompt,
-      llm: chat,
-      outputKey: "procedure",
-    });
-
-    const documentationChain = new ConversationChain({
-      memory: memory,
-      prompt: chatPrompt,
-      llm: chat,
-      outputKey: "documentation"
-    });
-
-    const primer = await primerChain.call({
-      input: `Provided here are some business details. Please dont output anything, I am just providing these to you so that you have more context. Business Details : ${businessDetails}`
-    });
-
-    const title = await titleChain.call({
-      input: `Generate the title. Dont add any labels or tags for example "Title: " `,
-    });
-
-    const purpose = await purposeChain.call({
-      input: `Generate the purpose. Dont add any labels or tags for example "Purpose: " `,
-    });
-
-    const procedure = await procedureChain.call({
-      input: `Generate the procedure. Dont add any labels or tags for example "Procedure: " `,
-    });
-
-    const documentation = await documentationChain.call({
-      input: `Generate the documentation. Dont add any labels or tags for example "Documentation: "`
-    });
-
-    const definitions = await definitionsChain.call({
-      input: `List some abbreviations that WERE USED in procedure (not more than 4). Dont add any labels or tags for example "Definitions: "`
-    });
-
-    const responsibility = await responsibilityChain.call({
-      input: `List the people roles responsible. Dont add any labels or tags for example "Responsibility: "`
-    });
-
- 
+        const primerChain = new ConversationChain({
+            memory: memory,
+            prompt: chatPrompt,
+            llm: chat,
+        });
 
 
-    let output = Object.assign({}, title, responsibility, purpose, definitions, procedure, documentation);
-    console.log(output);
-    return output;
-  }
-  catch (err) {
-    console.log(err);
-    return null;
-  }
+        const titleChain = new ConversationChain({
+            memory: memory,
+            prompt: chatPrompt,
+            llm: chat,
+            outputKey: "title",
+        });
+
+        const purposeChain = new ConversationChain({
+            memory: memory,
+            prompt: chatPrompt,
+            llm: chat,
+            outputKey: "purpose"
+        });
+
+        const definitionsChain = new ConversationChain({
+            memory: memory,
+            prompt: chatPrompt,
+            llm: chat,
+            outputKey: "definitions"
+        });
+
+        const responsibilityChain = new ConversationChain({
+            memory: memory,
+            prompt: chatPrompt,
+            llm: chat,
+            outputKey: "responsibility",
+        });
+
+        const procedureChain = new ConversationChain({
+            memory: memory,
+            prompt: chatPrompt,
+            llm: chat,
+            outputKey: "procedure",
+        });
+
+        const documentationChain = new ConversationChain({
+            memory: memory,
+            prompt: chatPrompt,
+            llm: chat,
+            outputKey: "documentation"
+        });
+
+        // const primer = await primerChain.call({
+        //   input: `Provided here are some business details. Please dont output anything, I am just providing these to you so that you have more context. Business Details : ${businessDetails}`
+        // });
+
+        const title = await titleChain.call({
+            input: `Generate the title. Dont add any labels or tags for example "Title: " `,
+        });
+
+        const purpose = await purposeChain.call({
+            input: `Generate the purpose. Dont add any labels or tags for example "Purpose: " `,
+        });
+
+        const procedure = await procedureChain.call({
+            input: `Generate the procedure. Dont add any labels or tags for example "Procedure: " `,
+        });
+
+        const documentation = await documentationChain.call({
+            input: `Generate the documentation. Dont add any labels or tags for example "Documentation: "`
+        });
+
+        const definitions = await definitionsChain.call({
+            input: `List some abbreviations that WERE USED in procedure (not more than 4). Dont add any labels or tags for example "Definitions: "`
+        });
+
+        const responsibility = await responsibilityChain.call({
+            input: `List the people roles responsible. Dont add any labels or tags for example "Responsibility: "`
+        });
+
+
+
+
+        let output = Object.assign({}, title, responsibility, purpose, definitions, procedure, documentation);
+        console.log(output);
+        return output;
+    }catch (err) {
+        console.log(err);
+        return null;
+    }
 }
 
 router.post("/", get);
