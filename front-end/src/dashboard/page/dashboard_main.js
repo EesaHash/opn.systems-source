@@ -215,8 +215,8 @@ export const openFutureFeatureWarningForm = _ => {
     openPopUpForm();
 };
 export const createNewBusinessForm = (businesses) => {
-    if(businesses.length > 0)
-        return openAccessLimitForm();
+    // if(businesses.length > 0)
+    //     return openAccessLimitForm();
     document.getElementById("createAccountForm").style.display = "block";
     openPopUpForm();
 };

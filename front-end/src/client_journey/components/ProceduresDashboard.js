@@ -3,8 +3,8 @@ import "../style/client_journey.css";
 import { ThirdlyTable } from '../../table/components/ThirdlyTable';
 import { openAccessLimitForm, openPopUpForm } from '../../dashboard/page/dashboard_main';
 import { FourthTable } from '../../table/components/FourthTable';
-import { FifthTable, FifthTableDescAsList, FifthTableDescAsNumberList, FifthTableDescItem } from '../../table/components/FifthTable';
-import { AssignmentInd, FolderCopy, FormatAlignLeft } from '@mui/icons-material';
+import { FifthTable, FifthTableDescAsList, FifthTableDescItem } from '../../table/components/FifthTable';
+import { FormatAlignLeft } from '@mui/icons-material';
 
 export const ProceduresDashboard = (props) => {
     const [journey, setJourney] = useState({});
@@ -73,10 +73,8 @@ export const ProceduresDashboard = (props) => {
     };
     
     const descList = [
-        FifthTableDescItem(<FormatAlignLeft/>, "Objective", procedure.objective),
-        FifthTableDescAsNumberList(<FormatAlignLeft/>, "Definitions", procedure.definitions),
-        FifthTableDescAsNumberList(<AssignmentInd/>, "Responsibility", procedure.responsibility),
-        FifthTableDescAsList(<FolderCopy/>, "Documentation", procedure.documentation)
+        FifthTableDescItem(<FormatAlignLeft/>, "Objective", procedure.purpose),
+        FifthTableDescAsList(<FormatAlignLeft/>, "Definitions", procedure.definitions)
     ];
 
     return(
@@ -109,6 +107,10 @@ export const ProceduresDashboard = (props) => {
                 desc = { descList }
                 list1Title = "Procedure"
                 list1 = {procedure.procedure ? procedure.procedure.split("\n\n") : []}
+                list2Title = "Responsibility"
+                list2 = {procedure.responsibility ? procedure.responsibility.split("\n") : []}
+                list3Title = "Documentation"
+                list3 = {procedure.documentation ? procedure.documentation.split("\n") : []}
             />
         </div>
     );

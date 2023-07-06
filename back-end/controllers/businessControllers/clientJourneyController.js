@@ -377,6 +377,65 @@ async function regenerateStageWithContext(stageString, previousStageContent, use
     return output;
 }
 
+async function regenerateStageWithContextSingle(stageString, previousStageContent, userPromptString) {
+    const parser = StructuredOutputParser.fromZodSchema(
+        z.object({
+            department: z.string().describe(`Identify responsible department for ${stageString} stage. These are the main sectors or divisions within the company. Each department represents a specific function of the business, such as Marketing, Sales, Human Resources, Operations, Finance, etc.`),
+            role: z.string().describe(`Identify responsible roles for the ${stageString} stage. Within each department, there are several roles. Roles are the specific job titles or positions that individuals hold within the department. For example, in the Marketing department, roles might include Marketing Manager, Content Strategist, SEO Specialist, etc.`),
+            steps: z
+                .array(z.string())
+                .describe("Steps to follow in this stage. Be ellaborate by providing a lot of detail."),
+        })
+    );
+    const formatInstructions = parser.getFormatInstructions();
+    const prompt = new PromptTemplate({
+        template:
+        `You are tasked with regenerating a client journey's ${stageString} stage, improving the users existing client journey stage, according to their preferences.
+         Old Client Journey Stage: {oldClientJourneyStage}
+         User's Preference: {userPreference}
+         {format_instructions};`,
+        inputVariables: ["userPreference", "oldClientJourneyStage"],
+        partialVariables: { format_instructions: formatInstructions },
+    });
+
+    const model = new OpenAI({ temperature: 1, model: "gpt-3.5-turbo-16k" });
+    const input = await prompt.format({
+        userPreference: userPromptString,
+        oldClientJourneyStage: JSON.stringify(previousStageContent),
+    });
+    const response = await model.call(input);
+    try {
+        parsedResponse = await parser.parse(response);
+        return parsedResponse;
+    } catch (e) {
+        try {
+            const fixParser = OutputFixingParser.fromLLM(
+                new OpenAI({ temperature: 0, model: "gpt-3.5-turbo-16k" }),
+                parser
+            );
+            const output = await fixParser.parse(response);
+            return output;
+        }
+        catch (e) {
+            return null;
+        }
+    }
+
+}
+
+async function regenerateStageWithContext(stageString, previousStageContent, userPromptString) {
+    let output = null;
+    let i = 0;
+    while (i < 10) {
+        output = await regenerateStageWithContextSingle(stageString, previousStageContent, userPromptString);
+        if (output != null) {
+            break;
+        }
+        i++;
+    }
+    return output;
+}
+
 
 async function retryStage(stageString, businessDetailsString) {
 
