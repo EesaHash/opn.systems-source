@@ -45,7 +45,7 @@
   display: flex;
   position: relative;
   align-items: center !important;
-  height: 110px;
+  height: 120px;
   min-height: -moz-max-content;
   min-height: max-content;
   width: calc(100vw - 240px - 8vw);
@@ -68,14 +68,35 @@
   font-size: 50px;
   color: black;
   background-color: #7DDED8;
-  width: 80px;
-  height: 80px;
+  width: 90px;
+  height: 90px;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   font-weight: 500;
   text-transform: uppercase;
+}
+.nameheader .editbutton {
+  background-color: #ffffff;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  position: absolute;
+  left: 92px;
+  top: 80px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+.nameheader .editbutton .icon {
+  color: #000;
+  height: 25px;
+  width: 25px;
 }
 .nameheader .nametitle h1 {
   color: rgb(0, 0, 0);
@@ -85,7 +106,8 @@
   font-family: DM Sans;
   font-weight: 500;
   align-items: center;
-  margin-top: -10px;
+  margin-top: 10px;
+  margin-bottom: 0;
   -webkit-text-size-adjust: 100%;
      -moz-text-size-adjust: 100%;
           text-size-adjust: 100%;
@@ -94,23 +116,13 @@
   color: var(--text-subdued-text, #ACACAC);
   font-size: 14px;
   font-family: Inter;
-  line-height: 24px;
+  margin-bottom: 20px;
+  margin-left: 8px;
 }
 .nameheader .nametitle .icon {
   color: #ACACAC;
-  margin-right: 3px;
 }
 
-/*.profilepicture{
-    display: flex;
-    margin-left: 0.5vw;
-    background-color: #FFF;
-    align-items: left;
-    align-content: center;
-    & img{
-        width: 50px;
-}
-}*/
 .businesses-overview {
   display: flex;
   margin-top: 16px;
@@ -160,16 +172,16 @@
   font-weight: 500;
 }
 .businesses-overview .updates .uptext {
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   display: flex;
-  width: 358px;
+  width: 400px;
   flex-direction: column;
   align-self: center;
   color: #F7F8FC;
   text-align: center;
-  font-size: 2.1vh;
+  font-size: 1.8vh;
   font-family: Inter;
-  font-weight: 100;
+  font-weight: lighter;
   line-height: 140%;
 }
 .businesses-overview .updates .updatesbutton {
@@ -264,7 +276,7 @@
 }
 
 .profile_in {
-  font-size: 30px;
+  font-size: auto;
   color: #000000;
   background-color: #7DDED8;
   width: 40px;
@@ -276,6 +288,9 @@
   align-items: center;
   font-weight: 1000;
   text-transform: uppercase;
+  -webkit-text-size-adjust: auto;
+     -moz-text-size-adjust: auto;
+          text-size-adjust: auto;
 }
 
 .profile-header {
@@ -314,10 +329,12 @@
   font-size: 16px;
   white-space: nowrap;
   overflow: scroll;
+  margin-top: 3px;
 }
 .profile-header .profile-name h2 {
   font-size: 9px;
   color: #808080;
+  margin-top: -5px;
 }
 .profile-header .dropdown-arrow-area {
   height: 300px;

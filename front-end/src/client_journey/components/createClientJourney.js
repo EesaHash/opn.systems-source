@@ -3,6 +3,7 @@ import "../style/client_journey.css";
 import { loadingPage } from '../../business/components/loadingPage';
 import { closePopUpForm } from '../../dashboard/page/dashboard_main';
 
+
 export const CreateClientJourney = (props) => {
     const [loading, setLoading] = useState(false);
     const generate = _ => {

@@ -1,11 +1,14 @@
 import React from "react";
 import "../style/pane.css";
 import { BusinessDashboard } from "../../business/components/businessDashboard";
-//import { FormatAlignJustify } from "@mui/icons-material";
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
-import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import CreateIcon from '@mui/icons-material/Create';
+import { openPopUpForm } from "../page/dashboard_main";
 
+const openAccountSettingForm = _ => {
+    document.getElementById("account-setting-Form").style.display = "block";
+    openPopUpForm();
+  }
 export const Pane = (props) => {
     if(props.businesses.length === 0)
         return emptyPane(props.user)
@@ -19,6 +22,8 @@ export const Pane = (props) => {
                                 activeLink2 = {props.activeLink2}   setActiveLink2 = {props.setActiveLink2}
                                 activeLink3 = {props.activeLink3}   setActiveLink3 = {props.setActiveLink3}
                                 journeys = {props.journeys} setJourneys = {props.setJourneys}
+                                procedures = {props.procedures} setProcedures = {props.setProcedures}
+                                policies = {props.policies} setPolicies = {props.setPolicies}
                             />
                 }else{
                     return emptyPane(props.user);
@@ -35,10 +40,12 @@ const emptyPane = (user) => {
             <div className="nameheader">
                 {user && user.username && (
                     <>
-                    <div className="initials">{`${user.first_name.charAt(0)}${user.last_name ? user.last_name.charAt(0) : ""}`}</div>
+                    <div className="initials">{`${user.first_name.charAt(0)}${user.last_name ? user.last_name.charAt(0) : ""}`} </div>                
+                    <button onClick={openAccountSettingForm} className="editbutton"> <CreateIcon className="icon"/></button>
+                    
                     <div className="nametitle" style={{marginLeft:"30px"}}>
                         <h1 >{`${user.first_name} ${user.last_name ? user.last_name : ""}`}</h1>
-                        <div className="email">
+                        <div className="email" >
                         <MailOutlineIcon className="icon"/>
                         <span className="email-text">{user.email}</span>
                         </div>
@@ -52,7 +59,6 @@ const emptyPane = (user) => {
                         <text>Your Businesses</text>
                     </div>
                 </div>
-
                 <div className="updates">
                     <img className="updateslogo" src="./images/notificationlogo.png" alt="logo"/>
                     <div className="updatestitle">
@@ -66,7 +72,6 @@ const emptyPane = (user) => {
                         <button className="updatesbutton">Upgrade your plan</button>
                     </div>
                 </div>
-
             </div>
 
             <div className="main-dashboard-people" style={{height:"auto"}}>

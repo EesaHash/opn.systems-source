@@ -1,0 +1,111 @@
+$mini-width: calc($halfbox-width * 0.5 - 15px);
+
+
+.businesses-overview{
+    display: flex;
+    margin-top: 16px;
+    height: 33vh;
+    .editB{
+        display: flex;
+        width: 245px;
+        height: 64px;
+        padding: 8px 20px;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;   
+        border-radius: 8px;
+        border-style: solid;
+        opacity: 80%;
+        border-color: rgba(165, 166, 246, 0.20);
+        background: #a5a6f6;
+    }
+    & .yourbusiness, .update{
+        width: $halfbox-width;
+    }
+    & .yourbusiness{
+        display: flex;
+        padding: 20px 30px 40px 30px;
+        flex-direction: column;
+        align-items: flex-start;
+        align-self: stretch;
+        gap: 16px;
+        flex: 1 0 0;
+        border-radius: 20px;
+        background: #FFF; 
+        height: 100% !important;
+    }
+    & .updates{
+        margin: 0 15px;
+        display: flex;
+        padding: 2vh 20.956px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        flex: 1 0 0;
+        align-self: stretch;
+        border-radius: 13.971px;
+        background: linear-gradient(133deg, #3235FF 0%, #5C5FFF 100%);
+        color: #F7F8FC;
+        text-align: center;
+        overflow: scroll;
+        
+        & .updateslogo{
+            align-items: center;
+            flex-shrink: 0;
+            width: 7vh;
+            height: 7vh;
+        }
+        & .updatestitle{
+            color: var(--text-bod, #F7F8FC);
+            font-size: calc(5vh * 0.7);
+            font-family: DM Sans;
+            font-weight: 500;
+        }
+        & .uptext{
+            margin-bottom: 10px;
+            display: flex;
+            width: 400px;
+            flex-direction: column;
+            align-self: center;
+            color: #F7F8FC;
+            text-align: center;
+            font-size: calc(2vh * 0.9);
+            font-family: Inter;
+            font-weight: lighter;
+            line-height: 140%;
+        }
+        & .updatesbutton{
+            display: flex;
+            height: 4vh;
+            padding: 2vh;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-size: 16px;
+            font-weight: 500;
+            border-radius: 8px;
+            border-color: transparent;
+            color: #3235FF;
+            background-color: #FFF;
+            margin-top: -10px;
+        }
+    }
+
+}
+
+.editB{
+    display: flex;
+    width: 245px;
+    height: 64px;
+    padding: 8px 20px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;   
+    border-radius: 8px;
+    border-style: solid;
+    opacity: 80%;
+    border-color: rgba(165, 166, 246, 0.20);
+    background: #a5a6f6;
+
+}

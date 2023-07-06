@@ -14,6 +14,8 @@ import { CreateClientJourney } from "../../client_journey/components/createClien
 import { ModifyAccountDetails } from "../components/account_settings";
 import { AccessLimit } from "../../warning_pages/components/AccessLimit";
 import { FutureFeature } from "../../warning_pages/components/FutureFeature";
+import { CreateProcedure } from "../../client_journey/components/CreateProcedure";
+import { InviteTeamMember } from "../../client_journey/components/InviteTeamMember";
 
 export const DashboardPage = () => {
     const [userID, setUserID] = useState();
@@ -25,6 +27,8 @@ export const DashboardPage = () => {
     const [activeLink2, setActiveLink2] = useState(0);
     const [activeLink3, setActiveLink3] = useState('Overview');
     const [journeys, setJourneys] = useState([]);
+    const [procedures, setProcedures] = useState([]);
+    const [policies, setPolicies] = useState([]);
 
     useEffect(() => {
         try{
@@ -81,6 +85,7 @@ export const DashboardPage = () => {
         }
     }, [userID]);
 
+    // Get client journeys from database
     useEffect(() => {
         try{
             setLoading(true);
@@ -106,58 +111,96 @@ export const DashboardPage = () => {
         }catch(error){
             alert(error);
         }
-    }, [business])
+    }, [business]);
+
+    // Get client journeys' SOPs from database
+    useEffect(() => {
+        const fetchData = async _ => {
+            try{
+                const getSOPs = async (id) => {
+                    const res = await fetch("/api/sop/getall", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                            ClientJourneyId: id
+                        })
+                    });
+                    const data = await res.json();
+                    console.log(data);
+                    if(data.status){
+                        setProcedures((prevProcedures) => [...prevProcedures, data.sops]);
+                    }
+                };
+                setProcedures([]);
+                journeys.forEach(async (item) => {
+                    await getSOPs(item.id);
+                });
+            }catch(error){
+                alert(error);
+            }
+        }
+        fetchData();
+    }, [journeys]);
     
     if(userID === "none") return window.location.href = "/";
     return (
         <div className="background">
             <div id="bash" className="bash">
                 <Sidebar
+                    loading = {loading}
                     businesses = {businesses} 
                     activeLink = {activeLink}   setActiveLink = {setActiveLink} 
                     activeLink2 = {activeLink2} setActiveLink2 = {setActiveLink2}
                 />
             </div>
             {!loading &&
-                <div>
-                    <AccessLimit/>
-                    <FutureFeature/>
-                    <ModifyAccountDetails
-                        user = {user}
-                        setUser = {setUser}
-                    />
-                    <CreateBusiness businesses = {businesses} setBusinesses = {setBusinesses} userID = {userID} />
-                    <EditBusinessDetail 
-                        businesses = {businesses} setBusinesses = {setBusinesses} 
-                        index = {activeLink2 - 1}
-                        business = {business} setBusiness = {setBusiness}
-                    />
-                    <CreateClientJourney  
-                        journeys = {journeys} setJourneys = {setJourneys}
-                        business = {business}
-                    />
-                    <div id="dashboard-content" className="dashboard-content">
-                        <div style={{display: "flex"}}>
-                            <div className="search">
-                                <SearchBar />
-                            </div>
-                            <div className="profile">
-                                <Profile user = {user} />
-                            </div>
+            <div>
+                <AccessLimit/>
+                <FutureFeature/>
+                <ModifyAccountDetails
+                    user = {user}
+                    setUser = {setUser}
+                />
+                <CreateBusiness businesses = {businesses} setBusinesses = {setBusinesses} userID = {userID} />
+                <EditBusinessDetail 
+                    businesses = {businesses} setBusinesses = {setBusinesses} 
+                    index = {activeLink2 - 1}
+                    business = {business} setBusiness = {setBusiness}
+                />
+                <CreateClientJourney  
+                    journeys = {journeys} setJourneys = {setJourneys}
+                    business = {business}
+                />
+                <CreateProcedure
+                    procedures = {procedures} setProcedures = {setProcedures}
+                />
+                <InviteTeamMember />
+                <div id="dashboard-content" className="dashboard-content">
+                    <div style={{display: "flex"}}>
+                        <div className="search">
+                            <SearchBar />
                         </div>
-                        <div className="pane">
-                            <Pane 
-                                business = {business} setBusiness = {setBusiness}
-                                businesses = {businesses} setBusinesses = {setBusinesses} 
-                                activeLink = {activeLink} 
-                                activeLink2 = {activeLink2} setActiveLink2 = {setActiveLink2}
-                                activeLink3 = {activeLink3} setActiveLink3 = {setActiveLink3} 
-                                user = {user} 
-                                journeys = {journeys} setJourneys = {setJourneys}
-                            />
+                        <div className="profile">
+                            <Profile user = {user} />
                         </div>
                     </div>
+                    <div className="pane">
+                        <Pane 
+                            business = {business} setBusiness = {setBusiness}
+                            businesses = {businesses} setBusinesses = {setBusinesses} 
+                            activeLink = {activeLink} 
+                            activeLink2 = {activeLink2} setActiveLink2 = {setActiveLink2}
+                            activeLink3 = {activeLink3} setActiveLink3 = {setActiveLink3} 
+                            user = {user} 
+                            journeys = {journeys} setJourneys = {setJourneys}
+                            procedures = {procedures} setProcedures = {setProcedures}
+                            policies = {policies} setPolicies = {setPolicies}
+                        />
+                    </div>
                 </div>
+            </div>
             }
         </div>
     );

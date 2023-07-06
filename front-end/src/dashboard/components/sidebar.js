@@ -17,35 +17,36 @@ export const Sidebar = (props) => {
                     </li>
                 </ul>
                 </p>
-                {SidebarData.map((val, key) => {
-                return (
-                    <li
-                        className={`row ${props.activeLink === val.link ? 'active' : ''}`}
-                        key={key}
-                    >
-                        <div className="main-item" onClick={() => { onLink1ClickAction(props.activeLink, val.link, props.setActiveLink) }}>
-                            <div className='main-item-content'>
-                                <div id="icon" style={{marginRight: "15px"}} > {val.icon} </div>
-                                <div id="title" > {val.title} </div>
-                                {(val.title === "Business") && <div class="dropdown-arrow"></div>}
-                            </div>
-                        </div>
-                        {val.items && props.activeLink === val.link && (
-                        <ul className="sub-items">
-                            {(val.title === "Business") && props.businesses.map((item, index) => (
-                            <li className={props.activeLink2 === index + 1 ? 'active' : ''} key={index} onClick={() => {props.setActiveLink2(index + 1)}} >
-                                <div className='sub-items-content'>
-                                    <div className='icon'><img src = {`./images/businessIcon/businessIcon${(index%6)+1}.png`} alt = "logo" /></div>
-                                    <div className='title'>{item.businessName}</div>
+                    {SidebarData.map((val, key) => {
+                        return (
+                            <li
+                                className={`row ${props.activeLink === val.link ? 'active' : ''}`}
+                                key={key}
+                            >
+                                <div className="main-item" onClick={() => { onLink1ClickAction(props.activeLink, val.link, props.setActiveLink) }}>
+                                    <div className='main-item-content'>
+                                        <div id="icon" style={{marginRight: "15px"}} > {val.icon} </div>
+                                        <div id="title" > {val.title} </div>
+                                        {(val.title === "Business") && <div class="dropdown-arrow"></div>}
+                                    </div>
                                 </div>
+                                {(val.items && props.activeLink === val.link && !props.loading) && (
+                                <ul className="sub-items">
+                                    {(val.title === "Business") && props.businesses.map((item, index) => (
+                                    <li className={props.activeLink2 === index + 1 ? 'active' : ''} key={index} onClick={() => {props.setActiveLink2(index + 1)}} >
+                                        <div className='sub-items-content'>
+                                            <div className='icon'><img src = {`./images/businessIcon/businessIcon${(index%6)+1}.png`} alt = "logo" /></div>
+                                            <div className='title'>{item.businessName}</div>
+                                        </div>
+                                    </li>
+                                    ))}
+                                    {(val.title === "Business") && <button onClick={() => createNewBusinessForm(props.businesses)}>+ Add Business</button>}
+                                </ul>
+                                )}
                             </li>
-                            ))}
-                            {(val.title === "Business") && <button onClick={() => createNewBusinessForm(props.businesses)}>+ Add Business</button>}
-                        </ul>
-                        )}
-                    </li>
-                );
-                })}
+                        );
+                    })
+                }
             </ul>
         </div>
     );

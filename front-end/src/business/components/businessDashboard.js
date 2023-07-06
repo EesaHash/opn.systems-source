@@ -7,6 +7,7 @@ import { businessOverview } from './businessOverview';
 import { ClientJourneyDashboard } from '../../client_journey/components/clientJourneyDashboard';
 import { ProceduresDashboard } from '../../client_journey/components/ProceduresDashboard';
 import { PoliciesDashboard } from '../../client_journey/components/PoliciesDashboard';
+import { TeamMembers } from '../../client_journey/components/TeamMembers';
 
 export const BusinessDashboard = (props) => {
     const deleteBusiness = _ => {
@@ -51,7 +52,13 @@ export const BusinessDashboard = (props) => {
     return(
         <div className='business-dashboard'>
             {title(props.business, (props.activeLink2 - 1), deleteBusiness)}
-            {body(props.business, props.activeLink2, props.activeLink3, props.setActiveLink3, props.journeys, props.setJourneys)}
+            {body(
+                props.business, props.activeLink2,
+                props.activeLink3, props.setActiveLink3, 
+                props.journeys, props.setJourneys, 
+                props.procedures, props.setProcedures, 
+                props.policies, props.setPolicies
+            )}
         </div>
     );
 };
@@ -80,7 +87,11 @@ const title = (business, businessIndex, deleteBusiness) => {
         </div>
     );
 };
-const body = (business, activeLink2, activeLink3, setActiveLink3, journeys, setJourneys) => {
+const body = (  business, activeLink2, 
+                activeLink3, setActiveLink3, 
+                journeys, setJourneys, 
+                procedures, setProcedures, 
+                policies, setPolicies   ) => {
     return(
         <div className='business-dashboard-body'>
             <div className='business-dashboard-body-content'>
@@ -105,11 +116,22 @@ const body = (business, activeLink2, activeLink3, setActiveLink3, journeys, setJ
                             journeys = {journeys} setJourneys = {setJourneys}
                         /> :
                     activeLink3 === "Procedures" ?
-                        <ProceduresDashboard/> :
+                        <ProceduresDashboard
+                            activeLink2 = {activeLink2}
+                            journeys = {journeys}
+                            procedures = {procedures} setProcedures = {setProcedures}
+                        /> :
                     activeLink3 === "Policies" ?
-                        <PoliciesDashboard/> :
+                        <PoliciesDashboard
+                            activeLink2 = {activeLink2}
+                            journeys = {journeys}
+                            policies = {policies} setPolicies = {setPolicies}
+                        /> :
                     activeLink3 === "Team Members" ?
-                        null :
+                    <TeamMembers
+                            business = {business}
+                             activeLink2 = {activeLink2}
+                    /> :
                     activeLink3 === "Department & Roles" &&
                         null
                 }
