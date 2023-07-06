@@ -25,7 +25,7 @@ app.use("/api/teammember/getbusinessteam", require("./controllers/teamMemberCont
 app.use("/api/business", require("./controllers/businessControllers/businessController"));
 app.use("/api/clientjourney", require("./controllers/businessControllers/clientJourneyController"));
 app.use("/api/sop", require("./controllers/businessControllers/prelimSOPController"));
-app.use("/api/chain", require("./controllers/gptController/conversationChainExp"));
+app.use("/api/sopFinal", require("./controllers/businessControllers/sopController"));
 
 app.listen(PORT, () => {
     console.log(`Server listening on ${PORT}`);

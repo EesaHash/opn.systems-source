@@ -22,7 +22,7 @@ const {
   OutputFixingParser,
 } = require("langchain/output_parsers");
 
-const get = async (req, res) => {
+const test = async (req, res) => {
   try {
     const clientJourneyList = await ClientJourney.findAll({ where: { businessId: req.body.businessId } });
     const business = await Business.findOne({ where: { id: req.body.businessId } });
@@ -204,5 +204,5 @@ const generateSingleSOP = async (statement, businessDetails) => {
     }
 }
 
-router.post("/", get);
+router.post("/", test);
 module.exports = router;
