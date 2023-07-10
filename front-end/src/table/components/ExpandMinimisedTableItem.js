@@ -61,21 +61,21 @@ const expandSubItem = (index1, index2, title, data) => {
                 <h1>{title}</h1>
                 {
                     Array.isArray(data) ? 
-                    arraySubItem(data) :
+                    arraySubItem(data, index1) :
                     <h3>{data}</h3>
                 }
             </div>
         </div>
     );
 };
-const arraySubItem = (data) => {
+const arraySubItem = (data, index1) => {
     const pattern = /^\d+\.\s+/;
     const pattern2 = /^[-•]\s+/;
     return(
         <div>
             {data.map((data, index) => (
                 <div className='expanded-table-sub-subitem'>
-                    <h1>{`1.${index+1}.`}</h1>
+                    <h1>{`${index1}.${index+1}.`}</h1>
                     {/* <h1 style={{minWidth: "1px", margin: 0}}>:</h1> */}
                     {pattern.test(data) ? (
                         <h3>{data.substring(data.indexOf('.') + 2)}</h3>
