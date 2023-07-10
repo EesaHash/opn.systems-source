@@ -26,7 +26,7 @@ export const ExpandMinimisedTableItem = (props) => {
         <div key = {props.index} className={itemClassName} onClick={() => itemClassName === "minimised-table-item" && expandCollapseBtn()}>
             <h2>{props.index}</h2>
             <div style={{display: "grid"}}>
-                <h1>{props.title}</h1>
+                    <h1 style={{width: "100%", cursor: "pointer"}} onClick={() => itemClassName === "expanded-table-item" && expandCollapseBtn()}>{props.title}</h1>
                 {itemClassName === "expanded-table-item" && 
                     Object.keys(props.data).map((data, index) => (
                         expandSubItem(props.index, index, data, Object.entries(props.data)[index][1])
@@ -56,7 +56,7 @@ export const ExpandMinimisedTableItem = (props) => {
 const expandSubItem = (index1, index2, title, data) => {
     return(
         <div key = {index2} className='expanded-table-subitem'>
-            <h2>{`${index1}.${index2 + 1}.`}</h2>
+            <h2>{``}</h2>
             <div className='expanded-table-subitem-content'>
                 <h1>{title}</h1>
                 {
@@ -69,13 +69,22 @@ const expandSubItem = (index1, index2, title, data) => {
     );
 };
 const arraySubItem = (data) => {
+    const pattern = /^\d+\.\s+/;
+    const pattern2 = /^[-•]\s+/;
     return(
         <div>
             {data.map((data, index) => (
                 <div className='expanded-table-sub-subitem'>
-                    <h1>{`Step ${index + 1}`}</h1>
-                    <h1 style={{minWidth: "1px", margin: 0}}>:</h1>
-                    <h3>{data}</h3>
+                    <h1>{`1.${index+1}.`}</h1>
+                    {/* <h1 style={{minWidth: "1px", margin: 0}}>:</h1> */}
+                    {pattern.test(data) ? (
+                        <h3>{data.substring(data.indexOf('.') + 2)}</h3>
+                    ) : (
+                        pattern2.test(data) ? (
+                            <h3>{data.substring(2)}</h3>
+                        ) :
+                            <h3>{data}</h3>
+                    )}
                 </div>
             ))}
         </div>
