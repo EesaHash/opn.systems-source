@@ -23,6 +23,7 @@ export const DashboardPage = () => {
     const [loading, setLoading] = useState(false);
     const [business, setBusiness] = useState({});
     const [businesses, setBusinesses] = useState([]);
+    const [products, setProducts] = useState([]);
     const [activeLink, setActiveLink] = useState('');
     const [activeLink2, setActiveLink2] = useState(0);
     const [activeLink3, setActiveLink3] = useState('Overview');
@@ -79,6 +80,7 @@ export const DashboardPage = () => {
             if(userID != null && userID !== "none"){
                 getUserData();
                 getBusinessList();
+                
             }
         }catch(error){
             console.log(error);
@@ -89,29 +91,60 @@ export const DashboardPage = () => {
     useEffect(() => {
         try{
             setLoading(true);
-            const getClientJourneyList = async _ => {
-                const res = await fetch("/api/clientjourney/getall", {
+            const getProduct = async _ => {
+                const res = await fetch("/api/product/getall", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
                     },
                     body: JSON.stringify({
-                        businessId: business.id
+                        businessID: business.id
                     })
-                });
+                })
                 const data = await res.json();
                 console.log(data);
                 if(data.status){
-                    setJourneys(data.clientJourneys);
-                    setLoading(false);
+                    setProducts(data.products);
+
                 }
             };
             if(business.id)
-                getClientJourneyList();
+                getProduct();
         }catch(error){
             alert(error);
         }
     }, [business]);
+
+    useEffect(() => {
+        const fetchData = async _ => {
+            try{
+                const getClientJourney = async (productID) => {
+                    const res = await fetch("/api/clientjourney/getall", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                            productID: productID
+                        })
+                    });
+                    const data = await res.json();
+                    console.log(data);
+                    if(data.status){
+                        setJourneys((prevJourneys) => [...prevJourneys, data.clientJourney])
+                    }
+                };
+                setJourneys([]);
+                products.forEach(async (item) => {
+                    await getClientJourney(item.id);
+                });
+                setLoading(false);
+            }catch(error){
+
+            }
+        };
+        fetchData();
+    }, [products]);
 
     // Get client journeys' SOPs from database
     useEffect(() => {

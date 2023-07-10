@@ -40,32 +40,18 @@ clientJourney.saveClientJourney = async (req, res) => {
     }
 }
 
-clientJourney.getClientJourneyByBusinessID = async (req, res) => {
+clientJourney.getClientJourneyByProductID = async (req, res) => {
     try {
-        const clientJourney = await ClientJourney.findOne({ where: { businessId: req.body.businessId } });
+        const {productID} = req.body;
+        const clientJourney = await ClientJourney.findOne({ where: {productID} });
+        console.log(`Successfully Retrieve client journey for product ID: ${productID}`)
         return res.status(200).json(clientJourney);
     } catch (error) {
         return res.status(403).json({
-            result: `Client Journey for Business ID: ${businessId} not found}`
+            result: `Client Journey for Product ID: ${req.body.productID} not found}`
         });
     }
 }
-
-clientJourney.getAllClientJourneyByBusinessID = async (req, res) => {
-    try{
-        const clientJourney = await ClientJourney.findAll({ where: { businessId: req.body.businessId } });
-        return res.status(200).json({
-            status: true,
-            message: "Successfully retrieve client journey!",
-            clientJourneys: clientJourney
-        });
-    }catch (error) {
-        return res.status(403).json({
-            status: false,
-            message: error
-        });
-    }
-};
 
 clientJourney.deleteClientJourneyByBusinessID = async (req, res) => {
     try {
@@ -453,8 +439,7 @@ async function retryStage(stageString, businessDetailsString) {
 
 
 router.post("/save", clientJourney.saveClientJourney);
-router.post("/get", clientJourney.getClientJourneyByBusinessID);
-router.post("/getall", clientJourney.getAllClientJourneyByBusinessID);
+router.post("/get", clientJourney.getClientJourneyByProductID);
 router.post("/regenerate_stage", clientJourney.regenerateStage);
 router.post("/save_regenerated_stage", clientJourney.saveRegeneratedStage);
 router.post("/delete", clientJourney.deleteClientJourneyByBusinessID);

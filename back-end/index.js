@@ -27,6 +27,9 @@ app.use("/api/clientjourney", require("./controllers/businessControllers/clientJ
 app.use("/api/sop", require("./controllers/businessControllers/prelimSOPController"));
 app.use("/api/sopFinal", require("./controllers/businessControllers/sopController"));
 
+// PRODUCT APIs CONTROLLERS
+app.use("/api/product/getall", require("./controllers/ProductController/getAllProductController"));
+
 app.listen(PORT, () => {
     console.log(`Server listening on ${PORT}`);
 });
