@@ -19,6 +19,10 @@ const Team_Member = sequelize.define('Team_Member', {
 });
 
 // User.hasMany(Team_Member, { foreignKey: 'email' });
-Business.hasMany(Team_Member, { foreignKey: 'id' });
+Business.hasMany(Team_Member, { 
+    foreignKey: 'id',
+    onUpdate: 'CASCADE',
+    onDelete: 'CASCADE'
+});
 
 module.exports = Team_Member;

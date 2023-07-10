@@ -1,5 +1,6 @@
 const sequelize = require('../controllers/accountController/connectDatabase').sequelize;
 const {DataTypes} = require('sequelize');
+const Product = require('./product');
 
 const ClientJourney = sequelize.define('Client Journey', {
     id: {
@@ -37,11 +38,18 @@ const ClientJourney = sequelize.define('Client Journey', {
     },
     retention: {
         type: DataTypes.TEXT,
-    },
-    businessId: {
-        type: DataTypes.INTEGER,
-        foreignKey: true,
-    },
+    }
 });
+
+// Relation with Product
+Product.hasOne(ClientJourney, { 
+    foreignKey: 'productID',
+    onUpdate: 'CASCADE',
+    onDelete: 'CASCADE'
+});
+ClientJourney.belongsTo(Product, {
+    foreignKey: 'productID'
+});
+
 
 module.exports = ClientJourney;

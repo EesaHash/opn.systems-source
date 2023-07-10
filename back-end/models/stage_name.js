@@ -2,41 +2,25 @@ const sequelize = require('../controllers/accountController/connectDatabase').se
 const {DataTypes} = require('sequelize');
 const ClientJourney = require('./client_journey');
 
-const SOP = sequelize.define('Standard Operating Procedures', {
+const StageName = sequelize.define("Stage_Name", {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
     },
-    title: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    purpose: {
+    names: {
         type: DataTypes.TEXT,
-    },
-    definitions: {
-        type: DataTypes.TEXT,
-    },
-    responsibility: {
-        type: DataTypes.TEXT,
-    },
-    procedure: {
-        type: DataTypes.TEXT,
-    },
-    documentation: {
-        type: DataTypes.TEXT,
-    },
+    }
 });
 
 // Relation with Client Journey
-ClientJourney.hasMany(SOP, {
+ClientJourney.hasOne(StageName, {
     foreignKey: 'clientJourneyID',
     onUpdate: 'CASCADE',
     onDelete: 'CASCADE'
 });
-SOP.belongsTo(ClientJourney, {
+StageName.belongsTo(ClientJourney, {
     foreignKey: 'clientJourneyID'
 });
 
-module.exports = SOP;
+module.exports = StageName;
