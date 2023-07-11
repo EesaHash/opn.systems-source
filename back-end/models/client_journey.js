@@ -7,6 +7,7 @@ const ClientJourney = sequelize.define('Client Journey', {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
+        allowNull: false
     },
     title: {
         type: DataTypes.STRING,

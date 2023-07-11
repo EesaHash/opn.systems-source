@@ -18,17 +18,16 @@ const clientJourney = {};
 
 
 //"gpt-3.5-turbo-16k"
-const modelName = "gpt-4"
+const modelName = "gpt-3.5-turbo-16k"
 
 clientJourney.saveClientJourney = async (req, res) => {
     try {
-        const clientJourney = await ClientJourney.findOne({ where: { productID: req.body.productID } });
-        if (clientJourney == null) {
+        const {productID} = req.body;
+        const cj = await ClientJourney.findOne({ where: { productID: productID } });
+        if (cj == null) {
             const journey = await generateClientJourney(req.body.productID, req.body.title);
-            const stageNames = await saveParaphrasedStages(journey.id,modelName);
-            console.log(journey.id);
-            console.log(journey.dataValues.id);
-            if (journey != null && stageNames != null) {
+            if (journey != null) {
+                const stageNames = await saveParaphrasedStages(journey.id,modelName);
                 return res.status(200).json({
                     status: true,
                     message: "Successfully add new client journey!",
@@ -36,7 +35,7 @@ clientJourney.saveClientJourney = async (req, res) => {
                     headings: stageNames
                 });
             }
-            throw error("Unable to create Client Journey");
+            throw new error("Unable to create Client Journey");
         } else {
             return res.status(403).json({
                 status: false,
@@ -101,14 +100,14 @@ Example JSON body:
 clientJourney.saveRegeneratedStage = async (req, res) => {
     try {
         const clientJourneyList = await ClientJourney.findAll({ where: { productID: req.body.productID } });
-        const clientJourney = clientJourneyList[0];
-        if (clientJourney == null) {
+        const cj = clientJourneyList[0];
+        if (cj == null) {
             throw "Client Journey or Business not found!";
         }
         const stage = req.body.stage;
         const content = req.body.content;
-        clientJourney[stage] = JSON.stringify(content);
-        await clientJourney.save();
+        cj[stage] = JSON.stringify(content);
+        await cj.save();
         return res.status(200).json({
 
         });
@@ -132,12 +131,12 @@ clientJourney.regenerateStage = async (req, res) => {
     try {
         const { clientJourneyID, prompt } = req.body;
         const clientJourneyList = await ClientJourney.findAll({ where: { id: clientJourneyID } });
-        const clientJourney = clientJourneyList[0];
-        if (clientJourney == null) {
+        const cj = clientJourneyList[0];
+        if (cj == null) {
             throw "Client Journey or Business not found!";
         }
         if (prompt == null) {
-            const product = await Product.findOne({where: {id : clientJourney.productID }})
+            const product = await Product.findOne({where: {id : cj.productID }})
             const business = await Business.findOne({ where: { id: product.businessID } });
             if (business == null || product == null) {
                 return false;
@@ -169,7 +168,7 @@ clientJourney.regenerateStage = async (req, res) => {
             });
         } else {
             const stage = req.body.stage.toLowerCase();
-            const output = await regenerateStageWithContext(stage, clientJourney[stage], prompt);
+            const output = await regenerateStageWithContext(stage, cj[stage], prompt);
             if (output == null) {
                 throw "Failed to generate stage!";
             }
@@ -193,7 +192,8 @@ const generateClientJourney = async (productID, title) => {
         const product = await Product.findOne({where: {id : productID }})
         const business = await Business.findOne({ where: { id: product.businessID } });
         if (business == null || product == null) {
-            return false;
+            console.log("Entered");
+            return null;
         }
         const businessDetails = `
         BUSINESS INFORMATION
@@ -229,7 +229,7 @@ const generateClientJourney = async (productID, title) => {
             }
             i++;
         }
-        const clientJourney = await new ClientJourney({
+        const clientJ = await ClientJourney.create({
             title: title,
             overview: JSON.stringify(Overview),
             awareness: JSON.stringify(stages[0]),
@@ -242,8 +242,7 @@ const generateClientJourney = async (productID, title) => {
             retention: JSON.stringify(stages[7]),
             productID: productID,
         });
-        clientJourney.save();
-        return clientJourney;
+        return clientJ;
     } catch (error) {
         console.log("Error saving client journey: ", error);
         return null;
@@ -372,7 +371,7 @@ async function regenerateStageWithContextSingle(stageString, previousStageConten
         partialVariables: { format_instructions: formatInstructions },
     });
 
-    const model = new OpenAI({ temperature: 1, model: "gpt-3.5-turbo-16k" });
+    const model = new OpenAI({ temperature: 1, model: modelName });
     const input = await prompt.format({
         userPreference: userPromptString,
         oldClientJourneyStage: JSON.stringify(previousStageContent),
@@ -384,7 +383,7 @@ async function regenerateStageWithContextSingle(stageString, previousStageConten
     } catch (e) {
         try {
             const fixParser = OutputFixingParser.fromLLM(
-                new OpenAI({ temperature: 0, model: "gpt-3.5-turbo-16k" }),
+                new OpenAI({ temperature: 0, model: modelName }),
                 parser
             );
             const output = await fixParser.parse(response);
