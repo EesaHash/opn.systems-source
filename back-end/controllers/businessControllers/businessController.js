@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Business = require('../../models/business');
 const { addTeamMembers } = require("../teamMemberController/addTeamMemberController");
+const { saveKeyContact }  = require("../businessControllers/keyContactsController");
 
 const business = {};
 
@@ -13,14 +14,14 @@ business.addNewBusiness = async (req, res) => {
             industry,
             companySize,
             businessObjective,
-            coreServices,
-            targetMarket,
-            isProduct,
-            productOrServiceDescription,
-            fundingStrategy,
             email,
-            teamList
+            teamList,
+            name,
+            position,
+            teamContactEmail,
+            phoneNumber
         } = req.body;
+
 
         // Create a new business record in the database
         const business = await Business.create({
@@ -29,14 +30,16 @@ business.addNewBusiness = async (req, res) => {
             industry,
             companySize,
             businessObjective,
-            coreServices,
-            targetMarket,
-            isProduct: (isProduct === "Product" ? true : false),
-            productOrServiceDescription,
-            fundingStrategy,
             email
         });
 
+        await saveKeyContact({
+            name: name, 
+            position : position, 
+            teamContactEmail: teamContactEmail, 
+            phoneNumber: phoneNumber, 
+            businessID : business.id,
+        });
         await addTeamMembers(teamList, business.id);
 
         console.log(`[Success] Added business ${businessName} for ${email} : `, business.id);
@@ -82,11 +85,6 @@ business.updateBusiness = async (req, res) => {
             industry,
             companySize,
             businessObjective,
-            coreServices,
-            targetMarket,
-            isProduct,
-            productOrServiceDescription,
-            fundingStrategy
          } = req.body;
         // Update the business record in the database
         const business = await Business.update({
@@ -95,11 +93,6 @@ business.updateBusiness = async (req, res) => {
             industry,
             companySize,
             businessObjective,
-            coreServices,
-            targetMarket,
-            isProduct,
-            productOrServiceDescription,
-            fundingStrategy
         }, { where: { id } });
         if(business[0] === 0)
             throw("Failed to update business data");
