@@ -3,8 +3,10 @@ const router = express.Router();
 const { z } = require("zod");
 const { OpenAI } = require("langchain/llms/openai");
 const { PromptTemplate } = require("langchain/prompts");
+const Product = require('../../models/product');
 const Business = require('../../models/business');
 const ClientJourney = require('../../models/client_journey');
+const { saveParaphrasedStages } = require('../businessControllers/stageParaphraseController');
 const {
     StructuredOutputParser,
     OutputFixingParser,
@@ -14,17 +16,27 @@ require('dotenv').config()
 
 const clientJourney = {};
 
+
+//"gpt-3.5-turbo-16k"
+const modelName = "gpt-4"
+
 clientJourney.saveClientJourney = async (req, res) => {
-    let journey;
     try {
-        const clientJourney = await ClientJourney.findOne({ where: { businessId: req.body.id } });
+        const clientJourney = await ClientJourney.findOne({ where: { productID: req.body.productID } });
         if (clientJourney == null) {
-            journey = await generateClientJourney(req.body.id, req.body.title);
-            return res.status(200).json({
-                status: true,
-                message: "Successfully add new client journey!",
-                journey: journey
-            });
+            const journey = await generateClientJourney(req.body.productID, req.body.title);
+            const stageNames = await saveParaphrasedStages(journey.id,modelName);
+            console.log(journey.id);
+            console.log(journey.dataValues.id);
+            if (journey != null && stageNames != null) {
+                return res.status(200).json({
+                    status: true,
+                    message: "Successfully add new client journey!",
+                    journey: journey,
+                    headings: stageNames
+                });
+            }
+            throw error("Unable to create Client Journey");
         } else {
             return res.status(403).json({
                 status: false,
@@ -55,11 +67,11 @@ clientJourney.getClientJourneyByProductID = async (req, res) => {
 
 clientJourney.deleteClientJourneyByBusinessID = async (req, res) => {
     try {
-        const { businessId } = req.body;
-        const clientJourney = await ClientJourney.findOne({ where: { businessId: businessId } });
+        const { clientJourneyID } = req.body;
+        const clientJourney = await ClientJourney.findOne({ where: { id: clientJourneyID } });
         await clientJourney.destroy();
         return res.status(200).json({
-            result: `Client Journey for Business ID: ${businessId} deleted`
+            result: `Client Journey deleted`
         });
     } catch (error) {
         console.log(error);
@@ -84,7 +96,7 @@ Example JSON body:
 
 clientJourney.saveRegeneratedStage = async (req, res) => {
     try {
-        const clientJourneyList = await ClientJourney.findAll({ where: { businessId: req.body.businessId } });
+        const clientJourneyList = await ClientJourney.findAll({ where: { productID: req.body.productID } });
         const clientJourney = clientJourneyList[0];
         if (clientJourney == null) {
             throw "Client Journey or Business not found!";
@@ -107,26 +119,41 @@ clientJourney.saveRegeneratedStage = async (req, res) => {
 /*
 Example JSON body:
  {
-    id: 1,
-    businessId: 1,
+    clientJourneyID
     stage: "awareness" -- all lowercase,
-    prompt: "user prompt"
+    prompt: "user prompt" can be null
  }
 */
 clientJourney.regenerateStage = async (req, res) => {
     try {
-        const { id, businessId, prompt } = req.body;
-        const clientJourneyList = await ClientJourney.findAll({ where: { id: id } });
+        const { clientJourneyID, prompt } = req.body;
+        const clientJourneyList = await ClientJourney.findAll({ where: { id: clientJourneyID } });
         const clientJourney = clientJourneyList[0];
         if (clientJourney == null) {
             throw "Client Journey or Business not found!";
         }
         if (prompt == null) {
-            const business = await Business.findOne({ where: { id: businessId } });
-            if (business == null) {
-                throw "Client Journey or Business not found!";
+            const product = await Product.findOne({where: {id : clientJourney.productID }})
+            const business = await Business.findOne({ where: { id: product.businessID } });
+            if (business == null || product == null) {
+                return false;
             }
-            const businessDetails = "Business Name:" + business.businessName + "\n Business Type:" + business.businessType + "\n Industry:" + business.industry + "\n Company Size:" + business.companySize + "\n Business Objective:" + business.businessObjective + "\n Core Services:" + business.coreServices + "\n Target Market:" + business.targetMarket + "\n Product or Service Description:" + business.productOrServiceDescription +  "\n Funding Strategy:" + business.fundingStrategy;
+            const businessDetails = `
+            BUSINESS INFORMATION
+            Business Name : ${business.businessName},
+            Business Type : ${business.businessType},
+            Industry : ${business.industry}
+            Company Size : ${business.companySize},
+            Objective : ${business.businessObjective},
+    
+            PRODUCT/SERVICE DETAILS
+            Core Services : ${product.coreServices},
+            Target Market : ${product.targetMarket},
+            Is this a product (1 represents yes, 0 represents no) : ${product.isProduct},
+            Product/Service Description : ${product.productOrServiceDescription},
+            Funding Strategy : ${product.fundingStrategy}
+            `
+    
             const stage = req.body.stage.toLowerCase();
             const output = await retryStage(stage, businessDetails);
             if (output == null) {
@@ -157,13 +184,29 @@ clientJourney.regenerateStage = async (req, res) => {
     }
 }
 
-const generateClientJourney = async (id, title) => {
+const generateClientJourney = async (productID, title) => {
     try {
-        const business = await Business.findOne({ where: { id: id } });
-        if (business === null || business === undefined) {
+        const product = await Product.findOne({where: {id : productID }})
+        const business = await Business.findOne({ where: { id: product.businessID } });
+        if (business == null || product == null) {
             return false;
         }
-        const businessDetails = "Business Name:" + business.businessName + "\n Business Type:" + business.businessType + "\n Industry:" + business.industry + "\n Company Size:" + business.companySize + "\n Business Objective:" + business.businessObjective + "\n Core Services:" + business.coreServices + "\n Target Market:" + business.targetMarket + "\n Product or Service Description:" + business.productOrServiceDescription +  "\n Funding Strategy:" + business.fundingStrategy;
+        const businessDetails = `
+        BUSINESS INFORMATION
+        Business Name : ${business.businessName},
+        Business Type : ${business.businessType},
+        Industry : ${business.industry}
+        Company Size : ${business.companySize},
+        Objective : ${business.businessObjective},
+
+        PRODUCT/SERVICE DETAILS
+        Core Services : ${product.coreServices},
+        Target Market : ${product.targetMarket},
+        Is this a product (1 represents yes, 0 represents no) : ${product.isProduct},
+        Product/Service Description : ${product.productOrServiceDescription},
+        Funding Strategy : ${product.fundingStrategy}
+        `
+
         let Overview = await generateOverview(businessDetails);
         let Awareness = await generateStage("awareness", businessDetails);
         let Interest = await generateStage("interest", businessDetails);
@@ -193,7 +236,7 @@ const generateClientJourney = async (id, title) => {
             implementation: JSON.stringify(stages[5]),
             postPurchase: JSON.stringify(stages[6]),
             retention: JSON.stringify(stages[7]),
-            businessId: id,
+            productID: productID,
         });
         clientJourney.save();
         return clientJourney;
@@ -220,7 +263,7 @@ async function generateOverview(businessDetailsString) {
         partialVariables: { format_instructions: formatInstructions },
     });
 
-    const model = new OpenAI({ temperature: 1, model: "gpt-3.5-turbo-16k" });
+    const model = new OpenAI({ temperature: 1, model: modelName });
     const input = await prompt.format({
         businessDetails: businessDetailsString,
     });
@@ -231,7 +274,7 @@ async function generateOverview(businessDetailsString) {
     } catch (e) {
         try {
             const fixParser = OutputFixingParser.fromLLM(
-                new OpenAI({ temperature: 0, model: "gpt-3.5-turbo-16k" }),
+                new OpenAI({ temperature: 0, model: modelName }),
                 parser
             );
             const output = await fixParser.parse(response);
@@ -259,13 +302,13 @@ async function generateStage(stageString, businessDetailsString) {
     const parser = StructuredOutputParser.fromZodSchema(
         z.object({
             department: z.string().describe(`Identify responsible department for ${stageString} stage. These are the main sectors or divisions within the company. Each department represents a specific function of the business, such as Marketing, Sales, Human Resources, Operations, Finance, etc.`),
-            role: z.string().describe(`Identify responsible roles for the ${stageString} stage. Within each department, there are several roles. Roles are the specific job titles or positions that individuals hold within the department. For example, in the Marketing department, roles might include Marketing Manager, Content Strategist, SEO Specialist, etc.`),
+            role: z.string().describe(`Identify responsible roles for the ${stageString} stage. Within each department, there are several roles. Roles are the specific job titles or positions that individuals hold within the department. For example, in the Marketing department, roles might include Marketing Manager, Content Strategist, SEO Specialist, etc. Number of roles proportional to business size`),
             steps: z
                 .array(z.string())
                 .describe("Steps to follow in this stage. Be ellaborate by providing a lot of detail."),
         })
     );
-    //Definition (${stageString}): ${definitions[stageString]}
+
     const formatInstructions = parser.getFormatInstructions();
     const prompt = new PromptTemplate({
         template:
@@ -276,7 +319,7 @@ async function generateStage(stageString, businessDetailsString) {
         partialVariables: { format_instructions: formatInstructions },
     });
 
-    const model = new OpenAI({ temperature: 1, model: "gpt-3.5-turbo-16k" });
+    const model = new OpenAI({ temperature: 1, model: modelName });
     const input = await prompt.format({
         businessDetails: businessDetailsString,
     });
@@ -288,7 +331,7 @@ async function generateStage(stageString, businessDetailsString) {
         } catch (e) {
             try {
                 const fixParser = OutputFixingParser.fromLLM(
-                    new OpenAI({ temperature: 0, model: "gpt-3.5-turbo-16k" }),
+                    new OpenAI({ temperature: 0, model: modelName }),
                     parser
                 );
                 const output = await fixParser.parse(response);
@@ -384,7 +427,7 @@ async function regenerateStageWithContextSingle(stageString, previousStageConten
         partialVariables: { format_instructions: formatInstructions },
     });
 
-    const model = new OpenAI({ temperature: 1, model: "gpt-3.5-turbo-16k" });
+    const model = new OpenAI({ temperature: 1, model: modelName });
     const input = await prompt.format({
         userPreference: userPromptString,
         oldClientJourneyStage: JSON.stringify(previousStageContent),
@@ -396,7 +439,7 @@ async function regenerateStageWithContextSingle(stageString, previousStageConten
     } catch (e) {
         try {
             const fixParser = OutputFixingParser.fromLLM(
-                new OpenAI({ temperature: 0, model: "gpt-3.5-turbo-16k" }),
+                new OpenAI({ temperature: 0, model: modelName }),
                 parser
             );
             const output = await fixParser.parse(response);
