@@ -56,3 +56,12 @@
         }
     }
 }
+.loading-page{
+    display: grid;
+    text-align: center;
+    & .loading-circle{
+        margin: auto;
+        height: 30px;
+        width: 30px;
+    }
+}

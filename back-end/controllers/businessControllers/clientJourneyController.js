@@ -56,9 +56,13 @@ clientJourney.getClientJourneyByProductID = async (req, res) => {
         const {productID} = req.body;
         const clientJourney = await ClientJourney.findOne({ where: {productID} });
         console.log(`Successfully Retrieve client journey for product ID: ${productID}`)
-        return res.status(200).json(clientJourney);
+        return res.status(200).json({
+            status: true,
+            clientJourney
+        });
     } catch (error) {
         return res.status(403).json({
+            status: false,
             result: `Client Journey for Product ID: ${req.body.productID} not found}`
         });
     }

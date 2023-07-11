@@ -132,7 +132,10 @@ button{
         }
         & textarea{
             height: 10vh !important;
-
+        }
+        & textarea:focus, input:focus{
+            outline: none;
+            border: 2.5px solid #555;
         }
     }
     & .pop-up-button{
@@ -197,6 +200,11 @@ button{
     font-size: 16px;
 }
 .dropdown{
+    &.show{
+        & .btn{
+            border: 2.5px solid #555;
+        }
+    }
     & button, button:active, button:hover{
         background-color: transparent;
     }
@@ -204,7 +212,7 @@ button{
         width: 100%;
         border: none;
         color: black;
-    }   
+    }
 }
 .dropdown-menu{
     & button{

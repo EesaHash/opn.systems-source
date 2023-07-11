@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import "../style/client_journey.css";
-import { loadingPage } from '../../business/components/loadingPage';
+import { loadingPage } from '../../warning_pages/components/loadingPage';
 import { closePopUpForm } from '../../dashboard/page/dashboard_main';
 
 export const CreateProcedure = (props) => {
@@ -48,7 +48,7 @@ export const CreateProcedure = (props) => {
     return(
         <section id="createProcedureForm" className="form-popup center form-container create-form">
             {step1()}
-            {loading && loadingPage(document.getElementById("procedure-title").value)}
+            {loading && loadingPage("AI is writing procedures for", document.getElementById("procedure-title").value)}
         </section>
     );
 };

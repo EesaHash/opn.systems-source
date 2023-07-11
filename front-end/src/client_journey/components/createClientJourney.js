@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import "../style/client_journey.css";
-import { loadingPage } from '../../business/components/loadingPage';
+import { loadingPage } from '../../warning_pages/components/loadingPage';
 import { closePopUpForm } from '../../dashboard/page/dashboard_main';
 
 
@@ -66,7 +66,7 @@ export const CreateClientJourney = (props) => {
     return(
         <section id="createClientJourney" className="form-popup center form-container create-form">
             {step1()}
-            {loading && loadingPage(document.getElementById("client-journey-title").value)}
+            {loading && loadingPage("AI is writing client journeys for", document.getElementById("client-journey-title").value)}
         </section>
     );
 };

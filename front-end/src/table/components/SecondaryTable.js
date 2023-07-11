@@ -56,7 +56,7 @@ export const SecondaryTable = (props) => {
                     </div>
                     {props.data && 
                         Object.keys(props.data).map((data, index) => (
-                            (!("id overview businessId createdAt updatedAt title").includes(data)) &&
+                            (!("id overview productID createdAt updatedAt title").includes(data)) &&
                                 <ExpandMinimisedTableItem
                                     index = {index - 2}
                                     title = {data}
