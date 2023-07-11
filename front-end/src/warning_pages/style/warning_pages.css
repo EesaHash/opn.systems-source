@@ -56,4 +56,14 @@
   border-radius: 8px;
   font-size: 16px;
   font-weight: 600;
+}
+
+.loading-page {
+  display: grid;
+  text-align: center;
+}
+.loading-page .loading-circle {
+  margin: auto;
+  height: 30px;
+  width: 30px;
 }/*# sourceMappingURL=warning_pages.css.map */

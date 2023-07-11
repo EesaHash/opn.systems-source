@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import "../style/client_journey.css";
-import { ThirdlyTable } from '../../table/components/ThirdlyTable';
+import { FolderList } from '../../table/components/Folder/FolderList';
 import { openAccessLimitForm, openPopUpForm } from '../../dashboard/page/dashboard_main';
 import { FourthTable } from '../../table/components/FourthTable';
 
@@ -50,7 +50,7 @@ export const PoliciesDashboard = (props) => {
 
     return(
         <div className='policies'>
-            <ThirdlyTable 
+            <FolderList 
                 id = "policies-main-table"
                 title = "Policies"
                 list = {props.journeys}

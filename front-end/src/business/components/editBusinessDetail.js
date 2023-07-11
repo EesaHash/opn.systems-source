@@ -56,18 +56,6 @@ export const EditBusinessDetail = (props) => {
     const updateBusinessObjective = (value) => {
         props.setBusiness({...props.business, businessObjective: value});
     };
-    const updateCoreService = (value) => {
-        props.setBusiness({...props.business, coreServices: value});
-    };
-    const updateTargetMarket = (value) => {
-        props.setBusiness({...props.business, targetMarket: value});
-    };
-    const updateProductOrServiceDescription = (value) => {
-        props.setBusiness({...props.business, productOrServiceDescription: value});
-    };
-    const updateFundingStrategy = (value) => {
-        props.setBusiness({...props.business, fundingStrategy: value});
-    };
     return(
         <section id="editBusinessForm" className="form-popup center form-container edit-business">
             <div className="content-form">
@@ -83,11 +71,6 @@ export const EditBusinessDetail = (props) => {
                         {itemInput("Industry", props.business.industry, updateBusinessIndustry)}
                         {itemDropdown("Company Size", props.business, props.setBusiness, companySizeDropdown)}
                         {itemArea("Business Objective", props.business.businessObjective, updateBusinessObjective)}
-                        {itemArea("Core Service", props.business.coreServices, updateCoreService)}
-                        {itemInput("Target Market", props.business.targetMarket, updateTargetMarket)}
-                        {itemDropdown("Product/Service", props.business, props.setBusiness, manufactureDropdown)}
-                        {itemArea("Product/Service Description", props.business.productOrServiceDescription, updateProductOrServiceDescription)}
-                        {itemArea("Funding Strategy", props.business.fundingStrategy, updateFundingStrategy)}
                         <div className='pop-up-button'>
                             <button className='cancel-button' onClick={closeForm}>Cancel</button>
                             <button onClick={updateData} >Save</button>
@@ -186,35 +169,6 @@ const companySizeDropdown = (business, setBusiness) => {
         <UncontrolledDropdown>
             <DropdownToggle>{business.companySize}</DropdownToggle>
             <DropdownMenu>{getCompanySize()}</DropdownMenu>
-        </UncontrolledDropdown>
-    );
-};
-const manufactureDropdown = (business, setBusiness) => {
-    const list = ["Product", "Service"];
-    const getManufacture = _ => {
-        let newRes = [];
-        list.forEach(res => {
-            newRes.push(
-                <DropdownItem
-                    key = {res}
-                    onClick = {_=> {
-                        let newSel = {
-                            ...business,
-                            isProduct: (res === "Product" ? true : false)
-                        };
-                        setBusiness(newSel);
-                    }}
-                >
-                    {res}
-                </DropdownItem>
-            );
-        });
-        return newRes;
-    };
-    return(
-        <UncontrolledDropdown>
-            <DropdownToggle>{(business.isProduct === true) ? "Product" : "Service"}</DropdownToggle>
-            <DropdownMenu>{getManufacture()}</DropdownMenu>
         </UncontrolledDropdown>
     );
 };

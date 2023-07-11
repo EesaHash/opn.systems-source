@@ -136,6 +136,10 @@ button {
 .form-popup .pop-up-input textarea {
   height: 10vh !important;
 }
+.form-popup .pop-up-input textarea:focus, .form-popup .pop-up-input input:focus {
+  outline: none;
+  border: 2.5px solid #555;
+}
 .form-popup .pop-up-button {
   display: flex;
   float: right;
@@ -198,6 +202,9 @@ button {
   font-size: 16px;
 }
 
+.dropdown.show .btn {
+  border: 2.5px solid #555;
+}
 .dropdown button, .dropdown button:active, .dropdown button:hover {
   background-color: transparent;
 }

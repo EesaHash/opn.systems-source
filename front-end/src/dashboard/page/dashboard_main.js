@@ -91,6 +91,7 @@ export const DashboardPage = () => {
     useEffect(() => {
         try{
             setLoading(true);
+            setProducts([]);
             const getProduct = async _ => {
                 const res = await fetch("/api/product/getall", {
                     method: "POST",
@@ -105,7 +106,6 @@ export const DashboardPage = () => {
                 console.log(data);
                 if(data.status){
                     setProducts(data.products);
-
                 }
             };
             if(business.id)
@@ -119,7 +119,7 @@ export const DashboardPage = () => {
         const fetchData = async _ => {
             try{
                 const getClientJourney = async (productID) => {
-                    const res = await fetch("/api/clientjourney/getall", {
+                    const res = await fetch("/api/clientjourney/get", {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json"
@@ -129,10 +129,8 @@ export const DashboardPage = () => {
                         })
                     });
                     const data = await res.json();
-                    console.log(data);
-                    if(data.status){
-                        setJourneys((prevJourneys) => [...prevJourneys, data.clientJourney])
-                    }
+                    if(data.status)
+                        setJourneys((prevJourneys) => [...prevJourneys, data.clientJourney]);
                 };
                 setJourneys([]);
                 products.forEach(async (item) => {
@@ -140,7 +138,7 @@ export const DashboardPage = () => {
                 });
                 setLoading(false);
             }catch(error){
-
+                alert(error);
             }
         };
         fetchData();
@@ -174,7 +172,7 @@ export const DashboardPage = () => {
                 alert(error);
             }
         }
-        fetchData();
+        // fetchData();
     }, [journeys]);
     
     if(userID === "none") return window.location.href = "/";

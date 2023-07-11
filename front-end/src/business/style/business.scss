@@ -198,13 +198,3 @@ $navbaritem-width: calc(pane.$mainbox-width / 7 + 1.5vw);
         }
     }
 }
-
-.loading-page{
-    display: grid;
-    text-align: center;
-    & .loading-circle{
-        margin: auto;
-        height: 30px;
-        width: 30px;
-    }
-}

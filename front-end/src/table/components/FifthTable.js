@@ -43,7 +43,9 @@ export const FifthTable = (props) => {
                         <h3>/</h3>
                         <button onClick={props.button2} >{`${props.title}`}</button>
                         <h3>/</h3>
-                        <button onClick={closeEditMode}>{`${props.sub_title}`}</button>
+                        <button onClick={props.button3} >{`${props.sub_title}`}</button>
+                        <h3>/</h3>
+                        <button onClick={closeEditMode}>{`${props.sub_title2}`}</button>
                         {editStatus && <h3>/</h3>}
                         {editStatus && <button>Editing<Edit/></button>}
                     </div>

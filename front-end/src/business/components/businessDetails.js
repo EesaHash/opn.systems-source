@@ -8,10 +8,6 @@ export const businessDetails = (business) => {
             {itemInput("Industry", business.industry)}
             {itemInput("Company Size", business.companySize)}
             {itemArea("Business Objective", business.businessObjective)}
-            {itemArea("Core Service", business.coreServices)}
-            {itemInput("Target Market", business.targetMarket)}
-            {itemArea("Product/Service Description", business.productOrServiceDescription)}
-            {itemArea("Funding Strategy", business.fundingStrategy)}
         </div>
     );
 };

@@ -12,7 +12,9 @@ export const FourthTable = (props) => {
                     <div className='table-directory-left-header'>
                         <button onClick={props.button1}>{`${props.type}`}</button>
                         <h3>/</h3>
-                        <button >{`${props.title}`}</button>
+                        <button onClick={props.button2}>{`${props.title}`}</button>
+                        <h3>/</h3>
+                        <button >{`${props.sub_title}`}</button>
                     </div>
                 </div>
                 <div className='fourth-table-title'>

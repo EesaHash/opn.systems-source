@@ -1,8 +1,8 @@
 import React from 'react';
-import "../style/business.css";
+import "../style/warning_pages.css";
 import { motion } from "framer-motion";
 
-export const loadingPage = (businessName) => {
+export const loadingPage = (title, businessName) => {
     const circleStyle = {
         display: "block",
         width: "30px",
@@ -25,7 +25,7 @@ export const loadingPage = (businessName) => {
             <div className='loading-page'>
                 <div className='loading-message'>
                     <img src="./images/loadingIcon.png" alt="icon"/>
-                    <h2>AI is writing client journeys for</h2>
+                    <h2>{title}</h2>
                 </div>
                 <input type='text' value={businessName} readOnly/>
                 <div className='loading-circle'>

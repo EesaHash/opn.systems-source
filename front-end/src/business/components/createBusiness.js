@@ -3,7 +3,7 @@ import "../style/business.css";
 import { closePopUpForm } from '../../dashboard/page/dashboard_main';
 import { DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown } from "reactstrap";
 import { getBusinessTypeList, getCompanySizeList } from '../../App';
-import { loadingPage } from './loadingPage';
+import { loadingPage } from '../../warning_pages/components/loadingPage';
 
 export const CreateBusiness = (props) => {
     const [teamList, setTeamList] = useState([]);
@@ -18,8 +18,8 @@ export const CreateBusiness = (props) => {
     const [keyContact, setKeyContact] = useState({
         name: "",
         position: "",
-        email: "",
-        phone: ""
+        teamContactEmail: "",
+        phoneNumber: ""
     });
     const [loading, setLoading] = useState(false);
 
@@ -104,30 +104,31 @@ export const CreateBusiness = (props) => {
     // };
     const createNewBusiness = _ => {
         try{
-            if(!keyContact.name || !keyContact.position || !keyContact.email || !keyContact.phone)
+            if(!keyContact.name || !keyContact.position || !keyContact.teamContactEmail || !keyContact.phoneNumber)
                 return alert("Please fill in all fields");
             setLoading(true);
             document.getElementById("create-business-step2").style.display = "none";
-            // fetch("/api/business/addNewBusiness", {
-            //     method: "POST",
-            //     headers: {
-            //         "Content-Type": "application/json"
-            //     },
-            //     body: JSON.stringify({...businessOverviewInput, teamList: teamList})
-            // })
-            //     .then((res) => {return res.json(); })
-            //     .then((data) => {
-            //         if(data.status){
-            //             const business = {
-            //                 ...businessOverviewInput,
-            //                 id: data.business.id,
-            //                 teamMember: teamList
-            //             };
-            //             props.setBusinesses([...props.businesses, business]);
-            //             closeCreateBusinessForm();
-            //         }
-            //         alert(data.message);
-            //     });
+            fetch("/api/business/addNewBusiness", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({...businessOverviewInput, teamList: teamList, ...keyContact})
+            })
+                .then((res) => {return res.json(); })
+                .then((data) => {
+                    if(data.status){
+                        const business = {
+                            ...businessOverviewInput,
+                            id: data.business.id,
+                            teamMember: teamList,
+                            keyContact: keyContact
+                        };
+                        props.setBusinesses([...props.businesses, business]);
+                        closeCreateBusinessForm();
+                    }
+                    alert(data.message);
+                });
         }catch(error){
             alert(error);
         }
@@ -144,8 +145,8 @@ export const CreateBusiness = (props) => {
         setKeyContact({
             name: "",
             position: "",
-            email: "",
-            phone: ""
+            teamContactEmail: "",
+            phoneNumber: ""
         });
         setTeamList([]);
         document.getElementById("create-business-step1").style.display = "block";
@@ -197,10 +198,10 @@ export const CreateBusiness = (props) => {
             setKeyContact({...keyContact, position: value});
         };
         const setKeyContactEmail = (value) => {
-            setKeyContact({...keyContact, email: value});
+            setKeyContact({...keyContact, teamContactEmail: value});
         };
         const setKeyContactPhone = (value) => {
-            setKeyContact({...keyContact, phone: value.replace(/\D/g, '')});
+            setKeyContact({...keyContact, phoneNumber: value.replace(/\D/g, '')});
         };
         return(
             <div id="create-business-step2" className="content-form" style={{display: "none"}}>
@@ -215,8 +216,8 @@ export const CreateBusiness = (props) => {
                 <h1>Key Contact</h1>
                 {textInputItem("Name", keyContact.name, setKeyContactName, handleKeypress2)}
                 {textInputItem("Position", keyContact.position, setKeyContactPosition, handleKeypress2)}
-                {emailInputItem("Email", keyContact.email, setKeyContactEmail, handleKeypress2)}
-                {textInputItem("Phone", keyContact.phone, setKeyContactPhone, handleKeypress2)}
+                {emailInputItem("Email", keyContact.teamContactEmail, setKeyContactEmail, handleKeypress2)}
+                {textInputItem("Phone", keyContact.phoneNumber, setKeyContactPhone, handleKeypress2)}
                 <div className='pop-up-button'>
                     <button className='cancel-button' onClick={closeCreateBusinessForm}>Cancel</button>
                     <button className='next-button' onClick={createNewBusiness} >Next</button>
@@ -270,7 +271,7 @@ export const CreateBusiness = (props) => {
             {step1()}
             {step2()}
             {/* {step3()} */}
-            {loading && loadingPage(businessOverviewInput.businessName)}
+            {loading && loadingPage("Creating New Business", businessOverviewInput.businessName)}
         </section>
     );
 };

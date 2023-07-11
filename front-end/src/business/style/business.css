@@ -441,14 +441,4 @@
 }
 .business-details .business-details-item textarea {
   height: 10vh !important;
-}
-
-.loading-page {
-  display: grid;
-  text-align: center;
-}
-.loading-page .loading-circle {
-  margin: auto;
-  height: 30px;
-  width: 30px;
 }/*# sourceMappingURL=business.css.map */
