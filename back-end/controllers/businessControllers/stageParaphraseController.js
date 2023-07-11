@@ -17,7 +17,6 @@ const saveParaphrasedStages = async (clientJourneyID, modelName) => {
             return null;
         }
         const output = await paraphrase(modelName);
-        console.log(output);
         const stageNames = await StageName.create({
             names: JSON.stringify(output),
             clientJourneyID: clientJourneyID,
