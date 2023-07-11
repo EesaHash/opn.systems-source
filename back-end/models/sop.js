@@ -27,6 +27,9 @@ const SOP = sequelize.define('Standard Operating Procedures', {
     documentation: {
         type: DataTypes.TEXT,
     },
+    stage: {
+        type: DataTypes.STRING(20)
+    }
 });
 
 // Relation with Client Journey

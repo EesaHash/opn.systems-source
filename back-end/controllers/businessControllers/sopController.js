@@ -24,7 +24,10 @@ const {
 
 const test = async (req, res) => {
   try {
-    const clientJourneyList = await ClientJourney.findAll({ where: { businessId: req.body.businessId } });
+    const clientJourneyList = await ClientJourney.findAll({ where: {
+       clientJourneyID : req.body.clientJourneyID
+      } 
+    });
     const business = await Business.findOne({ where: { id: req.body.businessId } });
     const businessDetails = "Business Name:" + business.businessName + "\n Business Type:" + business.businessType + "\n Industry:" + business.industry + "\n Company Size:" + business.companySize + "\n Business Objective:" + business.businessObjective + "\n Core Services:" + business.coreServices + "\n Target Market:" + business.targetMarket + "\n Product or Service Description:" + business.productOrServiceDescription +  "\n Funding Strategy:" + business.fundingStrategy;
     const clientJourney = clientJourneyList[0];
@@ -115,13 +118,6 @@ const generateSingleSOP = async (statement, businessDetails) => {
             HumanMessagePromptTemplate.fromTemplate("{input}"),
         ]);
 
-        const primerChain = new ConversationChain({
-            memory: memory,
-            prompt: chatPrompt,
-            llm: chat,
-        });
-
-
         const titleChain = new ConversationChain({
             memory: memory,
             prompt: chatPrompt,
@@ -191,9 +187,6 @@ const generateSingleSOP = async (statement, businessDetails) => {
         const responsibility = await responsibilityChain.call({
             input: `List the people roles responsible. Dont add any labels or tags for example "Responsibility: "`
         });
-
-
-
 
         let output = Object.assign({}, title, responsibility, purpose, definitions, procedure, documentation);
         console.log(output);
