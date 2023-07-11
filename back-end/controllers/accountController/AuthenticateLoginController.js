@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
-const { connection } = require("./connectDatabase");
 const { isEmailExist } = require("./UserController");
 require ("dotenv").config();
 

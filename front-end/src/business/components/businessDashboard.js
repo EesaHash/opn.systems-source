@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { AccountTree, Assignment, Badge, DeleteForever, FolderCopy, Group, Home, ModeEdit, ViewHeadline } from "@mui/icons-material";
 import "../style/business.css";
 import { businessDetails } from './businessDetails';
@@ -10,6 +10,16 @@ import { PoliciesDashboard } from '../../client_journey/components/PoliciesDashb
 import { TeamMembers } from '../../client_journey/components/TeamMembers';
 
 export const BusinessDashboard = (props) => {
+    const [stages, setStages] = useState([]);
+
+    useEffect(() => {
+        try{
+            
+        }catch(error){
+            console.log(error);
+        }
+    }, []);
+
     const deleteBusiness = _ => {
         try{
             if(!window.confirm("Are you sure to delete this business?"))
