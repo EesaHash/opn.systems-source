@@ -10,7 +10,7 @@ export const businessOverview = (business) => {
                 <div className="yourbusiness">
                     <div className="businesstitle">
                         <text>Welcome to Opn.Systems </text>
-                        <img src='./images/partypopper.png'/>
+                        <img src='./images/partypopper.png' alt="icon"/>
                         <p style={{fontSize:"16px",fontFamily:"Inter", fontWeight:"lighter"}}>Here's some tips to get started</p>    
                     </div>
                     <button className="editB">How to edit your files</button>

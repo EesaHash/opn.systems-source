@@ -4,7 +4,6 @@ import { closePopUpForm } from '../page/dashboard_main';
 import SettingsIcon from '@mui/icons-material/Settings';
 import CloseIcon from '@mui/icons-material/Close';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { Margin } from '@mui/icons-material';
 
 export const ModifyAccountDetails = (props) => {
     const [accountDetailsInput, setAccountDetailsInput] = useState({
