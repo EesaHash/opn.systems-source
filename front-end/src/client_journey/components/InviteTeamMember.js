@@ -10,6 +10,7 @@ export const InviteTeamMember = (props) => {
             addTeamMember();
         }
     };
+    
     const addTeamMembertoDatabase = _ => {
         
     };
@@ -50,8 +51,8 @@ export const InviteTeamMember = (props) => {
         closePopUpForm();
     };
     return(
-        <section id="invite-team-member-form" className="form-popup center form-container create-form">
-            <div className='content-form'>
+        <section id="invite-team-member-form" className="form-popup center form-container add-team-member-form">
+            <div className='content-form'>  
                 <h2>Add Member</h2>
                 <hr/>
                 <h1>Team Members</h1>
@@ -68,13 +69,16 @@ export const InviteTeamMember = (props) => {
                             type="text" 
                             id ="invite-team-member-role" 
                             placeholder="Role" 
-                            style={{marginLeft: "20px", width: "20%"}}
+                            style={{marginLeft: "12px", width: "24%"}}
                             onKeyPress={handleKeypress} 
                         />
-                        <button onClick={addTeamMember}>Add</button>
+                        <button className='add-button' onClick={addTeamMember}>Add</button>
+                       {/* <button style={{backgroundColor:"#5D5FEF" }} onClick={event => removeTeamMember(index)}>Remove</button> */}
+                    
                     </div>
                     {teamList.map((data, index) => (
                         teamMemberInputElements(teamList, setTeamList, index, removeTeamMember)
+                        
                     ))}
                 </div>
                 <div className='pop-up-button'>
