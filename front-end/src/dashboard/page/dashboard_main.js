@@ -129,6 +129,7 @@ export const DashboardPage = () => {
                         })
                     });
                     const data = await res.json();
+                    console.log(data);
                     if(data.status)
                         setJourneys((prevJourneys) => [...prevJourneys, data.clientJourney]);
                 };
@@ -177,7 +178,7 @@ export const DashboardPage = () => {
     
     if(userID === "none") return window.location.href = "/";
     return (
-        <div className="background">
+        <div id = "background" className="background">
             <div id="bash" className="bash">
                 <Sidebar
                     loading = {loading}
@@ -252,14 +253,13 @@ export const createNewBusinessForm = (businesses) => {
     openPopUpForm();
 };
 export const openPopUpForm = _ => {
-    document.getElementById("bash").style.opacity = "0.5";
-    document.getElementById("dashboard-content").style.opacity = "0.5";
-    document.getElementById("bash").style.filter = "blur(3px)";
-    document.getElementById("dashboard-content").style.filter = "blur(3px)";
+    const filter = "brightness(65%)"
+    document.getElementById("background").style.backgroundColor = "#9c9ea4";
+    document.getElementById("bash").style.filter = filter;
+    document.getElementById("dashboard-content").style.filter = filter;
 };
 export const closePopUpForm = _ => {
-    document.getElementById("bash").style.removeProperty("opacity");
-    document.getElementById("dashboard-content").style.removeProperty("opacity");
+    document.getElementById("background").style.backgroundColor = "#EBEEF8";
     document.getElementById("bash").style.removeProperty("filter");
     document.getElementById("dashboard-content").style.removeProperty("filter");
 };

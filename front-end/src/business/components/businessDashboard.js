@@ -152,21 +152,3 @@ const navbarItem = (icon, title, activeLink3, setActiveLink3) => {
         </li>
     );
 };
-
-export const getStages = async (clientJourneyID, setStages) => {
-    const res = await fetch("/api/stages/getbyjourneyid", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            clientJourneyID
-        })
-    });
-    const data = await res.json();
-    if(data.status){
-        setStages(data.stages);
-    }else{
-        console.log(data.message);
-    }
-};

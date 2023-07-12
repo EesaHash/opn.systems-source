@@ -12,6 +12,7 @@ const {
     OutputFixingParser,
 } = require("langchain/output_parsers");
 const { addProduct } = require("../ProductController/saveProductController");
+const { getStages } = require("./getStageNamesController");
 
 require('dotenv').config()
 
@@ -30,6 +31,7 @@ clientJourney.saveClientJourney = async (req, res) => {
             const journey = await generateClientJourney(product.id, title);
             if (journey != null) {
                 const stageNames = await saveParaphrasedStages(journey.id,modelName);
+                journey.stages = stageNames;
                 console.log(`[Success] Added client journey for product id: ${product.id}`);
                 return res.status(200).json({
                     status: true,
@@ -59,10 +61,12 @@ clientJourney.getClientJourneyByProductID = async (req, res) => {
     try {
         const {productID} = req.body;
         const clientJourney = await ClientJourney.findOne({ where: {productID} });
+        const stageNames = await getStages(clientJourney.id);
+        clientJourney.dataValues.stages = stageNames;
         console.log(`Successfully Retrieve client journey for product ID: ${productID}`)
         return res.status(200).json({
             status: true,
-            clientJourney
+            clientJourney: clientJourney
         });
     } catch (error) {
         return res.status(403).json({

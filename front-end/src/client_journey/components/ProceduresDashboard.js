@@ -6,20 +6,12 @@ import { FourthTable } from '../../table/components/FourthTable';
 import { FifthTable, FifthTableDescAsList, FifthTableDescItem } from '../../table/components/FifthTable';
 import { FormatAlignLeft } from '@mui/icons-material';
 import { FolderList2 } from '../../table/components/Folder/FolderList2';
-import { getStages } from '../../business/components/businessDashboard';
 
 export const ProceduresDashboard = (props) => {
     const [index, setIndex] = useState(-1);
     const [journey, setJourney] = useState({});
     const [procedure, setProcedure] = useState({});
     const [stage, setStage] = useState("");
-    const [stages, setStages] = useState([""]);
-
-    useEffect(() => {
-        setStages([""]);
-        if(journey.id)
-            getStages(journey.id, setStages);
-    }, [journey]);
     
     useEffect(() => {
         const mainTable = document.getElementById("procedure-main-table");
@@ -134,7 +126,7 @@ export const ProceduresDashboard = (props) => {
                 id = "procedure-main-table"
                 title = "Procedures"
                 list = {props.journeys}
-                list2 = {props.procedures.length > 0 ? props.procedures : [[]]}
+                list2 = {props.journeys.length > 0 ? props.journeys.map(obj => obj.stages) : [[]]}
                 addNewBtn = {openCreateJourneyForm}
                 itemActionBtn = {openStagesList}
             />
@@ -142,7 +134,7 @@ export const ProceduresDashboard = (props) => {
                 id = "procedure-secondary-table"
                 type = "Procedures"
                 title = {`${journey.title}'s Procedures`}
-                list = {stages}
+                list = {journey.stages ? journey.stages : []}
                 list2 = {props.procedures.length > 0 ? props.procedures : [[]]}
                 button1 = {showJourneyList}
                 itemActionBtn = {openProcedureList}
