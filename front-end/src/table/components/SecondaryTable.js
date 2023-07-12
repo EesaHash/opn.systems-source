@@ -59,7 +59,7 @@ export const SecondaryTable = (props) => {
                             (!("id overview productID createdAt updatedAt title").includes(data)) &&
                                 <ExpandMinimisedTableItem
                                     index = {index - 2}
-                                    title = {data}
+                                    title = {props.dataHeading[index - 3]}
                                     data = {JSON.parse(Object.entries(props.data)[index][1])}
                                     editStatus = {editStatus}
                                     automaticallyRegenerate = {props.automaticallyRegenerate}

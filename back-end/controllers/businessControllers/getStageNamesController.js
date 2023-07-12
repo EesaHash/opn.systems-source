@@ -6,7 +6,6 @@ router.post("/", async (req, res) => {
     try{        
         const {clientJourneyID} = req.body;
         const stages = await getStages(clientJourneyID);
-
         return res.status(200).json({
             status: true,
             stages
@@ -22,7 +21,10 @@ router.post("/", async (req, res) => {
 module.exports = router;
 
 const getStages = async (clientJourneyID) => {
-    return JSON.parse((await StageName.findAll({
+    const stages = (await StageName.findAll({
         where: { clientJourneyID }
-    }))[0].names).synonyms;
+    }))[0];
+    if(stages)
+        return JSON.parse(stages.names).synonyms;
+    return stages;
 };

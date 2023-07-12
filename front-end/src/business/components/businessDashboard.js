@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { AccountTree, Assignment, Badge, DeleteForever, FolderCopy, Group, Home, ModeEdit, ViewHeadline } from "@mui/icons-material";
 import "../style/business.css";
 import { businessDetails } from './businessDetails';
@@ -10,16 +10,6 @@ import { PoliciesDashboard } from '../../client_journey/components/PoliciesDashb
 import { TeamMembers } from '../../client_journey/components/TeamMembers';
 
 export const BusinessDashboard = (props) => {
-    const [stages, setStages] = useState([]);
-
-    useEffect(() => {
-        try{
-            
-        }catch(error){
-            console.log(error);
-        }
-    }, []);
-
     const deleteBusiness = _ => {
         try{
             if(!window.confirm("Are you sure to delete this business?"))
@@ -161,4 +151,22 @@ const navbarItem = (icon, title, activeLink3, setActiveLink3) => {
             </div>
         </li>
     );
+};
+
+export const getStages = async (clientJourneyID, setStages) => {
+    const res = await fetch("/api/stages/getbyjourneyid", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            clientJourneyID
+        })
+    });
+    const data = await res.json();
+    if(data.status){
+        setStages(data.stages);
+    }else{
+        console.log(data.message);
+    }
 };

@@ -3,9 +3,17 @@ import "../style/client_journey.css";
 import { MainTableHeader } from '../../table/components/MainTable';
 import { openAccessLimitForm, openPopUpForm } from '../../dashboard/page/dashboard_main';
 import { SecondaryTable } from '../../table/components/SecondaryTable';
+import { getStages } from '../../business/components/businessDashboard';
 
 export const ClientJourneyDashboard = (props) => {
+    const [stages, setStages] = useState([]);
     const [journey, setJourney] = useState({});
+
+    useEffect(() => {
+        setStages([""]);
+        if(journey.id)
+            getStages(journey.id, setStages);
+    }, [journey]);
     useEffect(() => {
         const mainTable = document.getElementById("client-journey-main-table");
         const secondaryTable = document.getElementById("client-journey-secondary-table");
@@ -22,6 +30,8 @@ export const ClientJourneyDashboard = (props) => {
         document.getElementById("createClientJourney").style.display = "block";
         openPopUpForm();
     };
+
+    // Going to Tab 2
     const openClientJourneyDetails = (param) => {
         const mainTable = document.getElementById("client-journey-main-table");
         const secondaryTable = document.getElementById("client-journey-secondary-table");
@@ -31,6 +41,8 @@ export const ClientJourneyDashboard = (props) => {
             secondaryTable.style.display = "block";
         }
     };
+
+    // Going back to Tab 1
     const showJourneyList = _ => {
         const mainTable = document.getElementById("client-journey-main-table");
         const secondaryTable = document.getElementById("client-journey-secondary-table");
@@ -40,6 +52,7 @@ export const ClientJourneyDashboard = (props) => {
             secondaryTable.style.display = "none";
         }
     };
+    
     const automaticallyRegenerate = (stage) => {
         regenerateClientJourney(stage, null);
     };
@@ -102,6 +115,7 @@ export const ClientJourneyDashboard = (props) => {
             alert(error);
         }
     };
+
     return(
         <div className='client-journey'>
             <MainTableHeader 
@@ -116,6 +130,7 @@ export const ClientJourneyDashboard = (props) => {
                 type = {"Client Journey"}
                 title = {journey.title}
                 description = {journey.overview ? JSON.parse(journey.overview).overview : ""}
+                dataHeading = {stages}
                 data = {journey}
                 button1 = {showJourneyList}
                 automaticallyRegenerate = {automaticallyRegenerate}

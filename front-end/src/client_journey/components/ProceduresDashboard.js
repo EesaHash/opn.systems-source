@@ -6,13 +6,20 @@ import { FourthTable } from '../../table/components/FourthTable';
 import { FifthTable, FifthTableDescAsList, FifthTableDescItem } from '../../table/components/FifthTable';
 import { FormatAlignLeft } from '@mui/icons-material';
 import { FolderList2 } from '../../table/components/Folder/FolderList2';
+import { getStages } from '../../business/components/businessDashboard';
 
 export const ProceduresDashboard = (props) => {
     const [index, setIndex] = useState(-1);
     const [journey, setJourney] = useState({});
     const [procedure, setProcedure] = useState({});
     const [stage, setStage] = useState("");
-    const [stages, setStages] = useState([]);
+    const [stages, setStages] = useState([""]);
+
+    useEffect(() => {
+        setStages([""]);
+        if(journey.id)
+            getStages(journey.id, setStages);
+    }, [journey]);
     
     useEffect(() => {
         const mainTable = document.getElementById("procedure-main-table");
@@ -44,7 +51,6 @@ export const ProceduresDashboard = (props) => {
             mainTable.style.display = "none";
             setJourney(param);
             setIndex(index);
-            setStages(["Awareness", "Interest", "Evaluation", "Decision", "Purchase", "Implementation", "Post Purchase", "Retention"]);
             secondaryTable.style.display = "block";
         }
     };
