@@ -4,6 +4,7 @@ import { closePopUpForm } from '../../dashboard/page/dashboard_main';
 import { DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown } from "reactstrap";
 import { getBusinessTypeList, getCompanySizeList } from '../../App';
 import { loadingPage } from '../../warning_pages/components/loadingPage';
+import { areaItem, emailInputItem, textInputItem } from '../../public_components/popupInput';
 
 export const CreateBusiness = (props) => {
     const [teamList, setTeamList] = useState([]);
@@ -182,7 +183,7 @@ export const CreateBusiness = (props) => {
                     <label>Company Size</label>
                     {companySizeDropdown(businessOverviewInput, setBusinessOverviewInput)}
                 </div>
-                {areaItem("Business Objective", businessOverviewInput.businessObjective, setBusinessObjective, handleKeypress)}
+                {areaItem("Business Objective", businessOverviewInput.businessObjective, setBusinessObjective)}
                 <div className='pop-up-button'>
                     <button className='cancel-button' onClick={closeCreateBusinessForm}>Cancel</button>
                     <button className='next-button' onClick={nextAction} >Next</button>
@@ -276,38 +277,7 @@ export const CreateBusiness = (props) => {
     );
 };
 
-const emailInputItem = (label, input, setInput, handleKeypress) => {
-    return inputItem(label, input, setInput, handleKeypress, "email");
-};
-const textInputItem = (label, input, setInput, handleKeypress) => {
-    return inputItem(label, input, setInput, handleKeypress, "text");
-};
-const inputItem = (label, input, setInput, handleKeypress, type) => {
-    return(
-        <div className="pop-up-input">
-            <label>{label}</label>
-            <input 
-                type={type}
-                value={input}
-                onKeyPress={handleKeypress} 
-                onChange={event => setInput(event.target.value)}
-            />
-        </div>  
-    );
-};
-const areaItem = (label, input, setInput, handleKeypress) => {
-    return(
-        <div className="pop-up-input">
-            <label>{label}</label>
-            <textarea 
-                type="text" 
-                value={input}
-                onKeyPress={handleKeypress} 
-                onChange={event => setInput(event.target.value)}
-            />
-        </div>  
-    );
-};
+
 const businessTypeListDrowdown = (businessOverviewInput, setBusinessOverviewInput) => {
     const getBusinessType = _ => {
         let newType = [];
@@ -364,35 +334,6 @@ const companySizeDropdown = (businessOverviewInput, setBusinessOverviewInput) =>
         </UncontrolledDropdown>
     );
 };
-// const manufactureDropdown = (businessOverviewInput, setBusinessOverviewInput) => {
-//     const list = ["Product", "Service"];
-//     const getManufacture = _ => {
-//         let newRes = [];
-//         list.forEach(res => {
-//             newRes.push(
-//                 <DropdownItem
-//                     key = {res}
-//                     onClick = {_=> {
-//                         let newSel = {
-//                             ...businessOverviewInput,
-//                             isProduct: res
-//                         };
-//                         setBusinessOverviewInput(newSel);
-//                     }}
-//                 >
-//                     {res}
-//                 </DropdownItem>
-//             );
-//         });
-//         return newRes;
-//     };
-//     return(
-//         <UncontrolledDropdown>
-//             <DropdownToggle>{businessOverviewInput.isProduct}</DropdownToggle>
-//             <DropdownMenu>{getManufacture()}</DropdownMenu>
-//         </UncontrolledDropdown>
-//     );
-// };
 export const teamMemberInputElements = (teamList, setTeamList, index, removeTeamMember) => {
     const modifyEmail = (value) => {
         let newList = [...teamList];

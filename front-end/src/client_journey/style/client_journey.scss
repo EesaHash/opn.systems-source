@@ -10,10 +10,13 @@
     }
 }
 
+$create-client-journey-width: 50vw;
+$create-client-journey-height: 85vh;
 .create-client-journey{
-    top: 30vh;
-    height: 30vh;
-    width: 24vw;
-    left: 38vw;
-    right: 38vw;
+    top: calc((100vh - $create-client-journey-height) / 2);
+    height: fit-content;
+    max-height: $create-client-journey-height;
+    width: $create-client-journey-width;
+    left: calc((100vw - $create-client-journey-width) / 2);
+    right: calc((100vw - $create-client-journey-width) / 2);
 }

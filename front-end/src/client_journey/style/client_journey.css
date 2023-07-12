@@ -7,9 +7,11 @@
 }
 
 .create-client-journey {
-  top: 30vh;
-  height: 30vh;
-  width: 24vw;
-  left: 38vw;
-  right: 38vw;
+  top: 7.5vh;
+  height: -moz-fit-content;
+  height: fit-content;
+  max-height: 85vh;
+  width: 50vw;
+  left: 25vw;
+  right: 25vw;
 }/*# sourceMappingURL=client_journey.css.map */
