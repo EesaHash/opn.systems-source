@@ -48,7 +48,7 @@ export const CreateClientJourney = (props) => {
             <div id="create-client-journey-step1" className="content-form">
                 <h2>Add Client Journey</h2>
                 <hr/>
-                <div className='pop-up-input'>
+                <div className='pop-up-input' >
                     <label>Client Journey Title</label>
                     <input 
                         id = "client-journey-title"
@@ -64,7 +64,7 @@ export const CreateClientJourney = (props) => {
         );
     };
     return(
-        <section id="createClientJourney" className="form-popup center form-container create-form">
+        <section id="createClientJourney" className="form-popup center form-container create-client-journey">
             {step1()}
             {loading && loadingPage("AI is writing client journeys for", document.getElementById("client-journey-title").value)}
         </section>

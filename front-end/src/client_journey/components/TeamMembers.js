@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import "../style/TeamMembers.css";
+import "../../header/style/header.css"
 import { MainTableHeader } from '../../table/components/MainTable';
 import { openPopUpForm } from '../../dashboard/page/dashboard_main';
 
 const inviteTeam = _ =>{
-    document.getElementById("invite-team-member-form").style.display = "block";
+    document.getElementById("invite-team-member-form").style.display = "block"
     openPopUpForm();
 }
 
@@ -43,10 +44,9 @@ export const TeamMembers = (props) => {
                 title = "Team Members" 
                 list = {teamMembers}
                 addNewBtn = {inviteTeam}
-            />
-            
+            /> 
         </div>
     );
-   
+
     
 }

@@ -11,7 +11,6 @@
         margin: 8px 0;
         border-radius: 4px;
     }
-
     & .pop-up-input{
         width:23vw;
         margin: auto auto 15px auto;
@@ -30,5 +29,12 @@
     & button{
         width: fit-content !important;
         padding: 10px 20px;
+    }
+    & .secondary-table{
+        top: 30vh;
+        height: 30vh;
+        width: 24vw;
+        left: 38vw;
+        right: 38vw;
     }
 }
