@@ -23,6 +23,7 @@ export const CreateBusiness = (props) => {
         phoneNumber: ""
     });
     const [loading, setLoading] = useState(false);
+    const titlePage = "Create Business";
 
     const handleKeypress = e => {
         if(e.key === "Enter"){
@@ -169,7 +170,7 @@ export const CreateBusiness = (props) => {
         };
         return(
             <div id="create-business-step1" className="content-form">
-                <h2>Create Business</h2>
+                <h2>{titlePage}</h2>
                 <hr/>
                 <h3>Step 1 of 2</h3>
                 <h1>Company Overview</h1>
@@ -206,7 +207,7 @@ export const CreateBusiness = (props) => {
         };
         return(
             <div id="create-business-step2" className="content-form" style={{display: "none"}}>
-                <h2>Create Business</h2>
+                <h2>{titlePage}</h2>
                 <hr/>
                 <div className='title'>
                     <button type="button" onClick={backAction} >
@@ -229,7 +230,7 @@ export const CreateBusiness = (props) => {
     // const step3 = _ => {
     //     return(
     //         <div id="create-business-step3" className="content-form" style={{display: "none"}}>
-    //             <h2>Create Business</h2>
+    //             <h2>{titlePage}</h2>
     //             <hr/>
     //             <div className='title'>
     //                 <button type="button" onClick={backAction2} >
@@ -272,7 +273,7 @@ export const CreateBusiness = (props) => {
             {step1()}
             {step2()}
             {/* {step3()} */}
-            {loading && loadingPage("Creating New Business", businessOverviewInput.businessName)}
+            {loading && loadingPage(titlePage, "Creating New Business", businessOverviewInput.businessName)}
         </section>
     );
 };

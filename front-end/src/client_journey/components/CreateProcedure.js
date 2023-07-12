@@ -5,6 +5,7 @@ import { closePopUpForm } from '../../dashboard/page/dashboard_main';
 
 export const CreateProcedure = (props) => {
     const [loading, setLoading] = useState(false);
+    const titlePage = "Create Procedure";
     const closeForm = _ => {
         document.getElementById("procedure-title").value = "";
         document.getElementById("create-procedure-step1").style.display = "block";
@@ -28,7 +29,7 @@ export const CreateProcedure = (props) => {
     const step1 = _ => {
         return(
             <div id="create-procedure-step1" className="content-form">
-                <h2>Add Procedure</h2>
+                <h2>{titlePage}</h2>
                 <hr/>
                 <div className='pop-up-input'>
                     <label>Procedure Title</label>
@@ -48,7 +49,7 @@ export const CreateProcedure = (props) => {
     return(
         <section id="createProcedureForm" className="form-popup center form-container create-form">
             {step1()}
-            {loading && loadingPage("AI is writing procedures for", document.getElementById("procedure-title").value)}
+            {loading && loadingPage(titlePage, "AI is writing procedures for", document.getElementById("procedure-title").value)}
         </section>
     );
 };

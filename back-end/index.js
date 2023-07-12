@@ -30,7 +30,6 @@ app.use("/api/stages/getbyjourneyid", require("./controllers/businessControllers
 
 // PRODUCT APIs CONTROLLERS
 app.use("/api/product/getall", require("./controllers/ProductController/getAllProductController"));
-app.use("/api/product/save", require("./controllers/ProductController/saveProductController"));
 
 app.listen(PORT, () => {
     console.log(`Server listening on ${PORT}`);

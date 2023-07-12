@@ -1,6 +1,4 @@
-const express = require("express");
 const Product = require("../../models/product");
-const router = express.Router();
 
 /*
 
@@ -16,40 +14,20 @@ REQUEST EXAMPLE
 }
 */
 
-router.post("/", async (req, res) => {
-    try {
-        const {
-            coreServices,
-            targetMarket,
-            isProduct,
-            productOrServiceDescription,
-            fundingStrategy,
-            businessID,
-        } = req.body;
-
-        // Create a new business record in the database
-        await Product.create({
-            coreServices,
-            targetMarket,
-            isProduct: (isProduct === "Product" ? true : false),
-            productOrServiceDescription,
-            fundingStrategy,
-            businessID,
+const addProduct = async (input) => {
+    try{
+        const product = await Product.create({
+            coreServices: input.coreServices,
+            targetMarket: input.targetMarket,
+            isProduct: input.isProduct === "Product" ? true : false,
+            productOrServiceDescription: input.productOrServiceDescription,
+            fundingStrategy: input.fundingStrategy,
+            businessID: input.businessID
         });
-
-
-        console.log(`[Success] Added Product for business ID : ${businessID}`);
-
-        return res.status(200).json({
-            status: true,
-            message: "Successfully added new Product",
-        });
-    } catch (error) {
+        console.log(`[Success] Added Product for Business ID: ${input.businessID}`);
+        return product;
+    }catch(error){
         console.log(error);
-        res.status(500).json({ status: false, message: error });
     }
-});
-
-
-module.exports = router;
-
+};
+module.exports = {addProduct};

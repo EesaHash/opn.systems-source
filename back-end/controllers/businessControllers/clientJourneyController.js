@@ -11,6 +11,7 @@ const {
     StructuredOutputParser,
     OutputFixingParser,
 } = require("langchain/output_parsers");
+const { addProduct } = require("../ProductController/saveProductController");
 
 require('dotenv').config()
 
@@ -22,15 +23,18 @@ const modelName = "gpt-3.5-turbo-16k"
 
 clientJourney.saveClientJourney = async (req, res) => {
     try {
-        const {productID} = req.body;
-        const cj = await ClientJourney.findOne({ where: { productID: productID } });
+        const {title, productInput} = req.body;
+        const product = await addProduct(productInput);
+        const cj = await ClientJourney.findOne({ where: { productID: product.id } });
         if (cj == null) {
-            const journey = await generateClientJourney(req.body.productID, req.body.title);
+            const journey = await generateClientJourney(product.id, title);
             if (journey != null) {
                 const stageNames = await saveParaphrasedStages(journey.id,modelName);
+                console.log(`[Success] Added client journey for product id: ${product.id}`);
                 return res.status(200).json({
                     status: true,
                     message: "Successfully add new client journey!",
+                    product: product,
                     journey: journey,
                     headings: stageNames
                 });

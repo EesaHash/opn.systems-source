@@ -16,6 +16,7 @@ export const CreateClientJourney = (props) => {
         businessID: props.business.id
     });
     const [loading, setLoading] = useState(false);
+    const titlePage = "Create Client Journey";
 
     const generate = _ => {
         const title = document.getElementById("client-journey-title").value;
@@ -29,8 +30,8 @@ export const CreateClientJourney = (props) => {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                id: props.business.id,
-                title: title
+                title: title,
+                productInput
             })
         })
             .then((res) => { return res.json(); })
@@ -75,7 +76,7 @@ export const CreateClientJourney = (props) => {
 
         return(
             <div id="create-client-journey-step1" className="content-form">
-                <h2>Add Client Journey</h2>
+                <h2>{titlePage}</h2>
                 <hr/>
                 <h3>Step 1 of 2</h3>
                 <h1>Product Details</h1>
@@ -114,7 +115,7 @@ export const CreateClientJourney = (props) => {
     const step2 = _ => {
         return(
             <div id="create-client-journey-step2" className="content-form" style={{display: "none"}}>
-                <h2>Add Client Journey</h2>
+                <h2>{titlePage}</h2>
                 <hr/>
                 <div className='title'>
                     <button type="button" onClick={backAction} >
@@ -152,7 +153,7 @@ export const CreateClientJourney = (props) => {
         <section id="createClientJourney" className="form-popup center form-container create-client-journey">
             {step1()}
             {step2()}
-            {loading && loadingPage("AI is writing client journeys for", document.getElementById("client-journey-title").value)}
+            {loading && loadingPage(titlePage, "AI is writing client journeys for", document.getElementById("client-journey-title").value)}
         </section>
     );
 };

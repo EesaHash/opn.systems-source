@@ -2,7 +2,7 @@ import React from 'react';
 import "../style/warning_pages.css";
 import { motion } from "framer-motion";
 
-export const loadingPage = (title, businessName) => {
+export const loadingPage = (title, subTitle, businessName) => {
     const circleStyle = {
         display: "block",
         width: "30px",
@@ -20,12 +20,12 @@ export const loadingPage = (title, businessName) => {
     };
     return(
         <div id="loading-page" className="content-form">
-            <h2>Create Business</h2>
+            <h2>{title}</h2>
             <hr/>
             <div className='loading-page'>
                 <div className='loading-message'>
                     <img src="./images/loadingIcon.png" alt="icon"/>
-                    <h2>{title}</h2>
+                    <h2>{subTitle}</h2>
                 </div>
                 <input type='text' value={businessName} readOnly/>
                 <div className='loading-circle'>
