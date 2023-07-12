@@ -5,105 +5,103 @@ const ClientJourney = require("../../models/client_journey");
 const SOP = require("../../models/sop");
 const { ConversationChain } = require("langchain/chains");
 const {
-  ChatPromptTemplate,
-  HumanMessagePromptTemplate,
-  SystemMessagePromptTemplate,
-  MessagesPlaceholder,
+    ChatPromptTemplate,
+    HumanMessagePromptTemplate,
+    SystemMessagePromptTemplate,
+    MessagesPlaceholder,
 } = require("langchain/prompts")
 const { BufferMemory } = require("langchain/memory")
 require('dotenv').config()
 
-
-
 const deleteSopsForStage = async (req, res) => {
-  try {
-    const sop = await SOP.destroy({
-      where:
-      {
-        clientJourneyID: req.body.clientJourneyID,
-        stage: req.body.stage
-      }
-    });
-    if (sop === 0)
-      return res.status(404).json({ status: "FAILED", message: `SOPS NOT FOUND` });
-    return res.status(200).json({
-      status: "SUCCESS",
-      message: `SUCCESSFULLY DELETED SOPS FOR ${req.body.stage}`
-    });
-  }
-  catch (err) {
-    console.log(err);
-    return res.status(500).json({ message: "ERROR" });
-  }
+    try {
+        const sop = await SOP.destroy({
+            where:
+            {
+                clientJourneyID: req.body.clientJourneyID,
+                stage: req.body.stage
+            }
+        });
+        if (sop === 0)
+            return res.status(404).json({ status: "FAILED", message: `SOPS NOT FOUND` });
+        return res.status(200).json({
+            status: "SUCCESS",
+            message: `SUCCESSFULLY DELETED SOPS FOR ${req.body.stage}`
+        });
+    }
+    catch (err) {
+        console.log(err);
+        return res.status(500).json({ message: "ERROR" });
+    }
 };
 
 const generateSopForStage = async (req, res) => {
-  try {
-    const clientJourneyList = await ClientJourney.findAll({
-      where: {
-        id: req.body.clientJourneyID
-      }
-    });
-    const clientJourney = clientJourneyList[0];
-    if (clientJourney == null) {
-      throw "Client Journey not found!";
+    try {
+        const clientJourneyList = await ClientJourney.findAll({
+            where: {
+                id: req.body.clientJourneyID
+            }
+        });
+        const clientJourney = clientJourneyList[0];
+        if (clientJourney == null) {
+            throw "Client Journey not found!";
+        }
+        await generateFewSOPs(clientJourney, req.body.stage);
+        return res.status(200).json({ message: "success" });
     }
-    await generateFewSOPs(clientJourney, req.body.stage);
-    return res.status(200).json({ message: "success" });
-  }
-  catch (err) {
-    console.log(err);
-    return res.status(500).json({ message: "error" });
-  }
+    catch (err) {
+        console.log(err);
+        return res.status(500).json({ message: "error" });
+    }
 };
 
 const getSopsForStage = async (req, res) => {
-  try {
-    const sops = await SOP.findAll({
-      where: {
-        clientJourneyID: req.body.clientJourneyID,
-        stage: req.body.stage
-      }
-    });
+    try {
+        const sops = await SOP.findAll({
+            where: {
+                clientJourneyID: req.body.clientJourneyID,
+                stage: req.body.stage
+            }
+        });
 
-    if (sops == null || sops.length == 0) {
-      return res.status(404).json({
-        status: "FAIL",
-        message: "NOT FOUND",
-      });
+        if (sops == null || sops.length == 0) {
+            return res.status(404).json({
+                status: "FAIL",
+                message: "NOT FOUND",
+            });
+        }
+        return res.status(200).json({
+            status: "SUCCESS",
+            sops: sops
+        });
+    } catch (error) {
+        console.log(error);
+        return res.status(404).json({
+            status: "FAIL",
+            message: "NOT FOUND",
+        });
     }
-    return res.status(200).json({
-      status: "SUCCESS",
-      sops: sops
-    });
-  } catch (error) {
-    console.log(error);
-    return res.status(404).json({
-      status: "FAIL",
-      message: "NOT FOUND",
-    });
-  }
 };
 
 const deleteSingleSop = async (req, res) => {
-  try {
-    const sop = await SOP.destroy({
-      where:
-      {
-        id: req.body.id,
-      }
-    });
-    if (sop === 0)
-      return res.status(404).json({ status: "FAILED", message: `SOP NOT FOUND` });
-    return res.status(200).json({
-      status: "SUCCESS",
-      message: `SUCCESSFULLY DELETED SINGLE SOP ID: ${req.body.id}`
-    });
-  }
-  catch (err) {
-    console.log(err);
-    return res.status(500).json({ message: "ERROR" });
-  }
+    try {
+        const sop = await SOP.destroy({
+            where:
+            {
+                id: req.body.id,
+            }
+        });
+        if (sop === 0)
+            return res.status(404).json({ status: "FAILED", message: `SOP NOT FOUND` });
+        return res.status(200).json({
+            status: "SUCCESS",
+            message: `SUCCESSFULLY DELETED SINGLE SOP ID: ${req.body.id}`
+        });
+    }
+    catch (err) {
+        console.log(err);
+        return res.status(500).json({ message: "ERROR" });
+    }
 };
 
 /*
@@ -111,42 +109,42 @@ Randomised generation for sops based on a single step for a given client journey
 1 SOP per stage, (one for awareness, interest etc... )
 */
 const generateFewSOPs = async (clientJourney, forStage) => {
-  try {
-    const stage = JSON.parse(clientJourney.dataValues[forStage]);
-    let steps = null;
-    let sops = [];
-    let statement = null;
-    for (let i = 0; i < 1; i++) {
-      steps = stage["steps"];
-      statement = steps[Math.floor(Math.random() * steps.length)];
-      const sop = await generateSingleSOP(statement);
-      sops.push(sop);
+    try {
+        const stage = JSON.parse(clientJourney.dataValues[forStage]);
+        let steps = null;
+        let sops = [];
+        let statement = null;
+        for (let i = 0; i < 1; i++) {
+            steps = stage["steps"];
+            statement = steps[Math.floor(Math.random() * steps.length)];
+            const sop = await generateSingleSOP(statement);
+            sops.push(sop);
+        }
+        for (let i = 0; i < sops.length; i++) {
+            await SOP.create({
+                title: sops[i].title,
+                purpose: sops[i].purpose,
+                definitions: sops[i].definitions,
+                responsibility: sops[i].responsibility,
+                procedure: sops[i].procedure,
+                documentation: sops[i].documentation,
+                stage: forStage,
+                clientJourneyID: clientJourney.id
+            });
+        }
     }
-    for (let i = 0; i < sops.length; i++) {
-      await SOP.create({
-        title: sops[i].title,
-        purpose: sops[i].purpose,
-        definitions: sops[i].definitions,
-        responsibility: sops[i].responsibility,
-        procedure: sops[i].procedure,
-        documentation: sops[i].documentation,
-        stage: forStage,
-        clientJourneyID: clientJourney.id
-      });
+    catch (err) {
+        console.log(err);
     }
-  }
-  catch (err) {
-    console.log(err);
-  }
 }
 
 const generateSingleSOP = async (statement) => {
-  try {
-    const chat = new ChatOpenAI({ temperature: 0.9 });
-    const memory = new BufferMemory({ returnMessages: true, memoryKey: "history" });
-    const chatPrompt = ChatPromptTemplate.fromPromptMessages([
-      SystemMessagePromptTemplate.fromTemplate(
-        `Standard Operating Procedures (SOPs): For a given statement, generate a single SOP.
+    try {
+        const chat = new ChatOpenAI({ temperature: 0.9 });
+        const memory = new BufferMemory({ returnMessages: true, memoryKey: "history" });
+        const chatPrompt = ChatPromptTemplate.fromPromptMessages([
+            SystemMessagePromptTemplate.fromTemplate(
+                `Standard Operating Procedures (SOPs): For a given statement, generate a single SOP.
             
             Here's a general format for creating an SOP:
             
@@ -158,83 +156,83 @@ const generateSingleSOP = async (statement) => {
             6. Documentation/Records: This section specifies any necessary documentation related to the procedure, such as forms to be filled out, records to be kept, or reports to be submitted.
 
             Here's the statement: "${statement}"`
-      ),
-      new MessagesPlaceholder("history"),
-      HumanMessagePromptTemplate.fromTemplate("{input}"),
-    ]);
+            ),
+            new MessagesPlaceholder("history"),
+            HumanMessagePromptTemplate.fromTemplate("{input}"),
+        ]);
 
-    const titleChain = new ConversationChain({
-      memory: memory,
-      prompt: chatPrompt,
-      llm: chat,
-      outputKey: "title",
-    });
+        const titleChain = new ConversationChain({
+            memory: memory,
+            prompt: chatPrompt,
+            llm: chat,
+            outputKey: "title",
+        });
 
-    const purposeChain = new ConversationChain({
-      memory: memory,
-      prompt: chatPrompt,
-      llm: chat,
-      outputKey: "purpose"
-    });
+        const purposeChain = new ConversationChain({
+            memory: memory,
+            prompt: chatPrompt,
+            llm: chat,
+            outputKey: "purpose"
+        });
 
-    const definitionsChain = new ConversationChain({
-      memory: memory,
-      prompt: chatPrompt,
-      llm: chat,
-      outputKey: "definitions"
-    });
+        const definitionsChain = new ConversationChain({
+            memory: memory,
+            prompt: chatPrompt,
+            llm: chat,
+            outputKey: "definitions"
+        });
 
-    const responsibilityChain = new ConversationChain({
-      memory: memory,
-      prompt: chatPrompt,
-      llm: chat,
-      outputKey: "responsibility",
-    });
+        const responsibilityChain = new ConversationChain({
+            memory: memory,
+            prompt: chatPrompt,
+            llm: chat,
+            outputKey: "responsibility",
+        });
 
-    const procedureChain = new ConversationChain({
-      memory: memory,
-      prompt: chatPrompt,
-      llm: chat,
-      outputKey: "procedure",
-    });
+        const procedureChain = new ConversationChain({
+            memory: memory,
+            prompt: chatPrompt,
+            llm: chat,
+            outputKey: "procedure",
+        });
 
-    const documentationChain = new ConversationChain({
-      memory: memory,
-      prompt: chatPrompt,
-      llm: chat,
-      outputKey: "documentation"
-    });
+        const documentationChain = new ConversationChain({
+            memory: memory,
+            prompt: chatPrompt,
+            llm: chat,
+            outputKey: "documentation"
+        });
 
-    const title = await titleChain.call({
-      input: `Generate the title. Dont add any labels or tags for example "Title: " `,
-    });
+        const title = await titleChain.call({
+            input: `Generate the title. Dont add any labels or tags for example "Title: " `,
+        });
 
-    const purpose = await purposeChain.call({
-      input: `Generate the purpose. Dont add any labels or tags for example "Purpose: " `,
-    });
+        const purpose = await purposeChain.call({
+            input: `Generate the purpose. Dont add any labels or tags for example "Purpose: " `,
+        });
 
-    const procedure = await procedureChain.call({
-      input: `Generate the procedure. Dont add any labels or tags for example "Procedure: " `,
-    });
+        const procedure = await procedureChain.call({
+            input: `Generate the procedure. Dont add any labels or tags for example "Procedure: " `,
+        });
 
-    const documentation = await documentationChain.call({
-      input: `Generate the documentation. Dont add any labels or tags for example "Documentation: "`
-    });
+        const documentation = await documentationChain.call({
+            input: `Generate the documentation. Dont add any labels or tags for example "Documentation: "`
+        });
 
-    const definitions = await definitionsChain.call({
-      input: `List some abbreviations that WERE USED in procedure (not more than 4). Dont add any labels or tags for example "Definitions: "`
-    });
+        const definitions = await definitionsChain.call({
+            input: `List some abbreviations that WERE USED in procedure (not more than 4). Dont add any labels or tags for example "Definitions: "`
+        });
 
-    const responsibility = await responsibilityChain.call({
-      input: `List the people roles responsible. Dont add any labels or tags for example "Responsibility: "`
-    });
+        const responsibility = await responsibilityChain.call({
+            input: `List the people roles responsible. Dont add any labels or tags for example "Responsibility: "`
+        });
 
-    let output = Object.assign({}, title, responsibility, purpose, definitions, procedure, documentation);
-    return output;
-  } catch (err) {
-    console.log(err);
-    return null;
-  }
+        let output = Object.assign({}, title, responsibility, purpose, definitions, procedure, documentation);
+        return output;
+    } catch (err) {
+        console.log(err);
+        return null;
+    }
 }
 
 router.post("/generate_for_stage", generateSopForStage);

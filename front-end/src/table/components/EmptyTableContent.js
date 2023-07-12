@@ -7,7 +7,7 @@ export const EmptyTableContent = (props) => {
             <div className='empty-table-content'>
                 <img src = "./images/emptyListIcon.png" alt="icon"/>
                 <h2>Oops, it's empty</h2>
-                <button onClick={props.addNewBtn}>+ Add New</button>
+                <button onClick={props.addNewBtn}>{props.buttonTitle}</button>
             </div>
         </div>
     );

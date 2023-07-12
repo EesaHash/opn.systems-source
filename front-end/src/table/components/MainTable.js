@@ -15,7 +15,7 @@ export const MainTableHeader = (props) => {
             </div>
             <TableHeader list = {props.list}/>
             {props.list.length <= 0 ?
-                <EmptyTableContent addNewBtn = {props.addNewBtn}/> :
+                <EmptyTableContent addNewBtn = {props.addNewBtn} buttonTitle = "+ Add New"/> :
                 <TableContent1 list = {props.list} itemActionBtn = {props.itemActionBtn} />
             }
         </div>

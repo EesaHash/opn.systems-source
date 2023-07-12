@@ -19,7 +19,7 @@ export const FolderList = (props) => {
             </div>
             <div className='folder-list-content'>
                 {props.list.length <= 0 ? 
-                    <EmptyTableContent addNewBtn = {props.addNewBtn}/> :
+                    <EmptyTableContent addNewBtn = {props.addNewBtn} buttonTitle = "+ Add New"/> :
                     props.list.map((data, index) => (
                         item(data, index, props.list2[index], props.itemActionBtn)
                     ))

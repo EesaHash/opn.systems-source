@@ -20,12 +20,12 @@ export const FourthTable = (props) => {
                 <div className='fourth-table-title'>
                     <h1>{props.title}</h1>
                     <div className='fourth-table-right-header'>
-                        <button onClick={props.addNewBtn}>+ Add New</button>
+                        <button onClick={props.addNewBtn}>Generate</button>
                     </div>
                 </div>
                 <TableHeader list = {props.list}/>
                 {props.list.length <= 0 ?
-                    <EmptyTableContent addNewBtn = {props.addNewBtn}/> :
+                    <EmptyTableContent addNewBtn = {props.addNewBtn} buttonTitle = "Generate"/> :
                     <TableContent1 list = {props.list} itemActionBtn = {props.itemActionBtn} />
                 }
             </div>
