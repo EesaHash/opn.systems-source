@@ -1,8 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { z } = require("zod");
 const { ChatOpenAI } = require("langchain/chat_models/openai");
-const Business = require("../../models/business");
 const ClientJourney = require("../../models/client_journey");
 const SOP = require("../../models/sop");
 const { ConversationChain } = require("langchain/chains");
@@ -16,26 +14,41 @@ const { BufferMemory } = require("langchain/memory")
 require('dotenv').config()
 
 
-const { PromptTemplate } = require("langchain/prompts");
-const {
-  StructuredOutputParser,
-  OutputFixingParser,
-} = require("langchain/output_parsers");
 
-const test = async (req, res) => {
+const deleteSopsForStage = async (req, res) => {
   try {
-    const clientJourneyList = await ClientJourney.findAll({ where: {
-       clientJourneyID : req.body.clientJourneyID
-      } 
+    const sop = await SOP.destroy({
+      where:
+      {
+        clientJourneyID: req.body.clientJourneyID,
+        stage: req.body.stage
+      }
     });
-    const business = await Business.findOne({ where: { id: req.body.businessId } });
-    const businessDetails = "Business Name:" + business.businessName + "\n Business Type:" + business.businessType + "\n Industry:" + business.industry + "\n Company Size:" + business.companySize + "\n Business Objective:" + business.businessObjective + "\n Core Services:" + business.coreServices + "\n Target Market:" + business.targetMarket + "\n Product or Service Description:" + business.productOrServiceDescription +  "\n Funding Strategy:" + business.fundingStrategy;
+    if (sop === 0)
+      return res.status(404).json({ status: "FAILED", message: `SOPS NOT FOUND` });
+    return res.status(200).json({
+      status: "SUCCESS",
+      message: `SUCCESSFULLY DELETED SOPS FOR ${req.body.stage}`
+    });
+  }
+  catch (err) {
+    console.log(err);
+    return res.status(500).json({ message: "ERROR" });
+  }
+};
+
+const generateSopForStage = async (req, res) => {
+  try {
+    const clientJourneyList = await ClientJourney.findAll({
+      where: {
+        id: req.body.clientJourneyID
+      }
+    });
     const clientJourney = clientJourneyList[0];
     if (clientJourney == null) {
       throw "Client Journey not found!";
     }
-    //await test(clientJourney);
-    await generateFewSOPs(clientJourney, businessDetails);
+    await generateFewSOPs(clientJourney, req.body.stage);
     return res.status(200).json({ message: "success" });
   }
   catch (err) {
@@ -44,36 +57,69 @@ const test = async (req, res) => {
   }
 };
 
+const getSopsForStage = async (req, res) => {
+  try {
+    const sops = await SOP.findAll({
+      where: {
+        clientJourneyID: req.body.clientJourneyID,
+        stage: req.body.stage
+      }
+    });
 
+    if (sops == null || sops.length == 0) {
+      return res.status(404).json({
+        status: "FAIL",
+        message: "NOT FOUND",
+      });
+    }
+    return res.status(200).json({
+      status: "SUCCESS",
+      sops: sops
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(404).json({
+      status: "FAIL",
+      message: "NOT FOUND",
+    });
+  }
+};
+
+const deleteSingleSop = async (req, res) => {
+  try {
+    const sop = await SOP.destroy({
+      where:
+      {
+        id: req.body.id,
+      }
+    });
+    if (sop === 0)
+      return res.status(404).json({ status: "FAILED", message: `SOP NOT FOUND` });
+    return res.status(200).json({
+      status: "SUCCESS",
+      message: `SUCCESSFULLY DELETED SINGLE SOP ID: ${req.body.id}`
+    });
+  }
+  catch (err) {
+    console.log(err);
+    return res.status(500).json({ message: "ERROR" });
+  }
+};
 
 /*
 Randomised generation for sops based on a single step for a given client journey stage
 1 SOP per stage, (one for awareness, interest etc... )
 */
-const generateFewSOPs = async (clientJourney, businessDetails) => {
+const generateFewSOPs = async (clientJourney, forStage) => {
   try {
-    const stages = [
-      JSON.parse(clientJourney.dataValues.awareness),
-      JSON.parse(clientJourney.dataValues.interest),
-      JSON.parse(clientJourney.dataValues.evaluation),
-      JSON.parse(clientJourney.dataValues.decision),
-      JSON.parse(clientJourney.dataValues.purchase),
-      JSON.parse(clientJourney.dataValues.implementation),
-      JSON.parse(clientJourney.dataValues.postPurchase),
-      JSON.parse(clientJourney.dataValues.retention),
-    ];
-
+    const stage = JSON.parse(clientJourney.dataValues[forStage]);
     let steps = null;
     let sops = [];
     let statement = null;
-    for (let i = 0; i < stages.length; i++) {
-      if (i == 2) {
-        break;
-      }
-      steps = stages[i]["steps"];
+    for (let i = 0; i < 1; i++) {
+      steps = stage["steps"];
       statement = steps[Math.floor(Math.random() * steps.length)];
-      console.log(statement);
-      const sop = await generateSingleSOP(statement, businessDetails);
+      const sop = await generateSingleSOP(statement);
       sops.push(sop);
     }
     for (let i = 0; i < sops.length; i++) {
@@ -84,7 +130,8 @@ const generateFewSOPs = async (clientJourney, businessDetails) => {
         responsibility: sops[i].responsibility,
         procedure: sops[i].procedure,
         documentation: sops[i].documentation,
-        ClientJourneyId: clientJourney.id
+        stage: forStage,
+        clientJourneyID: clientJourney.id
       });
     }
   }
@@ -93,15 +140,13 @@ const generateFewSOPs = async (clientJourney, businessDetails) => {
   }
 }
 
-const generateSingleSOP = async (statement, businessDetails) => {
-    try {
-        const chat = new ChatOpenAI({ temperature: 0.9 });
-        const memory = new BufferMemory({ returnMessages: true, memoryKey: "history" });
-        const chatPrompt = ChatPromptTemplate.fromPromptMessages([
-            SystemMessagePromptTemplate.fromTemplate(
-            `Standard Operating Procedures (SOPs): For a given statement, generate a single SOP.
-
-            Produce in the following format
+const generateSingleSOP = async (statement) => {
+  try {
+    const chat = new ChatOpenAI({ temperature: 0.9 });
+    const memory = new BufferMemory({ returnMessages: true, memoryKey: "history" });
+    const chatPrompt = ChatPromptTemplate.fromPromptMessages([
+      SystemMessagePromptTemplate.fromTemplate(
+        `Standard Operating Procedures (SOPs): For a given statement, generate a single SOP.
             
             Here's a general format for creating an SOP:
             
@@ -113,89 +158,87 @@ const generateSingleSOP = async (statement, businessDetails) => {
             6. Documentation/Records: This section specifies any necessary documentation related to the procedure, such as forms to be filled out, records to be kept, or reports to be submitted.
 
             Here's the statement: "${statement}"`
-            ),
-            new MessagesPlaceholder("history"),
-            HumanMessagePromptTemplate.fromTemplate("{input}"),
-        ]);
+      ),
+      new MessagesPlaceholder("history"),
+      HumanMessagePromptTemplate.fromTemplate("{input}"),
+    ]);
 
-        const titleChain = new ConversationChain({
-            memory: memory,
-            prompt: chatPrompt,
-            llm: chat,
-            outputKey: "title",
-        });
+    const titleChain = new ConversationChain({
+      memory: memory,
+      prompt: chatPrompt,
+      llm: chat,
+      outputKey: "title",
+    });
 
-        const purposeChain = new ConversationChain({
-            memory: memory,
-            prompt: chatPrompt,
-            llm: chat,
-            outputKey: "purpose"
-        });
+    const purposeChain = new ConversationChain({
+      memory: memory,
+      prompt: chatPrompt,
+      llm: chat,
+      outputKey: "purpose"
+    });
 
-        const definitionsChain = new ConversationChain({
-            memory: memory,
-            prompt: chatPrompt,
-            llm: chat,
-            outputKey: "definitions"
-        });
+    const definitionsChain = new ConversationChain({
+      memory: memory,
+      prompt: chatPrompt,
+      llm: chat,
+      outputKey: "definitions"
+    });
 
-        const responsibilityChain = new ConversationChain({
-            memory: memory,
-            prompt: chatPrompt,
-            llm: chat,
-            outputKey: "responsibility",
-        });
+    const responsibilityChain = new ConversationChain({
+      memory: memory,
+      prompt: chatPrompt,
+      llm: chat,
+      outputKey: "responsibility",
+    });
 
-        const procedureChain = new ConversationChain({
-            memory: memory,
-            prompt: chatPrompt,
-            llm: chat,
-            outputKey: "procedure",
-        });
+    const procedureChain = new ConversationChain({
+      memory: memory,
+      prompt: chatPrompt,
+      llm: chat,
+      outputKey: "procedure",
+    });
 
-        const documentationChain = new ConversationChain({
-            memory: memory,
-            prompt: chatPrompt,
-            llm: chat,
-            outputKey: "documentation"
-        });
+    const documentationChain = new ConversationChain({
+      memory: memory,
+      prompt: chatPrompt,
+      llm: chat,
+      outputKey: "documentation"
+    });
 
-        // const primer = await primerChain.call({
-        //   input: `Provided here are some business details. Please dont output anything, I am just providing these to you so that you have more context. Business Details : ${businessDetails}`
-        // });
+    const title = await titleChain.call({
+      input: `Generate the title. Dont add any labels or tags for example "Title: " `,
+    });
 
-        const title = await titleChain.call({
-            input: `Generate the title. Dont add any labels or tags for example "Title: " `,
-        });
+    const purpose = await purposeChain.call({
+      input: `Generate the purpose. Dont add any labels or tags for example "Purpose: " `,
+    });
 
-        const purpose = await purposeChain.call({
-            input: `Generate the purpose. Dont add any labels or tags for example "Purpose: " `,
-        });
+    const procedure = await procedureChain.call({
+      input: `Generate the procedure. Dont add any labels or tags for example "Procedure: " `,
+    });
 
-        const procedure = await procedureChain.call({
-            input: `Generate the procedure. Dont add any labels or tags for example "Procedure: " `,
-        });
+    const documentation = await documentationChain.call({
+      input: `Generate the documentation. Dont add any labels or tags for example "Documentation: "`
+    });
 
-        const documentation = await documentationChain.call({
-            input: `Generate the documentation. Dont add any labels or tags for example "Documentation: "`
-        });
+    const definitions = await definitionsChain.call({
+      input: `List some abbreviations that WERE USED in procedure (not more than 4). Dont add any labels or tags for example "Definitions: "`
+    });
 
-        const definitions = await definitionsChain.call({
-            input: `List some abbreviations that WERE USED in procedure (not more than 4). Dont add any labels or tags for example "Definitions: "`
-        });
+    const responsibility = await responsibilityChain.call({
+      input: `List the people roles responsible. Dont add any labels or tags for example "Responsibility: "`
+    });
 
-        const responsibility = await responsibilityChain.call({
-            input: `List the people roles responsible. Dont add any labels or tags for example "Responsibility: "`
-        });
-
-        let output = Object.assign({}, title, responsibility, purpose, definitions, procedure, documentation);
-        console.log(output);
-        return output;
-    }catch (err) {
-        console.log(err);
-        return null;
-    }
+    let output = Object.assign({}, title, responsibility, purpose, definitions, procedure, documentation);
+    return output;
+  } catch (err) {
+    console.log(err);
+    return null;
+  }
 }
 
-router.post("/", test);
+router.post("/generate_for_stage", generateSopForStage);
+router.post("/get_for_stage", getSopsForStage);
+router.post("/delete_for_stage", deleteSopsForStage);
+router.post("/delete_single", deleteSingleSop);
 module.exports = router;

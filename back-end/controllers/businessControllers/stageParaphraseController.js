@@ -41,9 +41,9 @@ const paraphrase = async (modelName) => {
     const formatInstructions = parser.getFormatInstructions();
     const prompt = new PromptTemplate({
         template:
-            `You are tasked with generating synonyms for a list of words provided. You must provide one synonym for each word.
-            Here's the list of words: {stages}
-           {format_instructions}`,
+            `You are tasked with generating accurate and professionally appropriate synonyms for a list of words provided. You must provide one synonym for each word.
+             Here's the list of words: {stages}
+             {format_instructions}`,
         inputVariables: ["stages"],
         partialVariables: { format_instructions: formatInstructions },
     });
