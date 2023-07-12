@@ -115,6 +115,7 @@ button{
         width: auto;
        
     }
+
     & .pop-up-input{
         display: grid;
         & .dropdown button{
@@ -138,6 +139,7 @@ button{
             border: 2.5px solid #555;
         }
     }
+
     & .pop-up-button{
         display: flex;
         float: right;

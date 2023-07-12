@@ -255,19 +255,6 @@
   margin-right: 25vw;
   overflow: scroll;
 }
-.create-account .team-member-input .email-input {
-  width: calc(80% - 40px - 7vw);
-}
-.create-account .team-member-input button {
-  margin-left: 20px;
-  width: 7vw;
-  background-color: #A2ABBA;
-  color: white;
-  border: 1.5px solid transparent;
-}
-.create-account .team-member-input input {
-  margin-bottom: 20px;
-}
 
 .edit-business {
   margin-top: 8vh;

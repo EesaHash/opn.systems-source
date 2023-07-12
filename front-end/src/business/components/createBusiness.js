@@ -364,11 +364,11 @@ export const teamMemberInputElements = (teamList, setTeamList, index, removeTeam
             <input 
                 type = "text" 
                 placeholder = "Role" 
-                style = {{marginLeft: "20px", width: "20%"}}
+                style={{marginLeft: "12px", width: "24%"}}
                 value = {teamList[index].role}
                 onChange={event => modifyRole(event.target.value)}
             />
-            <button style={{backgroundColor: "rgba(157, 6, 6, 0.807)"}} onClick={event => removeTeamMember(index)}>Remove</button>
+            <button style={{backgroundColor:"red", borderColor:"red", marginLeft:"10px" }} onClick={event => removeTeamMember(index)}>Remove</button>
         </div>
     );
 };

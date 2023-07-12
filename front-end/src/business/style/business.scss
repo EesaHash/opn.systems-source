@@ -8,21 +8,21 @@
     margin-left: 25vw;
     margin-right: 25vw;
     overflow: scroll;
-    & .team-member-input{
-        & .email-input{
-            width: calc(80% - 40px - 7vw);
-        }
-        & button{
-            margin-left: 20px;
-            width: 7vw;
-            background-color: #A2ABBA;
-            color: white;
-            border: 1.5px solid transparent;
-        }
-        & input{
-            margin-bottom: 20px;
-        }
-    }
+    // & .team-member-input{
+    //     & .email-input{
+    //         width: calc(80% - 40px - 7vw);
+    //     }
+    //     & button{
+    //         margin-left: 20px;
+    //         width: 7vw;
+    //         background-color: #A2ABBA;
+    //         color: white;
+    //         border: 1.5px solid transparent;
+    //     }
+    //     & input{
+    //         margin-bottom: 20px;
+    //     }
+    // }
 }
 
 .edit-business{
