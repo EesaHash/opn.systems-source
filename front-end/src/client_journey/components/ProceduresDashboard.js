@@ -11,6 +11,7 @@ export const ProceduresDashboard = (props) => {
     const [index, setIndex] = useState(-1);
     const [journey, setJourney] = useState({});
     const [procedure, setProcedure] = useState({});
+    const [procedures, setProcedures] = useState([]);
     const [stage, setStage] = useState("");
     
     useEffect(() => {
@@ -21,12 +22,36 @@ export const ProceduresDashboard = (props) => {
         if(mainTable && secondaryTable && thirdTable && fourthTable){
             mainTable.style.display = "block";
             setJourney({});
+            setProcedures([]);
             secondaryTable.style.display = "none";
             thirdTable.style.display = "none";
             fourthTable.style.display = "none";
         }
         // eslint-disable-next-line
     }, [props.activeLink2]);
+
+    useEffect(() => {
+        const getSOPs = async _ => {
+            const res = await fetch("/api/sop/get_for_stage", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    clientJourneyID: journey.id,
+                    stage
+                })
+            });
+            const data = await res.json();
+            console.log(data);
+            if(data.status){
+                setProcedures(data.sops);
+            }
+        };
+        if(journey.id && stage){
+            getSOPs();
+        }
+    }, [journey, stage]);
 
     const openCreateJourneyForm = _ => {
         if(props.journeys.length > 0)
@@ -110,6 +135,24 @@ export const ProceduresDashboard = (props) => {
         }
     };
     
+    const generateProcedure = _ => {
+        fetch("/api/sop/generate_for_stage", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                id: journey.id
+            })
+        })
+            .then((res) => { return res.json(); })
+            .then((data) => {
+                if(data.status){
+                    setProcedures(data.sops);
+                }
+            }); 
+    };
+
     const openCreateProcedureForm = _ => {
         document.getElementById("createProcedureForm").style.display = "block";
         openPopUpForm();
@@ -146,8 +189,8 @@ export const ProceduresDashboard = (props) => {
                 sub_title = {stage}
                 button1 = {showJourneyList}
                 button2 = {showStagesList}
-                list = {(props.procedures.length > 0 && index >= 0) ? props.procedures[index] : []}
-                addNewBtn = {openCreateProcedureForm}
+                list = {procedures}
+                addNewBtn = {generateProcedure}
                 itemActionBtn = {openProcedureDetail}
             />
             <FifthTable

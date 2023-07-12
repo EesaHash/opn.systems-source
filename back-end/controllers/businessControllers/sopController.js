@@ -46,12 +46,19 @@ const generateSopForStage = async (req, res) => {
         if (clientJourney == null) {
             throw "Client Journey not found!";
         }
-        await generateFewSOPs(clientJourney, req.body.stage);
-        return res.status(200).json({ message: "success" });
+        const sops = await generateFewSOPs(clientJourney, req.body.stage);
+        return res.status(200).json({
+            status: true,
+            sops,
+            message: "success"
+        });
     }
     catch (err) {
         console.log(err);
-        return res.status(500).json({ message: "error" });
+        return res.status(500).json({ 
+            status: false,
+            message: "error" 
+        });
     }
 };
 
@@ -66,18 +73,18 @@ const getSopsForStage = async (req, res) => {
 
         if (sops == null || sops.length == 0) {
             return res.status(404).json({
-                status: "FAIL",
+                status: false,
                 message: "NOT FOUND",
             });
         }
         return res.status(200).json({
-            status: "SUCCESS",
+            status: true,
             sops: sops
         });
     } catch (error) {
         console.log(error);
         return res.status(404).json({
-            status: "FAIL",
+            status: false,
             message: "NOT FOUND",
         });
     }
@@ -132,6 +139,7 @@ const generateFewSOPs = async (clientJourney, forStage) => {
                 clientJourneyID: clientJourney.id
             });
         }
+        return sops;
     }
     catch (err) {
         console.log(err);

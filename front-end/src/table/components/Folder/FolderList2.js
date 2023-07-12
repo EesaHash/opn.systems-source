@@ -1,6 +1,5 @@
 import React from 'react';
 import "../../style/table.css";
-import { EmptyTableContent } from '../EmptyTableContent';
 
 export const FolderList2 = (props) => {
     return(

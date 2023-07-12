@@ -24,8 +24,7 @@ app.use("/api/teammember/getbusinessteam", require("./controllers/teamMemberCont
 // BUSINESS APIs CONTROLLERS
 app.use("/api/business", require("./controllers/businessControllers/businessController"));
 app.use("/api/clientjourney", require("./controllers/businessControllers/clientJourneyController"));
-app.use("/api/sop", require("./controllers/businessControllers/prelimSOPController"));
-app.use("/api/sopFinal", require("./controllers/businessControllers/sopController"));
+app.use("/api/sop", require("./controllers/businessControllers/sopController"));
 // app.use("/api/stages/getbyjourneyid", require("./controllers/businessControllers/getStageNamesController"));
 
 // PRODUCT APIs CONTROLLERS
