@@ -433,21 +433,24 @@
   color: #606060;
   font-size: 15px;
 }
+.table-header .left-header .table-header-item h3, .table-header .right-header .table-header-item h3 {
+  color: rgb(0, 0, 0);
+  font-weight: 500;
+  margin-top: 10px;
+  margin-left: 5px;
+}
+.table-header .left-header .table-header-item label, .table-header .right-header .table-header-item label {
+  padding-top: 6px;
+}
 .table-header .left-header .table-header-item input[type=checkbox], .table-header .right-header .table-header-item input[type=checkbox] {
   margin-top: 6px !important;
-}
-.table-header .left-header .table-header-item h3, .table-header .right-header .table-header-item h3 {
-  color: black;
-  font-weight: 500;
-  margin-top: 3px;
-  margin-left: 5px;
 }
 .table-header .left-header .table-header-item input:hover, .table-header .left-header .table-header-item button:hover, .table-header .right-header .table-header-item input:hover, .table-header .right-header .table-header-item button:hover {
   cursor: pointer;
   color: #5D5FEF;
 }
 .table-header .left-header .table-header-item input[type=checkbox], .table-header .right-header .table-header-item input[type=checkbox] {
-  margin: 0 7.5px;
+  margin: 0 7.5px 6px;
   border-radius: 3px;
   border: 1.5px solid #ACACAC;
 }

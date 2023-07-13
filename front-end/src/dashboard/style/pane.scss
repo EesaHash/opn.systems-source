@@ -1,6 +1,6 @@
 $mainbox-height: calc(96vh - 50px - 1vw);
 $mainbox-width: calc(100vw - 240px - 8vw);
-$halfbox-width: calc($mainbox-width * 0.5 - 15px);
+$halfbox-width: calc($mainbox-width * 0.5 - 4vw);
 $somewhat-grey: grey;
 
 * {
@@ -125,7 +125,7 @@ $somewhat-grey: grey;
     & .updates{
         margin: 0 15px;
         display: flex;
-        padding: 2vh 20.956px;
+        //padding: 2vh 20.956px;
         flex-direction: column;
         justify-content: center;
         align-items: center;
