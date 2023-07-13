@@ -424,16 +424,22 @@
             & input[type = 'checkbox'], button, label, h3{
                 color: #606060;
                 font-size: 15px;
+                
+            }
+            & h3{
+                color: rgb(0, 0, 0);
+                font-weight: 500;
+                margin-top: 10px;
+                margin-left: 5px;
+                
+            }
+            & label{
+                padding-top: 6px;
             }
             & input[type = 'checkbox']{
                 margin-top: 6px !important;
             }
-            & h3{
-                color: black;
-                font-weight: 500;
-                margin-top: 3px;
-                margin-left: 5px;
-            }
+          
             & input, button{
                 &:hover{
                     cursor: pointer;
@@ -441,7 +447,7 @@
                 }
             }
             & input[type = 'checkbox']{
-                margin: 0 7.5px;
+                margin: 0 7.5px 6px;
                 border-radius: 3px;
                 border: 1.5px solid #ACACAC;
                 &:checked{
