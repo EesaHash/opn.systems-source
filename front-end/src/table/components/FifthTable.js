@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import "../style/table.css";
 import { AccessTime, Chat, Download, Edit, MoreHoriz, Share, SimCardDownload } from '@mui/icons-material';
 import { openAccessLimitForm, openFutureFeatureWarningForm } from '../../dashboard/page/dashboard_main';
-import { ListItem } from './ListItem';
+import { ListItem } from './List/ListItem';
 
 export const FifthTable = (props) => {
     const [editStatus, setEditStatus] = useState(false);

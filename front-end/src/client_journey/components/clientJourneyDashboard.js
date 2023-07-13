@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import "../style/client_journey.css";
-import { MainTableHeader } from '../../table/components/MainTable';
+import { ListTable } from '../../table/components/List/ListTable';
 import { openAccessLimitForm, openPopUpForm } from '../../dashboard/page/dashboard_main';
-import { SecondaryTable } from '../../table/components/SecondaryTable';
+import { ListTable2 } from '../../table/components/List/ListTable2';
 
 export const ClientJourneyDashboard = (props) => {
     const [journey, setJourney] = useState({});
@@ -111,14 +111,14 @@ export const ClientJourneyDashboard = (props) => {
 
     return(
         <div className='client-journey'>
-            <MainTableHeader 
+            <ListTable 
                 id = "client-journey-main-table"
                 title = "Client Journey" 
                 list = {props.journeys}
                 addNewBtn = {openCreateJourneyForm}
                 itemActionBtn = {openClientJourneyDetails}
             />
-            <SecondaryTable
+            <ListTable2
                 id = "client-journey-secondary-table"
                 type = {"Client Journey"}
                 title = {journey.title}

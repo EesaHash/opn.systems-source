@@ -14,8 +14,9 @@ import { CreateClientJourney } from "../../client_journey/components/createClien
 import { ModifyAccountDetails } from "../components/account_settings";
 import { AccessLimit } from "../../warning_pages/components/AccessLimit";
 import { FutureFeature } from "../../warning_pages/components/FutureFeature";
-import { CreateProcedure } from "../../client_journey/components/CreateProcedure";
+import { CreateProcedure } from "../../cj_procedure/components/CreateProcedure";
 import { InviteTeamMember } from "../../client_journey/components/InviteTeamMember";
+import { GenerateProcedure } from "../../cj_procedure/components/GenerateProcedure";
 
 export const DashboardPage = () => {
     const [userID, setUserID] = useState();
@@ -116,6 +117,7 @@ export const DashboardPage = () => {
     }, [business]);
 
     useEffect(() => {
+        setJourneys([]);
         const fetchData = async _ => {
             try{
                 const getClientJourney = async (productID) => {
@@ -133,7 +135,6 @@ export const DashboardPage = () => {
                     if(data.status)
                         setJourneys((prevJourneys) => [...prevJourneys, data.clientJourney]);
                 };
-                setJourneys([]);
                 products.forEach(async (item) => {
                     await getClientJourney(item.id);
                 });
@@ -163,6 +164,7 @@ export const DashboardPage = () => {
             {!loading &&
             <div>
                 <AccessLimit/>
+                <GenerateProcedure documentName = {business.businessName} />
                 <FutureFeature/>
                 <ModifyAccountDetails
                     user = {user}

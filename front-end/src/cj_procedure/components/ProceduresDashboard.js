@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import "../style/client_journey.css";
+import "../style/procedure.css";
 import { FolderList } from '../../table/components/Folder/FolderList';
-import { openAccessLimitForm, openPopUpForm } from '../../dashboard/page/dashboard_main';
+import { closePopUpForm, openAccessLimitForm, openPopUpForm } from '../../dashboard/page/dashboard_main';
 import { FourthTable } from '../../table/components/FourthTable';
 import { FifthTable, FifthTableDescAsList, FifthTableDescItem } from '../../table/components/FifthTable';
 import { FormatAlignLeft } from '@mui/icons-material';
@@ -13,6 +13,7 @@ export const ProceduresDashboard = (props) => {
     const [procedure, setProcedure] = useState({});
     const [procedures, setProcedures] = useState([]);
     const [stage, setStage] = useState("");
+    const stages = ["awareness", "interest", "evaluation", "decision", "purchase", "implementation", "postPurchase", "retention"];
     
     useEffect(() => {
         const mainTable = document.getElementById("procedure-main-table");
@@ -32,14 +33,13 @@ export const ProceduresDashboard = (props) => {
 
     useEffect(() => {
         const getSOPs = async _ => {
-            const res = await fetch("/api/sop/get_for_stage", {
+            const res = await fetch("/api/sop/getall", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    clientJourneyID: journey.id,
-                    stage
+                    clientJourneyID: journey.id
                 })
             });
             const data = await res.json();
@@ -48,10 +48,11 @@ export const ProceduresDashboard = (props) => {
                 setProcedures(data.sops);
             }
         };
-        if(journey.id && stage){
+        setProcedures([]);
+        if(journey.id){
             getSOPs();
         }
-    }, [journey, stage]);
+    }, [journey]);
 
     const openCreateJourneyForm = _ => {
         if(props.journeys.length > 0)
@@ -61,24 +62,24 @@ export const ProceduresDashboard = (props) => {
     };
 
     // Going to Tab 2
-    const openStagesList = (param, index) => {
+    const openStagesList = (param) => {
         const mainTable = document.getElementById("procedure-main-table");
         const secondaryTable = document.getElementById("procedure-secondary-table");
         if(mainTable && secondaryTable){
             mainTable.style.display = "none";
             setJourney(param);
-            setIndex(index);
             secondaryTable.style.display = "block";
         }
     };
 
     // Going to Tab 3
-    const openProcedureList = (param) => {
+    const openProcedureList = (param, index) => {
         const secondTable = document.getElementById("procedure-secondary-table");
         const thirdTable = document.getElementById("procedure-third-table");
         if(secondTable && thirdTable) {
             secondTable.style.display = "none";
             setStage(param);
+            setIndex(index);
             thirdTable.style.display = "block";
         }
     };
@@ -104,6 +105,7 @@ export const ProceduresDashboard = (props) => {
             mainTable.style.display = "block";
             setProcedure({});
             setStage("");
+            setIndex(-1);
             setJourney({});
             secondaryTable.style.display = "none";
             thirdTable.style.display = "none";
@@ -135,27 +137,36 @@ export const ProceduresDashboard = (props) => {
         }
     };
     
+    // Generate Procedure
     const generateProcedure = _ => {
+        const filteredProcedures = procedures.filter(obj => obj.stage !== stages[index]);
+        setProcedures(filteredProcedures);
+        openGenerateProcedureForm();
         fetch("/api/sop/generate_for_stage", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                id: journey.id
+                clientJourneyID: journey.id,
+                stage: index
             })
         })
             .then((res) => { return res.json(); })
             .then((data) => {
                 if(data.status){
-                    setProcedures(data.sops);
+                    setProcedures([...procedures, data.sops]);
                 }
+                closeGenerateProduceForm();
             }); 
     };
-
-    const openCreateProcedureForm = _ => {
-        document.getElementById("createProcedureForm").style.display = "block";
+    const openGenerateProcedureForm = _ => {
+        document.getElementById("generateProcedureForm").style.display = "block";
         openPopUpForm();
+    };
+    const closeGenerateProduceForm = _ => {
+        document.getElementById("generateProcedureForm").style.display = "none";
+        closePopUpForm();
     };
     
     const descList = [
@@ -178,7 +189,8 @@ export const ProceduresDashboard = (props) => {
                 type = "Procedures"
                 title = {`${journey.title}'s Procedures`}
                 list = {journey.stages ? journey.stages : []}
-                list2 = {props.procedures.length > 0 ? props.procedures : [[]]}
+                list2 = {procedures}
+                stages = {stages}
                 button1 = {showJourneyList}
                 itemActionBtn = {openProcedureList}
             />
@@ -189,7 +201,7 @@ export const ProceduresDashboard = (props) => {
                 sub_title = {stage}
                 button1 = {showJourneyList}
                 button2 = {showStagesList}
-                list = {procedures}
+                list = {procedures.filter(obj => obj.stage === stages[index])}
                 addNewBtn = {generateProcedure}
                 itemActionBtn = {openProcedureDetail}
             />

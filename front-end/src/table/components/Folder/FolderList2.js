@@ -17,7 +17,7 @@ export const FolderList2 = (props) => {
             <div className='folder-list-content'>
                 {props.list.length > 0 &&
                     props.list.map((data, index) => (
-                        item(data, index, [], props.itemActionBtn)
+                        item(data, index, props.list2.filter(obj => obj.stage === props.stages[index]), props.itemActionBtn)
                     ))
                 }
             </div>
@@ -27,7 +27,7 @@ export const FolderList2 = (props) => {
 
 const item = (data, index, list2, itemActionBtn) => {
     return(
-        <div key={index} className='folder-list-content-item' onClick={() => itemActionBtn(data)}>
+        <div key={index} className='folder-list-content-item' onClick={() => itemActionBtn(data, index)}>
             <img src="./images/folder_icon.png" alt="icon"/>
             <div className='folder-list-item-desc'>
                 <h2>{data}</h2>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import "../style/table.css";
+import "../../style/table.css";
 
 export const ListItem = (props) => {
     const [itemClassName, setItemClassName] = useState("minimised");

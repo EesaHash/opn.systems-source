@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import "../style/table.css";
+import "../../style/table.css";
 import { AccessTime, Chat, Download, Edit, MoreHoriz, Share, SimCardDownload } from '@mui/icons-material';
-import { ExpandMinimisedTableItem } from './ExpandMinimisedTableItem';
-import { openAccessLimitForm, openFutureFeatureWarningForm } from '../../dashboard/page/dashboard_main';
+import { ExpandMinimisedTableItem } from '../ExpandMinimisedTableItem';
+import { openAccessLimitForm, openFutureFeatureWarningForm } from '../../../dashboard/page/dashboard_main';
 
-export const SecondaryTable = (props) => {
+export const ListTable2 = (props) => {
     const [editStatus, setEditStatus] = useState(false);
     const mainDirectory = _ => {
         return(

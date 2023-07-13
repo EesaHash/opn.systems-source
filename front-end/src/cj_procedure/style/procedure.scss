@@ -1,0 +1,10 @@
+$generate-form-width: 40vw;
+$generate-form-height: 60vh;
+.generate-procedure-form{
+    top: calc((100vh - $generate-form-height) / 2 - 5vh);
+    height: fit-content;
+    max-height: $generate-form-height;
+    width: $generate-form-width;
+    left: calc((100vw - $generate-form-width) / 2);
+    right: calc((100vw - $generate-form-width) / 2);
+}

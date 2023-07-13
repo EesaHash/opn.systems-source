@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import "../style/client_journey.css";
+import "../style/procedure.css";
 import { loadingPage } from '../../warning_pages/components/loadingPage';
 import { closePopUpForm } from '../../dashboard/page/dashboard_main';
 

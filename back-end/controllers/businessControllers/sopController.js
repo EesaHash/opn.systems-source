@@ -11,7 +11,9 @@ const {
     MessagesPlaceholder,
 } = require("langchain/prompts")
 const { BufferMemory } = require("langchain/memory")
-require('dotenv').config()
+require('dotenv').config();
+
+const stages = ["awareness", "interest", "evaluation", "decision", "purchase", "implementation", "postPurchase", "retention"];
 
 const deleteSopsForStage = async (req, res) => {
     try {
@@ -37,16 +39,25 @@ const deleteSopsForStage = async (req, res) => {
 
 const generateSopForStage = async (req, res) => {
     try {
+        const {clientJourneyID, stage} = req.body;
+        const forStage = stages[stage];
+        await SOP.destroy({
+            where: {
+                clientJourneyID: clientJourneyID,
+                stage: forStage
+            }
+        })
         const clientJourneyList = await ClientJourney.findAll({
             where: {
-                id: req.body.clientJourneyID
+                id: clientJourneyID
             }
         });
         const clientJourney = clientJourneyList[0];
         if (clientJourney == null) {
             throw "Client Journey not found!";
         }
-        const sops = await generateFewSOPs(clientJourney, req.body.stage);
+
+        const sops = await generateFewSOPs(clientJourney, forStage);
         return res.status(200).json({
             status: true,
             sops,
@@ -67,10 +78,35 @@ const getSopsForStage = async (req, res) => {
         const sops = await SOP.findAll({
             where: {
                 clientJourneyID: req.body.clientJourneyID,
-                stage: req.body.stage
+                stage: stages[req.body.stage]
             }
         });
+        if (sops == null || sops.length == 0) {
+            return res.status(404).json({
+                status: false,
+                message: "NOT FOUND",
+            });
+        }
+        return res.status(200).json({
+            status: true,
+            sops: sops
+        });
+    } catch (error) {
+        console.log(error);
+        return res.status(404).json({
+            status: false,
+            message: "NOT FOUND",
+        });
+    }
+};
 
+const getSopsForClientJourney = async (req, res) => {
+    try {
+        const sops = await SOP.findAll({
+            where: {
+                clientJourneyID: req.body.clientJourneyID
+            }
+        });
         if (sops == null || sops.length == 0) {
             return res.status(404).json({
                 status: false,
@@ -121,9 +157,10 @@ const generateFewSOPs = async (clientJourney, forStage) => {
         let steps = null;
         let sops = [];
         let statement = null;
-        for (let i = 0; i < 1; i++) {
+        for (let i = 0; i < stage["steps"].length; i++) {
             steps = stage["steps"];
-            statement = steps[Math.floor(Math.random() * steps.length)];
+            statement = steps[i];
+            // statement = steps[Math.floor(Math.random() * steps.length)];
             const sop = await generateSingleSOP(statement);
             sops.push(sop);
         }
@@ -244,6 +281,7 @@ const generateSingleSOP = async (statement) => {
 }
 
 router.post("/generate_for_stage", generateSopForStage);
+router.post("/getall", getSopsForClientJourney);
 router.post("/get_for_stage", getSopsForStage);
 router.post("/delete_for_stage", deleteSopsForStage);
 router.post("/delete_single", deleteSingleSop);

@@ -5,8 +5,8 @@ import { businessDetails } from './businessDetails';
 import { openPopUpForm } from '../../dashboard/page/dashboard_main';
 import { businessOverview } from './businessOverview';
 import { ClientJourneyDashboard } from '../../client_journey/components/clientJourneyDashboard';
-import { ProceduresDashboard } from '../../client_journey/components/ProceduresDashboard';
-import { PoliciesDashboard } from '../../client_journey/components/PoliciesDashboard';
+import { ProceduresDashboard } from '../../cj_procedure/components/ProceduresDashboard';
+import { PoliciesDashboard } from '../../cj_policies/components/PoliciesDashboard';
 import { TeamMembers } from '../../client_journey/components/TeamMembers';
 
 export const BusinessDashboard = (props) => {

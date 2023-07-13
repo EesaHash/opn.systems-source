@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import "../style/TeamMembers.css";
 import "../../header/style/header.css"
-import { MainTableHeader } from '../../table/components/MainTable';
+import { ListTable } from '../../table/components/List/ListTable';
 import { openPopUpForm } from '../../dashboard/page/dashboard_main';
 
 const inviteTeam = _ =>{
@@ -39,7 +39,7 @@ export const TeamMembers = (props) => {
     }, [props.business]);
     return(
         <div className='Team_Member'>
-            <MainTableHeader 
+            <ListTable 
                 id = "team-member-main-table"
                 title = "Team Members" 
                 list = {teamMembers}

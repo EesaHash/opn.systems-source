@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import "../style/client_journey.css";
+import "../style/policies.css";
 import { FolderList } from '../../table/components/Folder/FolderList';
 import { openAccessLimitForm, openPopUpForm } from '../../dashboard/page/dashboard_main';
 import { FourthTable } from '../../table/components/FourthTable';
