@@ -108,7 +108,7 @@ button{
     }
     & h3, label, input::placeholder{
         font-size: 16px;
-        color: #ACACAC;
+        color: black;
     }
     & hr{
         margin: 20px -40px;
@@ -119,7 +119,7 @@ button{
     & .pop-up-input{
         display: grid;
         & .dropdown button{
-            color: black;
+            color: #343741;
             text-align: left;
         }
         & input, button, .dropdown, textarea{
@@ -129,6 +129,8 @@ button{
         }
         & input, .dropdown, .dropdown-menu, textarea{
             background-color: #f1f1f1;
+            text-transform: capitalize;
+            color: #343741;
             
         }
         & textarea{
@@ -159,7 +161,7 @@ button{
 
         }
         & .next-button{
-            background-color: #A2ABBA;
+            background-color: #5D5FEF;
         }
     }
     & .title{

@@ -71,7 +71,6 @@
   color: rgb(0, 0, 0);
   font-size: 38.4px;
   white-space: nowrap;
-  overflow: scroll;
   font-family: DM Sans;
   font-weight: 500;
   align-items: center;
@@ -350,7 +349,7 @@
 .business-dashboard .business-dashboard-body .business-dashboard-body-content hr {
   margin-top: -3px;
   border: none;
-  height: 3px;
+  height: 1px;
   background-color: #ACACAC;
 }
 .business-dashboard .business-dashboard-body .business-dashboard-body-content .business-dashboard-navbar {
@@ -395,7 +394,7 @@
 .business-dashboard .business-dashboard-body .business-dashboard-body-content .business-dashboard-navbar .business-dashboard-navbar-item .business-dashboard-navbar-item-content .title {
   white-space: nowrap;
   font-size: 14px;
-  color: #343741;
+  color: #0A0A0A;
   font-weight: 500;
   line-height: 20px;
   letter-spacing: 0.07px;
