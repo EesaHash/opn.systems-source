@@ -13,6 +13,39 @@ const {
 const { BufferMemory } = require("langchain/memory")
 require('dotenv').config()
 
+const updateSingleSop = async (req, res) => {
+    try {
+        const sop = await updateSOP(req.body.id, req.body.customSop);
+        if (sop == null || sop === 0) {
+            throw "SOP NOT FOUND"
+        }
+        return res.status(200).json({ status: "SUCCESS", updatedSop: sop });
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({ message: "ERROR" });
+    }
+}
+
+
+const updateSOP = async (sopID, customSop) => {
+    try {
+        const sop = await SOP.update({
+            title: customSop.title,
+            definitions: customSop.definitions,
+            purpose: customSop.purpose,
+            industry: customSop.industry,
+            responsibility: customSop.responsibility,
+            procedure: customSop.procedure,
+            documentation: customSop.documentation,
+            stage: customSop.stage
+        }, { where: { id: sopID } });
+        return sop;
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
+}
+
 const deleteSopsForStage = async (req, res) => {
     try {
         const sop = await SOP.destroy({
@@ -55,9 +88,9 @@ const generateSopForStage = async (req, res) => {
     }
     catch (err) {
         console.log(err);
-        return res.status(500).json({ 
+        return res.status(500).json({
             status: false,
-            message: "error" 
+            message: "error"
         });
     }
 };
@@ -247,4 +280,5 @@ router.post("/generate_for_stage", generateSopForStage);
 router.post("/get_for_stage", getSopsForStage);
 router.post("/delete_for_stage", deleteSopsForStage);
 router.post("/delete_single", deleteSingleSop);
+router.post("/update_single", updateSingleSop)
 module.exports = router;
