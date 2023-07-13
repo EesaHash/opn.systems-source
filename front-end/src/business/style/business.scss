@@ -118,7 +118,7 @@ $navbaritem-width: calc(pane.$mainbox-width / 7 + 1.5vw);
             & hr{
                 margin-top: -3px;
                 border: none;
-                height: 3px;
+                height: 1px;
                 background-color: #ACACAC;
             }
             & .business-dashboard-navbar{
@@ -159,7 +159,7 @@ $navbaritem-width: calc(pane.$mainbox-width / 7 + 1.5vw);
                         & .title{
                             white-space: nowrap;
                             font-size: 14px;
-                            color: #343741;
+                            color: #0A0A0A;
                             font-weight: 500;
                             line-height: 20px;
                             letter-spacing: 0.07px;

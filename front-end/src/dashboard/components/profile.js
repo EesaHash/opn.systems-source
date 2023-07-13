@@ -4,7 +4,6 @@ import { logOut } from "../../App";
 import MeetingRoom from '@mui/icons-material/MeetingRoom';
 import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
 import TuneSharpIcon from '@mui/icons-material/TuneSharp';
-import NotificationsSharpIcon from '@mui/icons-material/NotificationsSharp';
 import { openPopUpForm } from "../page/dashboard_main";
 
 const openAccountSettingForm = _ => {
@@ -29,7 +28,6 @@ export const Profile = (props) => {
               <div className="dropdown-content">
                   <button ><TuneSharpIcon/>Admin Console</button>
                   <button onClick={openAccountSettingForm}><SettingsRoundedIcon/>Account Settings</button>
-                  <button onClick={null} ><NotificationsSharpIcon/>Notifications</button>
                   <a href="/" onClick={logOut} style={{ color: 'red' }}><MeetingRoom/>Log Out</a>
               </div>
               </div>

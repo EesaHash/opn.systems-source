@@ -109,11 +109,11 @@ button {
 }
 .form-popup input::-moz-placeholder {
   font-size: 16px;
-  color: #ACACAC;
+  color: black;
 }
 .form-popup h3, .form-popup label, .form-popup input::placeholder {
   font-size: 16px;
-  color: #ACACAC;
+  color: black;
 }
 .form-popup hr {
   margin: 20px -40px;
@@ -123,7 +123,7 @@ button {
   display: grid;
 }
 .form-popup .pop-up-input .dropdown button {
-  color: black;
+  color: #343741;
   text-align: left;
 }
 .form-popup .pop-up-input input, .form-popup .pop-up-input button, .form-popup .pop-up-input .dropdown, .form-popup .pop-up-input textarea {
@@ -132,6 +132,8 @@ button {
 }
 .form-popup .pop-up-input input, .form-popup .pop-up-input .dropdown, .form-popup .pop-up-input .dropdown-menu, .form-popup .pop-up-input textarea {
   background-color: #f1f1f1;
+  text-transform: capitalize;
+  color: #343741;
 }
 .form-popup .pop-up-input textarea {
   height: 10vh !important;
@@ -160,7 +162,7 @@ button {
   color: black;
 }
 .form-popup .pop-up-button .next-button {
-  background-color: #A2ABBA;
+  background-color: #5D5FEF;
 }
 .form-popup .title {
   display: flex;
