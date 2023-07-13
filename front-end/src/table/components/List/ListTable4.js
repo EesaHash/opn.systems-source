@@ -51,7 +51,7 @@ export const ListTable4 = (props) => {
                     </div>
                     {editStatus ? editDirectory() : mainDirectory()}
                 </div>
-                <h1>{props.sub_title}</h1>
+                <h1>{props.sub_title2}</h1>
                 <div className='fifth-table-desc'>
                     <hr/>
                     {props.desc}
