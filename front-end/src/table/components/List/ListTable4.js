@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import "../style/table.css";
+import "../../style/table.css";
 import { AccessTime, Chat, Download, Edit, MoreHoriz, Share, SimCardDownload } from '@mui/icons-material';
-import { openAccessLimitForm, openFutureFeatureWarningForm } from '../../dashboard/page/dashboard_main';
-import { ListItem } from './List/ListItem';
+import { openAccessLimitForm, openFutureFeatureWarningForm } from '../../../dashboard/page/dashboard_main';
+import { ListItem } from './ListItem';
 
-export const FifthTable = (props) => {
+export const ListTable4 = (props) => {
     const [editStatus, setEditStatus] = useState(false);
     const saveBtn = _ => {
         closeEditMode();

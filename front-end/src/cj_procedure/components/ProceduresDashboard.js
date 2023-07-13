@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import "../style/procedure.css";
 import { FolderList } from '../../table/components/Folder/FolderList';
 import { closePopUpForm, openAccessLimitForm, openPopUpForm } from '../../dashboard/page/dashboard_main';
-import { FourthTable } from '../../table/components/FourthTable';
-import { FifthTable, FifthTableDescAsList, FifthTableDescItem } from '../../table/components/FifthTable';
+import { FifthTableDescAsList, FifthTableDescItem, ListTable4 } from '../../table/components/List/ListTable4';
 import { FormatAlignLeft } from '@mui/icons-material';
 import { FolderList2 } from '../../table/components/Folder/FolderList2';
+import { ListTable3 } from '../../table/components/List/ListTable3';
 
 export const ProceduresDashboard = (props) => {
     const [index, setIndex] = useState(-1);
@@ -194,7 +194,7 @@ export const ProceduresDashboard = (props) => {
                 button1 = {showJourneyList}
                 itemActionBtn = {openProcedureList}
             />
-            <FourthTable
+            <ListTable3
                 id = "procedure-third-table"
                 type = "Procedures"
                 title = {`${journey.title}'s Procedures`}
@@ -205,7 +205,7 @@ export const ProceduresDashboard = (props) => {
                 addNewBtn = {generateProcedure}
                 itemActionBtn = {openProcedureDetail}
             />
-            <FifthTable
+            <ListTable4
                 id = "procedure-fourth-table"
                 type = "Procedures"
                 title = {`${journey.title}'s Procedures`}

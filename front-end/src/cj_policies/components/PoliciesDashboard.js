@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import "../style/policies.css";
 import { FolderList } from '../../table/components/Folder/FolderList';
 import { openAccessLimitForm, openPopUpForm } from '../../dashboard/page/dashboard_main';
-import { FourthTable } from '../../table/components/FourthTable';
+import { ListTable3 } from '../../table/components/List/ListTable3';
 
 export const PoliciesDashboard = (props) => {
     const [journey, setJourney] = useState({});
@@ -58,7 +58,7 @@ export const PoliciesDashboard = (props) => {
                 addNewBtn = {openCreateJourneyForm}
                 itemActionBtn = {openPilicyList}
             />
-            <FourthTable
+            <ListTable3
                 id = "policies-secondary-table"
                 type = "Policies"
                 title = {`${journey.title}'s Policies`}

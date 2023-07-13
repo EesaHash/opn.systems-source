@@ -1,10 +1,10 @@
 import React from 'react';
-import "../style/table.css";
-import { TableHeader } from './TableHeader';
-import { EmptyTableContent } from './EmptyTableContent';
-import { TableContent1 } from './TableContent1';
+import "../../style/table.css";
+import { TableHeader } from '../TableHeader';
+import { EmptyTableContent } from '../EmptyTableContent';
+import { TableContent1 } from '../TableContent1';
 
-export const FourthTable = (props) => {
+export const ListTable3 = (props) => {
     return(
         <div className='fourth-table' id = {props.id}>
             <div className='fourth-table-content'>
