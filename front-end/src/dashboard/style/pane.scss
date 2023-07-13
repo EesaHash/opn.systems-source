@@ -4,23 +4,23 @@ $halfbox-width: calc($mainbox-width * 0.5 - 4vw);
 $somewhat-grey: grey;
 
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
-.pane{
+.pane {
     padding: 1vh 0 1vw 1vw;
 }
 
-.mainpane{
+.mainpane {
     display: block;
 }
 
-.nameheader{
-    display:flex;
-    position:relative;
+.nameheader {
+    display: flex;
+    position: relative;
     align-items: center !important;
     height: 120px;
-    min-height:max-content;
+    min-height: max-content;
     width: $mainbox-width;
     padding: 30px;
     //align-items: flex-start;
@@ -28,14 +28,15 @@ $somewhat-grey: grey;
     align-self: stretch;
     border-radius: 20px;
     background: #FFF;
-    
+
     @media (max-width: 1000px) {
-          display: none;
-      }
+        display: none;
+    }
+
     @media (max-height:auto) {
-          background-color:#ffffff;
-      }
-    
+        background-color: #ffffff;
+    }
+
     & .initials {
         font-size: 50px;
         color: black;
@@ -45,13 +46,13 @@ $somewhat-grey: grey;
         //line-height: 40%;
         border-radius: 50%;
         //background-position: left;
-        display:flex;
+        display: flex;
         justify-content: center;
         align-items: center;
         font-weight: 500;
         text-transform: uppercase;
     }
-    
+
     & .editbutton {
         background-color: #ffffff;
         width: 32px;
@@ -59,7 +60,7 @@ $somewhat-grey: grey;
         border-radius: 50%;
         position: absolute;
         left: 92px;
-        top:80px;
+        top: 80px;
         box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
         display: flex;
         justify-content: center;
@@ -67,50 +68,57 @@ $somewhat-grey: grey;
         border: none;
         outline: none;
         cursor: pointer;
+
         & .icon {
             color: #000;
             height: 20px;
             width: 20px;
-          }
-    }
-      & .nametitle {
-      & h1 {
-        color: rgb(0, 0, 0);
-        font-size: 38.4px;
-        white-space: nowrap;
-        //overflow: scroll;
-        font-family: DM Sans;
-        font-weight: 500;
-        //line-height: 140%;
-        align-items: center;
-        margin-top: 10px;
-        margin-bottom: 0;
-        text-size-adjust: 100%;
-    }
-        & .email-text{
-        color: var(--text-subdued-text, #ACACAC);
-        font-size: 14px;
-        font-family: Inter;
-        //line-height: 24px;
-        margin-bottom: 20px;
-        margin-left: 8px;
         }
-        & .icon{
-        color:#ACACAC;
-        //margin-right: 3px;
-        //margin-top: -10px;
-        } 
-  }
-}  
+    }
 
-.businesses-overview{
+    & .nametitle {
+        & h1 {
+            color: rgb(0, 0, 0);
+            font-size: 38.4px;
+            white-space: nowrap;
+            overflow: scroll;
+            font-family: DM Sans;
+            font-weight: 500;
+            //line-height: 140%;
+            align-items: center;
+            margin-top: 10px;
+            margin-bottom: 0;
+            text-size-adjust: 100%;
+        }
+
+        & .email-text {
+            color: var(--text-subdued-text, #ACACAC);
+            font-size: 14px;
+            font-family: Inter;
+            //line-height: 24px;
+            margin-bottom: 20px;
+            margin-left: 8px;
+        }
+
+        & .icon {
+            color: #ACACAC;
+            //margin-right: 3px;
+            //margin-top: -10px;
+        }
+    }
+}
+
+.businesses-overview {
     display: flex;
     margin-top: 16px;
     height: 33vh;
-    & .yourbusiness, .update{
+
+    & .yourbusiness,
+    .update {
         width: $halfbox-width;
     }
-    & .yourbusiness{
+
+    & .yourbusiness {
         display: flex;
         padding: 20px 30px 40px 30px;
         flex-direction: column;
@@ -119,10 +127,11 @@ $somewhat-grey: grey;
         gap: 16px;
         flex: 1 0 0;
         border-radius: 20px;
-        background: #FFF; 
+        background: #FFF;
         height: 100% !important;
     }
-    & .updates{
+
+    & .updates {
         margin: 0 15px;
         display: flex;
         //padding: 2vh 20.956px;
@@ -137,20 +146,22 @@ $somewhat-grey: grey;
         color: #F7F8FC;
         text-align: center;
         overflow: scroll;
-        
-        & .updateslogo{
+
+        & .updateslogo {
             align-items: center;
             flex-shrink: 0;
             width: 7vh;
             height: 7vh;
         }
-        & .updatestitle{
+
+        & .updatestitle {
             color: var(--text-bod, #F7F8FC);
             font-size: calc(5vh * 0.7);
             font-family: DM Sans;
             font-weight: 500;
         }
-        & .uptext{
+
+        & .uptext {
             margin-bottom: 10px;
             display: flex;
             width: 400px;
@@ -163,7 +174,8 @@ $somewhat-grey: grey;
             font-weight: lighter;
             line-height: 140%;
         }
-        & .updatesbutton{
+
+        & .updatesbutton {
             display: flex;
             height: 4vh;
             padding: 2vh;
@@ -181,15 +193,17 @@ $somewhat-grey: grey;
     }
 
 }
-.businesstitle{
+
+.businesstitle {
     color: #000;
     font-size: 30px;
     font-family: DM Sans;
     font-weight: 500;
-} 
+}
 
 $people-height: calc(96vh - 50px - 1vh - 12vh - 33vh - 32px);
-.main-dashboard-people{
+
+.main-dashboard-people {
     margin-top: 16px;
     // height: $people-height !important;
     height: fit-content !important;
@@ -201,26 +215,28 @@ $people-height: calc(96vh - 50px - 1vh - 12vh - 33vh - 32px);
     gap: 16px;
     align-self: stretch;
     border-radius: 20px;
-    background: #FFF;   
+    background: #FFF;
     // overflow: scroll;
     // overflow-y: visible;
 }
 
-.teammember{
+.teammember {
     display: flex;
     margin-bottom: 20px;
+
     & .team-member-icon {
         display: flex;
-        & img{
+
+        & img {
             height: calc($people-height * 0.20);
             border-radius: 100px;
             background: #FFF;
             opacity: 60%;
-        
+
         }
     }
-    
-    & .emptyname{
+
+    & .emptyname {
         width: calc(($mainbox-width / 4) - ($people-height * 0.20) - ($mainbox-width * 0.04) - 60px);
         min-width: fit-content;
         height: calc($people-height * 0.10);
@@ -231,7 +247,7 @@ $people-height: calc(96vh - 50px - 1vh - 12vh - 33vh - 32px);
     }
 }
 
-.collaborate{
+.collaborate {
     display: flex;
     flex-direction: column;
     align-self: stretch;
@@ -243,10 +259,11 @@ $people-height: calc(96vh - 50px - 1vh - 12vh - 33vh - 32px);
     line-height: 140%;
 }
 
-.invite-button{
+.invite-button {
     width: 100%;
     margin-top: -8px;
-    & button{
+
+    & button {
         display: flex;
         height: 43px;
         padding: 18px;
@@ -259,5 +276,3 @@ $people-height: calc(96vh - 50px - 1vh - 12vh - 33vh - 32px);
         margin: auto;
     }
 }
-
-

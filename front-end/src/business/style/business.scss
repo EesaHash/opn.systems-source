@@ -1,5 +1,6 @@
 @use '../../dashboard/style/pane';
-.create-account{
+
+.create-account {
     margin-top: 5vh;
     max-height: 90vh;
     width: 50vw;
@@ -25,7 +26,7 @@
     // }
 }
 
-.edit-business{
+.edit-business {
     margin-top: 8vh;
     width: 50vw;
     height: 80vh;
@@ -33,23 +34,30 @@
     margin-left: 25vw;
     margin-right: 25vw;
     overflow: scroll;
-    & .business-icon{
+
+    & .business-icon {
         width: 20%;
         margin-right: 20px;
-        & img{
+
+        & img {
             width: 6vw;
             border-radius: 17px;
         }
     }
-    & .business-detail{
+
+    & .business-detail {
         width: 80%;
         height: calc(72vh - 25px - 22px - 60px) !important;
         overflow: scroll;
         margin-bottom: 20px;
-        & label{
+
+        & label {
             margin-top: -20px;
         }
-        & input, textarea, .dropdown{
+
+        & input,
+        textarea,
+        .dropdown {
             margin-bottom: 20px;
         }
     }
@@ -57,26 +65,34 @@
 
 $body-height: calc(100vh - 2vw - 15vh - 50px - 4vh);
 $navbaritem-width: calc(pane.$mainbox-width / 7 + 1.5vw);
-.business-dashboard{
+
+.business-dashboard {
     width: pane.$mainbox-width;
-    & .business-dashboard-title, .business-dashboard-body{
+
+    & .business-dashboard-title,
+    .business-dashboard-body {
         border-radius: 20px;
         background-color: white;
     }
-    & .business-dashboard-title{
+
+    & .business-dashboard-title {
         height: 15vh;
         margin-bottom: 1vw;
-        & .business-dashboard-title-content{
+
+        & .business-dashboard-title-content {
             padding: 3vh;
             display: block;
-            & .business-title{
+
+            & .business-title {
                 display: flex;
                 height: 6vh;
-                & img{
+
+                & img {
                     margin-right: 20px;
                     border-radius: 8px;
                 }
-                & h1{
+
+                & h1 {
                     margin: 0;
                     margin-top: -10px;
                     font-size: 5vh;
@@ -85,21 +101,25 @@ $navbaritem-width: calc(pane.$mainbox-width / 7 + 1.5vw);
                     white-space: nowrap;
                     overflow: scroll;
                 }
-                & .dropdown-arrow{
+
+                & .dropdown-arrow {
                     border-top-color: black;
                     display: block;
                     top: 20px;
                     position: relative;
-                    &:hover{
+
+                    &:hover {
                         margin-top: -10px;
                     }
-                    & .dropdown-content{
+
+                    & .dropdown-content {
                         margin-top: 30px;
                         left: -170px;
                     }
                 }
             }
-            & h3{
+
+            & h3 {
                 margin: 0;
                 margin-top: 10px;
                 font-size: 2vh;
@@ -108,58 +128,72 @@ $navbaritem-width: calc(pane.$mainbox-width / 7 + 1.5vw);
             }
         }
     }
-    & .business-dashboard-body{
+
+    & .business-dashboard-body {
         min-height: $body-height;
         height: fit-content;
-        & .business-dashboard-body-content{
+
+        & .business-dashboard-body-content {
             display: block;
             padding: 10px 30px;
             height: 100%;
-            & hr{
+
+            & hr {
                 margin-top: -3px;
                 border: none;
-                height: 1px;
+                height: 3px;
                 background-color: #ACACAC;
             }
-            & .business-dashboard-navbar{
+
+            & .business-dashboard-navbar {
                 width: 100%;
                 height: 70px;
                 display: flex;
                 overflow-y: hidden;
                 overflow-x: scroll;
-                & li{
+
+                & li {
                     width: $navbaritem-width;
                     display: flex;
                     height: 100%;
-                    &:hover, .active{
+
+                    &:hover,
+                    .active {
                         cursor: pointer;
-                        & .icon{
+
+                        & .icon {
                             color: #5D5FEF !important;
                         }
                     }
                 }
-                & .business-dashboard-navbar-item{
+
+                & .business-dashboard-navbar-item {
                     margin: auto;
                     height: 50px;
                     width: 100%;
                     padding: 8px !important;
-                    &:hover, &.active{
+
+                    &:hover,
+                    &.active {
                         border-bottom: 3px solid #5D5FEF;
                     }
-                    & .business-dashboard-navbar-item-content{
+
+                    & .business-dashboard-navbar-item-content {
                         display: flex;
                         height: 100%;
                         margin: auto;
                         align-items: center;
                         width: fit-content;
-                        & .icon{
+
+                        & .icon {
                             color: #ACACAC;
                             margin-right: 8px;
                         }
-                        & .title{
+
+                        & .title {
                             white-space: nowrap;
                             font-size: 14px;
-                            color: #0A0A0A;
+                            color: #343741;
                             font-weight: 500;
                             line-height: 20px;
                             letter-spacing: 0.07px;
@@ -171,21 +205,26 @@ $navbaritem-width: calc(pane.$mainbox-width / 7 + 1.5vw);
     }
 }
 
-.business-details{
+.business-details {
     overflow: scroll;
     height: calc($body-height - 60px - 30px - 40px);
     width: 100%;
-    & .business-details-item{
+
+    & .business-details-item {
         margin-bottom: 24px;
         display: grid;
-        & label{
+
+        & label {
             font-size: 16px;
             color: #ACACAC;
         }
-        & input{
+
+        & input {
             height: 5vh !important;
         }
-        & input, textarea{
+
+        & input,
+        textarea {
             border-radius: 4px;
             padding: 15px;
             margin: 5px 0 0 0;
@@ -193,7 +232,8 @@ $navbaritem-width: calc(pane.$mainbox-width / 7 + 1.5vw);
             background: #f1f1f1;
             color: #8496AE;
         }
-        & textarea{
+
+        & textarea {
             height: 10vh !important;
         }
     }
