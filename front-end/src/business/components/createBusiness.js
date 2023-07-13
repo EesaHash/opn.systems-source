@@ -128,8 +128,9 @@ export const CreateBusiness = (props) => {
                         };
                         props.setBusinesses([...props.businesses, business]);
                         closeCreateBusinessForm();
+                    }else{
+                        throw data.message;
                     }
-                    alert(data.message);
                 });
         }catch(error){
             alert(error);

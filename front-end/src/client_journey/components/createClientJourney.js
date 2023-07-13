@@ -38,9 +38,10 @@ export const CreateClientJourney = (props) => {
             .then((data) => {
                 if(data.status){
                     props.setJourneys([...props.journeys, data.journey]);
+                }else{
+                    alert(data.message);
                 }
                 closeForm();
-                alert(data.message);
             }); 
     };
     const closeForm = _ => {
