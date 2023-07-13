@@ -90,7 +90,12 @@ const generateSopForStage = async (req, res) => {
             throw "Client Journey not found!";
         }
 
-        const sops = await generateFewSOPs(clientJourney, forStage);
+        await generateFewSOPs(clientJourney, forStage);
+        const sops = await SOP.findAll({
+            where: {
+                clientJourneyID: clientJourneyID
+            }
+        });
         return res.status(200).json({
             status: true,
             sops,

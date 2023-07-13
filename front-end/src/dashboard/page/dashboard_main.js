@@ -92,7 +92,6 @@ export const DashboardPage = () => {
     useEffect(() => {
         try{
             setLoading(true);
-            setProducts([]);
             const getProduct = async _ => {
                 const res = await fetch("/api/product/getall", {
                     method: "POST",
@@ -109,8 +108,10 @@ export const DashboardPage = () => {
                     setProducts(data.products);
                 }
             };
-            if(business.id)
+            if(business.id){
+                setProducts([]);
                 getProduct();
+            }
         }catch(error){
             alert(error);
         }

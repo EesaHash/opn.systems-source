@@ -142,6 +142,7 @@ export const ProceduresDashboard = (props) => {
         const filteredProcedures = procedures.filter(obj => obj.stage !== stages[index]);
         setProcedures(filteredProcedures);
         openGenerateProcedureForm();
+        
         fetch("/api/sop/generate_for_stage", {
             method: "POST",
             headers: {
@@ -154,8 +155,9 @@ export const ProceduresDashboard = (props) => {
         })
             .then((res) => { return res.json(); })
             .then((data) => {
+                console.log(data);
                 if(data.status){
-                    setProcedures([...procedures, data.sops]);
+                    setProcedures(data.sops);
                 }
                 closeGenerateProduceForm();
             }); 
