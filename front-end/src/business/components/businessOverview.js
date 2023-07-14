@@ -9,9 +9,10 @@ export const businessOverview = (business) => {
         <div className="businesses-overview">
                 <div className="yourbusiness">
                     <div className="businesstitle">
-                        <text>Welcome to Opn.Systems </text>
-                        <img src='./images/partypopper.png' alt="icon"/>
-                        <p style={{fontSize:"16px",fontFamily:"Inter", fontWeight:"lighter"}}>Here's some tips to get started</p>    
+                        <text>Business Description </text>  
+                    </div>
+                    <div className='desciption-input'>
+                        <input type ="text" placeholder='What is your business about?'></input>
                     </div>
                     <button className="editB">How to edit your files</button>
                 </div>
