@@ -35,8 +35,8 @@ export const ListTable4 = (props) => {
         );
     };
     return(
-        <div className='fifth-table' id = {props.id}>
-            <div className='fifth-table-content'>
+        <div className='list-table4' id = {props.id}>
+            <div className='list-table4-content'>
                 <div className='table-directory'>
                     <div className='table-directory-left-header'>
                         <button onClick={props.button1}>{`${props.type}`}</button>
@@ -52,7 +52,7 @@ export const ListTable4 = (props) => {
                     {editStatus ? editDirectory() : mainDirectory()}
                 </div>
                 <h1>{props.sub_title2}</h1>
-                <div className='fifth-table-desc'>
+                <div className='list-table4-desc'>
                     <hr/>
                     {props.desc}
                     <hr/>
@@ -78,7 +78,7 @@ export const FifthTableDescAsList = (icon, title, data) => {
     const pattern = /^\d+\.\s+/;
     const pattern2 = /^[-•]\s+/;
     return(
-        <div className='fifth-table-desc-item'>
+        <div className='list-table4-desc-item'>
             <h2>{icon}{title}</h2>
             <div className='desc-item-list'>
                 {temp.map((res, index) => (
@@ -109,7 +109,7 @@ export const FifthTableDescAsList = (icon, title, data) => {
 };
 export const FifthTableDescItem = (icon, title, data) => {
     return(
-        <div className='fifth-table-desc-item'>
+        <div className='list-table4-desc-item'>
             <h2>{icon}{title}</h2>
             <text>{data}</text>
         </div>
@@ -120,23 +120,23 @@ export const FifthTableDescItem = (icon, title, data) => {
 //     const pattern = /^\d+\.\s+/;
 //     const pattern2 = /^[-•]\s+/;
 //     return(
-//         <div className='fifth-table-list'>
+//         <div className='list-table4-list'>
 //             <h2>{listTitle}</h2>
 //             {list.map((data, index) => (
 //                 (data.length > 0) && (
 //                     pattern.test(data) ? (
-//                         <div key={index} className='fifth-table-list-item'>
+//                         <div key={index} className='list-table4-list-item'>
 //                             <h3>{index + 1}</h3>
 //                             <text>{data.substring(data.indexOf('.') + 2)}</text>
 //                         </div>
 //                     ) : (
 //                         pattern2.test(data) ? (
-//                             <div key={index} className='fifth-table-list-item'>
+//                             <div key={index} className='list-table4-list-item'>
 //                                 <h3>-</h3>
 //                                 <text>{data.substring(2)}</text>
 //                             </div>
 //                         ) : (
-//                             <div key={index} className='fifth-table-list-item'>
+//                             <div key={index} className='list-table4-list-item'>
 //                                 <h3>-</h3>
 //                                 <text>{data}</text>
 //                             </div>
