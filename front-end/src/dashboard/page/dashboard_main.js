@@ -178,6 +178,7 @@ export const DashboardPage = () => {
                     business = {business} setBusiness = {setBusiness}
                 />
                 <CreateClientJourney  
+                    products = {products} setProducts = {setProducts}
                     journeys = {journeys} setJourneys = {setJourneys}
                     business = {business}
                 />

@@ -154,6 +154,7 @@ $navbaritem-width: calc(pane.$mainbox-width / 7 + 1.5vw);
 
                 & li {
                     width: $navbaritem-width;
+                    min-width: fit-content;
                     display: flex;
                     height: 100%;
 

@@ -37,7 +37,7 @@ export const CreateClientJourney = (props) => {
             .then((res) => { return res.json(); })
             .then((data) => {
                 if(data.status){
-                    props.setJourneys([...props.journeys, data.journey]);
+                    props.setProducts([...props.products, data.product]);
                 }else{
                     alert(data.message);
                 }

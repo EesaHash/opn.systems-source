@@ -366,6 +366,8 @@
 }
 .business-dashboard .business-dashboard-body .business-dashboard-body-content .business-dashboard-navbar li {
   width: calc((100vw - 240px - 8vw) / 7 + 1.5vw);
+  min-width: -moz-fit-content;
+  min-width: fit-content;
   display: flex;
   height: 100%;
 }

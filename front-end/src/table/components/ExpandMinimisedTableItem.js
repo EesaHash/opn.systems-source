@@ -25,7 +25,7 @@ export const ExpandMinimisedTableItem = (props) => {
     return(
         <div key = {props.index} className={itemClassName} onClick={() => itemClassName === "minimised-table-item" && expandCollapseBtn()}>
             <h2>{props.index}</h2>
-            <div style={{display: "grid"}}>
+            <div style={{width:"100%", display: "grid"}}>
                     <h1 style={{width: "100%", cursor: "pointer"}} onClick={() => itemClassName === "expanded-table-item" && expandCollapseBtn()}>{props.title}</h1>
                 {itemClassName === "expanded-table-item" && 
                     Object.keys(props.data).map((data, index) => (
