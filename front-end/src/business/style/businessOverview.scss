@@ -92,6 +92,16 @@ $mini-width: calc($halfbox-width * 0.5 - 15px);
         }
     }
 
+    & .desciption-input{
+        margin-bottom: 10px;
+        margin-top: 8px;
+        text-align: left;
+        width: 300px;
+        display: grid;
+        color: #3235FF;
+        border-radius: 6px;
+        
+    }
 }
 
 .editB{
@@ -109,3 +119,4 @@ $mini-width: calc($halfbox-width * 0.5 - 15px);
     background: #a5a6f6;
 
 }
+
