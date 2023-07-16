@@ -8,6 +8,7 @@ import { ClientJourneyDashboard } from '../../client_journey/components/clientJo
 import { ProceduresDashboard } from '../../cj_procedure/components/ProceduresDashboard';
 import { PoliciesDashboard } from '../../cj_policies/components/PoliciesDashboard';
 import { TeamMembers } from '../../client_journey/components/TeamMembers';
+import { DepartmentRolesDashboard } from '../../cj_department_roles/components/DepartmentRolesDashboard';
 
 export const BusinessDashboard = (props) => {
     const deleteBusiness = _ => {
@@ -128,12 +129,12 @@ const body = (  business, activeLink2,
                             policies = {policies} setPolicies = {setPolicies}
                         /> :
                     activeLink3 === "Team Members" ?
-                    <TeamMembers
-                            business = {business}
-                             activeLink2 = {activeLink2}
-                    /> :
+                        <TeamMembers
+                                business = {business}
+                                activeLink2 = {activeLink2}
+                        /> :
                     activeLink3 === "Department & Roles" &&
-                        null
+                        <DepartmentRolesDashboard/>
                 }
             </div>
         </div>
