@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import "../style/business.css";
 import { closePopUpForm } from '../../dashboard/page/dashboard_main';
 import { DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown } from "reactstrap";
@@ -24,6 +24,20 @@ export const CreateBusiness = (props) => {
     });
     const [loading, setLoading] = useState(false);
     const titlePage = "Create Business";
+
+    useEffect(() => {
+        if(businessOverviewInput.businessName && businessOverviewInput.businessType && businessOverviewInput.industry && businessOverviewInput.companySize && businessOverviewInput.businessObjective)
+            document.getElementById("company-overview-create-btn").style.backgroundColor = "#5D5FEF";
+        else
+            document.getElementById("company-overview-create-btn").style.backgroundColor = "#A2ABBA";
+    }, [businessOverviewInput]);
+
+    useEffect(() => {
+        if(keyContact.name && keyContact.position && keyContact.teamContactEmail && keyContact.phoneNumber)
+            document.getElementById("key-contanct-create-btn").style.backgroundColor = "#5D5FEF";
+        else
+            document.getElementById("key-contanct-create-btn").style.backgroundColor = "#A2ABBA";
+    }, [keyContact])
 
     const handleKeypress = e => {
         if(e.key === "Enter"){
@@ -188,7 +202,7 @@ export const CreateBusiness = (props) => {
                 {areaItem("Business Objective", businessOverviewInput.businessObjective, setBusinessObjective)}
                 <div className='pop-up-button'>
                     <button className='cancel-button' onClick={closeCreateBusinessForm}>Cancel</button>
-                    <button className='next-button' onClick={nextAction} >Next</button>
+                    <button id="company-overview-create-btn" className='next-button' onClick={nextAction} >Next</button>
                 </div>
             </div>
         );
@@ -223,7 +237,7 @@ export const CreateBusiness = (props) => {
                 {textInputItem("Phone", keyContact.phoneNumber, setKeyContactPhone, handleKeypress2)}
                 <div className='pop-up-button'>
                     <button className='cancel-button' onClick={closeCreateBusinessForm}>Cancel</button>
-                    <button className='next-button' onClick={createNewBusiness} >Next</button>
+                    <button id="key-contanct-create-btn" className='next-button' onClick={createNewBusiness} >Next</button>
                 </div>
             </div>
         );
@@ -278,7 +292,6 @@ export const CreateBusiness = (props) => {
         </section>
     );
 };
-
 
 const businessTypeListDrowdown = (businessOverviewInput, setBusinessOverviewInput) => {
     const getBusinessType = _ => {
