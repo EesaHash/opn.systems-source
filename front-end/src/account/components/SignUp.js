@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import { getUserID } from "../../App";
 import { useSearchParams } from "react-router-dom";
+import { Error } from "@mui/icons-material";
 
 export const SignUp = _ => {
     const [userID, setUserID] = useState("none");
@@ -26,7 +27,7 @@ export const SignUp = _ => {
             const lastName = document.getElementById("lastName").value;
 
             // Check if the required fields are filled
-            if(!email || !username || !password || !firstName){
+            if(!email || !username || !password || !firstName || !lastName){
                 return alert("Please fill in all non-optional fields!");
             }
 
@@ -120,21 +121,24 @@ export const SignUp = _ => {
                             <label htmlFor="username">Username</label>
                             <input type ="text" id="username" placeholder="John Doe" onKeyPress={handleKeypress} />
                         </div>
-                        <div className="user-authentication-input password">
-                            <label htmlFor="password">Password</label>
-                            <input type="password" id ="password" onKeyPress={handleKeypress} />
-                        </div>
-                        <div className="pass">
-                            <label style={{marginRight: "150px"}}>Minimum of 8 characters</label>
-                        </div>
                         <div className="user-authentication-input" style={{display: "flex"}} >
                             <div className="half-input left">
                                 <label htmlFor="firstName">First Name</label>
                                 <input type="text" id ="firstName" placeholder="John" onKeyPress={handleKeypress} />
                             </div>
                             <div className="half-input">
-                                <label htmlFor="lastName">{`Last Name (optional)`}</label>
+                                <label htmlFor="lastName">{`Last Name`}</label>
                                 <input type="text" id ="lastName" placeholder="Doe" onKeyPress={handleKeypress} />
+                            </div>
+                        </div>
+                        <div>
+                            <div className="user-authentication-input password">
+                                <label htmlFor="password">Password</label>
+                                <input type="password" id ="password" onKeyPress={handleKeypress} />
+                            </div>
+                            <div className="alert">
+                                <Error/>
+                                <label>Minimum of 8 characters</label>
                             </div>
                         </div>
                         <div>
@@ -180,6 +184,12 @@ export const SignUp = _ => {
                             </div>
                         ))}
                         </div>
+                        {emailList.length > 0 &&
+                            <div className="alert">
+                                <Error/>
+                                <label>No account access</label>
+                            </div>
+                        }
                         <div >
                             <button onClick={createAccount}> Sign Up</button>
                         </div>
@@ -193,8 +203,8 @@ export const SignUp = _ => {
         if(!email)
             return alert("Please fill in the input field!");
         if(document.getElementById("invitation-list").style.display === "none"){
-            document.getElementById("step2").style.height = "75vh";
-            document.getElementById("step2").style.minHeight = "625px";
+            document.getElementById("step2").style.maxHeight = "75vh";
+            document.getElementById("step2").style.height = "fit-content";
             document.getElementById("invitation-list").style.display = "grid";
         }
         setEmailList([...emailList, { email: email }]);
