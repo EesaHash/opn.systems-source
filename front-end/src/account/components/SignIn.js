@@ -1,19 +1,28 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import "../style/account.css";
 import { getUserID } from "../../App";
 
 export const SignIn = _ => {
     const [userID, setUserID] = useState("none");
+    const [input, setInput] = useState({
+        email: "",
+        password: ""
+    });
     let rememberMe = false;
 
     getUserID().then(res => setUserID(res));
 
+    useEffect(() => {
+        if(input.email && input.password.length >= 8)
+            document.getElementById("sign-in-btn").style.backgroundColor = "#5D5FEF";
+        else
+            document.getElementById("sign-in-btn").style.backgroundColor = "#A2ABBA";
+    }, [input]);
+
     const signIn = _ => {
         try{
-            const email = document.getElementById("email").value;
-            const password = document.getElementById("password").value;
             // Check if the required fields are filled
-            if(!email || !password){
+            if(!input.email || !input.password){
                 return alert("Please fill in all non-optional fields!");
             }
             fetch("/api/login", {
@@ -22,8 +31,8 @@ export const SignIn = _ => {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    username: email,
-                    password: password,
+                    username: input.email,
+                    password: input.password,
                     rememberMe: rememberMe
                 })
             })
@@ -63,17 +72,17 @@ export const SignIn = _ => {
                             <h1>Login</h1>
                             <div className="user-authentication-input">
                                 <label html="email">Email Address/Username</label>
-                                <input type="text" placeholder="johndoe@gmail.com" id ="email" onKeyPress={handleKeypress} />
+                                <input type="text" value={input.email} placeholder="johndoe@gmail.com" onChange={event => setInput({...input, email: event.target.value})} onKeyPress={handleKeypress} />
                             </div>
                             <div className="user-authentication-input">
                                 <div>
                                     <label html="password">Password</label>
                                     <a className="forgot-password" href="/forgotpassword" >Forgot your password?</a>
                                 </div>
-                                <input type="password" id ="password" onKeyPress={handleKeypress} />
+                                <input type="password" value={input.password} onChange={event => setInput({...input, password: event.target.value})} onKeyPress={handleKeypress} />
                             </div>
                             <div>
-                            <button onClick={signIn}> Sign In</button>
+                            <button id="sign-in-btn" onClick={signIn}> Sign In</button>
             
                             </div>
                             <div>

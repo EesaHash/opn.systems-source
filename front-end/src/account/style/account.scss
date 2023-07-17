@@ -51,6 +51,10 @@ $grey: #A4A4A4;
         margin-bottom: 25px;
     }
 
+    & button {
+        border: none;
+    }
+
     & a {
         color: $primary-color-malibu;
     }
@@ -115,10 +119,12 @@ $grey: #A4A4A4;
         padding: 0;
         margin-top: 10px;
         margin-bottom: 25px !important;
-        & .css-i4bv87-MuiSvgIcon-root{
+
+        & .css-i4bv87-MuiSvgIcon-root {
             font-size: 15px;
         }
-        & label{
+
+        & label {
             margin-left: 5px;
             font-size: 12px !important;
         }

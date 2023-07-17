@@ -35,6 +35,9 @@
 .user-authentication button {
   margin-bottom: 25px;
 }
+.user-authentication button {
+  border: none;
+}
 .user-authentication a {
   color: #7DC8F7;
 }
