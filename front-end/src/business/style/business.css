@@ -352,9 +352,9 @@
   height: 100%;
 }
 .business-dashboard .business-dashboard-body .business-dashboard-body-content hr {
-  margin-top: -3px;
+  margin-top: -1px;
   border: none;
-  height: 3px;
+  height: 1px;
   background-color: #ACACAC;
 }
 .business-dashboard .business-dashboard-body .business-dashboard-body-content .business-dashboard-navbar {
@@ -386,7 +386,7 @@
   padding: 8px !important;
 }
 .business-dashboard .business-dashboard-body .business-dashboard-body-content .business-dashboard-navbar .business-dashboard-navbar-item:hover, .business-dashboard .business-dashboard-body .business-dashboard-body-content .business-dashboard-navbar .business-dashboard-navbar-item.active {
-  border-bottom: 3px solid #5D5FEF;
+  border-bottom: 1px solid #5D5FEF;
 }
 .business-dashboard .business-dashboard-body .business-dashboard-body-content .business-dashboard-navbar .business-dashboard-navbar-item .business-dashboard-navbar-item-content {
   display: flex;

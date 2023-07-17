@@ -16,8 +16,7 @@ $mini-width: calc($halfbox-width * 0.5 - 15px);
         border-radius: 8px;
         border-style: solid;
         opacity: 80%;
-        border-color: rgba(165, 166, 246, 0.20);
-        background: #a5a6f6;
+        background: #a5a6f6 !important; 
     }
     & .yourbusiness, .update{
         width: $halfbox-width;
