@@ -1,5 +1,63 @@
+.edit {
+  display: grid;
+}
+.edit .edit-suggestion {
+  margin-bottom: 15px;
+}
+.edit .edit-suggestion button {
+  margin: 0 !important;
+  float: left !important;
+  border-radius: 35px !important;
+  background-color: rgba(165, 166, 246, 0.2) !important;
+  padding: 7.5px 20px !important;
+  text-align: center !important;
+  align-items: flex-start !important;
+  gap: 12px !important;
+  color: #5D5FEF !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+}
+.edit .edit-suggestion h3 {
+  float: right !important;
+  margin-top: 5px !important;
+  margin-right: 0 !important;
+  color: black !important;
+  font-size: 16px !important;
+  padding: 0 !important;
+}
+.edit .edit-suggestion h3 img {
+  height: 25px !important;
+  margin-top: -2px !important;
+  margin-right: 5px !important;
+}
+.edit .edit-prompt {
+  display: flex;
+}
+.edit .edit-prompt img, .edit .edit-prompt input, .edit .edit-prompt button {
+  height: 25px !important;
+}
+.edit .edit-prompt img {
+  margin-right: 10px !important;
+}
+.edit .edit-prompt input, .edit .edit-prompt input:focus {
+  width: calc(85% - 45px) !important;
+  border: 1px solid transparent !important;
+  margin-right: 10px !important;
+  outline: none !important;
+}
+.edit .edit-prompt button {
+  width: calc(15% - 45px) !important;
+  color: #ACACAC !important;
+  text-align: right !important;
+  padding: 0 !important;
+  float: right !important;
+  margin: auto !important;
+  margin-right: 0 !important;
+}
+
 .main-table, .secondary-table, .folder-list, .folder-list2, .fourth-table, .list-table4 {
   width: 100%;
+  overflow: scroll;
 }
 .main-table h1, .secondary-table h1, .folder-list h1, .folder-list2 h1, .fourth-table h1, .list-table4 h1 {
   font-size: 32px;
@@ -259,15 +317,20 @@
   line-height: 140%;
 }
 .list-table4 .list-table4-content .list-table4-list .list-table4-list-item {
-  display: flex;
+  display: grid;
   padding: 10px;
   border-radius: 12px;
   background-color: #FFFFFF;
   margin-bottom: 10px;
 }
+.list-table4 .list-table4-content .list-table4-list .list-table4-list-item .edit {
+  margin-left: 50px;
+}
 .list-table4 .list-table4-content .list-table4-list .list-table4-list-item:hover {
   cursor: pointer;
-  background-color: #e2e1e1;
+}
+.list-table4 .list-table4-content .list-table4-list .list-table4-list-item.active {
+  box-shadow: 0px 8px 32px -6px rgba(20, 23, 26, 0.207), 0px 6px 20px -6px rgba(20, 23, 26, 0.207);
 }
 .list-table4 .list-table4-content .list-table4-list .list-table4-list-item h3 {
   margin: auto;
@@ -297,6 +360,31 @@
   padding-left: 20px;
   margin-left: auto;
   margin-right: 0;
+}
+.list-table4 .list-table4-content .add-list-item {
+  display: flex;
+  border-radius: 12px;
+  border: 2px solid var(--accent-purple-dark, #5D5FEF);
+  background: rgba(165, 166, 246, 0.2);
+  padding: 10px;
+}
+.list-table4 .list-table4-content .add-list-item h3, .list-table4 .list-table4-content .add-list-item text, .list-table4 .list-table4-content .add-list-item img {
+  margin: auto;
+  margin-left: 0;
+  margin-right: 0;
+  color: var(--accent-purple-dark, #5D5FEF);
+  font-size: 20px;
+  font-weight: 500;
+}
+.list-table4 .list-table4-content .add-list-item h3 {
+  padding: 10px;
+}
+.list-table4 .list-table4-content .add-list-item text {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.list-table4 .list-table4-content .add-list-item img {
+  height: 25px;
 }
 
 .folder-list button, .folder-list2 button {
@@ -629,57 +717,4 @@
 .expanded-table-item .expanded-table-sub-subitem h3 {
   margin-left: 20px;
   text-align: justify;
-}
-
-.edit {
-  display: grid;
-}
-.edit .edit-suggestion {
-  margin-bottom: 15px;
-}
-.edit .edit-suggestion button {
-  float: left;
-  border-radius: 35px;
-  background-color: rgba(165, 166, 246, 0.2);
-  padding: 7.5px 20px;
-  text-align: center;
-  align-items: flex-start;
-  gap: 12px;
-  color: #5D5FEF;
-  font-size: 14px;
-  font-weight: 500;
-}
-.edit .edit-suggestion h3 {
-  float: right;
-  margin-top: 5px;
-  margin-right: 0;
-}
-.edit .edit-suggestion h3 img {
-  height: 25px;
-  margin-top: -2px;
-  margin-right: 5px;
-}
-.edit .edit-prompt {
-  display: flex;
-}
-.edit .edit-prompt img, .edit .edit-prompt input, .edit .edit-prompt button {
-  height: 25px;
-}
-.edit .edit-prompt img {
-  margin-right: 10px;
-}
-.edit .edit-prompt input, .edit .edit-prompt input:focus {
-  width: calc(85% - 45px);
-  border: 1px solid transparent !important;
-  margin-right: 10px;
-  outline: none;
-}
-.edit .edit-prompt button {
-  width: calc(15% - 45px);
-  color: #ACACAC;
-  text-align: right;
-  padding: 0;
-  float: right;
-  margin: auto;
-  margin-right: 0;
 }/*# sourceMappingURL=table.css.map */

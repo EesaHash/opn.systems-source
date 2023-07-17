@@ -60,14 +60,17 @@ export const ListTable4 = (props) => {
                 <ListItem 
                     listTitle = {props.list1Title}
                     list = {props.list1}
+                    editStatus = {editStatus}
                 />
                 <ListItem 
                     listTitle = {props.list2Title}
                     list = {props.list2}
+                    editStatus = {editStatus}
                 />
                 <ListItem 
                     listTitle = {props.list3Title}
                     list = {props.list3}
+                    editStatus = {editStatus}
                 />
             </div>
         </div>
@@ -115,35 +118,3 @@ export const FifthTableDescItem = (icon, title, data) => {
         </div>
     )
 };
-
-// const listItem = (list, listTitle) => {
-//     const pattern = /^\d+\.\s+/;
-//     const pattern2 = /^[-•]\s+/;
-//     return(
-//         <div className='list-table4-list'>
-//             <h2>{listTitle}</h2>
-//             {list.map((data, index) => (
-//                 (data.length > 0) && (
-//                     pattern.test(data) ? (
-//                         <div key={index} className='list-table4-list-item'>
-//                             <h3>{index + 1}</h3>
-//                             <text>{data.substring(data.indexOf('.') + 2)}</text>
-//                         </div>
-//                     ) : (
-//                         pattern2.test(data) ? (
-//                             <div key={index} className='list-table4-list-item'>
-//                                 <h3>-</h3>
-//                                 <text>{data.substring(2)}</text>
-//                             </div>
-//                         ) : (
-//                             <div key={index} className='list-table4-list-item'>
-//                                 <h3>-</h3>
-//                                 <text>{data}</text>
-//                             </div>
-//                         )
-//                     )
-//                 )
-//             ))}
-//         </div>
-//     );
-// };
