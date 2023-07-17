@@ -221,9 +221,9 @@ export const ProceduresDashboard = (props) => {
                 list1Title = "Procedure"
                 list1 = {procedure.procedure ? JSON.parse(procedure.procedure) : []}
                 list2Title = "Responsibility"
-                list2 = {procedure.responsibility ? procedure.responsibility.split("\n") : []}
+                list2 = {procedure.responsibility ? JSON.parse(procedure.responsibility) : []}
                 list3Title = "Documentation"
-                list3 = {procedure.documentation ? procedure.documentation.split("\n") : []}
+                list3 = {procedure.documentation ? JSON.parse(procedure.documentation) : []}
             />
         </div>
     );

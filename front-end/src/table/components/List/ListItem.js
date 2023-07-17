@@ -6,10 +6,13 @@ import { EditPrompt } from '../EditPrompt';
 export const ListItem = (props) => {
     const [itemClassName, setItemClassName] = useState("minimised");
     const [selectedStep, setSelectedStep] = useState(0);
+    const indentedPattern = [false, false, false, false];
     const pattern = /^\d+\.\s+/;
     const pattern2 = /^[-•]\s+/;
+    const pattern3 = /^[a-z]\.\s*/;
 
     useEffect(() => {
+        setItemClassName("minimised");
         props.list.forEach((value, index, arr) => {
             arr[index] = value.trim();
         });
@@ -36,7 +39,8 @@ export const ListItem = (props) => {
             props.list.map((data, index) => (
                 (data.length > 0) && (
                     pattern.test(data) ? (
-                        <div key={index} className={`list-table4-list-item${isEditSelected(index) ? " active" : ""}`}>
+                        <div key={index} className={`list-table4-list-item${isEditSelected(index) ? " active" : ""}`} style={{marginLeft: indentedPattern[3] ? "20px" : "0"}}>
+                            {indentedPattern[0] = true}
                             <div style={{display: "flex", marginBottom: isEditSelected(index) ? "15px" : "0"}} onClick={() => setSelectedStep(index)}>
                                 <h3>{data.substring(0, data.indexOf('.'))}</h3>
                                 <text>{data.substring(data.indexOf('.') + 2)}</text>
@@ -45,7 +49,8 @@ export const ListItem = (props) => {
                         </div>
                     ) : (
                         pattern2.test(data) ? (
-                            <div key={index} className='list-table4-list-item'>
+                            <div key={index} className='list-table4-list-item' style={{marginLeft: indentedPattern[0] ? "40px" : "0"}}>
+                                {indentedPattern[1] = true}
                                 <div style={{display: "flex", marginBottom: isEditSelected(index) ? "15px" : "0"}} onClick={() => setSelectedStep(index)}>
                                     <h3>-</h3>
                                     <text>{data.substring(2)}</text>
@@ -53,13 +58,25 @@ export const ListItem = (props) => {
                                 {isEditSelected(index) && <EditPrompt/>}
                             </div>
                         ) : (
-                            <div key={index} className='list-table4-list-item'>
-                                <div style={{display: "flex", marginBottom: isEditSelected(index) ? "15px" : "0"}} onClick={() => setSelectedStep(index)}>
-                                    <h3>-</h3>
-                                    <text>{data}</text>
+                            pattern3.test(data) ? (
+                                <div key={index} className='list-table4-list-item' style={{marginLeft: indentedPattern[0] ? "40px" : "0"}}>
+                                    {indentedPattern[2] = true}
+                                    <div style={{display: "flex", marginBottom: isEditSelected(index) ? "15px" : "0"}} onClick={() => setSelectedStep(index)}>
+                                        <h3>{data.substring(0, data.indexOf('.'))}</h3>
+                                        <text>{data.replace(pattern3, '')}</text>
+                                    </div>
+                                    {isEditSelected(index) && <EditPrompt/>}
                                 </div>
-                                {isEditSelected(index) && <EditPrompt/>}
-                            </div>
+                            ) : (
+                                <div key={index} className='list-table4-list-item'>
+                                    {indentedPattern[3] = true}
+                                    <div style={{display: "flex", marginBottom: isEditSelected(index) ? "15px" : "0"}} onClick={() => setSelectedStep(index)}>
+                                        <h3>-</h3>
+                                        <text>{data}</text>
+                                    </div>
+                                    {isEditSelected(index) && <EditPrompt/>}
+                                </div>
+                            )
                         )
                     )
                 )

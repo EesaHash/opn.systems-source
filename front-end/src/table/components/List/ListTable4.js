@@ -61,23 +61,26 @@ export const ListTable4 = (props) => {
                     listTitle = {props.list1Title}
                     list = {props.list1}
                     editStatus = {editStatus}
+                    data = {props.desc}
                 />
                 <ListItem 
                     listTitle = {props.list2Title}
                     list = {props.list2}
                     editStatus = {editStatus}
+                    data = {props.desc}
                 />
                 <ListItem 
                     listTitle = {props.list3Title}
                     list = {props.list3}
                     editStatus = {editStatus}
+                    data = {props.desc}
                 />
             </div>
         </div>
     );
 };
 export const FifthTableDescAsList = (icon, title, data) => {
-    const temp = data ? data.split("\n") : [];
+    const temp = data ? JSON.parse(data) : [];
     const pattern = /^\d+\.\s+/;
     const pattern2 = /^[-•]\s+/;
     return(
