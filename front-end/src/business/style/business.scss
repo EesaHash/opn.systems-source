@@ -139,9 +139,9 @@ $navbaritem-width: calc(pane.$mainbox-width / 7 + 1.5vw);
             height: 100%;
 
             & hr {
-                margin-top: -3px;
+                margin-top: -1px;
                 border: none;
-                height: 3px;
+                height: 1px;
                 background-color: #ACACAC;
             }
 
@@ -176,7 +176,7 @@ $navbaritem-width: calc(pane.$mainbox-width / 7 + 1.5vw);
 
                     &:hover,
                     &.active {
-                        border-bottom: 3px solid #5D5FEF;
+                        border-bottom: 1px solid #5D5FEF;
                     }
 
                     & .business-dashboard-navbar-item-content {

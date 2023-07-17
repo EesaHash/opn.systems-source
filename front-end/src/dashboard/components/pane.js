@@ -1,7 +1,7 @@
 import React from "react";
 import "../style/pane.css";
 import { BusinessDashboard } from "../../business/components/businessDashboard";
-import MailOutlineIcon from '@mui/icons-material/MailOutline';
+import EmailIcon from '../svg/emailIcon';
 import CreateIcon from '@mui/icons-material/Create';
 import { openPopUpForm } from "../page/dashboard_main";
 
@@ -46,7 +46,7 @@ const emptyPane = (user) => {
                     <div className="nametitle" style={{marginLeft:"30px"}}>
                         <h1 >{`${user.first_name} ${user.last_name ? user.last_name : ""}`}</h1>
                         <div className="email" >
-                        <MailOutlineIcon className="icon"/>
+                        <EmailIcon className="icon"/>
                         <span className="email-text">{user.email}</span>
                         </div>
                     </div>
