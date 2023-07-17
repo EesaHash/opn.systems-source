@@ -219,7 +219,7 @@ export const ProceduresDashboard = (props) => {
                 data = { procedure }
                 desc = { descList }
                 list1Title = "Procedure"
-                list1 = {procedure.procedure ? procedure.procedure.split("\n\n") : []}
+                list1 = {procedure.procedure ? procedure.procedure.split("\n") : []}
                 list2Title = "Responsibility"
                 list2 = {procedure.responsibility ? procedure.responsibility.split("\n") : []}
                 list3Title = "Documentation"

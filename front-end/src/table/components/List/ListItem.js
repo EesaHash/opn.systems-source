@@ -1,11 +1,18 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import "../../style/table.css";
 import { KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material';
 
 export const ListItem = (props) => {
+    let idx = 0;
     const [itemClassName, setItemClassName] = useState("minimised");
     const pattern = /^\d+\.\s+/;
     const pattern2 = /^[-•]\s+/;
+
+    useEffect(() => {
+        props.list.forEach((value, index, arr) => {
+            arr[index] = value.trim();
+        });
+    }, [props.list]);
 
     const expandMinimisedBtn = _ => {
         if(itemClassName === "minimised")
@@ -26,7 +33,7 @@ export const ListItem = (props) => {
                 (data.length > 0) && (
                     pattern.test(data) ? (
                         <div key={index} className='list-table4-list-item'>
-                            <h3>{index + 1}</h3>
+                            <h3>{++idx}</h3>
                             <text>{data.substring(data.indexOf('.') + 2)}</text>
                         </div>
                     ) : (
