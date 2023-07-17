@@ -4,7 +4,6 @@ import { KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material';
 import { EditPrompt } from '../EditPrompt';
 
 export const ListItem = (props) => {
-    let idx = 0;
     const [itemClassName, setItemClassName] = useState("minimised");
     const [selectedStep, setSelectedStep] = useState(0);
     const pattern = /^\d+\.\s+/;
@@ -39,7 +38,7 @@ export const ListItem = (props) => {
                     pattern.test(data) ? (
                         <div key={index} className={`list-table4-list-item${isEditSelected(index) ? " active" : ""}`}>
                             <div style={{display: "flex", marginBottom: isEditSelected(index) ? "15px" : "0"}} onClick={() => setSelectedStep(index)}>
-                                <h3>{++idx}</h3>
+                                <h3>{data.substring(0, data.indexOf('.'))}</h3>
                                 <text>{data.substring(data.indexOf('.') + 2)}</text>
                             </div>
                             {isEditSelected(index) && <EditPrompt/>}
