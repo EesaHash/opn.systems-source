@@ -38,16 +38,32 @@ const updateSingleSop = async (req, res) => {
 }
 
 
+/*
+{
+    list of steps
+    prompt (AI text input by user)
+    idx (index of the step in the list of steps)
+}
+*/
+const regenerateSopStep = async (req, res) => {
+    try {
+        const regeneratedListWithStep = await editStep(JSON.parse(req.body.steps), req.body.prompt, req.body.idx);
+        return res.status(200).json({ status: "SUCCESS", step: regeneratedListWithStep[req.body.idx],regeneratedList: JSON.stringify(regeneratedListWithStep)});
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({ message: "ERROR" });
+    }
+}
+
 const updateSOP = async (sopID, customSop) => {
     try {
         const sop = await SOP.update({
             title: customSop.title,
-            definitions: customSop.definitions,
+            definitions: JSON.stringify(customSop.definitions),
             purpose: customSop.purpose,
-            industry: customSop.industry,
-            responsibility: customSop.responsibility,
+            responsibility: JSON.stringify(customSop.responsibility),
             procedure: JSON.stringify(customSop.procedure),
-            documentation: customSop.documentation,
+            documentation: JSON.stringify(customSop.documentation),
             stage: customSop.stage
         }, { where: { id: sopID } });
         return sop;
@@ -211,10 +227,10 @@ const generateFewSOPs = async (clientJourney, forStage) => {
             await SOP.create({
                 title: sop.title,
                 purpose: sop.purpose,
-                definitions: sop.definitions,
-                responsibility: sop.responsibility,
+                definitions: JSON.stringify(sop.definitions),
+                responsibility: JSON.stringify(sop.responsibility),
                 procedure: JSON.stringify(sop.procedure),
-                documentation: sop.documentation,
+                documentation: JSON.stringify(sop.documentation),
                 stage: forStage,
                 clientJourneyID: clientJourney.id
             });
@@ -241,7 +257,7 @@ const generateFewSOPs = async (clientJourney, forStage) => {
 
 const generateSingleSOP = async (statement) => {
     try {
-        const chat = new ChatOpenAI({ temperature: 0.9 });
+        const chat = new ChatOpenAI({ temperature: 0.9, model: modelName});
         const memory = new BufferMemory({ returnMessages: true, memoryKey: "history" });
         const messagesPlaceholder = new MessagesPlaceholder("history");
         const chatPrompt = ChatPromptTemplate.fromPromptMessages([
@@ -317,34 +333,36 @@ const generateSingleSOP = async (statement) => {
             input: `Generate the procedure as a detailed paragraph".`,
         });
 
+        const unformattedDocumentation = await documentationChain.call({
+            input: `Generate the documentation. Dont add any labels or tags for example "Documentation: "`
+        });
+
+        const unformattedDefinitions = await definitionsChain.call({
+            input: `List some abbreviations that WERE USED in procedure (not more than 4). Dont add any labels or tags for example "Definitions: "`
+        });
+
+        const unformattedResponsibility = await responsibilityChain.call({
+            input: `List the people roles responsible. Dont add any labels or tags for example "Responsibility: "`
+        });
+
         let procedure = null;
+        let other = null;
         let i = 0;
-        while (i < 5) {
-            procedure = await getStepsForProcedure(unformattedProcedure, chat);
-            if (procedure != null) {
-                break;
+        while (i < 3) {
+            if (procedure == null) {
+                procedure = await formatProcedure(unformattedProcedure, chat);
+            }
+            if (other == null) {
+                other = await formatResponsibilityDefinitionDocumentation(unformattedResponsibility,unformattedDefinitions, unformattedDocumentation, chat);
             }
             i++;
         }
 
-        const documentation = await documentationChain.call({
-            input: `Generate the documentation. Dont add any labels or tags for example "Documentation: "`
-        });
-
-        const definitions = await definitionsChain.call({
-            input: `List some abbreviations that WERE USED in procedure (not more than 4). Dont add any labels or tags for example "Definitions: "`
-        });
-
-        const responsibility = await responsibilityChain.call({
-            input: `List the people roles responsible. Dont add any labels or tags for example "Responsibility: "`
-        });
-
-        if (procedure == null) {
+        if (procedure == null || other == null) {
             throw "Unable to generate procedure";
         }
 
-        let output = Object.assign({}, title, responsibility, purpose, definitions, procedure, documentation);
-        console.log(output);
+        let output = Object.assign({}, title, purpose, procedure, other);
         return output;
     } catch (err) {
         console.log(err);
@@ -353,12 +371,25 @@ const generateSingleSOP = async (statement) => {
 }
 
 
-async function editStep(procedureList, userPrompt, idx) {
+async function editStep(stepList, userPrompt, idx) {
+
+    const parser = StructuredOutputParser.fromNamesAndDescriptions({
+        resp: "adjusted/modified paragraph or statement",
+      });
+    const fixParser = OutputFixingParser.fromLLM(
+        new ChatOpenAI({ temperature: 0 }),
+        parser
+    );
+
+    const formatInstructions = parser.getFormatInstructions();
+    
     const prompt = new PromptTemplate({
         template:
             `You are tasked with modifying the provided paragraph with according to the user's request/preference.
-            Here is the paragraph: ${procedureList[idx]},
-            And here is user's preference/request: {prompt},
+            Please add information from external sources and give an indepth answer using numericals (if possible).
+            Give some recommendations as well, that are relevant to what the user is asking as well as describe how they would carry out these recommendations as well.
+            Here is the paragraph: ${stepList[idx]},
+            And here is user's preference/request: {userPrompt},
             {format_instructions};`,
         inputVariables: ["userPrompt"],
         partialVariables: { format_instructions: formatInstructions },
@@ -368,17 +399,19 @@ async function editStep(procedureList, userPrompt, idx) {
         prompt: prompt,
         llm: model,
         outputKey: "result",
+        outputParser: parser,
+        fixParser: fixParser
     });
 
     const output = await chain.call({
         userPrompt: userPrompt
     });
 
-    procedureList[idx] = output.result;
-    return output.result;
+    stepList[idx] = output.result.resp;
+    return stepList;
 }
 
-async function getStepsForProcedure(procedure, chat) {
+async function formatProcedure(procedure, chat) {
 
     const parser = StructuredOutputParser.fromZodSchema(
         z.object({
@@ -409,10 +442,63 @@ async function getStepsForProcedure(procedure, chat) {
         outputParser: parser,
         fixParser: fixParser
     })
-    
+
     try {
         const output = await chain.call({
             procedure: JSON.stringify(procedure)
+        });
+        return output.result;
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
+}
+
+async function formatResponsibilityDefinitionDocumentation(responsibility, definition, documentation, chat) {
+    const parser = StructuredOutputParser.fromZodSchema(
+        z.object({
+            responsibility: z
+                .array(z.string())
+                .describe(`Responsible roles, remove existing old numbering/bulleting`),
+            definitions: z
+            .array(z.string())
+            .describe(`Definitions, remove existing old numbering/bulleting`),
+            documentation: z
+            .array(z.string())
+            .describe(`Documentation, remove existing old numbering/bulleting`),
+        })
+    );
+    const fixParser = OutputFixingParser.fromLLM(
+        new ChatOpenAI({ temperature: 0 }),
+        parser
+    );
+
+    const formatInstructions = parser.getFormatInstructions();
+    const prompt = new PromptTemplate({
+        template:
+            `You are tasked with formatting the provided paragraphs according to the instructions provided.
+            Here are the required details:
+            {responsibility}, 
+            {definition}, 
+            {documentation}
+        {format_instructions};`,
+        inputVariables: ["responsibility", "definition", "documentation"],
+        partialVariables: { format_instructions: formatInstructions },
+    });
+
+    const chain = new LLMChain({
+        prompt: prompt,
+        llm: chat,
+        outputKey: "result",
+        outputParser: parser,
+        fixParser: fixParser
+    })
+
+    try {
+        const output = await chain.call({
+            responsibility: JSON.stringify(responsibility),
+            definition: JSON.stringify(definition),
+            documentation: JSON.stringify(documentation)
         });
         return output.result;
     } catch (error) {
@@ -426,5 +512,6 @@ router.post("/getall", getSopsForClientJourney);
 router.post("/get_for_stage", getSopsForStage);
 router.post("/delete_for_stage", deleteSopsForStage);
 router.post("/delete_single", deleteSingleSop);
-router.post("/update_single", updateSingleSop)
+router.post("/update_single", updateSingleSop);
+router.post("/regenerate_step", regenerateSopStep);
 module.exports = router;
