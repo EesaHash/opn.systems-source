@@ -49,7 +49,7 @@ export const ListItem = (props) => {
                         </div>
                     ) : (
                         pattern2.test(data) ? (
-                            <div key={index} className='list-table4-list-item' style={{marginLeft: indentedPattern[0] ? "40px" : "0"}}>
+                            <div key={index} className={`list-table4-list-item${isEditSelected(index) ? " active" : ""}`} style={{marginLeft: indentedPattern[0] ? "40px" : "0"}}>
                                 {indentedPattern[1] = true}
                                 <div style={{display: "flex", marginBottom: isEditSelected(index) ? "15px" : "0"}} onClick={() => setSelectedStep(index)}>
                                     <h3>-</h3>
@@ -59,7 +59,7 @@ export const ListItem = (props) => {
                             </div>
                         ) : (
                             pattern3.test(data) ? (
-                                <div key={index} className='list-table4-list-item' style={{marginLeft: indentedPattern[0] ? "40px" : "0"}}>
+                                <div key={index} className={`list-table4-list-item${isEditSelected(index) ? " active" : ""}`} style={{marginLeft: indentedPattern[0] ? "40px" : "0"}}>
                                     {indentedPattern[2] = true}
                                     <div style={{display: "flex", marginBottom: isEditSelected(index) ? "15px" : "0"}} onClick={() => setSelectedStep(index)}>
                                         <h3>{data.substring(0, data.indexOf('.'))}</h3>
@@ -68,7 +68,7 @@ export const ListItem = (props) => {
                                     {isEditSelected(index) && <EditPrompt/>}
                                 </div>
                             ) : (
-                                <div key={index} className='list-table4-list-item'>
+                                <div key={index} className={`list-table4-list-item${isEditSelected(index) ? " active" : ""}`}>
                                     {indentedPattern[3] = true}
                                     <div style={{display: "flex", marginBottom: isEditSelected(index) ? "15px" : "0"}} onClick={() => setSelectedStep(index)}>
                                         <h3>-</h3>
