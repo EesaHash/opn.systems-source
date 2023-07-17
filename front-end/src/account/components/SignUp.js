@@ -1,12 +1,13 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import { getUserID } from "../../App";
 import { useSearchParams } from "react-router-dom";
 import { Error } from "@mui/icons-material";
 
 export const SignUp = _ => {
+    const [queryParameters] = useSearchParams();
     const [userID, setUserID] = useState("none");
     const [userInput, setUserInput] = useState({
-        email: "",
+        email: queryParameters.get("email"),
         username: "",
         password: "",
         firstName: "",
@@ -14,35 +15,26 @@ export const SignUp = _ => {
     });
     const [emailList, setEmailList] = useState([]);
     const [invitationList, setInvitationList] = useState([]);
-    const [queryParameters] = useSearchParams();
 
     getUserID().then(res => setUserID(res));
 
+    useEffect(() => {
+        if(userInput.email && userInput.username && userInput.password.length >= 8 && userInput.firstName && userInput.lastName)
+            document.getElementById("create-account-btn").style.backgroundColor = "#5D5FEF";
+        else
+            document.getElementById("create-account-btn").style.backgroundColor = "#A2ABBA";
+    }, [userInput]);
+
     const nextAction = _ => {
         try{
-            const email = document.getElementById("email").value;
-            const username = document.getElementById("username").value;
-            const password = document.getElementById("password").value;
-            const firstName = document.getElementById("firstName").value;
-            const lastName = document.getElementById("lastName").value;
-
             // Check if the required fields are filled
-            if(!email || !username || !password || !firstName || !lastName){
+            if(!userInput.email || !userInput.username || !userInput.password || !userInput.firstName || !userInput.lastName){
                 return alert("Please fill in all non-optional fields!");
             }
 
             // Check if the password is at least 8 characters
-            if(password.length < 8)
+            if(userInput.password.length < 8)
                 return alert("Password must be at least 8 characters long!");
-
-            const data = {
-                email: email,
-                username: username,
-                password: password,
-                firstName: firstName,
-                lastName: lastName
-            };
-            setUserInput(data);
 
             fetch("/api/authenticateuser", {
                 method: "POST",
@@ -50,8 +42,8 @@ export const SignUp = _ => {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    username: username,
-                    email: email
+                    username: userInput.username,
+                    email: userInput.email
                 })
             })
                 .then((res) => {return res.json(); })
@@ -115,26 +107,26 @@ export const SignUp = _ => {
                         <h1>Create Account</h1>
                         <div className="user-authentication-input">
                             <label htmlFor="email">Email Address</label>
-                            <input type="email" id ="email" placeholder="johndoe@gmail.com" onKeyPress={handleKeypress} defaultValue={queryParameters.get("email")} />
+                            <input type="email" value={userInput.email} placeholder="johndoe@gmail.com" onKeyPress={handleKeypress} onChange={event => setUserInput({...userInput, email: event.target.value})} />
                         </div>
                         <div className="user-authentication-input">
                             <label htmlFor="username">Username</label>
-                            <input type ="text" id="username" placeholder="John Doe" onKeyPress={handleKeypress} />
+                            <input type ="text" value={userInput.username} placeholder="John Doe" onKeyPress={handleKeypress} onChange={event => setUserInput({...userInput, username: event.target.value})} />
                         </div>
                         <div className="user-authentication-input" style={{display: "flex"}} >
                             <div className="half-input left">
                                 <label htmlFor="firstName">First Name</label>
-                                <input type="text" id ="firstName" placeholder="John" onKeyPress={handleKeypress} />
+                                <input type="text"value={userInput.firstName} placeholder="John" onKeyPress={handleKeypress} onChange={event => setUserInput({...userInput, firstName: event.target.value})} />
                             </div>
                             <div className="half-input">
                                 <label htmlFor="lastName">{`Last Name`}</label>
-                                <input type="text" id ="lastName" placeholder="Doe" onKeyPress={handleKeypress} />
+                                <input type="text" value={userInput.lastName} placeholder="Doe" onKeyPress={handleKeypress} onChange={event => setUserInput({...userInput, lastName: event.target.value})} />
                             </div>
                         </div>
                         <div>
                             <div className="user-authentication-input password">
                                 <label htmlFor="password">Password</label>
-                                <input type="password" id ="password" onKeyPress={handleKeypress} />
+                                <input type="password" value={userInput.password} onKeyPress={handleKeypress} onChange={event => setUserInput({...userInput, password: event.target.value})} />
                             </div>
                             <div className="alert">
                                 <Error/>
@@ -142,7 +134,7 @@ export const SignUp = _ => {
                             </div>
                         </div>
                         <div>
-                            <button onClick={nextAction}> Next</button>
+                            <button id="create-account-btn" onClick={nextAction}> Next</button>
                         </div>
                         <div>
                             <label style={{marginRight: "5px"}} >Have an account? </label>
