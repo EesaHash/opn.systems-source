@@ -2,7 +2,11 @@ import React from 'react';
 
 export const UpdateConfirmation = (props) => {
     const save = _ => {
-        props.setConfirmation(true);
+        props.setConfirmation(1);
+        closeForm();
+    };
+    const discardChanges = _ => {
+        props.setConfirmation(0);
         closeForm();
     };
     const closeForm = _ => {
@@ -21,7 +25,7 @@ export const UpdateConfirmation = (props) => {
                     <input type='text' value={props.documentName} readOnly/>
                 </div>
                 <div className='pop-up-button'>
-                    <button className='cancel-button' onClick={closeForm}>Cancel</button>
+                    <button className='cancel-button' onClick={discardChanges}>Discard</button>
                     <button className='save-button' onClick={save} >Save</button>
                 </div>
             </div>
