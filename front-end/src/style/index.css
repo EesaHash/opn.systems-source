@@ -246,10 +246,26 @@ button {
   font-size: 16px;
   color: #1A1C21;
 }
-.confirmation input:focus {
-  border-color: transparent !important;
-}
 .confirmation .cancel-button {
   border-color: #BD271E !important;
   color: #BD271E !important;
+}
+.confirmation .pop-up-input {
+  display: flex;
+  background-color: #F8F8F8;
+  padding: 3px 15px;
+  border-radius: 28px;
+}
+.confirmation .pop-up-input img {
+  height: 25px;
+  margin: auto;
+  margin-left: 0;
+  margin-right: 0;
+}
+.confirmation .pop-up-input input {
+  margin-top: 0;
+  background-color: transparent;
+}
+.confirmation .pop-up-input input:focus {
+  border-color: transparent !important;
 }/*# sourceMappingURL=index.css.map */

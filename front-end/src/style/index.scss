@@ -251,13 +251,27 @@ $confirmation-height: 50vh;
             color: #1A1C21;
         }
     }
-    & input{
-        &:focus{
-            border-color: transparent !important;
-        }
-    }
     & .cancel-button{
         border-color: #BD271E !important;
         color: #BD271E !important;
+    }
+    & .pop-up-input{
+        display: flex;
+        background-color: #F8F8F8;
+        padding: 3px 15px;
+        border-radius: 28px;
+        & img{
+            height: 25px;
+            margin: auto;
+            margin-left: 0;
+            margin-right: 0;
+        }
+        & input{
+            margin-top: 0;
+            background-color: transparent;
+            &:focus{
+                border-color: transparent !important;
+            }
+        }
     }
 }
