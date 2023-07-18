@@ -13,11 +13,12 @@ const {
 } = require("langchain/output_parsers");
 const { addProduct } = require("../ProductController/saveProductController");
 const { getStages } = require("./getStageNamesController");
+const { Client } = require("pg");
 
 require('dotenv').config()
 
 const clientJourney = {};
-
+const stages = ["awareness", "interest", "evaluation", "decision", "purchase", "implementation", "postPurchase", "retention"];
 
 //"gpt-3.5-turbo-16k"
 const modelName = "gpt-3.5-turbo-16k"
@@ -107,21 +108,34 @@ Example JSON body:
 
 clientJourney.saveRegeneratedStage = async (req, res) => {
     try {
-        const clientJourneyList = await ClientJourney.findAll({ where: { productID: req.body.productID } });
+        const {journey} = req.body;
+        const clientJourneyList = await ClientJourney.findAll({ where: { productID: journey.productID } });
         const cj = clientJourneyList[0];
         if (cj == null) {
             throw "Client Journey or Business not found!";
         }
-        const stage = req.body.stage;
-        const content = req.body.content;
-        cj[stage] = JSON.stringify(content);
-        await cj.save();
+        await ClientJourney.update({
+            awareness: journey.awareness,
+            interest: journey.interest,
+            evaluation: journey.evaluation,
+            decision: journey.decision,
+            purchase: journey.purchase,
+            implementation: journey.implementation,
+            postPurchase: journey.postPurchase,
+            retention: journey.retention
+        }, { where: { id: journey.id} });
+        console.log(`[Success] update client journey: ${journey.id}`)
+        // const stage = req.body.stage;
+        // const content = req.body.content;
+        // cj[stage] = JSON.stringify(content);
+        // await cj.save();
         return res.status(200).json({
-
+            status: true
         });
     } catch (error) {
         console.log(error);
         return res.status(403).json({
+            status: false,
             result: `Failed`
         });
     }
@@ -137,9 +151,10 @@ Example JSON body:
 */
 clientJourney.regenerateStage = async (req, res) => {
     try {
-        const { clientJourneyID, prompt } = req.body;
-        const clientJourneyList = await ClientJourney.findAll({ where: { id: clientJourneyID } });
-        const cj = clientJourneyList[0];
+        const { cj, prompt } = req.body;
+        const clientJourneyID = cj.id;
+        // const clientJourneyList = await ClientJourney.findAll({ where: { id: clientJourneyID } });
+        // const cj = clientJourneyList[0];
         if (cj == null) {
             throw "Client Journey or Business not found!";
         }
@@ -170,6 +185,7 @@ clientJourney.regenerateStage = async (req, res) => {
             if (output == null) {
                 throw "Failed to generate stage!";
             }
+            console.log(`[Success] regenerate (automatic) stage for client journey: ${clientJourneyID}`);
             return res.status(200).json({
                 status: true,
                 output
@@ -180,7 +196,7 @@ clientJourney.regenerateStage = async (req, res) => {
             if (output == null) {
                 throw "Failed to generate stage!";
             }
-            console.log(output);
+            console.log(`[Success] regenerate (by prompt) stage for client journey: ${clientJourneyID}`);
             return res.status(200).json({
                 status: true,
                 output
@@ -190,7 +206,8 @@ clientJourney.regenerateStage = async (req, res) => {
         console.log(error);
         return res.status(403).json({
             status: false,
-            result: `Failed`
+            result: `Failed`,
+            message: error
         });
     }
 }

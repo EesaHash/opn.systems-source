@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import "../style/business.css";
-import { closePopUpForm } from '../../dashboard/page/dashboard_main';
 import { DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown } from "reactstrap";
 import { getBusinessTypeList, getCompanySizeList } from '../../App';
 import { loadingPage } from '../../warning_pages/components/loadingPage';
@@ -171,7 +170,6 @@ export const CreateBusiness = (props) => {
         // document.getElementById("create-business-step3").style.display = "none";
         setLoading(false);
         document.getElementById("createAccountForm").style.display = "none";
-        closePopUpForm();
     };
     const step1 = _ => {
         const setBusinessName = (value) => {

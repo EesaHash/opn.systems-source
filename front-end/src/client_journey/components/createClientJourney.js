@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import "../style/client_journey.css";
 import { loadingPage } from '../../warning_pages/components/loadingPage';
-import { closePopUpForm } from '../../dashboard/page/dashboard_main';
 import { DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown } from 'reactstrap';
 import { areaItem, textInputItem } from '../../public_components/popupInput';
-
 
 export const CreateClientJourney = (props) => {
     const [productInput, setProductInput] = useState({
@@ -58,7 +56,6 @@ export const CreateClientJourney = (props) => {
         document.getElementById("create-client-journey-step2").style.display = "none";
         setLoading(false);
         document.getElementById("createClientJourney").style.display = "none";
-        closePopUpForm();
     };
     
     const step1 = _ => {

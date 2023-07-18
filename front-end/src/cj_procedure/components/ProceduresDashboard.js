@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import "../style/procedure.css";
 import { FolderList } from '../../table/components/Folder/FolderList';
-import { closePopUpForm, openAccessLimitForm, openPopUpForm } from '../../dashboard/page/dashboard_main';
+import { openAccessLimitForm } from '../../dashboard/page/dashboard_main';
 import { FifthTableDescAsList, FifthTableDescItem, ListTable4 } from '../../table/components/List/ListTable4';
 import { FormatAlignLeft } from '@mui/icons-material';
 import { FolderList2 } from '../../table/components/Folder/FolderList2';
 import { ListTable3 } from '../../table/components/List/ListTable3';
+import { stages } from '../../client_journey/components/originalStages';
 
 export const ProceduresDashboard = (props) => {
     const [index, setIndex] = useState(-1);
@@ -13,7 +14,6 @@ export const ProceduresDashboard = (props) => {
     const [procedure, setProcedure] = useState({});
     const [procedures, setProcedures] = useState([]);
     const [stage, setStage] = useState("");
-    const stages = ["awareness", "interest", "evaluation", "decision", "purchase", "implementation", "postPurchase", "retention"];
     
     useEffect(() => {
         const mainTable = document.getElementById("procedure-main-table");
@@ -58,7 +58,6 @@ export const ProceduresDashboard = (props) => {
         if(props.journeys.length > 0)
             return openAccessLimitForm();
         document.getElementById("createClientJourney").style.display = "block";
-        openPopUpForm();
     };
 
     // Going to Tab 2
@@ -164,11 +163,9 @@ export const ProceduresDashboard = (props) => {
     };
     const openGenerateProcedureForm = _ => {
         document.getElementById("generateProcedureForm").style.display = "block";
-        openPopUpForm();
     };
     const closeGenerateProduceForm = _ => {
         document.getElementById("generateProcedureForm").style.display = "none";
-        closePopUpForm();
     };
     
     const descList = [

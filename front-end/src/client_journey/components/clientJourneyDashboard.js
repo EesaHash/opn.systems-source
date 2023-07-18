@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import "../style/client_journey.css";
 import { ListTable } from '../../table/components/List/ListTable';
-import { openAccessLimitForm, openPopUpForm } from '../../dashboard/page/dashboard_main';
+import { openAccessLimitForm } from '../../dashboard/page/dashboard_main';
 import { ListTable2 } from '../../table/components/List/ListTable2';
+import { stages } from './originalStages';
+import { UpdateConfirmation } from '../../public_components/UpdateConfirmation';
 
 export const ClientJourneyDashboard = (props) => {
     const [journey, setJourney] = useState({});
+    const [updateConfirmation, setUpdateConfirmation] = useState(false);
 
     useEffect(() => {
         const mainTable = document.getElementById("client-journey-main-table");
@@ -17,11 +20,38 @@ export const ClientJourneyDashboard = (props) => {
         }
     }, [props.activeLink2]);
 
+    useEffect(() => {
+        const saveChanges = _ => {
+            try{
+                fetch("/api/clientjourney/save_regenerated_stage", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        journey
+                    })
+                })
+                    .then((res) => {return res.json(); })
+                    .then((data) => {
+                        if(data.status){
+                            props.setJourneys([...props.journeys.filter(obj => obj.id !== journey.id), journey]);
+                        }
+                        setUpdateConfirmation(false);
+                    })
+            }catch(error){
+                console.log(error);
+            }
+        };
+        if(updateConfirmation)
+            saveChanges();
+        // eslint-disable-next-line
+    }, [updateConfirmation])
+
     const openCreateJourneyForm = _ => {
         if(props.journeys.length > 0)
             return openAccessLimitForm();
         document.getElementById("createClientJourney").style.display = "block";
-        openPopUpForm();
     };
 
     // Going to Tab 2
@@ -45,24 +75,30 @@ export const ClientJourneyDashboard = (props) => {
             secondaryTable.style.display = "none";
         }
     };
-    
-    const automaticallyRegenerate = (stage) => {
-        regenerateClientJourney(stage, null);
+
+    const openUpdateConfirmation = _ => {
+        document.getElementById("client-journey-update-confirm").style.display = "block";
     };
-    const regenerateByPrompt = (stage, prompt) => {
+    
+    const automaticallyRegenerate = (index, setLoading) => {
+        regenerateClientJourney(index, null, setLoading);
+    };
+    const regenerateByPrompt = (index, prompt, setLoading) => {
         if(prompt){
-            regenerateClientJourney(stage, prompt);
+            regenerateClientJourney(index, prompt, setLoading);
         }
     };
-    const regenerateClientJourney = (stage, prompt) => {
+    const regenerateClientJourney = (index, prompt, setLoading) => {
         try{
+            const stage = stages[index];
+            setLoading(true);
             fetch("/api/clientjourney/regenerate_stage", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    id: journey.id,
+                    cj: journey,
                     businessId: journey.businessId,
                     stage: stage,
                     prompt: prompt
@@ -102,6 +138,7 @@ export const ClientJourneyDashboard = (props) => {
                                 break;
                         }
                         setJourney(temp);
+                        setLoading(false);
                     }
                 });
         }catch(error){
@@ -110,7 +147,12 @@ export const ClientJourneyDashboard = (props) => {
     };
 
     return(
-        <div className='client-journey'>
+        <div className='client-journey' classList = "client-journey">
+            <UpdateConfirmation
+                id = "client-journey-update-confirm"
+                documentName = {journey.title}
+                setConfirmation = {setUpdateConfirmation}
+            />
             <ListTable 
                 id = "client-journey-main-table"
                 title = "Client Journey" 
@@ -126,8 +168,10 @@ export const ClientJourneyDashboard = (props) => {
                 dataHeading = {journey.stages}
                 data = {journey}
                 button1 = {showJourneyList}
+                saveBtn = {openUpdateConfirmation}
                 automaticallyRegenerate = {automaticallyRegenerate}
                 regenerateByPrompt = {regenerateByPrompt}
+                loadingTitle = {"AI is regenerating the client journey for"}
             />
         </div>
     );

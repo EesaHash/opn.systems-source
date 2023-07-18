@@ -3,11 +3,9 @@ import "../style/pane.css";
 import { BusinessDashboard } from "../../business/components/businessDashboard";
 import EmailIcon from '../svg/emailIcon';
 import CreateIcon from '@mui/icons-material/Create';
-import { openPopUpForm } from "../page/dashboard_main";
 
 const openAccountSettingForm = _ => {
     document.getElementById("account-setting-Form").style.display = "block";
-    openPopUpForm();
   }
 export const Pane = (props) => {
     if(props.businesses.length === 0)

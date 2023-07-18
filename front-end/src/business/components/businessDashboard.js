@@ -10,7 +10,6 @@ import EditBusinessIcon from '../svg/editBusinessIcon';
 import DeleteBusinessIcon from '../svg/deleteBusinessIcon';
 import "../style/business.css";
 import { businessDetails } from './businessDetails';
-import { openPopUpForm } from '../../dashboard/page/dashboard_main';
 import { businessOverview } from './businessOverview';
 import { ClientJourneyDashboard } from '../../client_journey/components/clientJourneyDashboard';
 import { ProceduresDashboard } from '../../cj_procedure/components/ProceduresDashboard';
@@ -74,10 +73,9 @@ export const BusinessDashboard = (props) => {
 const title = (business, businessIndex, deleteBusiness) => {
     const openEditBusinessForm = _ => {
         document.getElementById("editBusinessForm").style.display = "block";
-        openPopUpForm();
     };
     return(
-        <div className='business-dashboard-title'>
+        <div id="business-dashboard-title" className='business-dashboard-title'>
             <div className='business-dashboard-title-content'>
                 <div className='business-title'>
                     <img src={`./images/businessIcon/businessIcon${(businessIndex%6)+1}.png`} alt="logo"/>
@@ -102,7 +100,7 @@ const body = (  business, activeLink2,
                 procedures, setProcedures, 
                 policies, setPolicies   ) => {
     return(
-        <div className='business-dashboard-body'>
+        <div id="business-dashboard-body" className='business-dashboard-body'>
             <div className='business-dashboard-body-content'>
                 <div className='business-dashboard-navbar'>
                     {navbarItem(<OverviewIcon/>, "Overview", activeLink3, setActiveLink3)}

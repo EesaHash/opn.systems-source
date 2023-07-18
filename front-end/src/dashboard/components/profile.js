@@ -2,15 +2,12 @@ import React from "react";
 import "../style/profile.css";
 import { logOut } from "../../App";
 import MeetingRoom from '@mui/icons-material/MeetingRoom';
-import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
 import TuneSharpIcon from '@mui/icons-material/TuneSharp';
-import { openPopUpForm } from "../page/dashboard_main";
 
 import SettingsIcon from '../../business/svg/clientjourneyIcon.js';
 
 const openAccountSettingForm = _ => {
   document.getElementById("account-setting-Form").style.display = "block";
-  openPopUpForm();
 }
 
 export const Profile = (props) => {
