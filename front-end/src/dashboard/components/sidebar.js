@@ -2,6 +2,7 @@ import React from 'react';
 import "../style/sidebar.css";
 import { SidebarData } from './SidebarData';
 import { createNewBusinessForm } from '../page/dashboard_main';
+import DropdownArrow from '../svg/dropdownArrow';
 
 export const Sidebar = (props) => {
     return (
@@ -25,9 +26,9 @@ export const Sidebar = (props) => {
                             >
                                 <div className="main-item" onClick={() => { onLink1ClickAction(props.activeLink, val.link, props.setActiveLink) }}>
                                     <div className='main-item-content'>
-                                        <div id="icon" style={{marginRight: "15px"}} > {val.icon} </div>
-                                        <div id="title" > {val.title} </div>
-                                        {(val.title === "Business") && <div class="dropdown-arrow"></div>}
+                                        <div id="icon" style={{marginRight: "12px"}} > {val.icon} </div>
+                                        <div id="title"> {val.title} </div>
+                                        {(val.title === "Business") && <div style={{marginLeft:"4px"}}><DropdownArrow/></div>}
                                     </div>
                                 </div>
                                 {(val.items && props.activeLink === val.link && !props.loading) && (
