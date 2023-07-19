@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import "../../style/table.css";
-import { AccessTime, Chat, Download, Edit, MoreHoriz, Share, SimCardDownload } from '@mui/icons-material';
+import { AccessTime, Chat, Download, Edit, KeyboardArrowDown, KeyboardArrowUp, MoreHoriz, Share, SimCardDownload } from '@mui/icons-material';
 import { ExpandMinimisedTableItem } from '../ExpandMinimisedTableItem';
 import { openAccessLimitForm, openFutureFeatureWarningForm } from '../../../dashboard/page/dashboard_main';
 
 export const ListTable2 = (props) => {
     const [editStatus, setEditStatus] = useState(false);
+    const [isAIEditOver, setIsAIEditOver] = useState(false);
+
     const mainDirectory = _ => {
         return(
             <div className='table-directory-right-header'>
@@ -23,10 +25,18 @@ export const ListTable2 = (props) => {
         props.saveBtn();
         setEditStatus(false);
     };
+    const handleAiEditOver = _ => {
+        setIsAIEditOver(true);
+    };
+    const handleAiEditOut = _ => {
+        setIsAIEditOver(false)
+    };
     const editDirectory = _ => {
         return(
             <div className='table-directory-right-header'>
-                <button className='ai-edit-btn'><img src="./images/ai_icon.png" alt = "icon"/>AI Editing Mode</button>
+                <button className='ai-edit-btn' onMouseOver={handleAiEditOver} onMouseOut={handleAiEditOut}>
+                    <img src="./images/ai_icon.png" alt = "icon"/> AI Editing Mode {isAIEditOver ? <KeyboardArrowUp/> : <KeyboardArrowDown/>}
+                </button>
                 <hr/>
                 <button className='save-btn' onClick={saveUpdate}><SimCardDownload/>Save</button>
             </div>

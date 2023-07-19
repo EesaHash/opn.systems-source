@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import "../style/client_journey.css";
 import { loadingPage } from '../../warning_pages/components/loadingPage';
 import { DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown } from 'reactstrap';
@@ -13,51 +13,11 @@ export const CreateClientJourney = (props) => {
         fundingStrategy: "",
         businessID: props.business.id
     });
+    const [title, setTitle] = useState("");
     const [loading, setLoading] = useState(false);
     const titlePage = "Create Client Journey";
-
-    const generate = _ => {
-        const title = document.getElementById("client-journey-title").value;
-        if(!title)
-            return alert("Please fill in all fields!");
-        document.getElementById("create-client-journey-step2").style.display = "none";
-        setLoading(true);
-        fetch("/api/clientjourney/save", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                title: title,
-                productInput
-            })
-        })
-            .then((res) => { return res.json(); })
-            .then((data) => {
-                if(data.status){
-                    props.setProducts([...props.products, data.product]);
-                }else{
-                    alert(data.message);
-                }
-                closeForm();
-            }); 
-    };
-    const closeForm = _ => {
-        setProductInput({
-            coreServices: "",
-            targetMarket: "",
-            isProduct: "",
-            productOrServiceDescription: "",
-            fundingStrategy: "",
-            businessID: props.business.id
-        })
-        document.getElementById("client-journey-title").value = "";
-        document.getElementById("create-client-journey-step1").style.display = "block";
-        document.getElementById("create-client-journey-step2").style.display = "none";
-        setLoading(false);
-        document.getElementById("createClientJourney").style.display = "none";
-    };
     
+    // STEP 1
     const step1 = _ => {
         const setCoreService = (value) => {
             setProductInput({...productInput, coreServices: value});
@@ -88,11 +48,18 @@ export const CreateClientJourney = (props) => {
                 {areaItem("Funding Strategy", productInput.fundingStrategy, setFundingStrategy)}
                 <div className='pop-up-button'>
                     <button className='cancel-button' onClick={closeForm}>Cancel</button>
-                    <button className='next-button' onClick={nextAction} >Next</button>
+                    <button id="create-journey-step1btn" className='next-button' onClick={nextAction} >Next</button>
                 </div>
             </div>
         );
     };
+    // Dynamic Button Color
+    useEffect(() => {
+        if(!productInput.coreServices || !productInput.targetMarket || !productInput.isProduct || !productInput.productOrServiceDescription || !productInput.fundingStrategy)
+            document.getElementById("create-journey-step1btn").style.backgroundColor = "#A2ABBA";
+        else
+            document.getElementById("create-journey-step1btn").style.backgroundColor = "#5D5FEF";
+    }, [productInput]);
     // Move to Step 2
     const nextAction = _ => {
         try{
@@ -110,6 +77,7 @@ export const CreateClientJourney = (props) => {
         }
     };
 
+    // STEP 2
     const step2 = _ => {
         return(
             <div id="create-client-journey-step2" className="content-form" style={{display: "none"}}>
@@ -125,28 +93,79 @@ export const CreateClientJourney = (props) => {
                 <div className='pop-up-input' >
                     <label>Client Journey Title</label>
                     <input 
-                        id = "client-journey-title"
                         type='text'
+                        value={title}
                         onKeyPress={handleKeypress2} 
+                        onChange={event => setTitle(event.target.value)}
                     />
                 </div>
                 <div className='pop-up-button'>
                     <button className='cancel-button' onClick={closeForm}>Cancel</button>
-                    <button className='next-button' onClick={generate} >Generate File</button>
+                    <button id="create-journey-step2btn" className='next-button' onClick={generate} >Generate File</button>
                 </div>
             </div>
         );
     };
-    // Move back to Step 1
-    const backAction = _ => {
-        document.getElementById("create-client-journey-step1").style.display = "block";
+    // Dynamic Button Color
+    useEffect(() => {
+        if(!title)
+            document.getElementById("create-journey-step2btn").style.backgroundColor = "#A2ABBA";
+        else
+            document.getElementById("create-journey-step2btn").style.backgroundColor = "#5D5FEF";
+    }, [title]);
+    // Generate Client Journey
+    const generate = _ => {
+        if(!title)
+            return alert("Please fill in all fields!");
         document.getElementById("create-client-journey-step2").style.display = "none";
+        setLoading(true);
+        fetch("/api/clientjourney/save", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                title: title,
+                productInput
+            })
+        })
+            .then((res) => { return res.json(); })
+            .then((data) => {
+                if(data.status){
+                    props.setProducts([...props.products, data.product]);
+                }else{
+                    alert(data.message);
+                }
+                closeForm();
+            }); 
     };
     const handleKeypress2 = e => {
         if(e.key === "Enter"){
             generate();
         }
     };
+    // Move back to Step 1
+    const backAction = _ => {
+        document.getElementById("create-client-journey-step1").style.display = "block";
+        document.getElementById("create-client-journey-step2").style.display = "none";
+    };
+
+    const closeForm = _ => {
+        setProductInput({
+            coreServices: "",
+            targetMarket: "",
+            isProduct: "",
+            productOrServiceDescription: "",
+            fundingStrategy: "",
+            businessID: props.business.id
+        });
+        setTitle("");
+        document.getElementById("create-client-journey-step1").style.display = "block";
+        document.getElementById("create-client-journey-step2").style.display = "none";
+        setLoading(false);
+        document.getElementById("createClientJourney").style.display = "none";
+    };
+
     return(
         <section id="createClientJourney" className="form-popup center form-container create-client-journey">
             {step1()}
