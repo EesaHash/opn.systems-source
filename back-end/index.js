@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require('path');
 require("dotenv").config();
+const https = require("https");
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -30,8 +31,14 @@ app.use("/api/sop", require("./controllers/businessControllers/sopController"));
 // PRODUCT APIs CONTROLLERS
 app.use("/api/product/getall", require("./controllers/ProductController/getAllProductController"));
 
+// https
+//   .createServer(app)
+//   .listen(PORT, ()=>{
+//     console.log(`Server listening on ${PORT}`)
+//   });
+
 app.listen(PORT, () => {
-    console.log(`Server listening on ${PORT}`);
+    console.log();
 });
 app.on('error', (err) => {
     console.log(err.message);

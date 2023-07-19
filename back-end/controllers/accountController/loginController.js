@@ -22,7 +22,7 @@ router.post("/", async (req, res) => {
         }
 
         // Verify password
-        if(await user.validPassword(String(password), String(user.dataValues.password))){
+        if(!await user.validPassword(String(password), String(user.dataValues.password))){
             console.log("Invalid password");
             return res.status(400).json({
                 status: false,
