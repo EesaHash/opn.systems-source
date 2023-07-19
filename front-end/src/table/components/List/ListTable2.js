@@ -3,6 +3,7 @@ import "../../style/table.css";
 import { AccessTime, Chat, Download, Edit, KeyboardArrowDown, KeyboardArrowUp, MoreHoriz, Share, SimCardDownload } from '@mui/icons-material';
 import { ExpandMinimisedTableItem } from '../ExpandMinimisedTableItem';
 import { openAccessLimitForm, openFutureFeatureWarningForm } from '../../../dashboard/page/dashboard_main';
+import { EditPopUp } from '../EditPopUp';
 
 export const ListTable2 = (props) => {
     const [editStatus, setEditStatus] = useState(false);
@@ -25,16 +26,10 @@ export const ListTable2 = (props) => {
         props.saveBtn();
         setEditStatus(false);
     };
-    const handleAiEditOver = _ => {
-        setIsAIEditOver(true);
-    };
-    const handleAiEditOut = _ => {
-        setIsAIEditOver(false)
-    };
     const editDirectory = _ => {
         return(
             <div className='table-directory-right-header'>
-                <button className='ai-edit-btn' onMouseOver={handleAiEditOver} onMouseOut={handleAiEditOut}>
+                <button className={`ai-edit-btn${isAIEditOver ? " active" : ""}`} onClick={() => setIsAIEditOver(!isAIEditOver)}>
                     <img src="./images/ai_icon.png" alt = "icon"/> AI Editing Mode {isAIEditOver ? <KeyboardArrowUp/> : <KeyboardArrowDown/>}
                 </button>
                 <hr/>
@@ -58,6 +53,7 @@ export const ListTable2 = (props) => {
                     </div>
                     {editStatus ? editDirectory() : mainDirectory()}
                 </div>
+                {isAIEditOver && <EditPopUp/>}
                 <h1>{props.title}</h1>
                 <h2>{props.description}</h2>
                 <div className='secondary-table-items'>

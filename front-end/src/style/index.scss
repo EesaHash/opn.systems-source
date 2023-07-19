@@ -225,6 +225,34 @@ button{
         background-color: rgb(108, 117, 125);
     }
 }
+.help-btn{
+    display: flex;
+    border-radius: 9px;
+    padding: 5px 8px;
+    font-size: 12px;
+    text-align: left;
+    &:hover, &.active{
+        cursor: pointer;
+        background-color: #F7F8FC;
+    }
+    & img{
+        height: 25px;
+        margin: auto;
+        margin-right: 10px;
+        margin-left: 0;
+    }
+    & button{
+        background-color: transparent;
+        border: none;
+        color: black;
+        padding: 0;
+    }
+    & .css-i4bv87-MuiSvgIcon-root{
+        margin: auto;
+        margin-right: 0;
+        height: 15px;
+    }
+}
 
 // ------CONFIRMATION POP UP-----
 $confirmation-width: 40vw;

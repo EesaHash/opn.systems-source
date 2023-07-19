@@ -92,6 +92,74 @@
         color: #8496AE !important;
     }
 }
+.edit-pop-up{
+    position: fixed;
+    display: flex;
+    float: right;
+    right: 100px;
+    margin-top: 45px;
+    & .edit, .edit-pop-up-content{
+        border-radius: 9px;
+        background-color: #FFF !important;
+        padding: 20px;
+        text-align: center;
+        box-shadow: 0px 8px 48px 0px rgba(32, 35, 39, 0.05), 0px 4px 8px 0px rgba(32, 35, 39, 0.05), 0px 0px 1px 0px rgba(32, 35, 39, 0.20);
+    }
+    & .edit{
+        width: auto;
+        height: 60px;
+        & .edit-prompt{
+            margin: auto;
+            & input{
+                width: 20vw !important;
+            }
+            & button{
+                width: fit-content !important;
+                background-color: transparent;
+                border: none
+            }
+        }
+    }
+    & .edit-pop-up-content{
+        display: grid;
+        width: auto;
+        & hr{
+            height: 1.5px !important;
+        }
+        & .pop-up-item{
+            text-align: left;
+            display: flex;
+            border-radius: 9px;
+            padding: 5px 8px;
+            margin-bottom: 8px;
+            &:hover, &.active{
+                cursor: pointer;
+                background-color: #F7F8FC;
+            }
+            & img{
+                height: 25px;
+                color: #5D5FEF;
+                margin: auto;
+                margin-right: 10px;
+                margin-left: 0;
+            }
+            & .pop-up-item-title{
+                display: grid;
+                font-size: 12px;
+                & button{
+                    text-align: left;
+                    background-color: transparent;
+                    color: black;
+                    border: none;
+                    padding: 0;
+                }
+                & text{
+                    color: #ACACAC;
+                }
+            }
+        }
+    }
+}
 .main-table, .secondary-table, .folder-list, .folder-list2, .fourth-table, .list-table4{
     width: 100%;
     overflow: scroll;
@@ -188,6 +256,9 @@
                 border-radius: 18px;
                 border: 0.75px solid #5D5FEF;
                 padding: 0 10px;
+                &.active{
+                    color: #5D5FEF;
+                }
                 & img{
                     height: 20px;
                     margin-top: -5px;

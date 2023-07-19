@@ -222,6 +222,35 @@ button {
   background-color: rgb(108, 117, 125);
 }
 
+.help-btn {
+  display: flex;
+  border-radius: 9px;
+  padding: 5px 8px;
+  font-size: 12px;
+  text-align: left;
+}
+.help-btn:hover, .help-btn.active {
+  cursor: pointer;
+  background-color: #F7F8FC;
+}
+.help-btn img {
+  height: 25px;
+  margin: auto;
+  margin-right: 10px;
+  margin-left: 0;
+}
+.help-btn button {
+  background-color: transparent;
+  border: none;
+  color: black;
+  padding: 0;
+}
+.help-btn .css-i4bv87-MuiSvgIcon-root {
+  margin: auto;
+  margin-right: 0;
+  height: 15px;
+}
+
 .confirmation {
   top: 25vh;
   height: -moz-fit-content;

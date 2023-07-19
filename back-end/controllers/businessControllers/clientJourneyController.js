@@ -70,6 +70,7 @@ clientJourney.getClientJourneyByProductID = async (req, res) => {
             clientJourney: clientJourney
         });
     } catch (error) {
+        console.log(error);
         return res.status(403).json({
             status: false,
             result: `Client Journey for Product ID: ${req.body.productID} not found}`

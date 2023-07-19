@@ -170,7 +170,7 @@ export const CreateClientJourney = (props) => {
         <section id="createClientJourney" className="form-popup center form-container create-client-journey">
             {step1()}
             {step2()}
-            {loading && loadingPage(titlePage, "AI is writing client journeys for", document.getElementById("client-journey-title").value)}
+            {loading && loadingPage(titlePage, "AI is writing client journeys for", title)}
         </section>
     );
 };
