@@ -13,7 +13,6 @@ const {
 } = require("langchain/output_parsers");
 const { addProduct } = require("../ProductController/saveProductController");
 const { getStages } = require("./getStageNamesController");
-const { Client } = require("pg");
 
 require('dotenv').config()
 
@@ -592,5 +591,6 @@ router.post("/get", clientJourney.getClientJourneyByProductID);
 router.post("/regenerate_stage", clientJourney.regenerateStage);
 router.post("/save_regenerated_stage", clientJourney.saveRegeneratedStage);
 router.post("/delete", clientJourney.deleteClientJourneyByBusinessID);
+router.post("/regenerate_client_journey", clientJourney.regenerateClientJourney)
 
 module.exports = router;
