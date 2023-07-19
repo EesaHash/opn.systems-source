@@ -25,6 +25,7 @@ export const ListTable2 = (props) => {
     const saveUpdate = _ => {
         props.saveBtn();
         setEditStatus(false);
+        setIsAIEditOver(false);
     };
     const editDirectory = _ => {
         return(
