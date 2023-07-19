@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import "../../style/table.css";
-import { AccessTime, Chat, Download, Edit, MoreHoriz, Share, SimCardDownload } from '@mui/icons-material';
+import { AccessTime, Chat, Download, Edit, KeyboardArrowDown, KeyboardArrowUp, MoreHoriz, Share, SimCardDownload } from '@mui/icons-material';
 import { ExpandMinimisedTableItem } from '../ExpandMinimisedTableItem';
 import { openAccessLimitForm, openFutureFeatureWarningForm } from '../../../dashboard/page/dashboard_main';
+import { EditPopUp } from '../EditPopUp';
 
 export const ListTable2 = (props) => {
     const [editStatus, setEditStatus] = useState(false);
+    const [isAIEditOver, setIsAIEditOver] = useState(false);
+
     const mainDirectory = _ => {
         return(
             <div className='table-directory-right-header'>
@@ -26,7 +29,9 @@ export const ListTable2 = (props) => {
     const editDirectory = _ => {
         return(
             <div className='table-directory-right-header'>
-                <button className='ai-edit-btn'><img src="./images/ai_icon.png" alt = "icon"/>AI Editing Mode</button>
+                <button className={`ai-edit-btn${isAIEditOver ? " active" : ""}`} onClick={() => setIsAIEditOver(!isAIEditOver)}>
+                    <img src="./images/ai_icon.png" alt = "icon"/> AI Editing Mode {isAIEditOver ? <KeyboardArrowUp/> : <KeyboardArrowDown/>}
+                </button>
                 <hr/>
                 <button className='save-btn' onClick={saveUpdate}><SimCardDownload/>Save</button>
             </div>
@@ -48,6 +53,7 @@ export const ListTable2 = (props) => {
                     </div>
                     {editStatus ? editDirectory() : mainDirectory()}
                 </div>
+                {isAIEditOver && <EditPopUp/>}
                 <h1>{props.title}</h1>
                 <h2>{props.description}</h2>
                 <div className='secondary-table-items'>

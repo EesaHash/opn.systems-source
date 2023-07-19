@@ -13,7 +13,7 @@ export const TableContent1 = (props) => {
 const item = (data, index, itemActionBtn) => {
     return(
         <div key = {index} className='table-content-1-item'>
-            <button onClick={() => itemActionBtn(data)}>
+            <button onClick={() => itemActionBtn(data, index)}>
                 <img src="./images/documentIcon.png" alt="icon"/>
                 {data.title}
             </button>

@@ -225,6 +225,34 @@ button{
         background-color: rgb(108, 117, 125);
     }
 }
+.help-btn{
+    display: flex;
+    border-radius: 9px;
+    padding: 5px 8px;
+    font-size: 12px;
+    text-align: left;
+    &:hover, &.active{
+        cursor: pointer;
+        background-color: #F7F8FC;
+    }
+    & img{
+        height: 25px;
+        margin: auto;
+        margin-right: 10px;
+        margin-left: 0;
+    }
+    & button{
+        background-color: transparent;
+        border: none;
+        color: black;
+        padding: 0;
+    }
+    & .css-i4bv87-MuiSvgIcon-root{
+        margin: auto;
+        margin-right: 0;
+        height: 15px;
+    }
+}
 
 // ------CONFIRMATION POP UP-----
 $confirmation-width: 40vw;
@@ -251,13 +279,27 @@ $confirmation-height: 50vh;
             color: #1A1C21;
         }
     }
-    & input{
-        &:focus{
-            border-color: transparent !important;
-        }
-    }
     & .cancel-button{
         border-color: #BD271E !important;
         color: #BD271E !important;
+    }
+    & .pop-up-input{
+        display: flex;
+        background-color: #F8F8F8;
+        padding: 3px 15px;
+        border-radius: 28px;
+        & img{
+            height: 25px;
+            margin: auto;
+            margin-left: 0;
+            margin-right: 0;
+        }
+        & input{
+            margin-top: 0;
+            background-color: transparent;
+            &:focus{
+                border-color: transparent !important;
+            }
+        }
     }
 }

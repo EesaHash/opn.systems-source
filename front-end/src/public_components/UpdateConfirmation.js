@@ -2,7 +2,11 @@ import React from 'react';
 
 export const UpdateConfirmation = (props) => {
     const save = _ => {
-        props.setConfirmation(true);
+        props.setConfirmation(1);
+        closeForm();
+    };
+    const discardChanges = _ => {
+        props.setConfirmation(0);
         closeForm();
     };
     const closeForm = _ => {
@@ -18,10 +22,11 @@ export const UpdateConfirmation = (props) => {
                     <h3>Your changes will be lost if you don't save them</h3>
                 </div>
                 <div className='pop-up-input' >
-                    <input type='text' value={props.documentName} readOnly/>
+                    <img src="./images/DocumentIcon/tokenFile.png" alt="icon"/>
+                    <input type='text' value={`${props.documentName}`} readOnly/>
                 </div>
                 <div className='pop-up-button'>
-                    <button className='cancel-button' onClick={closeForm}>Cancel</button>
+                    <button className='cancel-button' onClick={discardChanges}>Discard</button>
                     <button className='save-button' onClick={save} >Save</button>
                 </div>
             </div>

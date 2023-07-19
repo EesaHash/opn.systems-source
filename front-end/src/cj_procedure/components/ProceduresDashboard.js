@@ -215,10 +215,10 @@ export const ProceduresDashboard = (props) => {
                 button3 = { showProcedureList }
                 data = { procedure }
                 desc = { descList }
-                list1Title = "Procedure"
-                list1 = {procedure.procedure ? JSON.parse(procedure.procedure) : []}
-                list2Title = "Responsibility"
-                list2 = {procedure.responsibility ? JSON.parse(procedure.responsibility) : []}
+                list1Title = "Responsibility"
+                list1 = {procedure.responsibility ? JSON.parse(procedure.responsibility) : []}
+                list2Title = "Procedure"
+                list2 = {procedure.procedure ? JSON.parse(procedure.procedure) : []}
                 list3Title = "Documentation"
                 list3 = {procedure.documentation ? JSON.parse(procedure.documentation) : []}
             />

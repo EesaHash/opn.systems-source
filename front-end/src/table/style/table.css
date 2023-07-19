@@ -95,6 +95,76 @@
   color: #8496AE !important;
 }
 
+.edit-pop-up {
+  position: fixed;
+  display: flex;
+  float: right;
+  right: 100px;
+  margin-top: 45px;
+}
+.edit-pop-up .edit, .edit-pop-up .edit-pop-up-content {
+  border-radius: 9px;
+  background-color: #FFF !important;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0px 8px 48px 0px rgba(32, 35, 39, 0.05), 0px 4px 8px 0px rgba(32, 35, 39, 0.05), 0px 0px 1px 0px rgba(32, 35, 39, 0.2);
+}
+.edit-pop-up .edit {
+  width: auto;
+  height: 60px;
+}
+.edit-pop-up .edit .edit-prompt {
+  margin: auto;
+}
+.edit-pop-up .edit .edit-prompt input {
+  width: 20vw !important;
+}
+.edit-pop-up .edit .edit-prompt button {
+  width: -moz-fit-content !important;
+  width: fit-content !important;
+  background-color: transparent;
+  border: none;
+}
+.edit-pop-up .edit-pop-up-content {
+  display: grid;
+  width: auto;
+}
+.edit-pop-up .edit-pop-up-content hr {
+  height: 1.5px !important;
+}
+.edit-pop-up .edit-pop-up-content .pop-up-item {
+  text-align: left;
+  display: flex;
+  border-radius: 9px;
+  padding: 5px 8px;
+  margin-bottom: 8px;
+}
+.edit-pop-up .edit-pop-up-content .pop-up-item:hover, .edit-pop-up .edit-pop-up-content .pop-up-item.active {
+  cursor: pointer;
+  background-color: #F7F8FC;
+}
+.edit-pop-up .edit-pop-up-content .pop-up-item img {
+  height: 25px;
+  color: #5D5FEF;
+  margin: auto;
+  margin-right: 10px;
+  margin-left: 0;
+}
+.edit-pop-up .edit-pop-up-content .pop-up-item .pop-up-item-title {
+  display: grid;
+  font-size: 12px;
+}
+.edit-pop-up .edit-pop-up-content .pop-up-item .pop-up-item-title button {
+  text-align: left;
+  background-color: transparent;
+  color: black;
+  border: none;
+  padding: 0;
+}
+.edit-pop-up .edit-pop-up-content .pop-up-item .pop-up-item-title text {
+  color: #ACACAC;
+}
+
 .main-table, .secondary-table, .folder-list, .folder-list2, .fourth-table, .list-table4 {
   width: 100%;
   overflow: scroll;
@@ -195,6 +265,9 @@
   border-radius: 18px;
   border: 0.75px solid #5D5FEF;
   padding: 0 10px;
+}
+.main-table .table-directory .table-directory-right-header .ai-edit-btn.active, .secondary-table .table-directory .table-directory-right-header .ai-edit-btn.active, .folder-list .table-directory .table-directory-right-header .ai-edit-btn.active, .folder-list2 .table-directory .table-directory-right-header .ai-edit-btn.active, .fourth-table .table-directory .table-directory-right-header .ai-edit-btn.active, .list-table4 .table-directory .table-directory-right-header .ai-edit-btn.active {
+  color: #5D5FEF;
 }
 .main-table .table-directory .table-directory-right-header .ai-edit-btn img, .secondary-table .table-directory .table-directory-right-header .ai-edit-btn img, .folder-list .table-directory .table-directory-right-header .ai-edit-btn img, .folder-list2 .table-directory .table-directory-right-header .ai-edit-btn img, .fourth-table .table-directory .table-directory-right-header .ai-edit-btn img, .list-table4 .table-directory .table-directory-right-header .ai-edit-btn img {
   height: 20px;

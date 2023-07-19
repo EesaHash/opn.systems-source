@@ -7,8 +7,9 @@ import { stages } from './originalStages';
 import { UpdateConfirmation } from '../../public_components/UpdateConfirmation';
 
 export const ClientJourneyDashboard = (props) => {
+    const [index, setIndex] = useState(-1);
     const [journey, setJourney] = useState({});
-    const [updateConfirmation, setUpdateConfirmation] = useState(false);
+    const [updateConfirmation, setUpdateConfirmation] = useState(-1);
 
     useEffect(() => {
         const mainTable = document.getElementById("client-journey-main-table");
@@ -16,6 +17,7 @@ export const ClientJourneyDashboard = (props) => {
         if(mainTable && secondaryTable){
             mainTable.style.display = "block";
             setJourney({});
+            setIndex(-1);
             secondaryTable.style.display = "none";
         }
     }, [props.activeLink2]);
@@ -37,16 +39,22 @@ export const ClientJourneyDashboard = (props) => {
                         if(data.status){
                             props.setJourneys([...props.journeys.filter(obj => obj.id !== journey.id), journey]);
                         }
-                        setUpdateConfirmation(false);
+                        setUpdateConfirmation(-1);
                     })
             }catch(error){
                 console.log(error);
             }
         };
-        if(updateConfirmation)
+        const discardChanges = _ => {
+            setJourney(props.journeys[index]);
+            setUpdateConfirmation(-1);
+        };
+        if(updateConfirmation === 1)
             saveChanges();
+        else if(updateConfirmation === 0)
+            discardChanges();
         // eslint-disable-next-line
-    }, [updateConfirmation])
+    }, [updateConfirmation]);
 
     const openCreateJourneyForm = _ => {
         if(props.journeys.length > 0)
@@ -55,12 +63,13 @@ export const ClientJourneyDashboard = (props) => {
     };
 
     // Going to Tab 2
-    const openClientJourneyDetails = (param) => {
+    const openClientJourneyDetails = (param, index) => {
         const mainTable = document.getElementById("client-journey-main-table");
         const secondaryTable = document.getElementById("client-journey-secondary-table");
         if(mainTable && secondaryTable){
             mainTable.style.display = "none";
             setJourney(param);
+            setIndex(index);
             secondaryTable.style.display = "block";
         }
     };
@@ -72,6 +81,7 @@ export const ClientJourneyDashboard = (props) => {
         if(mainTable && secondaryTable){
             mainTable.style.display = "block";
             setJourney({});
+            setIndex(-1);
             secondaryTable.style.display = "none";
         }
     };

@@ -222,6 +222,35 @@ button {
   background-color: rgb(108, 117, 125);
 }
 
+.help-btn {
+  display: flex;
+  border-radius: 9px;
+  padding: 5px 8px;
+  font-size: 12px;
+  text-align: left;
+}
+.help-btn:hover, .help-btn.active {
+  cursor: pointer;
+  background-color: #F7F8FC;
+}
+.help-btn img {
+  height: 25px;
+  margin: auto;
+  margin-right: 10px;
+  margin-left: 0;
+}
+.help-btn button {
+  background-color: transparent;
+  border: none;
+  color: black;
+  padding: 0;
+}
+.help-btn .css-i4bv87-MuiSvgIcon-root {
+  margin: auto;
+  margin-right: 0;
+  height: 15px;
+}
+
 .confirmation {
   top: 25vh;
   height: -moz-fit-content;
@@ -246,10 +275,26 @@ button {
   font-size: 16px;
   color: #1A1C21;
 }
-.confirmation input:focus {
-  border-color: transparent !important;
-}
 .confirmation .cancel-button {
   border-color: #BD271E !important;
   color: #BD271E !important;
+}
+.confirmation .pop-up-input {
+  display: flex;
+  background-color: #F8F8F8;
+  padding: 3px 15px;
+  border-radius: 28px;
+}
+.confirmation .pop-up-input img {
+  height: 25px;
+  margin: auto;
+  margin-left: 0;
+  margin-right: 0;
+}
+.confirmation .pop-up-input input {
+  margin-top: 0;
+  background-color: transparent;
+}
+.confirmation .pop-up-input input:focus {
+  border-color: transparent !important;
 }/*# sourceMappingURL=index.css.map */
