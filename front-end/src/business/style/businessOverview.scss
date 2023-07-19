@@ -1,23 +1,11 @@
-$mini-width: calc($halfbox-width * 0.5 - 15px);
-
+$halfbox-width: calc($mainbox-width * 0.5 - 4vw);
+$button-width: calc($halfbox-width*0.9);
 
 .businesses-overview{
     display: flex;
     margin-top: 16px;
     height: 33vh;
-    .editB{
-        display: flex;
-        width: 245px;
-        height: 64px;
-        padding: 8px 20px;
-        justify-content: center;
-        align-items: center;
-        gap: 8px;   
-        border-radius: 8px;
-        border-style: solid;
-        opacity: 80%;
-        background: #a5a6f6 !important; 
-    }
+
     & .yourbusiness, .update{
         width: $halfbox-width;
     }
@@ -34,13 +22,13 @@ $mini-width: calc($halfbox-width * 0.5 - 15px);
         height: 100% !important;
     }
     & .updates{
-        margin: 0 15px;
+        margin-left: 15px;
         display: flex;
         padding: 2vh 20.956px;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        gap: 8px;
+        //gap: 8px;
         flex: 1 0 0;
         align-self: stretch;
         border-radius: 13.971px;
@@ -101,21 +89,84 @@ $mini-width: calc($halfbox-width * 0.5 - 15px);
         border-radius: 6px;
         
     }
+
+    & .container {
+        width: calc($halfbox-width + 0.5vw);
+        height:10vh;
+        //padding: 16px 20px;
+        border-radius: 9px;
+        border: 0.50px $secondary-color dotted;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+      
+        & .message-container {
+          align-self: stretch;
+          height: 8vh;
+          flex-direction: column;
+          justify-content: flex-start;
+          align-items: center;
+          gap: 4px;
+          display: flex;
+      
+          & .message {
+            justify-content: center;
+            align-items: center;
+            gap: 1px;
+            display: inline-flex;
+            
+            & .text {
+              text-align: center;
+              color: $primary-color;
+              font-size: calc(3vh * 0.5);
+              font-family: 'Inter';
+              font-weight: 600;
+              //line-height: 20px;
+              word-wrap: break-word;
+              gap: 2px;
+            }
+          }
+        }
+      
+        & .upgrade-container {
+          align-self: stretch;
+          height: 48px;
+          flex-direction: column;
+          justify-content: flex-start;
+          align-items: center;
+          gap: 8px;
+          display: flex;
+      
+          & .upgrade-text {
+            flex: 1 1 0;
+            text-align: center;
+            color: $primary-color;
+            font-size: calc(3vh * 0.4);
+            font-family: 'Inter';
+            font-weight: 400;
+            line-height: 24px;
+            word-wrap: break-word;
+          }
+        }
+      }
 }
 
-.editB{
+.howToButtons{
+    gap: 4px;
+    margin-top: -5px;
+    margin-bottom: 10px;
+    color: #000;
+    border-radius: 8px;
     display: flex;
-    width: 245px;
-    height: 64px;
-    padding: 8px 20px;
     justify-content: center;
     align-items: center;
-    gap: 8px;   
-    border-radius: 8px;
-    border-style: solid;
-    opacity: 80%;
-    border-color: rgba(165, 166, 246, 0.20);
-    background: #a5a6f6;
-
+    width: $button-width;
+    height:7vh;
+    padding: 8px 20px;
+    border-width: thin;
+    background: rgba(165, 166, 246, 0.20);
+    font-size: calc(3vh * 0.5);
+    
 }
 
