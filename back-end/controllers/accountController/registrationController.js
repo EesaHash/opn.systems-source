@@ -54,13 +54,14 @@ const createAccount = async (username, email, password, firstName, lastName) => 
             firstName: firstName,
             lastName: lastName
         };
-        return await User.create({
+        const createdUser = await User.create({
             email: user.email,
             username: user.username,
             password: user.password,
             first_name: user.firstName,
             last_name: user.lastName
         });
+        return createdUser;
     }catch(error){
         console.log(error);
     }

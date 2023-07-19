@@ -26,7 +26,7 @@ const getUsers = async (email) => {
                 { email: inputEmail }
             ]
         },
-        raw: true
+        raw: false
     }))
 };
 

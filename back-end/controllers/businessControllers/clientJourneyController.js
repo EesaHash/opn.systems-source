@@ -135,6 +135,86 @@ Example JSON body:
     prompt: "user prompt" can be null
  }
 */
+
+clientJourney.regenerateClientJourney = async(req, res) => {
+    try {
+        const {clientJourneyID, prompt } = req.body;
+        const cj = await ClientJourney.findOne({
+            where: {
+                id: clientJourneyID
+            }
+        });
+        const product = await Product.findOne({where: {id : cj.productID }})
+        const business = await Business.findOne({ where: { id: product.businessID } });
+        if (business == null || product == null) {
+            console.log("Entered");
+            return null;
+        }
+        const businessDetails = `
+        BUSINESS INFORMATION
+        Business Name : ${business.businessName},
+        Business Type : ${business.businessType},
+        Industry : ${business.industry}
+        Company Size : ${business.companySize},
+        Objective : ${business.businessObjective},
+
+        PRODUCT/SERVICE DETAILS
+        Core Services : ${product.coreServices},
+        Target Market : ${product.targetMarket},
+        Is this a product (1 represents yes, 0 represents no) : ${product.isProduct},
+        Product/Service Description : ${product.productOrServiceDescription},
+        Funding Strategy : ${product.fundingStrategy}
+
+        ${() => {
+            if(prompt != null){
+                return "User's preference: "+String(prompt);
+            }
+        }}
+        `
+
+        let Overview = await generateOverview(businessDetails);
+        let Awareness = await generateStage("awareness", businessDetails);
+        let Interest = await generateStage("interest", businessDetails);
+        let Evaluation = await generateStage("evaluation", businessDetails);
+        let Decision = await generateStage("decision", businessDetails);
+        let Purchase = await generateStage("purchase", businessDetails);
+        let Implementation = await generateStage("implementation", businessDetails);
+        let PostPurchase = await generateStage("post-purchase", businessDetails);
+        let Retention = await generateStage("retention", businessDetails);
+        const stages = [Awareness, Interest, Evaluation, Decision, Purchase, Implementation, PostPurchase, Retention];
+        const stringStages = ["awareness", "interest", "evaluation", "decision", "purchase", "implementation", "postPurchase", "retention"];
+        let i = 0;
+        while (i < stages.length) {
+            if (stages[i] == null) {
+                stages[i] = await retryStage(stringStages[i], businessDetails);
+            }
+            i++;
+        }
+        const regenJourney = await cj.update({
+            overview: JSON.stringify(Overview),
+            awareness: JSON.stringify(stages[0]),
+            interest: JSON.stringify(stages[1]),
+            evaluation: JSON.stringify(stages[2]),
+            decision: JSON.stringify(stages[3]),
+            purchase: JSON.stringify(stages[4]),
+            implementation: JSON.stringify(stages[5]),
+            postPurchase: JSON.stringify(stages[6]),
+            retention: JSON.stringify(stages[7]),
+        })
+        return res.status(200).json({
+            clientJourney: {
+                regenJourney
+            }
+        });
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            status: "FAILED"
+        });
+    }
+
+}
+
 clientJourney.regenerateStage = async (req, res) => {
     try {
         const { clientJourneyID, prompt } = req.body;
@@ -476,7 +556,6 @@ async function regenerateStageWithContext(stageString, previousStageContent, use
     return output;
 }
 
-
 async function retryStage(stageString, businessDetailsString) {
 
     let output = null;
@@ -490,7 +569,6 @@ async function retryStage(stageString, businessDetailsString) {
     }
     return output;
 }
-
 
 router.post("/save", clientJourney.saveClientJourney);
 router.post("/get", clientJourney.getClientJourneyByProductID);

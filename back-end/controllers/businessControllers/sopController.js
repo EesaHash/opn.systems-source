@@ -7,7 +7,6 @@ const { ChatOpenAI } = require("langchain/chat_models/openai");
 const ClientJourney = require("../../models/client_journey");
 const SOP = require("../../models/sop");
 const { ConversationChain, LLMChain } = require("langchain/chains");
-
 const {
     ChatPromptTemplate,
     HumanMessagePromptTemplate,
@@ -40,9 +39,9 @@ const updateSingleSop = async (req, res) => {
 
 /*
 {
-    list of steps
-    prompt (AI text input by user)
-    idx (index of the step in the list of steps)
+    steps : [] (list of steps)
+    prompt : (AI text input by user)
+    idx :  (index of the step in the list of steps)
 }
 */
 const regenerateSopStep = async (req, res) => {

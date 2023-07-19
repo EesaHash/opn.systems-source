@@ -3,6 +3,8 @@ const router = express.Router();
 const { sendEmailConfirmation } = require("../emailController/emailSenderController");
 const jwt = require("jsonwebtoken");
 const { getUsers } = require("./UserController");
+const User = require("../../models/user");
+const { updateAll } = require("../../security/encryptAll");
 
 router.post("/", async (req, res) => {
     try{
@@ -20,7 +22,7 @@ router.post("/", async (req, res) => {
         }
 
         // Verify password
-        if(String(user.password) !== String(password)){
+        if(await user.validPassword(String(password), String(user.dataValues.password))){
             console.log("Invalid password");
             return res.status(400).json({
                 status: false,
