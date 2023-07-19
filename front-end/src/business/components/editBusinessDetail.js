@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import "../style/business.css";
-import { closePopUpForm } from '../../dashboard/page/dashboard_main';
 import { getBusinessTypeList, getCompanySizeList } from '../../App';
 import { DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown } from "reactstrap";
 
@@ -18,7 +17,6 @@ export const EditBusinessDetail = (props) => {
             else
                 props.setBusiness(props.businesses[props.index]);
         document.getElementById("editBusinessForm").style.display = "none";
-        closePopUpForm();
     };
     const updateData = _ => {
         try{

@@ -5,9 +5,11 @@
     margin-left: 30vw;
     margin-right: 30vw;
     left: 0;
-    height: 70vh;
+    height: fit-content;
+    max-height: 70vh;
     background-color: #5C5FFF !important;
     border-color: #5C5FFF;
+    padding-bottom: 60px;
     & .close-button{
         width: 100%;
         text-align: right;
@@ -63,8 +65,5 @@
         margin: auto;
         height: 30px;
         width: 30px;
-    }
-    & input{
-        text-align: center;
     }
 }

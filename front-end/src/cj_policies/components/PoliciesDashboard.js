@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import "../style/policies.css";
 import { FolderList } from '../../table/components/Folder/FolderList';
-import { openAccessLimitForm, openPopUpForm } from '../../dashboard/page/dashboard_main';
+import { openAccessLimitForm } from '../../dashboard/page/dashboard_main';
 import { ListTable3 } from '../../table/components/List/ListTable3';
 
 export const PoliciesDashboard = (props) => {
@@ -20,7 +20,6 @@ export const PoliciesDashboard = (props) => {
         if(props.journeys.length > 0)
             return openAccessLimitForm();
         document.getElementById("createClientJourney").style.display = "block";
-        openPopUpForm();
     };
     const openPilicyList = (param, index) => {
         const mainTable = document.getElementById("policies-main-table");

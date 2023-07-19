@@ -1,20 +1,26 @@
 import React, { useState } from 'react';
 import "../style/table.css";
 import { KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material';
+import { LoadingTableItem } from './LoadingTableItem';
 
 export const ExpandMinimisedTableItem = (props) => {
     const [itemClassName, setItemClassName] = useState("minimised-table-item");
+    const [loading, setLoading] = useState(false);
+    
     const expandCollapseBtn = _ => {
         if(itemClassName === "minimised-table-item")
             setItemClassName("expanded-table-item");
         else
             setItemClassName("minimised-table-item");
     };
+    const regenerate = _ => {
+        props.automaticallyRegenerate(props.index-1, setLoading);
+    };
     const sendPrompt = _ => {
         const prompt = document.getElementById(`prompt${props.index}`).value;
         if(!prompt)
             return alert("Prompt cannot be empty");
-        props.regenerateByPrompt(props.title, prompt);
+        props.regenerateByPrompt(props.index - 1, prompt, setLoading);
         document.getElementById(`prompt${props.index}`).value = "";
     };
     const handleKeypress = e => {
@@ -26,16 +32,20 @@ export const ExpandMinimisedTableItem = (props) => {
         <div key = {props.index} className={itemClassName} onClick={() => itemClassName === "minimised-table-item" && expandCollapseBtn()}>
             <h2>{props.index}</h2>
             <div style={{width:"100%", display: "grid"}}>
-                    <h1 style={{width: "100%", cursor: "pointer"}} onClick={() => itemClassName === "expanded-table-item" && expandCollapseBtn()}>{props.title}</h1>
-                {itemClassName === "expanded-table-item" && 
-                    Object.keys(props.data).map((data, index) => (
-                        expandSubItem(props.index, index, data, Object.entries(props.data)[index][1])
-                    ))
-                }
-                {(props.editStatus && itemClassName === "expanded-table-item") && 
+                <h1 style={{width: "100%", cursor: "pointer"}} onClick={() => itemClassName === "expanded-table-item" && expandCollapseBtn()}>{props.title}</h1>
+                {(itemClassName === "expanded-table-item") && (
+                    loading ? (
+                        <LoadingTableItem title = {props.loadingTitle} documentName = {`${props.loadingDocName}`} /> 
+                    ) : (
+                        Object.keys(props.data).map((data, index) => (
+                            expandSubItem(props.index, index, data, Object.entries(props.data)[index][1])
+                        ))
+                    )
+                )}
+                {(props.editStatus && itemClassName === "expanded-table-item" && !loading) && 
                     <div className='edit'>
                         <div className='edit-suggestion'>
-                            <button onClick={() => props.automaticallyRegenerate(props.title)}>Regenerate</button>
+                            <button onClick={regenerate}>Regenerate</button>
                             <h3><img src="./images/loadingIcon.png" alt = "icon"/>AI powered</h3>
                         </div>
                         <div className='edit-prompt'>

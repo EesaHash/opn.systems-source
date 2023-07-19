@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import "../style/TeamMembers.css";
-import { closePopUpForm } from '../../dashboard/page/dashboard_main';
 import { teamMemberInputElements } from '../../business/components/createBusiness';
 
 export const InviteTeamMember = (props) => {
@@ -48,7 +47,6 @@ export const InviteTeamMember = (props) => {
     const closeForm = _ => {
         setTeamList([]);
         document.getElementById("invite-team-member-form").style.display = "none";
-        closePopUpForm();
     };
     return(
         <section id="invite-team-member-form" className="form-popup center form-container add-team-member-form">

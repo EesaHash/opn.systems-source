@@ -1,13 +1,13 @@
 import React from "react";
 import "../style/pane.css";
 import { BusinessDashboard } from "../../business/components/businessDashboard";
-import MailOutlineIcon from '@mui/icons-material/MailOutline';
+import EmailIcon from '../svg/emailIcon';
+import ChatIcon from '../svg/chatIcon';
+import BusinessIcon2 from '../svg/businessIcon2';
 import CreateIcon from '@mui/icons-material/Create';
-import { openPopUpForm } from "../page/dashboard_main";
 
 const openAccountSettingForm = _ => {
     document.getElementById("account-setting-Form").style.display = "block";
-    openPopUpForm();
   }
 export const Pane = (props) => {
     if(props.businesses.length === 0)
@@ -46,7 +46,7 @@ const emptyPane = (user) => {
                     <div className="nametitle" style={{marginLeft:"30px"}}>
                         <h1 >{`${user.first_name} ${user.last_name ? user.last_name : ""}`}</h1>
                         <div className="email" >
-                        <MailOutlineIcon className="icon"/>
+                        <EmailIcon className="icon"/>
                         <span className="email-text">{user.email}</span>
                         </div>
                     </div>
@@ -56,8 +56,31 @@ const emptyPane = (user) => {
                  <div className="businesses-overview">
                 <div className="yourbusiness">
                     <div className="businesstitle">
-                        <text>Your Businesses</text>
-                    </div>
+                        <text>Welcome to Opn.Systems </text>
+                        <img className="party" src="./images/partypopper.png" alt="party"/>
+                        <p style={{fontSize:"14px"}}>Here's some tips to get you started</p>
+                        <div style={{justifyContent:"center", alignItems:"center", display:"inline-flex", gap:"8px"}}>
+                        <button className="howToButtons"><ChatIcon/> How to connect other apps</button>
+                        <button className="howToButtons"  style={{marginRight:"10px"}}><ChatIcon/> How to edit your files</button>
+                        </div>
+                       
+                        {/* <div className="limit-box">
+                            <p style={{fontSize:"12px"}}><BusinessIcon2/> You've reached your business limit (1/1)</p>
+                            <p style={{fontSize:"12px"}}>When you upgrade to Premium, you can create unlimited businesses, roles, and invite your team members.</p>
+                        </div> */}
+                        <div className="container">
+                            <div className="message-container">
+                                <div className="message">
+                                <div className="text"><BusinessIcon2/> You’ve reached your business limit (1/1)</div>
+                                </div>
+                            </div>
+                            <div className="upgrade-container">
+                                <div className="upgrade-text">
+                                When you upgrade to Premium, you can create unlimited business, roles, and invite your team members.
+                                </div>
+                            </div>
+                            </div>
+                        </div>
                 </div>
                 <div className="updates">
                     <img className="updateslogo" src="./images/notificationlogo.png" alt="logo"/>

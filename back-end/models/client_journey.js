@@ -52,5 +52,4 @@ ClientJourney.belongsTo(Product, {
     foreignKey: 'productID'
 });
 
-
 module.exports = ClientJourney;

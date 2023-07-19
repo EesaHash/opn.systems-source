@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import "../style/procedure.css";
 import { loadingPage } from '../../warning_pages/components/loadingPage';
-import { closePopUpForm } from '../../dashboard/page/dashboard_main';
 
 export const CreateProcedure = (props) => {
     const [loading, setLoading] = useState(false);
@@ -11,7 +10,6 @@ export const CreateProcedure = (props) => {
         document.getElementById("create-procedure-step1").style.display = "block";
         setLoading(false);
         document.getElementById("createProcedureForm").style.display = "none";
-        closePopUpForm();
     };
     const generate = _ => {
         const title = document.getElementById("procedure-title").value;

@@ -20,6 +20,7 @@ export const ListTable2 = (props) => {
         );
     };
     const saveUpdate = _ => {
+        props.saveBtn();
         setEditStatus(false);
     };
     const editDirectory = _ => {
@@ -59,11 +60,14 @@ export const ListTable2 = (props) => {
                             (!("id overview productID createdAt updatedAt title stages").includes(data)) &&
                                 <ExpandMinimisedTableItem
                                     index = {index - 2}
+                                    loadingTitle = {props.loadingTitle}
+                                    loadingDocName = {`${props.title}'s ${props.dataHeading[index - 3]} ${props.type}`}
                                     title = {props.dataHeading[index - 3]}
                                     data = {JSON.parse(Object.entries(props.data)[index][1])}
                                     editStatus = {editStatus}
                                     automaticallyRegenerate = {props.automaticallyRegenerate}
                                     regenerateByPrompt = {props.regenerateByPrompt}
+                                    loading = {props.loading}
                                 />
                         ))
                     }

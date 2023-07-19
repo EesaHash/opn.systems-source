@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import "../style/acc_set.css";
-import { closePopUpForm } from '../page/dashboard_main';
 import SettingsIcon from '@mui/icons-material/Settings';
 import CloseIcon from '@mui/icons-material/Close';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
@@ -25,7 +24,6 @@ export const ModifyAccountDetails = (props) => {
         document.getElementById("setup_acc").style.display = "block";
         document.getElementById("change_pass").style.display = "none";
         document.getElementById("account-setting-Form").style.display = "none";
-        closePopUpForm();
     };
 
     const accountPanel = _ => {

@@ -93,6 +93,7 @@ export const DashboardPage = () => {
         try{
             setLoading(true);
             const getProduct = async _ => {
+                setProducts([]);
                 const res = await fetch("/api/product/getall", {
                     method: "POST",
                     headers: {
@@ -109,7 +110,6 @@ export const DashboardPage = () => {
                 }
             };
             if(business.id){
-                setProducts([]);
                 getProduct();
             }
         }catch(error){
@@ -165,8 +165,8 @@ export const DashboardPage = () => {
             {!loading &&
             <div>
                 <AccessLimit/>
-                <GenerateProcedure documentName = {business.businessName} />
                 <FutureFeature/>
+                <GenerateProcedure documentName = {business.businessName} />
                 <ModifyAccountDetails
                     user = {user}
                     setUser = {setUser}
@@ -187,7 +187,7 @@ export const DashboardPage = () => {
                 />
                 <InviteTeamMember />
                 <div id="dashboard-content" className="dashboard-content">
-                    <div style={{display: "flex"}}>
+                    <div id="dashboard-heading" style={{display: "flex"}}>
                         <div className="search">
                             <SearchBar />
                         </div>
@@ -217,26 +217,12 @@ export const DashboardPage = () => {
 
 export const openAccessLimitForm = _ => {
     document.getElementById("access-limit-form").style.display = "block";
-    openPopUpForm();
 };
 export const openFutureFeatureWarningForm = _ => {
     document.getElementById("future-feature-warning-form").style.display = "block";
-    openPopUpForm();
 };
 export const createNewBusinessForm = (businesses) => {
     // if(businesses.length > 0)
     //     return openAccessLimitForm();
     document.getElementById("createAccountForm").style.display = "block";
-    openPopUpForm();
-};
-export const openPopUpForm = _ => {
-    const filter = "brightness(65%)"
-    document.getElementById("background").style.backgroundColor = "#9c9ea4";
-    document.getElementById("bash").style.filter = filter;
-    document.getElementById("dashboard-content").style.filter = filter;
-};
-export const closePopUpForm = _ => {
-    document.getElementById("background").style.backgroundColor = "#EBEEF8";
-    document.getElementById("bash").style.removeProperty("filter");
-    document.getElementById("dashboard-content").style.removeProperty("filter");
 };

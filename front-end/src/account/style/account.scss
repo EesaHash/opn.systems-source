@@ -6,48 +6,60 @@ $input-border: #1A1E23;
 $input-font: #b0bac9;
 $grey: #A4A4A4;
 
-.user-authentication{
+.user-authentication {
     text-align: center;
     justify-content: center;
     display: grid;
     color: white;
-    & .user-authentication-input{
+
+    & .user-authentication-input {
         margin-bottom: 10px;
         margin-top: 8px;
         text-align: left;
         width: 300px;
         display: grid;
-        & label{
+
+        & label {
             white-space: nowrap;
         }
-        &.password{
+
+        &.password {
             margin-bottom: 5px;
         }
-        & .half-input{
+
+        & .half-input {
             width: 145px;
-            &.left{
+
+            &.left {
                 margin-right: 10px;
             }
-            & input{
+
+            & input {
                 width: 140px;
             }
         }
     }
 
-    & h1{
+    & h1 {
         text-align: center;
         white-space: nowrap;
     }
 
-    & h1, .user-authentication-input, button{
+    & h1,
+    .user-authentication-input,
+    button {
         margin-bottom: 25px;
     }
 
-    & a{
+    & button {
+        border: none;
+    }
+
+    & a {
         color: $primary-color-malibu;
     }
 
-    & input{
+    & input {
         background-color: $input-color;
         padding-left: 12px;
         border-color: #343741;
@@ -57,17 +69,18 @@ $grey: #A4A4A4;
         opacity: 0.6;
     }
 
-    & button, input{
+    & button,
+    input {
         height: 50px;
         border-radius: 10px;
         border-width: thin;
     }
 
-    & button{
+    & button {
         width: 110px;
     }
 
-    & .forgot-password{
+    & .forgot-password {
         width: auto;
         margin: 0;
         padding: 0;
@@ -83,13 +96,14 @@ $grey: #A4A4A4;
         border-radius: 0;
     }
 
-    & label, .forgot-passord{
+    & label,
+    .forgot-passord {
         margin-bottom: 8px !important;
         font-size: 16px !important;
     }
 }
 
-.page1{
+.page1 {
     padding-top: 30px;
     height: 100vh;
     width: 100%;
@@ -99,7 +113,24 @@ $grey: #A4A4A4;
     background-color: $page-color;
     background-size: auto;
 
-   & .cover{
+    & .alert {
+        color: #DD6B20;
+        text-align: left;
+        padding: 0;
+        margin-top: 10px;
+        margin-bottom: 25px !important;
+
+        & .css-i4bv87-MuiSvgIcon-root {
+            font-size: 15px;
+        }
+
+        & label {
+            margin-left: 5px;
+            font-size: 12px !important;
+        }
+    }
+
+    & .cover {
         background-color: $cover-color;
         border: solid;
         border-width: thin;
@@ -109,16 +140,19 @@ $grey: #A4A4A4;
         max-width: 550px;
         position: relative;
         border-radius: 2em;
+
         & .sign-in {
             height: 60vh;
             min-height: 550px;
         }
-        & .sign-up-step-title{
+
+        & .sign-up-step-title {
             float: left;
             margin-left: -50px;
             margin-top: 10px;
             display: flex;
-            & button{
+
+            & button {
                 margin: 0;
                 margin-top: -13px;
                 margin-right: 10px;
@@ -129,33 +163,41 @@ $grey: #A4A4A4;
                 width: 20px;
                 font-size: 16px;
             }
-            & h3{
+
+            & h3 {
                 font-size: 16px;
                 color: $grey;
             }
         }
-        & .sign-up{
+
+        & .sign-up {
             height: 75vh;
             min-height: 625px;
         }
-        & .sign-up2{
+
+        & .sign-up2 {
             height: 40vh;
             min-height: 400px;
-            & .inviteInput{
+
+            & .inviteInput {
                 display: flex;
-                & input{
+
+                & input {
                     margin-right: 20px;
                     width: 18vw;
                     min-width: 200px;
                     max-width: 275px;
                 }
             }
-            & .invitation-list{
+
+            & .invitation-list {
                 overflow: scroll;
-                height: 200px;
+                height: fit-content;
+                max-height: 200px;
                 display: grid;
                 margin-bottom: 25px;
-                & .invitation-label{
+
+                & .invitation-label {
                     background-color: #F8F8F8 !important;
                     text-align: center;
                     color: black;
@@ -163,7 +205,8 @@ $grey: #A4A4A4;
                     width: 100%;
                     height: 50px;
                     margin-bottom: 10px;
-                    & p{
+
+                    & p {
                         float: left;
                         text-align: left;
                         width: 60%;
@@ -172,35 +215,40 @@ $grey: #A4A4A4;
                         margin-left: 15px;
                         margin-top: 12px;
                     }
-                    & .close-button{
+
+                    & .close-button {
                         width: 20%;
                         margin: 0;
                         margin-top: -5px;
                         background-color: transparent;
                         border-color: transparent;
                         float: right;
-                        & span{
+
+                        & span {
                             font-size: 35px;
                             color: #818181;
                         }
                     }
                 }
-                & hr{
+
+                & hr {
                     height: 1px;
                     color: transparent;
                     margin: 0;
                 }
             }
         }
-        & .forgot-pass{
+
+        & .forgot-pass {
             height: 40vh;
             min-height: 400px;
         }
+
         overflow: scroll;
     }
 }
 
-.content{
+.content {
     height: 100%;
     display: flex;
     flex: wrap;
@@ -208,16 +256,10 @@ $grey: #A4A4A4;
     justify-content: center;
 }
 
-.checkbox{
+.checkbox {
     text-align: center;
-    & input{
+
+    & input {
         height: 14px;
     }
-}
-
-.pass label{
-    margin-bottom: 25px !important;
-    margin-top: 0;
-    font-size: 12px !important;
-    color: #eb5757
 }

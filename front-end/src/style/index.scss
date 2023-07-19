@@ -92,6 +92,7 @@ button{
     padding: auto;
     overflow: scroll;
     border-radius: 30px;
+    box-shadow: 0px 0px 10px 100vw #0000007c;
     & .content-form{
         margin: 20px 40px;
     }
@@ -222,5 +223,41 @@ button{
     }
     & button:hover{
         background-color: rgb(108, 117, 125);
+    }
+}
+
+// ------CONFIRMATION POP UP-----
+$confirmation-width: 40vw;
+$confirmation-height: 50vh;
+.confirmation{
+    top: calc((100vh - $confirmation-height) / 2);
+    height: fit-content;
+    max-height: $confirmation-height;
+    width: $confirmation-width;
+    left: calc((100vw - $confirmation-width) / 2);
+    right: calc((100vw - $confirmation-width) / 2);
+    & .title{
+        display: grid;
+        text-align: center;
+        & h1{
+            margin-bottom: 10px;
+            font-size: 24px;
+            font-weight: 700;
+            color: #343741;
+        }
+        & h3{
+            margin-top: 0;
+            font-size: 16px;
+            color: #1A1C21;
+        }
+    }
+    & input{
+        &:focus{
+            border-color: transparent !important;
+        }
+    }
+    & .cancel-button{
+        border-color: #BD271E !important;
+        color: #BD271E !important;
     }
 }

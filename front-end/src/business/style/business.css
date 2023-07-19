@@ -2,6 +2,28 @@
   box-sizing: border-box;
 }
 
+.howToButtons {
+  gap: 4px;
+  margin-top: -5px;
+  margin-bottom: 10px;
+  color: #000;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: calc(((100vw - 240px - 8vw) * 0.5 - 4vw) * 0.5);
+  height: 7vh;
+  padding: 8px 20px;
+  border-width: thin;
+  background: rgba(165, 166, 246, 0.2);
+  font-size: 1.5vh;
+}
+
+.party {
+  width: auto;
+  height: auto;
+}
+
 .pane {
   padding: 1vh 0 1vw 1vw;
 }
@@ -168,12 +190,66 @@
   background-color: #FFF;
   margin-top: -10px;
 }
+.businesses-overview .container {
+  width: calc((100vw - 240px - 8vw) * 0.5 - 4vw + 0.5vw);
+  height: 10vh;
+  border-radius: 9px;
+  border: 0.5px #3235FF dotted;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+.businesses-overview .container .message-container {
+  align-self: stretch;
+  height: 8vh;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 4px;
+  display: flex;
+}
+.businesses-overview .container .message-container .message {
+  justify-content: center;
+  align-items: center;
+  gap: 1px;
+  display: inline-flex;
+}
+.businesses-overview .container .message-container .message .text {
+  text-align: center;
+  color: #343741;
+  font-size: 1.5vh;
+  font-family: "Inter";
+  font-weight: 600;
+  word-wrap: break-word;
+  gap: 2px;
+}
+.businesses-overview .container .upgrade-container {
+  align-self: stretch;
+  height: 48px;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 8px;
+  display: flex;
+}
+.businesses-overview .container .upgrade-container .upgrade-text {
+  flex: 1 1 0;
+  text-align: center;
+  color: #343741;
+  font-size: 1.2vh;
+  font-family: "Inter";
+  font-weight: 400;
+  line-height: 24px;
+  word-wrap: break-word;
+}
 
 .businesstitle {
   color: #000;
   font-size: 30px;
   font-family: DM Sans;
   font-weight: 500;
+  width: calc((100vw - 240px - 8vw) * 0.5 - 4vw);
 }
 
 .main-dashboard-people {
@@ -352,9 +428,9 @@
   height: 100%;
 }
 .business-dashboard .business-dashboard-body .business-dashboard-body-content hr {
-  margin-top: -3px;
+  margin-top: -1px;
   border: none;
-  height: 3px;
+  height: 1px;
   background-color: #ACACAC;
 }
 .business-dashboard .business-dashboard-body .business-dashboard-body-content .business-dashboard-navbar {
@@ -386,7 +462,7 @@
   padding: 8px !important;
 }
 .business-dashboard .business-dashboard-body .business-dashboard-body-content .business-dashboard-navbar .business-dashboard-navbar-item:hover, .business-dashboard .business-dashboard-body .business-dashboard-body-content .business-dashboard-navbar .business-dashboard-navbar-item.active {
-  border-bottom: 3px solid #5D5FEF;
+  border-bottom: 1px solid #5D5FEF;
 }
 .business-dashboard .business-dashboard-body .business-dashboard-body-content .business-dashboard-navbar .business-dashboard-navbar-item .business-dashboard-navbar-item-content {
   display: flex;

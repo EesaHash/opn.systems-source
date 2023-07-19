@@ -5,9 +5,12 @@
   margin-left: 30vw;
   margin-right: 30vw;
   left: 0;
-  height: 70vh;
+  height: -moz-fit-content;
+  height: fit-content;
+  max-height: 70vh;
   background-color: #5C5FFF !important;
   border-color: #5C5FFF;
+  padding-bottom: 60px;
 }
 .warning-pages .close-button {
   width: 100%;
@@ -66,7 +69,4 @@
   margin: auto;
   height: 30px;
   width: 30px;
-}
-.loading-page input {
-  text-align: center;
 }/*# sourceMappingURL=warning_pages.css.map */

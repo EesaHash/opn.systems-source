@@ -2,11 +2,10 @@ import React, { useEffect, useState } from 'react';
 import "../style/TeamMembers.css";
 import "../../header/style/header.css"
 import { ListTable } from '../../table/components/List/ListTable';
-import { openPopUpForm } from '../../dashboard/page/dashboard_main';
+
 
 const inviteTeam = _ =>{
-    document.getElementById("invite-team-member-form").style.display = "block"
-    openPopUpForm();
+    document.getElementById("invite-team-member-form").style.display = "block";
 }
 
 export const TeamMembers = (props) => {

@@ -30,8 +30,13 @@
   text-align: center;
   white-space: nowrap;
 }
-.user-authentication h1, .user-authentication .user-authentication-input, .user-authentication button {
+.user-authentication h1,
+.user-authentication .user-authentication-input,
+.user-authentication button {
   margin-bottom: 25px;
+}
+.user-authentication button {
+  border: none;
 }
 .user-authentication a {
   color: #7DC8F7;
@@ -45,7 +50,8 @@
   border-style: solid;
   opacity: 0.6;
 }
-.user-authentication button, .user-authentication input {
+.user-authentication button,
+.user-authentication input {
   height: 50px;
   border-radius: 10px;
   border-width: thin;
@@ -68,7 +74,8 @@
   font-size: 12px;
   border-radius: 0;
 }
-.user-authentication label, .user-authentication .forgot-passord {
+.user-authentication label,
+.user-authentication .forgot-passord {
   margin-bottom: 8px !important;
   font-size: 16px !important;
 }
@@ -82,6 +89,20 @@
   align-items: center;
   background-color: #030C14;
   background-size: auto;
+}
+.page1 .alert {
+  color: #DD6B20;
+  text-align: left;
+  padding: 0;
+  margin-top: 10px;
+  margin-bottom: 25px !important;
+}
+.page1 .alert .css-i4bv87-MuiSvgIcon-root {
+  font-size: 15px;
+}
+.page1 .alert label {
+  margin-left: 5px;
+  font-size: 12px !important;
 }
 .page1 .cover {
   background-color: #171B21;
@@ -139,7 +160,9 @@
 }
 .page1 .cover .sign-up2 .invitation-list {
   overflow: scroll;
-  height: 200px;
+  height: -moz-fit-content;
+  height: fit-content;
+  max-height: 200px;
   display: grid;
   margin-bottom: 25px;
 }
@@ -196,11 +219,4 @@
 }
 .checkbox input {
   height: 14px;
-}
-
-.pass label {
-  margin-bottom: 25px !important;
-  margin-top: 0;
-  font-size: 12px !important;
-  color: #eb5757;
 }/*# sourceMappingURL=account.css.map */

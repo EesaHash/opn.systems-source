@@ -1,13 +1,21 @@
 import React from 'react';
-import { AccountTree, Assignment, Badge, DeleteForever, FolderCopy, Group, Home, ModeEdit, ViewHeadline } from "@mui/icons-material";
+import ClientjourneyIcon from '../svg/clientjourneyIcon';
+import OverviewIcon from '../svg/overviewIcon';
+import ProceduresIcon from '../svg/proceduresIcon';
+import PoliciesIcon from '../svg/policiesIcon';
+import TeammembersIcon from '../svg/teammembersIcon';
+import DetailsIcon from '../svg/detailsIcon';
+import DepartmentIcon from '../svg/departmentIcon';
+import EditBusinessIcon from '../svg/editBusinessIcon';
+import DeleteBusinessIcon from '../svg/deleteBusinessIcon';
 import "../style/business.css";
 import { businessDetails } from './businessDetails';
-import { openPopUpForm } from '../../dashboard/page/dashboard_main';
 import { businessOverview } from './businessOverview';
 import { ClientJourneyDashboard } from '../../client_journey/components/clientJourneyDashboard';
 import { ProceduresDashboard } from '../../cj_procedure/components/ProceduresDashboard';
 import { PoliciesDashboard } from '../../cj_policies/components/PoliciesDashboard';
 import { TeamMembers } from '../../client_journey/components/TeamMembers';
+import { DepartmentRolesDashboard } from '../../cj_department_roles/components/DepartmentRolesDashboard';
 
 export const BusinessDashboard = (props) => {
     const deleteBusiness = _ => {
@@ -65,10 +73,9 @@ export const BusinessDashboard = (props) => {
 const title = (business, businessIndex, deleteBusiness) => {
     const openEditBusinessForm = _ => {
         document.getElementById("editBusinessForm").style.display = "block";
-        openPopUpForm();
     };
     return(
-        <div className='business-dashboard-title'>
+        <div id="business-dashboard-title" className='business-dashboard-title'>
             <div className='business-dashboard-title-content'>
                 <div className='business-title'>
                     <img src={`./images/businessIcon/businessIcon${(businessIndex%6)+1}.png`} alt="logo"/>
@@ -76,8 +83,8 @@ const title = (business, businessIndex, deleteBusiness) => {
                     <div className='dropdown-arrow-area'>
                         <div className='dropdown-arrow'>
                             <div className="dropdown-content">
-                                <button onClick={openEditBusinessForm}><ModeEdit/>Edit Business Details</button>
-                                <button onClick={deleteBusiness} style={{color: "#EB5757"}} ><DeleteForever/>Delete</button>
+                                <button onClick={openEditBusinessForm}><EditBusinessIcon/>  Edit Business Details</button>
+                                <button onClick={deleteBusiness} style={{color: "#EB5757"}} ><DeleteBusinessIcon style={{color: "#EB5757"}}/>  Delete</button>
                             </div>
                         </div>
                     </div>
@@ -93,16 +100,16 @@ const body = (  business, activeLink2,
                 procedures, setProcedures, 
                 policies, setPolicies   ) => {
     return(
-        <div className='business-dashboard-body'>
+        <div id="business-dashboard-body" className='business-dashboard-body'>
             <div className='business-dashboard-body-content'>
                 <div className='business-dashboard-navbar'>
-                    {navbarItem(<Home/>, "Overview", activeLink3, setActiveLink3)}
-                    {navbarItem(<ViewHeadline/>, "Details", activeLink3, setActiveLink3)}
-                    {navbarItem(<AccountTree/>, "Client Journey", activeLink3, setActiveLink3)}
-                    {navbarItem(<Assignment/>, "Procedures", activeLink3, setActiveLink3)}
-                    {navbarItem(<FolderCopy/>, "Policies", activeLink3, setActiveLink3)}
-                    {navbarItem(<Group/>, "Team Members", activeLink3, setActiveLink3)}
-                    {navbarItem(<Badge/>, "Department & Roles", activeLink3, setActiveLink3)}
+                    {navbarItem(<OverviewIcon/>, "Overview", activeLink3, setActiveLink3)}
+                    {navbarItem(<DetailsIcon/>, "Details", activeLink3, setActiveLink3)}
+                    {navbarItem(<ClientjourneyIcon/>, "Client Journey", activeLink3, setActiveLink3)}
+                    {navbarItem(<ProceduresIcon/>, "Procedures", activeLink3, setActiveLink3)}
+                    {navbarItem(<PoliciesIcon/>, "Policies", activeLink3, setActiveLink3)}
+                    {navbarItem(<TeammembersIcon/>, "Team Members", activeLink3, setActiveLink3)}
+                    {navbarItem(<DepartmentIcon/>, "Department & Roles", activeLink3, setActiveLink3)}
                 </div>
                 <hr/>
                 {
@@ -128,12 +135,12 @@ const body = (  business, activeLink2,
                             policies = {policies} setPolicies = {setPolicies}
                         /> :
                     activeLink3 === "Team Members" ?
-                    <TeamMembers
-                            business = {business}
-                             activeLink2 = {activeLink2}
-                    /> :
+                        <TeamMembers
+                                business = {business}
+                                activeLink2 = {activeLink2}
+                        /> :
                     activeLink3 === "Department & Roles" &&
-                        null
+                        <DepartmentRolesDashboard/>
                 }
             </div>
         </div>
