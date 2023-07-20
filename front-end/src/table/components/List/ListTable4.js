@@ -3,6 +3,7 @@ import "../../style/table.css";
 import { AccessTime, Chat, Download, Edit, MoreHoriz, Share, SimCardDownload } from '@mui/icons-material';
 import { openAccessLimitForm, openFutureFeatureWarningForm } from '../../../dashboard/page/dashboard_main';
 import { ListItem } from './ListItem';
+import { dashPattern, letterPattern, numberingPattern, stepPattern } from '../PatternsItem';
 
 export const ListTable4 = (props) => {
     const [editStatus, setEditStatus] = useState(false);
@@ -81,37 +82,62 @@ export const ListTable4 = (props) => {
 };
 export const FifthTableDescAsList = (icon, title, data) => {
     const temp = data ? JSON.parse(data) : [];
-    const pattern = /^\d+\.\s+/;
-    const pattern2 = /^[-•]\s+/;
     return(
         <div className='list-table4-desc-item'>
             <h2>{icon}{title}</h2>
             <div className='desc-item-list'>
                 {temp.map((res, index) => (
                     (res.length > 0) && (
-                        pattern.test(res) ? (
-                            <div key={index} className='desc-item-list-item'>
-                                <h3>{index + 1}.</h3>
-                                <text>{res.substring(res.indexOf('.') + 2)}</text>
-                            </div> 
+                        numberingPattern.test(res) ? (
+                            numberingItem(index, res)
                             ) : (
-                            pattern2.test(res) ? (
-                                <div key={index} className='desc-item-list-item'>
-                                    <h3>-</h3>
-                                    <text>{res.substring(2)}</text>
-                                </div> 
-                            ) : (
-                                <div key={index} className='desc-item-list-item'>
-                                    <h3>-</h3>
-                                    <text>{res}</text>
-                                </div>
-                            )
+                                stepPattern.test(res) ? (
+                                    stepItem(index, res)
+                                ) : (
+                                    letterPattern.test(res) ? (
+                                        letterItem(index, res)
+                                    ) : (
+                                        dashItem(index, res)
+                                    )
+                                )
                         )
                     )
                 ))}
             </div>
         </div>
     )
+};
+const numberingItem = (index, data) => {
+    return(
+        <div key={index} className='desc-item-list-item'>
+            <h3>{index + 1}.</h3>
+            <text>{data.replace(numberingPattern, '')}</text>
+        </div> 
+    );
+};
+const dashItem = (index, data) => {
+    return(
+        <div key={index} className='desc-item-list-item'>
+            <h3>-</h3>
+            <text>{data.replace(dashPattern, '')}</text>
+        </div> 
+    );
+};
+const letterItem = (index, data) => {
+    return(
+        <div key={index} className='desc-item-list-item'>
+            <h3>{data.substring(0, data.indexOf('.'))}</h3>
+            <text>{data.replace(letterPattern, '')}</text>
+        </div> 
+    );
+};
+const stepItem = (index, data) => {
+    return(
+        <div key={index} className='desc-item-list-item'>
+            <h3>{data.substring(0, data.indexOf(':'))}</h3>
+            <text>{data.replace(stepPattern, '')}</text>
+        </div> 
+    );
 };
 export const FifthTableDescItem = (icon, title, data) => {
     return(

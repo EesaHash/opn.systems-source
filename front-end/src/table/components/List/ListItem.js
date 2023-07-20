@@ -2,14 +2,11 @@ import React, { useEffect, useState } from 'react';
 import "../../style/table.css";
 import { KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material';
 import { EditPrompt } from '../EditPrompt';
+import { dashPattern, letterPattern, numberingPattern, stepPattern } from '../PatternsItem';
 
 export const ListItem = (props) => {
     const [itemClassName, setItemClassName] = useState("minimised");
     const [selectedStep, setSelectedStep] = useState(0);
-    const indentedPattern = [false, false, false, false];
-    const pattern = /^\d+\.\s+/;
-    const pattern2 = /^[-•]\s+/;
-    const pattern3 = /^[a-z]\.\s*/;
 
     useEffect(() => {
         setItemClassName("minimised");
@@ -38,44 +35,16 @@ export const ListItem = (props) => {
             { itemClassName !== "minimised" && 
             props.list.map((data, index) => (
                 (data.length > 0) && (
-                    pattern.test(data) ? (
-                        <div key={index} className={`list-table4-list-item${isEditSelected(index) ? " active" : ""}`} style={{marginLeft: indentedPattern[3] ? "20px" : "0"}}>
-                            {indentedPattern[0] = true}
-                            <div style={{display: "flex", marginBottom: isEditSelected(index) ? "15px" : "0"}} onClick={() => setSelectedStep(index)}>
-                                <h3>{data.substring(0, data.indexOf('.'))}</h3>
-                                <text>{data.substring(data.indexOf('.') + 2)}</text>
-                            </div>
-                            {isEditSelected(index) && <EditPrompt/>}
-                        </div>
+                    numberingPattern.test(data) ? (
+                        numberingItem(index, isEditSelected, setSelectedStep, data)
                     ) : (
-                        pattern2.test(data) ? (
-                            <div key={index} className={`list-table4-list-item${isEditSelected(index) ? " active" : ""}`} style={{marginLeft: indentedPattern[0] ? "40px" : "0"}}>
-                                {indentedPattern[1] = true}
-                                <div style={{display: "flex", marginBottom: isEditSelected(index) ? "15px" : "0"}} onClick={() => setSelectedStep(index)}>
-                                    <h3>-</h3>
-                                    <text>{data.substring(2)}</text>
-                                </div>
-                                {isEditSelected(index) && <EditPrompt/>}
-                            </div>
+                        stepPattern.test(data) ? (
+                            stepItem(index, isEditSelected, setSelectedStep, data)
                         ) : (
-                            pattern3.test(data) ? (
-                                <div key={index} className={`list-table4-list-item${isEditSelected(index) ? " active" : ""}`} style={{marginLeft: indentedPattern[0] ? "40px" : "0"}}>
-                                    {indentedPattern[2] = true}
-                                    <div style={{display: "flex", marginBottom: isEditSelected(index) ? "15px" : "0"}} onClick={() => setSelectedStep(index)}>
-                                        <h3>{data.substring(0, data.indexOf('.'))}</h3>
-                                        <text>{data.replace(pattern3, '')}</text>
-                                    </div>
-                                    {isEditSelected(index) && <EditPrompt/>}
-                                </div>
+                            letterPattern.test(data) ? (
+                                letterItem(index, isEditSelected, setSelectedStep, data)
                             ) : (
-                                <div key={index} className={`list-table4-list-item${isEditSelected(index) ? " active" : ""}`}>
-                                    {indentedPattern[3] = true}
-                                    <div style={{display: "flex", marginBottom: isEditSelected(index) ? "15px" : "0"}} onClick={() => setSelectedStep(index)}>
-                                        <h3>-</h3>
-                                        <text>{data}</text>
-                                    </div>
-                                    {isEditSelected(index) && <EditPrompt/>}
-                                </div>
+                                dashItem(index, isEditSelected, setSelectedStep, data)
                             )
                         )
                     )
@@ -85,6 +54,54 @@ export const ListItem = (props) => {
         </div>
     );
 };
+
+const numberingItem = (index, isEditSelected, setSelectedStep, data) => {
+    return(
+        <div key={index} className={`list-table4-list-item${isEditSelected(index) ? " active" : ""}`}>
+            <div style={{display: "flex", marginBottom: isEditSelected(index) ? "15px" : "0"}} onClick={() => setSelectedStep(index)}>
+                <h3>{data.substring(0, data.indexOf('.'))}</h3>
+                <text>{data.replace(numberingPattern, '')}</text>
+            </div>
+            {isEditSelected(index) && <EditPrompt/>}
+        </div>
+    );
+};
+const dashItem = (index, isEditSelected, setSelectedStep, data) => {
+    return(
+        <div key={index} className={`list-table4-list-item${isEditSelected(index) ? " active" : ""}`}>
+            <div style={{display: "flex", marginBottom: isEditSelected(index) ? "15px" : "0"}} onClick={() => setSelectedStep(index)}>
+                <h3>-</h3>
+                <text>{data.replace(dashPattern, '')}</text>
+            </div>
+            {isEditSelected(index) && <EditPrompt/>}
+        </div>
+    );
+};
+const letterItem = (index, isEditSelected, setSelectedStep, data) => {
+    return(
+        <div key={index} className={`list-table4-list-item${isEditSelected(index) ? " active" : ""}`}>
+            <div style={{display: "flex", marginBottom: isEditSelected(index) ? "15px" : "0"}} onClick={() => setSelectedStep(index)}>
+                <h3>{data.substring(0, data.indexOf('.'))}</h3>
+                <text>{data.replace(letterPattern, '')}</text>
+            </div>
+            {isEditSelected(index) && <EditPrompt/>}
+        </div>
+    );
+};
+const stepItem = (index, isEditSelected, setSelectedStep, data) => {
+    const stepNumbers = data.match(/\bStep\s+(\d+)\b/g);
+    const numbersOnly = stepNumbers.map(step => parseInt(step.match(/\d+/)[0]));
+    return(
+        <div key={index} className={`list-table4-list-item${isEditSelected(index) ? " active" : ""}`}>
+            <div style={{display: "flex", marginBottom: isEditSelected(index) ? "15px" : "0"}} onClick={() => setSelectedStep(index)}>
+                <h3>{numbersOnly}</h3>
+                <text>{data.replace(stepPattern, '')}</text>
+            </div>
+            {isEditSelected(index) && <EditPrompt/>}
+        </div>
+    );
+};
+
 const addItem = _ => {
     return(
         <div className='add-list-item'>
