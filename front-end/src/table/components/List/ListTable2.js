@@ -4,8 +4,10 @@ import { AccessTime, Chat, Download, Edit, KeyboardArrowDown, KeyboardArrowUp, M
 import { ExpandMinimisedTableItem } from '../ExpandMinimisedTableItem';
 import { openAccessLimitForm, openFutureFeatureWarningForm } from '../../../dashboard/page/dashboard_main';
 import { EditPopUp } from '../EditPopUp';
+import { LoadingTableItem } from '../LoadingTableItem';
 
 export const ListTable2 = (props) => {
+    const [loading, setLoading] = useState(false);
     const [editStatus, setEditStatus] = useState(false);
     const [isAIEditOver, setIsAIEditOver] = useState(false);
 
@@ -43,43 +45,47 @@ export const ListTable2 = (props) => {
     };
     return(
         <div className='secondary-table' id = {props.id}>
-            <div className='secondary-table-content'>
-                <div className='table-directory'>
-                    <div className='table-directory-left-header'>
-                        <button onClick={props.button1}>{`${props.type}`}</button>
-                        <h3>/</h3>
-                        <button onClick={closeEditMode}>{`${props.title}`}</button>
-                        {editStatus && <h3>/</h3>}
-                        {editStatus && <button>Editing<Edit/></button>}
+            {loading ? (
+                <LoadingTableItem title={props.loadingTitle} documentName = {props.title} />
+            ):(
+                <div className='secondary-table-content'>
+                    <div className='table-directory'>
+                        <div className='table-directory-left-header'>
+                            <button onClick={props.button1}>{`${props.type}`}</button>
+                            <h3>/</h3>
+                            <button onClick={closeEditMode}>{`${props.title}`}</button>
+                            {editStatus && <h3>/</h3>}
+                            {editStatus && <button>Editing<Edit/></button>}
+                        </div>
+                        {editStatus ? editDirectory() : mainDirectory()}
                     </div>
-                    {editStatus ? editDirectory() : mainDirectory()}
-                </div>
-                {isAIEditOver && <EditPopUp/>}
-                <h1>{props.title}</h1>
-                <h2>{props.description}</h2>
-                <div className='secondary-table-items'>
-                    <div className='items-title'>
-                        <h1>Steps List</h1>
-                        {/* <button >Expand all<KeyboardArrowDown/></button> */}
+                    {isAIEditOver && <EditPopUp automaticallyRegenerate = {props.automaticallyRegenerate} regenerateByPrompt = {props.regenerateByPrompt} setLoading = {setLoading} />}
+                    <h1>{props.title}</h1>
+                    <h2>{props.description}</h2>
+                    <div className='secondary-table-items'>
+                        <div className='items-title'>
+                            <h1>Steps List</h1>
+                            {/* <button >Expand all<KeyboardArrowDown/></button> */}
+                        </div>
+                        {props.data && 
+                            Object.keys(props.data).map((data, index) => (
+                                (!("id overview productID createdAt updatedAt title stages").includes(data)) &&
+                                    <ExpandMinimisedTableItem
+                                        index = {index - 2}
+                                        loadingTitle = {props.loadingTitle}
+                                        loadingDocName = {`${props.title}'s ${props.dataHeading[index - 3]} ${props.type}`}
+                                        title = {props.dataHeading[index - 3]}
+                                        data = {JSON.parse(Object.entries(props.data)[index][1])}
+                                        editStatus = {editStatus}
+                                        automaticallyRegenerate = {props.automaticallyRegenerateForStep}
+                                        regenerateByPrompt = {props.regenerateByPromptForStep}
+                                        loading = {props.loading}
+                                    />
+                            ))
+                        }
                     </div>
-                    {props.data && 
-                        Object.keys(props.data).map((data, index) => (
-                            (!("id overview productID createdAt updatedAt title stages").includes(data)) &&
-                                <ExpandMinimisedTableItem
-                                    index = {index - 2}
-                                    loadingTitle = {props.loadingTitle}
-                                    loadingDocName = {`${props.title}'s ${props.dataHeading[index - 3]} ${props.type}`}
-                                    title = {props.dataHeading[index - 3]}
-                                    data = {JSON.parse(Object.entries(props.data)[index][1])}
-                                    editStatus = {editStatus}
-                                    automaticallyRegenerate = {props.automaticallyRegenerate}
-                                    regenerateByPrompt = {props.regenerateByPrompt}
-                                    loading = {props.loading}
-                                />
-                        ))
-                    }
                 </div>
-            </div>
+            )}
         </div>
     );
 };

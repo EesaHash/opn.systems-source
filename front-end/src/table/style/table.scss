@@ -93,12 +93,13 @@
     }
 }
 .edit-pop-up{
-    position: fixed;
     display: flex;
+    position: absolute;
+    z-index: 500;
     float: right;
-    right: 100px;
+    right: 10px;
     margin-top: 45px;
-    & .edit, .edit-pop-up-content{
+    & .edit, .edit-pop-up-content, .edit-help{
         border-radius: 9px;
         background-color: #FFF !important;
         padding: 20px;
@@ -117,6 +118,49 @@
                 width: fit-content !important;
                 background-color: transparent;
                 border: none
+            }
+        }
+    }
+    & .edit-help{
+        width: 22vw;
+        right: 250px;
+        position: absolute;
+        & h2, h3, text, button{
+            font-size: 16px !important;
+        }
+        & .edit-help-title{
+            display: flex;
+            & img{
+                height: 23px;
+                margin-right: 8px;
+            }
+            & h2{
+                color: #202327;
+            }
+            & .close-button{
+                width: fit-content;
+                text-align: right;
+                margin: auto;
+                margin-right: 0;
+                & button{
+                    color: black;
+                    background-color: transparent;
+                    font-weight: 900;
+                    border-color: transparent;
+                }
+            }
+        }
+        & h3{
+            color: #5D5FEF;
+            font-weight: 700;
+        }
+        & .edit-help-content{
+            display: grid;
+            padding: 10px;
+            border-radius: 9px;
+            background-color: #F7F8FC;
+            & text{
+                color: #343741;
             }
         }
     }
@@ -163,6 +207,7 @@
 .main-table, .secondary-table, .folder-list, .folder-list2, .fourth-table, .list-table4{
     width: 100%;
     overflow: scroll;
+    position: relative;
     & h1{
         font-size: 32px;
         font-weight: 700;

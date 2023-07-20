@@ -89,16 +89,51 @@ export const ClientJourneyDashboard = (props) => {
     const openUpdateConfirmation = _ => {
         document.getElementById("client-journey-update-confirm").style.display = "block";
     };
-    
-    const automaticallyRegenerate = (index, setLoading) => {
-        regenerateClientJourney(index, null, setLoading);
+
+    const automaticallyRegenerate = (setLoading) => {
+        regenerateClientJourney(null, setLoading);
     };
-    const regenerateByPrompt = (index, prompt, setLoading) => {
+    const regenerateByPrompt = (prompt, setLoading) => {
         if(prompt){
-            regenerateClientJourney(index, prompt, setLoading);
+            regenerateClientJourney(prompt, setLoading);
         }
     };
-    const regenerateClientJourney = (index, prompt, setLoading) => {
+    const regenerateClientJourney = (prompt, setLoading) => {
+        try {
+            setLoading(true);
+            fetch("/api/clientjourney/regenerate_client_journey", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    clientJourneyID: journey.id,
+                    prompt
+                })
+            })
+                .then((res) => {return res.json(); })
+                .then((data) => {
+                    console.log(data);
+                    if(data.status){
+                        setJourney({...journey, ...data.clientJourney});
+                        console.log(journey);
+                        setLoading(false);
+                    }
+                });
+        } catch (error) {
+            alert(error);
+        }
+    };
+    
+    const automaticallyRegenerateForStage = (index, setLoading) => {
+        regenerateClientJourneyForStage(index, null, setLoading);
+    };
+    const regenerateByPromptForStage = (index, prompt, setLoading) => {
+        if(prompt){
+            regenerateClientJourneyForStage(index, prompt, setLoading);
+        }
+    };
+    const regenerateClientJourneyForStage = (index, prompt, setLoading) => {
         try{
             const stage = stages[index];
             setLoading(true);
@@ -157,7 +192,7 @@ export const ClientJourneyDashboard = (props) => {
     };
 
     return(
-        <div className='client-journey' classList = "client-journey">
+        <div className='client-journey'>
             <UpdateConfirmation
                 id = "client-journey-update-confirm"
                 documentName = {journey.title}
@@ -181,6 +216,8 @@ export const ClientJourneyDashboard = (props) => {
                 saveBtn = {openUpdateConfirmation}
                 automaticallyRegenerate = {automaticallyRegenerate}
                 regenerateByPrompt = {regenerateByPrompt}
+                automaticallyRegenerateForStep = {automaticallyRegenerateForStage}
+                regenerateByPromptForStep = {regenerateByPromptForStage}
                 loadingTitle = {"AI is regenerating the client journey for"}
             />
         </div>

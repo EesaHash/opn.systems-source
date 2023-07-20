@@ -61,7 +61,7 @@ button{
     }
     & .dropdown-content{
         display: none;
-        position: relative;
+        position: absolute;
         z-index: 1;
         background-color: #FFF;
         white-space: nowrap;

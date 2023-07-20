@@ -19,7 +19,7 @@ export const ExpandMinimisedTableItem = (props) => {
     const sendPrompt = _ => {
         const prompt = document.getElementById(`prompt${props.index}`).value;
         if(!prompt)
-            return alert("Prompt cannot be empty");
+            return alert("Prompt cannot be empty!");
         props.regenerateByPrompt(props.index - 1, prompt, setLoading);
         document.getElementById(`prompt${props.index}`).value = "";
     };

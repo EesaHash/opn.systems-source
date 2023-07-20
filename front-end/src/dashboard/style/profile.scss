@@ -17,7 +17,6 @@ $profile-name-width: calc(15vw - 30px - 35px - 1vw);
     font-weight: 1000;
     text-transform: uppercase;
     text-size-adjust: auto;
-    
 }
 .profile-header{
     margin-top: 5px;
@@ -29,6 +28,7 @@ $profile-name-width: calc(15vw - 30px - 35px - 1vw);
     border-radius: 28px;
     margin: auto;
     height: 50px;
+    position: relative;
     & .profile-picture{
         display: block;
         margin-right: 0.5vw;

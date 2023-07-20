@@ -115,6 +115,7 @@ clientJourney.saveRegeneratedStage = async (req, res) => {
             throw "Client Journey or Business not found!";
         }
         await ClientJourney.update({
+            overview: journey.overview,
             awareness: journey.awareness,
             interest: journey.interest,
             evaluation: journey.evaluation,
@@ -204,25 +205,36 @@ clientJourney.regenerateClientJourney = async(req, res) => {
             }
             i++;
         }
-        const regenJourney = await cj.update({
-            overview: JSON.stringify(Overview),
-            awareness: JSON.stringify(stages[0]),
-            interest: JSON.stringify(stages[1]),
-            evaluation: JSON.stringify(stages[2]),
-            decision: JSON.stringify(stages[3]),
-            purchase: JSON.stringify(stages[4]),
-            implementation: JSON.stringify(stages[5]),
-            postPurchase: JSON.stringify(stages[6]),
-            retention: JSON.stringify(stages[7]),
-        })
+        // const regenJourney = await cj.update({
+        //     overview: JSON.stringify(Overview),
+        //     awareness: JSON.stringify(stages[0]),
+        //     interest: JSON.stringify(stages[1]),
+        //     evaluation: JSON.stringify(stages[2]),
+        //     decision: JSON.stringify(stages[3]),
+        //     purchase: JSON.stringify(stages[4]),
+        //     implementation: JSON.stringify(stages[5]),
+        //     postPurchase: JSON.stringify(stages[6]),
+        //     retention: JSON.stringify(stages[7]),
+        // })
+        console.log(`[Success] regenerate client journey ${clientJourneyID}`);
         return res.status(200).json({
+            status: true,
             clientJourney: {
-                regenJourney
+                overview: JSON.stringify(Overview),
+                awareness: JSON.stringify(stages[0]),
+                interest: JSON.stringify(stages[1]),
+                evaluation: JSON.stringify(stages[2]),
+                decision: JSON.stringify(stages[3]),
+                purchase: JSON.stringify(stages[4]),
+                implementation: JSON.stringify(stages[5]),
+                postPurchase: JSON.stringify(stages[6]),
+                retention: JSON.stringify(stages[7]),
             }
         });
     } catch (error) {
         console.log(error);
         return res.status(500).json({
+            status: false,
             status: "FAILED"
         });
     }

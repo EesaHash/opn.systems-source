@@ -96,13 +96,14 @@
 }
 
 .edit-pop-up {
-  position: fixed;
   display: flex;
+  position: absolute;
+  z-index: 500;
   float: right;
-  right: 100px;
+  right: 10px;
   margin-top: 45px;
 }
-.edit-pop-up .edit, .edit-pop-up .edit-pop-up-content {
+.edit-pop-up .edit, .edit-pop-up .edit-pop-up-content, .edit-pop-up .edit-help {
   border-radius: 9px;
   background-color: #FFF !important;
   padding: 20px;
@@ -124,6 +125,50 @@
   width: fit-content !important;
   background-color: transparent;
   border: none;
+}
+.edit-pop-up .edit-help {
+  width: 22vw;
+  right: 250px;
+  position: absolute;
+}
+.edit-pop-up .edit-help h2, .edit-pop-up .edit-help h3, .edit-pop-up .edit-help text, .edit-pop-up .edit-help button {
+  font-size: 16px !important;
+}
+.edit-pop-up .edit-help .edit-help-title {
+  display: flex;
+}
+.edit-pop-up .edit-help .edit-help-title img {
+  height: 23px;
+  margin-right: 8px;
+}
+.edit-pop-up .edit-help .edit-help-title h2 {
+  color: #202327;
+}
+.edit-pop-up .edit-help .edit-help-title .close-button {
+  width: -moz-fit-content;
+  width: fit-content;
+  text-align: right;
+  margin: auto;
+  margin-right: 0;
+}
+.edit-pop-up .edit-help .edit-help-title .close-button button {
+  color: black;
+  background-color: transparent;
+  font-weight: 900;
+  border-color: transparent;
+}
+.edit-pop-up .edit-help h3 {
+  color: #5D5FEF;
+  font-weight: 700;
+}
+.edit-pop-up .edit-help .edit-help-content {
+  display: grid;
+  padding: 10px;
+  border-radius: 9px;
+  background-color: #F7F8FC;
+}
+.edit-pop-up .edit-help .edit-help-content text {
+  color: #343741;
 }
 .edit-pop-up .edit-pop-up-content {
   display: grid;
@@ -168,6 +213,7 @@
 .main-table, .secondary-table, .folder-list, .folder-list2, .fourth-table, .list-table4 {
   width: 100%;
   overflow: scroll;
+  position: relative;
 }
 .main-table h1, .secondary-table h1, .folder-list h1, .folder-list2 h1, .fourth-table h1, .list-table4 h1 {
   font-size: 32px;

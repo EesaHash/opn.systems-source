@@ -119,37 +119,42 @@ export const DashboardPage = () => {
 
     useEffect(() => {
         setJourneys([]);
-        const fetchData = async _ => {
-            try{
-                const getClientJourney = async (productID) => {
-                    const res = await fetch("/api/clientjourney/get", {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json"
-                        },
-                        body: JSON.stringify({
-                            productID: productID
-                        })
-                    });
-                    const data = await res.json();
-                    console.log(data);
-                    if(data.status)
-                        setJourneys((prevJourneys) => [...prevJourneys, data.clientJourney]);
-                };
-                products.forEach(async (item) => {
-                    await getClientJourney(item.id);
-                });
-                setLoading(false);
-            }catch(error){
-                alert(error);
-            }
-        };
-        fetchData();
-    }, [products]);
-
+    }, [activeLink2]);
+    
     useEffect(() => {
-        setJourneys([]);
-    }, [activeLink2])
+        const fetchData = async () => {
+          try {
+            const fetchJourney = async (productID) => {
+                const res = await fetch("/api/clientjourney/get", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        productID: productID
+                    })
+                });
+                const data = await res.json();
+                console.log(data);
+                if (data.status) {
+                    return data.clientJourney;
+                } else {
+                    return null;
+                }
+            };
+            const list = [];
+            for (const item of products) {
+                list.push(await fetchJourney(item.id));
+            }
+            setJourneys(list);
+            setLoading(false);
+          } catch (error) {
+            alert(error);
+          }
+        };
+    
+        fetchData();
+      }, [products]);
     
     if(userID === "none") return window.location.href = "/";
     return (
