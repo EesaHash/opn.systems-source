@@ -1,17 +1,35 @@
-const User = require("../models/user");
+// const crypto = require("crypto");
 
-const updateAll = async () => {
-    try {
-        const users = await User.findAll();
-        for (let i = 0; i < users.length; i++) {
-            console.log(users[i].password)
-            await users[i].update({
-                password: String(users[i].dataValues.password)
-            })
-        }
-    } catch (error) {
-        console.log(error);
-    }
-}
+// const ENCRYPTION_KEY = process.env.ENCRYPTION_KEY.substr(0, 32);
+// const IV_LENGTH = 16;
 
-module.exports = {updateAll}
+// function encrypt(text) {
+//   const iv = crypto.randomBytes(IV_LENGTH);
+//   const cipher = crypto.createCipheriv(
+//     "aes-256-cbc",
+//     Buffer.from(ENCRYPTION_KEY),
+//     Buffer.from(iv)
+//   );
+//   const encrypted = Buffer.concat([cipher.update(text), cipher.final()]);
+
+//   return iv.toString("hex") + ":" + encrypted.toString("hex");
+// }
+
+// function decrypt(text) {
+//   const textParts = text.split(":");
+//   const iv = Buffer.from(textParts.shift(), "hex");
+//   const encryptedText = Buffer.from(textParts.join(":"), "hex");
+//   const decipher = crypto.createDecipheriv(
+//     "aes-256-cbc",
+//     Buffer.from(ENCRYPTION_KEY),
+//     iv
+//   );
+//   const decrypted = Buffer.concat([
+//     decipher.update(encryptedText),
+//     decipher.final(),
+//   ]);
+
+//   return decrypted.toString();
+// }
+
+// module.exports = { decrypt, encrypt };
