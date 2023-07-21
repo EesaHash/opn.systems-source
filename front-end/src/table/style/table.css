@@ -508,6 +508,10 @@
   color: #343741;
   text-align: justify;
 }
+.list-table4 .list-table4-content .list-table4-list .list-table4-list-item .sub-items {
+  margin-left: 40px;
+  display: flex;
+}
 .list-table4 .list-table4-content .list-table4-list button {
   background-color: transparent;
   border: none;

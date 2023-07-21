@@ -494,6 +494,10 @@
                     color: #343741;
                     text-align: justify;
                 }
+                & .sub-items{
+                    margin-left: 40px;
+                    display: flex;
+                }
             }
             & button{
                 background-color: transparent;
