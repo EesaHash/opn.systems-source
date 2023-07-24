@@ -1,6 +1,7 @@
 /*comments (things to remember to include)*/
 /*when fields get filled there's supposed to be a purple underline underneath*/
 .account-setting {
+  font-size: 14px;
   margin-top: 15vh;
   max-height: 90vh;
   width: 39vw;

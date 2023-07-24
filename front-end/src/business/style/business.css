@@ -17,6 +17,17 @@
   border-width: thin;
   background: rgba(165, 166, 246, 0.2);
   font-size: 1.5vh;
+  transition: background-color 0.3s ease;
+}
+
+.howToButtons:hover {
+  border-radius: 8px;
+  background: rgba(165, 166, 246, 0.5);
+}
+
+.howToButtonsClicked {
+  border-radius: 8px;
+  background: #A5A6F6;
 }
 
 .party {
@@ -93,7 +104,6 @@
   color: rgb(0, 0, 0);
   font-size: 38.4px;
   white-space: nowrap;
-  overflow: scroll;
   font-family: DM Sans;
   font-weight: 500;
   align-items: center;
@@ -395,7 +405,6 @@
   font-weight: 900;
   line-height: 64px;
   white-space: nowrap;
-  overflow: scroll;
 }
 .business-dashboard .business-dashboard-title .business-dashboard-title-content .business-title .dropdown-arrow {
   border-top-color: black;

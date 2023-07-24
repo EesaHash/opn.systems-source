@@ -1,13 +1,13 @@
 .warning-pages{
     display: grid;
-    margin-top: 10vh;
+    margin-top: 16vh;
     width: 40vw;
-    margin-left: 30vw;
-    margin-right: 30vw;
+    margin-left: 32vw;
+    margin-right: 32vw;
     left: 0;
     height: fit-content;
     max-height: 70vh;
-    background-color: #5C5FFF !important;
+    background: linear-gradient(133deg, #3235FF 0%, #5C5FFF 100%) !important;
     border-color: #5C5FFF;
     padding-bottom: 60px;
     & .close-button{
@@ -23,13 +23,9 @@
         }
     }
     & .warning-icon{
-        color: white;
+        color: white !important;
         width: fit-content;
         margin: auto;
-        & .css-i4bv87-MuiSvgIcon-root{
-            height: 100px !important;
-            width: 100px !important;
-        }
     }
     & h1, h3{
         text-align: center;
@@ -43,6 +39,11 @@
         font-size: 18px;
         color: #d1d2d6;
     }
+
+    & .upgrade-text{
+        color: #FFF;
+    }
+
     & .upgrade-plan-btn{
         width: 100%;
         text-align: center;
@@ -53,8 +54,10 @@
             color: #3235FF;
             padding: 20px;
             border-radius: 8px;
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 600;
+            height: 8vh;
+            width: 12vw;
         }
     }
 }
