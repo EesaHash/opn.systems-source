@@ -108,7 +108,7 @@ button{
         font-size: 20px;
     }
     & h3, label, input::placeholder{
-        font-size: 16px;
+        font-size: 14px;
         color: #ACACAC;
     }
     & hr{
@@ -137,7 +137,7 @@ button{
         }
         & textarea:focus, input:focus{
             outline: none;
-            border: 2.5px solid #555;
+            border-bottom: 1.5px solid #5D5FEF;
         }
     }
 

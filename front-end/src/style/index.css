@@ -109,11 +109,11 @@ button {
   font-size: 20px;
 }
 .form-popup input::-moz-placeholder {
-  font-size: 16px;
+  font-size: 14px;
   color: #ACACAC;
 }
 .form-popup h3, .form-popup label, .form-popup input::placeholder {
-  font-size: 16px;
+  font-size: 14px;
   color: #ACACAC;
 }
 .form-popup hr {
@@ -139,7 +139,7 @@ button {
 }
 .form-popup .pop-up-input textarea:focus, .form-popup .pop-up-input input:focus {
   outline: none;
-  border: 2.5px solid #555;
+  border-bottom: 1.5px solid #5D5FEF;
 }
 .form-popup .pop-up-button {
   display: flex;
