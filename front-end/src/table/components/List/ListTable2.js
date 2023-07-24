@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import "../../style/table.css";
 import { AccessTime, Chat, Download, Edit, KeyboardArrowDown, KeyboardArrowUp, MoreHoriz, Share, SimCardDownload } from '@mui/icons-material';
-import { ExpandMinimisedTableItem } from '../ExpandMinimisedTableItem';
+import { ExpandMinimisedTableItem } from '../ExpandMinimisedItem/ExpandMinimisedTableItem';
 import { openAccessLimitForm, openFutureFeatureWarningForm } from '../../../dashboard/page/dashboard_main';
 import { EditPopUp } from '../EditPopUp';
 import { LoadingTableItem } from '../LoadingTableItem';

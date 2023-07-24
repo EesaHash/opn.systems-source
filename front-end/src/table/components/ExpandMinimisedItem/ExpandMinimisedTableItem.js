@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import "../style/table.css";
+import "../../style/table.css";
 import { KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material';
-import { LoadingTableItem } from './LoadingTableItem';
+import { LoadingTableItem } from '../LoadingTableItem';
 
 export const ExpandMinimisedTableItem = (props) => {
     const [itemClassName, setItemClassName] = useState("minimised-table-item");
     const [loading, setLoading] = useState(false);
     
-    const expandCollapseBtn = _ => {
+    const expandMinimisedBtn = _ => {
         if(itemClassName === "minimised-table-item")
             setItemClassName("expanded-table-item");
         else
@@ -29,10 +29,10 @@ export const ExpandMinimisedTableItem = (props) => {
         }
     };
     return(
-        <div key = {props.index} className={itemClassName} onClick={() => itemClassName === "minimised-table-item" && expandCollapseBtn()}>
+        <div key = {props.index} className={itemClassName} onClick={() => itemClassName === "minimised-table-item" && expandMinimisedBtn()}>
             <h2>{props.index}</h2>
             <div style={{width:"100%", display: "grid"}}>
-                <h1 style={{width: "100%", cursor: "pointer"}} onClick={() => itemClassName === "expanded-table-item" && expandCollapseBtn()}>{props.title}</h1>
+                <h1 style={{width: "100%", cursor: "pointer"}} onClick={() => itemClassName === "expanded-table-item" && expandMinimisedBtn()}>{props.title}</h1>
                 {(itemClassName === "expanded-table-item") && (
                     loading ? (
                         <LoadingTableItem title = {props.loadingTitle} documentName = {`${props.loadingDocName}`} /> 
@@ -56,7 +56,7 @@ export const ExpandMinimisedTableItem = (props) => {
                     </div>
                 }
             </div>
-            <button onClick={expandCollapseBtn}>
+            <button onClick={expandMinimisedBtn}>
                 {itemClassName === "minimised-table-item" ? <KeyboardArrowDown/> : <KeyboardArrowUp/>}
             </button>
         </div>

@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import "../../style/table.css";
 import { KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material';
-import { EditPrompt } from '../EditPrompt';
 import { dashPattern, letterPattern, numberingPattern, stepPattern } from '../PatternsItem';
+import { ExpandMinimisedTableItem2 } from '../ExpandMinimisedItem/ExpandMinimisedTableItem2';
 
 export const ListItem = (props) => {
     const [itemClassName, setItemClassName] = useState("minimised");
+    const [expandAll, setExpandAll] = useState(false);
     const [selectedStep, setSelectedStep] = useState(0);
     const [list, setList] = useState([]);
 
@@ -83,44 +84,29 @@ export const ListItem = (props) => {
     };
     return(
         <div className={`list-table4-list ${itemClassName}`} onClick = {() => itemClassName === "minimised" && expandMinimisedBtn()}>
-            <div style={{display: "flex"}} onClick={expandMinimisedBtn}>
-                <h2>{props.listTitle}</h2>
-                <button>
+            <div className='list-table4-list-heading' style={{display: "flex"}} >
+                <div onClick={expandMinimisedBtn} style={{width: "100%"}}>
+                    <h2>{props.listTitle}</h2>
+                </div>
+                <button onClick={() => setExpandAll(!expandAll)}>{expandAll ? "Minimised all" : "Expand all"}</button>
+                <button onClick={expandMinimisedBtn}>
                     {itemClassName === "minimised" ? <KeyboardArrowDown/> : <KeyboardArrowUp/>}
                 </button>
             </div>
             { itemClassName !== "minimised" && 
-            list.map((data, index) => (
-                mainItem(index, isEditSelected, setSelectedStep, data)
-            ))}
+                list.map((data, index) => (
+                    <ExpandMinimisedTableItem2
+                        index = {index}
+                        isEditSelected = {isEditSelected}
+                        setSelectedStep = {setSelectedStep}
+                        data = {data}
+                        itemClassName = {expandAll ? "expanded" : "minimised"}
+                    />
+                ))
+            }
             {(props.editStatus && itemClassName !== "minimised") && addItem()}
         </div>
     );
-};
-
-const mainItem = (index, isEditSelected, setSelectedStep, data) => {
-    return(
-        <div key={index} className={`list-table4-list-item${isEditSelected(index) ? " active" : ""}`}>
-            <div style={{marginBottom: isEditSelected(index) ? "15px" : "0"}} onClick={() => setSelectedStep(index)}>
-                <div style={{display: "flex"}}>
-                    <h3>{data.hyphen}</h3>
-                    <text>{data.heading}</text>
-                </div>
-                {
-                    data.item.map((item) => (
-                        <div className='sub-items'>
-                            <h3>{item.hyphen}</h3>
-                            <text>{item.data}</text>
-                        </div>
-                    ))
-                }
-            </div>
-            {isEditSelected(index) && <EditPrompt/>}
-        </div>
-    );
-};
-const subItems = () => {
-
 };
 
 const addItem = _ => {

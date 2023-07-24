@@ -469,11 +469,27 @@
 .list-table4 .list-table4-content .list-table4-list:hover {
   cursor: pointer;
 }
+.list-table4 .list-table4-content .list-table4-list .list-table4-list-heading h2 {
+  margin: auto;
+  margin-left: 0;
+}
+.list-table4 .list-table4-content .list-table4-list .list-table4-list-heading button {
+  margin-left: 0 !important;
+  font-size: 12px;
+  white-space: nowrap;
+}
+.list-table4 .list-table4-content .list-table4-list .list-table4-list-heading .css-i4bv87-MuiSvgIcon-root {
+  height: 20px;
+  color: #A2ABBA;
+}
 .list-table4 .list-table4-content .list-table4-list h2 {
   color: #343741;
   font-size: 20px;
   font-weight: 700;
   line-height: 140%;
+}
+.list-table4 .list-table4-content .list-table4-list .css-i4bv87-MuiSvgIcon-root {
+  margin-top: -3px;
 }
 .list-table4 .list-table4-content .list-table4-list .list-table4-list-item {
   display: grid;
@@ -508,8 +524,24 @@
   color: #343741;
   text-align: justify;
 }
+.list-table4 .list-table4-content .list-table4-list .list-table4-list-item .heading h3 {
+  font-size: 20px;
+  margin-top: 3px;
+}
+.list-table4 .list-table4-content .list-table4-list .list-table4-list-item .heading text {
+  font-weight: 900;
+  font-size: 22px;
+}
 .list-table4 .list-table4-content .list-table4-list .list-table4-list-item .sub-items {
   margin-left: 40px;
+  display: grid;
+}
+.list-table4 .list-table4-content .list-table4-list .list-table4-list-item .sub-items hr {
+  margin: 10px;
+  height: 2px;
+  background-color: #bebebe;
+}
+.list-table4 .list-table4-content .list-table4-list .list-table4-list-item .sub-items .sub-items-content {
   display: flex;
 }
 .list-table4 .list-table4-content .list-table4-list button {
