@@ -23,6 +23,41 @@ export const ClientJourneyDashboard = (props) => {
         }
     }, [props.activeLink2]);
 
+    // Create New Journey
+    const openCreateJourneyForm = _ => {
+        if(props.journeys.length > 0)
+            return openAccessLimitForm();
+        document.getElementById("createClientJourney").style.display = "block";
+    };
+
+    // Going to Tab 2
+    const openClientJourneyDetails = (param, index) => {
+        const mainTable = document.getElementById("client-journey-main-table");
+        const secondaryTable = document.getElementById("client-journey-secondary-table");
+        if(mainTable && secondaryTable){
+            mainTable.style.display = "none";
+            setJourney(param);
+            setIndex(index);
+            secondaryTable.style.display = "block";
+        }
+    };
+
+    // Going back to Tab 1
+    const showJourneyList = _ => {
+        const mainTable = document.getElementById("client-journey-main-table");
+        const secondaryTable = document.getElementById("client-journey-secondary-table");
+        if(mainTable && secondaryTable){
+            mainTable.style.display = "block";
+            setJourney({});
+            setIndex(-1);
+            secondaryTable.style.display = "none";
+        }
+    };
+
+    // Save Changes
+    const openUpdateConfirmation = _ => {
+        document.getElementById("client-journey-update-confirm").style.display = "block";
+    };
     useEffect(() => {
         const saveChanges = _ => {
             try{
@@ -56,71 +91,6 @@ export const ClientJourneyDashboard = (props) => {
             discardChanges();
         // eslint-disable-next-line
     }, [updateConfirmation]);
-
-    useEffect(() => {
-        const deleteJourney = _ => {
-            try{
-                fetch("/api/clientjourney/delete", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({
-                        productID: deleteConfirmation
-                    })
-                })
-                    .then((res) => {return res.json(); })
-                    .then((data) => {
-                        if(data.status){
-                            props.setJourneys([...props.journeys.filter(obj => obj.productID !== deleteConfirmation)]);
-                        }
-                        setDeleteConfirmation(-1);
-                    })
-            }catch(error){
-                console.log(error);
-            }
-        };
-        if(deleteConfirmation !== -1)
-            deleteJourney();
-        // eslint-disable-next-line
-    }, [deleteConfirmation]);
-    const confirmDelete = (data) => {
-        setDeleteConfirmation(data.productID);
-    };
-
-    const openCreateJourneyForm = _ => {
-        if(props.journeys.length > 0)
-            return openAccessLimitForm();
-        document.getElementById("createClientJourney").style.display = "block";
-    };
-
-    // Going to Tab 2
-    const openClientJourneyDetails = (param, index) => {
-        const mainTable = document.getElementById("client-journey-main-table");
-        const secondaryTable = document.getElementById("client-journey-secondary-table");
-        if(mainTable && secondaryTable){
-            mainTable.style.display = "none";
-            setJourney(param);
-            setIndex(index);
-            secondaryTable.style.display = "block";
-        }
-    };
-
-    // Going back to Tab 1
-    const showJourneyList = _ => {
-        const mainTable = document.getElementById("client-journey-main-table");
-        const secondaryTable = document.getElementById("client-journey-secondary-table");
-        if(mainTable && secondaryTable){
-            mainTable.style.display = "block";
-            setJourney({});
-            setIndex(-1);
-            secondaryTable.style.display = "none";
-        }
-    };
-
-    const openUpdateConfirmation = _ => {
-        document.getElementById("client-journey-update-confirm").style.display = "block";
-    };
 
     // Regenerate Client Journey
     const automaticallyRegenerate = (setLoading) => {
@@ -158,6 +128,7 @@ export const ClientJourneyDashboard = (props) => {
         }
     };
     
+    // Regenerate Client Journey for Stage
     const automaticallyRegenerateForStage = (index, setLoading) => {
         regenerateClientJourneyForStage(index, null, setLoading);
     };
@@ -223,6 +194,38 @@ export const ClientJourneyDashboard = (props) => {
             alert(error);
         }
     };
+
+    // Delete Journey
+    const confirmDelete = (data) => {
+        setDeleteConfirmation(data.productID);
+    };
+    useEffect(() => {
+        const deleteJourney = _ => {
+            try{
+                fetch("/api/clientjourney/delete", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        productID: deleteConfirmation
+                    })
+                })
+                    .then((res) => {return res.json(); })
+                    .then((data) => {
+                        if(data.status){
+                            props.setJourneys([...props.journeys.filter(obj => obj.productID !== deleteConfirmation)]);
+                        }
+                        setDeleteConfirmation(-1);
+                    })
+            }catch(error){
+                console.log(error);
+            }
+        };
+        if(deleteConfirmation !== -1)
+            deleteJourney();
+        // eslint-disable-next-line
+    }, [deleteConfirmation]);
 
     return(
         <div className='client-journey'>
