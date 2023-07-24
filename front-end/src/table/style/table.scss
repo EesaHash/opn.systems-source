@@ -253,7 +253,8 @@
                 & .css-i4bv87-MuiSvgIcon-root{
                     color: #2173DF;
                     margin-left: 5px;
-                    font-size: 13px;
+                    margin-top: -2.5px;
+                    font-size: 15px;
                 }
                 &:hover{
                     cursor: pointer;
@@ -903,5 +904,11 @@
             margin-left: 20px;
             text-align: justify;
         }
+    }
+    & .edit-selected{
+        border-radius: 9px;
+        background-color: rgba(33, 115, 223, 0.30);
+        padding: 0 15px;
+        margin-bottom: 10px;
     }
 }

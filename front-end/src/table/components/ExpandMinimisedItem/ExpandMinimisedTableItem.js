@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import "../../style/table.css";
 import { KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material';
 import { LoadingTableItem } from '../LoadingTableItem';
 
 export const ExpandMinimisedTableItem = (props) => {
-    const [itemClassName, setItemClassName] = useState("minimised-table-item");
+    const [itemClassName, setItemClassName] = useState(props.itemClassName);
     const [loading, setLoading] = useState(false);
-    
+    useEffect(() => {
+        setItemClassName(props.itemClassName)
+    }, [props.itemClassName]);
     const expandMinimisedBtn = _ => {
         if(itemClassName === "minimised-table-item")
             setItemClassName("expanded-table-item");
@@ -32,16 +34,18 @@ export const ExpandMinimisedTableItem = (props) => {
         <div key = {props.index} className={itemClassName} onClick={() => itemClassName === "minimised-table-item" && expandMinimisedBtn()}>
             <h2>{props.index}</h2>
             <div style={{width:"100%", display: "grid"}}>
-                <h1 style={{width: "100%", cursor: "pointer"}} onClick={() => itemClassName === "expanded-table-item" && expandMinimisedBtn()}>{props.title}</h1>
-                {(itemClassName === "expanded-table-item") && (
-                    loading ? (
-                        <LoadingTableItem title = {props.loadingTitle} documentName = {`${props.loadingDocName}`} /> 
-                    ) : (
-                        Object.keys(props.data).map((data, index) => (
-                            expandSubItem(props.index, index, data, Object.entries(props.data)[index][1])
-                        ))
-                    )
-                )}
+                <div style={{display: "grid"}} className={itemClassName === "expanded-table-item" && props.editStatus ? "edit-selected" : ""}>
+                    <h1 style={{width: "100%", cursor: "pointer"}} onClick={() => itemClassName === "expanded-table-item" && expandMinimisedBtn()}>{props.title}</h1>
+                    {(itemClassName === "expanded-table-item") && (
+                        loading ? (
+                            <LoadingTableItem title = {props.loadingTitle} documentName = {`${props.loadingDocName}`} /> 
+                        ) : (
+                            Object.keys(props.data).map((data, index) => (
+                                expandSubItem(props.index, index, data, Object.entries(props.data)[index][1])
+                            ))
+                        )
+                    )}
+                </div>
                 {(props.editStatus && itemClassName === "expanded-table-item" && !loading) && 
                     <div className='edit'>
                         <div className='edit-suggestion'>

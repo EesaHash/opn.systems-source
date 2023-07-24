@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import "../../style/table.css";
-import { AccessTime, Chat, Download, Edit, MoreHoriz, Share, SimCardDownload } from '@mui/icons-material';
+import { AccessTime, ArrowBack, Chat, Download, Edit, MoreHoriz, Share, SimCardDownload } from '@mui/icons-material';
 import { openAccessLimitForm, openFutureFeatureWarningForm } from '../../../dashboard/page/dashboard_main';
 import { ListItem } from './ListItem';
 import { dashPattern, letterPattern, numberingPattern, stepPattern } from '../PatternsItem';
@@ -40,6 +40,7 @@ export const ListTable4 = (props) => {
             <div className='list-table4-content'>
                 <div className='table-directory'>
                     <div className='table-directory-left-header'>
+                        <button onClick={editStatus ? closeEditMode : props.button3}><ArrowBack/></button>
                         <button onClick={props.button1}>{`${props.type}`}</button>
                         <h3>/</h3>
                         <button onClick={props.button2} >{`${props.title}`}</button>

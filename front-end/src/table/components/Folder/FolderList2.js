@@ -1,11 +1,13 @@
 import React from 'react';
 import "../../style/table.css";
+import { ArrowBack } from '@mui/icons-material';
 
 export const FolderList2 = (props) => {
     return(
         <div id={props.id} className='folder-list2'>
             <div className='table-directory'>
                 <div className='table-directory-left-header'>
+                    <button onClick={props.button1}><ArrowBack/></button>
                     <button onClick={props.button1}>{`${props.type}`}</button>
                     <h3>/</h3>
                     <button >{`${props.title}`}</button>

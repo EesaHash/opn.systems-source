@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import "../../style/table.css";
-import { AccessTime, Chat, Download, Edit, KeyboardArrowDown, KeyboardArrowUp, MoreHoriz, Share, SimCardDownload } from '@mui/icons-material';
+import { AccessTime, ArrowBack, Chat, Download, Edit, KeyboardArrowDown, KeyboardArrowUp, MoreHoriz, Share, SimCardDownload } from '@mui/icons-material';
 import { ExpandMinimisedTableItem } from '../ExpandMinimisedItem/ExpandMinimisedTableItem';
 import { openAccessLimitForm, openFutureFeatureWarningForm } from '../../../dashboard/page/dashboard_main';
 import { EditPopUp } from '../EditPopUp';
@@ -10,6 +10,7 @@ export const ListTable2 = (props) => {
     const [loading, setLoading] = useState(false);
     const [editStatus, setEditStatus] = useState(false);
     const [isAIEditOver, setIsAIEditOver] = useState(false);
+    const [expandAll, setExpandAll] = useState(false);
 
     const mainDirectory = _ => {
         return(
@@ -51,6 +52,7 @@ export const ListTable2 = (props) => {
                 <div className='secondary-table-content'>
                     <div className='table-directory'>
                         <div className='table-directory-left-header'>
+                            <button onClick={editStatus ? closeEditMode : props.button1}><ArrowBack/></button>
                             <button onClick={props.button1}>{`${props.type}`}</button>
                             <h3>/</h3>
                             <button onClick={closeEditMode}>{`${props.title}`}</button>
@@ -65,7 +67,10 @@ export const ListTable2 = (props) => {
                     <div className='secondary-table-items'>
                         <div className='items-title'>
                             <h1>Steps List</h1>
-                            {/* <button >Expand all<KeyboardArrowDown/></button> */}
+                            <button onClick={() => setExpandAll(!expandAll)}>
+                                {expandAll ? "Minimised all" : "Expand all"}
+                                {expandAll ? <KeyboardArrowUp/> : <KeyboardArrowDown/>}
+                            </button>
                         </div>
                         {props.data && 
                             Object.keys(props.data).map((data, index) => (
@@ -80,6 +85,7 @@ export const ListTable2 = (props) => {
                                         automaticallyRegenerate = {props.automaticallyRegenerateForStep}
                                         regenerateByPrompt = {props.regenerateByPromptForStep}
                                         loading = {props.loading}
+                                        itemClassName = {expandAll ? "expanded-table-item" : "minimised-table-item"}
                                     />
                             ))
                         }

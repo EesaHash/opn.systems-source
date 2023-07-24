@@ -3,6 +3,7 @@ import "../../style/table.css";
 import { TableHeader } from '../TableHeader';
 import { EmptyTableContent } from '../EmptyTableContent';
 import { TableContent1 } from '../TableContent1';
+import { ArrowBack } from '@mui/icons-material';
 
 export const ListTable3 = (props) => {
     return(
@@ -10,6 +11,7 @@ export const ListTable3 = (props) => {
             <div className='fourth-table-content'>
                 <div className='table-directory'>
                     <div className='table-directory-left-header'>
+                        <button onClick={props.button2}><ArrowBack/></button>
                         <button onClick={props.button1}>{`${props.type}`}</button>
                         <h3>/</h3>
                         <button onClick={props.button2}>{`${props.title}`}</button>

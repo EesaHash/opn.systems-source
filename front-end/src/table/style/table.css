@@ -264,7 +264,8 @@
 .main-table .table-directory .table-directory-left-header button .css-i4bv87-MuiSvgIcon-root, .secondary-table .table-directory .table-directory-left-header button .css-i4bv87-MuiSvgIcon-root, .folder-list .table-directory .table-directory-left-header button .css-i4bv87-MuiSvgIcon-root, .folder-list2 .table-directory .table-directory-left-header button .css-i4bv87-MuiSvgIcon-root, .fourth-table .table-directory .table-directory-left-header button .css-i4bv87-MuiSvgIcon-root, .list-table4 .table-directory .table-directory-left-header button .css-i4bv87-MuiSvgIcon-root {
   color: #2173DF;
   margin-left: 5px;
-  font-size: 13px;
+  margin-top: -2.5px;
+  font-size: 15px;
 }
 .main-table .table-directory .table-directory-left-header button:hover, .secondary-table .table-directory .table-directory-left-header button:hover, .folder-list .table-directory .table-directory-left-header button:hover, .folder-list2 .table-directory .table-directory-left-header button:hover, .fourth-table .table-directory .table-directory-left-header button:hover, .list-table4 .table-directory .table-directory-left-header button:hover {
   cursor: pointer;
@@ -912,4 +913,10 @@
 .expanded-table-item .expanded-table-sub-subitem h3 {
   margin-left: 20px;
   text-align: justify;
+}
+.expanded-table-item .edit-selected {
+  border-radius: 9px;
+  background-color: rgba(33, 115, 223, 0.3);
+  padding: 0 15px;
+  margin-bottom: 10px;
 }/*# sourceMappingURL=table.css.map */
