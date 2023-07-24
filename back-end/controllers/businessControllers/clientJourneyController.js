@@ -77,18 +77,21 @@ clientJourney.getClientJourneyByProductID = async (req, res) => {
     }
 }
 
-clientJourney.deleteClientJourneyByBusinessID = async (req, res) => {
+clientJourney.deleteClientJourneyByProductID = async (req, res) => {
     try {
-        const { clientJourneyID } = req.body;
-        const clientJourney = await ClientJourney.findOne({ where: { id: clientJourneyID } });
-        await clientJourney.destroy();
+        const { productID } = req.body;
+        const product = await Product.findOne({ where: { id: productID } });
+        await product.destroy();
+        console.log(`[Success] Product: ${product.id} deleted!`);
         return res.status(200).json({
-            result: `Client Journey deleted`
+            status: true,
+            result: `[Success] Product: ${product.id} deleted!`
         });
     } catch (error) {
         console.log(error);
         return res.status(404).json({
-            result: `Failed to delete client journey`
+            status: false,
+            result: error
         });
     }
 }
@@ -603,7 +606,7 @@ router.post("/save", clientJourney.saveClientJourney);
 router.post("/get", clientJourney.getClientJourneyByProductID);
 router.post("/regenerate_stage", clientJourney.regenerateStage);
 router.post("/save_regenerated_stage", clientJourney.saveRegeneratedStage);
-router.post("/delete", clientJourney.deleteClientJourneyByBusinessID);
+router.post("/delete", clientJourney.deleteClientJourneyByProductID);
 router.post("/regenerate_client_journey", clientJourney.regenerateClientJourney)
 
 module.exports = router;

@@ -34,6 +34,7 @@ const item = (data, index, itemActionBtn, editHover, setEditHover, setDeleteConf
                 id = "client-journey-delete-confirm"
                 documentName = {data.title}
                 setConfirmation = {setDeleteConfirmation}
+                data = {data}
             />
             <div className='table-content-1-item-content' onClick={editBtn}>
                 <img src="./images/documentIcon.png" alt="icon"/>

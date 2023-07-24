@@ -2,11 +2,10 @@ import React from 'react';
 
 export const DeleteConfirmation = (props) => {
     const deleteBtn = _ => {
-        props.setConfirmation(1);
+        props.setConfirmation(props.data);
         closeForm();
     };
     const discardChanges = _ => {
-        props.setConfirmation(-1);
         closeForm();
     };
     const closeForm = _ => {

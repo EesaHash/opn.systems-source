@@ -64,22 +64,29 @@ export const ClientJourneyDashboard = (props) => {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
-                    }
+                    },
+                    body: JSON.stringify({
+                        productID: deleteConfirmation
+                    })
                 })
                     .then((res) => {return res.json(); })
                     .then((data) => {
-                        // if(data.status){
-                        //     props.setJourneys([...props.journeys.filter(obj => obj.id !== journey.id)]);
-                        // }
+                        if(data.status){
+                            props.setJourneys([...props.journeys.filter(obj => obj.productID !== deleteConfirmation)]);
+                        }
                         setDeleteConfirmation(-1);
                     })
             }catch(error){
                 console.log(error);
             }
         };
-        if(deleteConfirmation === 1)
+        if(deleteConfirmation !== -1)
             deleteJourney();
+        // eslint-disable-next-line
     }, [deleteConfirmation]);
+    const confirmDelete = (data) => {
+        setDeleteConfirmation(data.productID);
+    };
 
     const openCreateJourneyForm = _ => {
         if(props.journeys.length > 0)
@@ -230,7 +237,7 @@ export const ClientJourneyDashboard = (props) => {
                 list = {props.journeys}
                 addNewBtn = {openCreateJourneyForm}
                 itemActionBtn = {openClientJourneyDetails}
-                setDeleteConfirmation = {setDeleteConfirmation}
+                setDeleteConfirmation = {confirmDelete}
             />
             <ListTable2
                 id = "client-journey-secondary-table"
