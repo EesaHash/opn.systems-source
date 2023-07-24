@@ -40,10 +40,7 @@ export const ProceduresDashboard = (props) => {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({
-                        
-                    })
+                    }
                 })
                     .then((res) => {return res.json(); })
                     .then((data) => {

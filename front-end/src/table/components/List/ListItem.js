@@ -25,7 +25,7 @@ export const ListItem = (props) => {
                     data = data.replace(numberingPattern, '');
                     break;
                 case "step":
-                    const stepNumbers = data.heading.match(/\bStep\s+(\d+)\b/g);
+                    const stepNumbers = data.match(/\bStep\s+(\d+)\b/g);
                     const numbersOnly = stepNumbers.map(step => parseInt(step.match(/\d+/)[0]));
                     hyphen = numbersOnly;
                     data = data.replace(stepPattern, '');
@@ -36,7 +36,8 @@ export const ListItem = (props) => {
                     break;
                 case "dash":
                     hyphen = "-";
-                    data = data.replace(letterPattern, '');
+                    data = data.replace(dashPattern, '');
+                    break;
                 default:
                     data = data.replace(dashPattern, '');
                     break;

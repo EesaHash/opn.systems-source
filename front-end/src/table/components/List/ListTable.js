@@ -16,7 +16,7 @@ export const ListTable = (props) => {
             <TableHeader list = {props.list}/>
             {props.list.length <= 0 ?
                 <EmptyTableContent addNewBtn = {props.addNewBtn} buttonTitle = "+ Add New"/> :
-                <TableContent1 list = {props.list} itemActionBtn = {props.itemActionBtn} />
+                <TableContent1 list = {props.list} itemActionBtn = {props.itemActionBtn} setDeleteConfirmation = {props.setDeleteConfirmation} />
             }
         </div>
     );

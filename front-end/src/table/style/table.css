@@ -211,9 +211,20 @@
   color: #ACACAC;
 }
 
+.more-option {
+  position: absolute;
+}
+.more-option button {
+  display: block !important;
+  margin-top: -8px !important;
+  margin-left: 10px !important;
+}
+.more-option button:hover {
+  color: inherit !important;
+}
+
 .main-table, .secondary-table, .folder-list, .folder-list2, .fourth-table, .list-table4 {
   width: 100%;
-  overflow: scroll;
   position: relative;
 }
 .main-table h1, .secondary-table h1, .folder-list h1, .folder-list2 h1, .fourth-table h1, .list-table4 h1 {
@@ -803,26 +814,41 @@
   width: 100%;
   display: grid;
   height: calc(100% - 150px);
+  position: relative;
 }
 .table-content-1 .table-content-1-item {
+  display: flex;
   width: 100%;
   margin-bottom: 15px;
-}
-.table-content-1 .table-content-1-item button {
   border-radius: 28px;
   background-color: #F8F8F8;
+}
+.table-content-1 .table-content-1-item .table-content-1-item-content {
   width: 100%;
   text-align: left;
   padding: 12.5px 20px;
   align-items: center;
 }
-.table-content-1 .table-content-1-item button img {
+.table-content-1 .table-content-1-item .table-content-1-item-content img {
   height: 25px;
   margin-right: 15px;
   border-radius: 5px;
 }
-.table-content-1 .table-content-1-item button:hover {
+.table-content-1 .table-content-1-item:hover {
+  cursor: pointer;
   background-color: #E2E2E2;
+}
+.table-content-1 .table-content-1-item button {
+  float: right;
+  background-color: transparent;
+  margin-top: -3px;
+  margin-right: 10px;
+}
+.table-content-1 .table-content-1-item button:hover {
+  color: #5D5FEF;
+}
+.table-content-1 .table-content-1-item .active {
+  color: #5D5FEF;
 }
 
 .minimised-table-item, .expanded-table-item {

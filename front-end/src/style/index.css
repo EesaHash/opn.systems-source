@@ -282,6 +282,10 @@ button {
   border-color: #BD271E !important;
   color: #BD271E !important;
 }
+.confirmation .delete-button {
+  color: white !important;
+  background-color: #BD271E !important;
+}
 .confirmation .pop-up-input {
   display: flex;
   background-color: #F8F8F8;

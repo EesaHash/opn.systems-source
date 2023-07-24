@@ -10,6 +10,7 @@ export const ClientJourneyDashboard = (props) => {
     const [index, setIndex] = useState(-1);
     const [journey, setJourney] = useState({});
     const [updateConfirmation, setUpdateConfirmation] = useState(-1);
+    const [deleteConfirmation, setDeleteConfirmation] = useState(-1);
 
     useEffect(() => {
         const mainTable = document.getElementById("client-journey-main-table");
@@ -55,6 +56,30 @@ export const ClientJourneyDashboard = (props) => {
             discardChanges();
         // eslint-disable-next-line
     }, [updateConfirmation]);
+
+    useEffect(() => {
+        const deleteJourney = _ => {
+            try{
+                fetch("/api/clientjourney/delete", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                })
+                    .then((res) => {return res.json(); })
+                    .then((data) => {
+                        // if(data.status){
+                        //     props.setJourneys([...props.journeys.filter(obj => obj.id !== journey.id)]);
+                        // }
+                        setDeleteConfirmation(-1);
+                    })
+            }catch(error){
+                console.log(error);
+            }
+        };
+        if(deleteConfirmation === 1)
+            deleteJourney();
+    }, [deleteConfirmation]);
 
     const openCreateJourneyForm = _ => {
         if(props.journeys.length > 0)
@@ -205,6 +230,7 @@ export const ClientJourneyDashboard = (props) => {
                 list = {props.journeys}
                 addNewBtn = {openCreateJourneyForm}
                 itemActionBtn = {openClientJourneyDetails}
+                setDeleteConfirmation = {setDeleteConfirmation}
             />
             <ListTable2
                 id = "client-journey-secondary-table"
