@@ -126,11 +126,12 @@ button{
         & input, button, .dropdown, textarea{
             height: 48px  !important;
             border-radius: 4px;
-         
+        }
+        & input{
+            width: 100%;
         }
         & input, .dropdown, .dropdown-menu, textarea{
             background-color: #f1f1f1;
-            
         }
         & textarea{
             height: 10vh !important;

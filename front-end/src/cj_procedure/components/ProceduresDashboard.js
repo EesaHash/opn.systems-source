@@ -7,6 +7,7 @@ import { FormatAlignLeft } from '@mui/icons-material';
 import { FolderList2 } from '../../table/components/Folder/FolderList2';
 import { ListTable3 } from '../../table/components/List/ListTable3';
 import { stages } from '../../client_journey/components/originalStages';
+import { UpdateConfirmation } from '../../public_components/UpdateConfirmation';
 
 export const ProceduresDashboard = (props) => {
     const [index, setIndex] = useState(-1);
@@ -14,6 +15,7 @@ export const ProceduresDashboard = (props) => {
     const [procedure, setProcedure] = useState({});
     const [procedures, setProcedures] = useState([]);
     const [stage, setStage] = useState("");
+    const [updateConfirmation, setUpdateConfirmation] = useState(-1);
     
     useEffect(() => {
         const mainTable = document.getElementById("procedure-main-table");
@@ -30,6 +32,39 @@ export const ProceduresDashboard = (props) => {
         }
         // eslint-disable-next-line
     }, [props.activeLink2]);
+
+    useEffect(() => {
+        const saveChanges = _ => {
+            try{
+                fetch("/api/sop/", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        
+                    })
+                })
+                    .then((res) => {return res.json(); })
+                    .then((data) => {
+                        if(data.status){
+                            props.setProcedure([...props.procedures.filter(obj => obj.id !== procedure.id), procedure]);
+                        }
+                        setUpdateConfirmation(-1);
+                    })
+            }catch(error){
+                console.log(error);
+            }
+        };
+        const discardChanges = _ => {
+            setUpdateConfirmation(-1);
+        };
+        if(updateConfirmation === 1)
+            saveChanges();
+        else
+            discardChanges();
+        // eslint-disable-next-line
+    }, [updateConfirmation])
 
     useEffect(() => {
         const getSOPs = async _ => {
@@ -167,6 +202,35 @@ export const ProceduresDashboard = (props) => {
     const closeGenerateProduceForm = _ => {
         document.getElementById("generateProcedureForm").style.display = "none";
     };
+
+    const openUpdateConfirmation = _ => {
+        document.getElementById("procedure-update-confirm").style.display = "block";
+    };
+    
+    // Regenerate SOP
+    const automaticallyRegenerate = (setLoading) => {
+        regenerateSOP(null, setLoading);
+    };
+    const regenerateByPrompt = (prompt, setLoading) => {
+        if(prompt){
+            regenerateSOP(prompt, setLoading);
+        }
+    };
+    const regenerateSOP = (prompt, setLoading) => {
+
+    };
+
+    const automaticallyRegenerateForItem = (setLoading) => {
+        regenerateSOPForItem(null, setLoading);
+    };
+    const regenerateByPromptForItem = (prompt, setLoading) => {
+        if(prompt){
+            regenerateSOPForItem(prompt, setLoading);
+        }
+    };
+    const regenerateSOPForItem = (prompt, setLoading) => {
+
+    };
     
     const descList = [
         FifthTableDescItem(<FormatAlignLeft/>, "Objective", procedure.purpose),
@@ -175,6 +239,11 @@ export const ProceduresDashboard = (props) => {
 
     return(
         <div className='procedure'>
+            <UpdateConfirmation
+                id = "procedure-update-confirm"
+                documentName = {procedure.title}
+                setConfirmation = {setUpdateConfirmation}
+            />
             <FolderList 
                 id = "procedure-main-table"
                 title = "Procedures"
@@ -221,6 +290,12 @@ export const ProceduresDashboard = (props) => {
                 list2 = {procedure.procedure ? JSON.parse(procedure.procedure) : []}
                 list3Title = "Documentation"
                 list3 = {procedure.documentation ? JSON.parse(procedure.documentation) : []}
+                saveBtn = {openUpdateConfirmation}
+                automaticallyRegenerate = {automaticallyRegenerate}
+                regenerateByPrompt = {regenerateByPrompt}
+                automaticallyRegenerateForItem = {automaticallyRegenerateForItem}
+                regenerateByPromptForItem = {regenerateByPromptForItem}
+                loadingTitle = {"AI is regenreating the procedure for"}
             />
         </div>
     );

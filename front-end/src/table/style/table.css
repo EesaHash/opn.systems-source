@@ -1,5 +1,6 @@
 .edit {
   display: grid;
+  margin: 0 !important;
 }
 .edit .edit-suggestion {
   margin-bottom: 15px;
@@ -493,7 +494,7 @@
   margin-top: -3px;
 }
 .list-table4 .list-table4-content .list-table4-list .list-table4-list-item {
-  display: grid;
+  display: flex;
   padding: 10px;
   border-radius: 12px;
   background-color: #FFFFFF;
@@ -512,6 +513,7 @@
   margin: auto;
   margin-left: 0;
   margin-right: 0;
+  margin-top: -3px;
   font-size: 20px;
   color: #ACACAC;
   min-width: 50px;
@@ -856,6 +858,9 @@
   margin-left: auto;
   margin-right: 0;
 }
+.minimised-table-item.active, .expanded-table-item.active {
+  box-shadow: 0px 8px 32px -6px rgba(20, 23, 26, 0.207), 0px 6px 20px -6px rgba(20, 23, 26, 0.207);
+}
 
 .minimised-table-item {
   cursor: pointer;
@@ -914,9 +919,10 @@
   margin-left: 20px;
   text-align: justify;
 }
-.expanded-table-item .edit-selected {
+
+.edit-selected {
   border-radius: 9px;
   background-color: rgba(33, 115, 223, 0.3);
-  padding: 0 15px;
+  padding: 10px 15px;
   margin-bottom: 10px;
 }/*# sourceMappingURL=table.css.map */

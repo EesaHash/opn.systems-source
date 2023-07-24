@@ -30,11 +30,16 @@ export const ExpandMinimisedTableItem = (props) => {
             sendPrompt();
         }
     };
+    const itemClicked = _ => {
+        if(itemClassName === "minimised-table-item")
+            expandMinimisedBtn();
+        props.setSelectedItem(props.index);
+    };
     return(
-        <div key = {props.index} className={itemClassName} onClick={() => itemClassName === "minimised-table-item" && expandMinimisedBtn()}>
+        <div key = {props.index} className={`${itemClassName}${props.isEditSelected(props.index) ? " active" : ""}`} onClick={itemClicked}>
             <h2>{props.index}</h2>
             <div style={{width:"100%", display: "grid"}}>
-                <div style={{display: "grid"}} className={itemClassName === "expanded-table-item" && props.editStatus ? "edit-selected" : ""}>
+                <div style={{display: "grid"}} className={itemClassName === "expanded-table-item" && (props.isEditSelected(props.index) && !loading) ? "edit-selected" : ""}>
                     <h1 style={{width: "100%", cursor: "pointer"}} onClick={() => itemClassName === "expanded-table-item" && expandMinimisedBtn()}>{props.title}</h1>
                     {(itemClassName === "expanded-table-item") && (
                         loading ? (
@@ -46,7 +51,7 @@ export const ExpandMinimisedTableItem = (props) => {
                         )
                     )}
                 </div>
-                {(props.editStatus && itemClassName === "expanded-table-item" && !loading) && 
+                {(props.isEditSelected(props.index) && itemClassName === "expanded-table-item" && !loading) && 
                     <div className='edit'>
                         <div className='edit-suggestion'>
                             <button onClick={regenerate}>Regenerate</button>

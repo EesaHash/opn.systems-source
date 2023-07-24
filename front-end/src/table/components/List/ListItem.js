@@ -18,7 +18,7 @@ export const ListItem = (props) => {
         const temp = [];
         let idx = -1;
         const setHeading = (pattern, data) => {
-            let hyphen = "-";
+            let hyphen = "*";
             switch (pattern) {
                 case "number":
                     hyphen = data.substring(0, data.indexOf('.'));
@@ -34,11 +34,14 @@ export const ListItem = (props) => {
                     hyphen =  `${data.substring(0, data.indexOf('.'))}.`;
                     data = data.replace(letterPattern, '');
                     break;
+                case "dash":
+                    hyphen = "-";
+                    data = data.replace(letterPattern, '');
                 default:
                     data = data.replace(dashPattern, '');
                     break;
             }
-            if((heading.length <= 0 && !indent) || (heading === pattern && !indent) || (prevHeading !== pattern && indent) || (prevHeading === "empty")){
+            if((heading.length <= 0 && !indent) || (heading === pattern && !indent) || (prevHeading !== pattern && indent) || (prevHeading !== pattern && pattern === "empty") || (prevHeading === "empty")){
                 indent = false;
                 heading = pattern;
                 temp.push({

@@ -11,6 +11,7 @@ export const ListTable2 = (props) => {
     const [editStatus, setEditStatus] = useState(false);
     const [isAIEditOver, setIsAIEditOver] = useState(false);
     const [expandAll, setExpandAll] = useState(false);
+    const [selectedStage, setSelectedStage] = useState(0);
 
     const mainDirectory = _ => {
         return(
@@ -27,8 +28,7 @@ export const ListTable2 = (props) => {
     };
     const saveUpdate = _ => {
         props.saveBtn();
-        setEditStatus(false);
-        setIsAIEditOver(false);
+        closeEditMode();
     };
     const editDirectory = _ => {
         return(
@@ -42,7 +42,11 @@ export const ListTable2 = (props) => {
         );
     };
     const closeEditMode = _ => {
+        setIsAIEditOver(false);
         setEditStatus(false);
+    };
+    const isEditSelected = (index) => {
+        return (editStatus && index === selectedStage);
     };
     return(
         <div className='secondary-table' id = {props.id}>
@@ -61,7 +65,13 @@ export const ListTable2 = (props) => {
                         </div>
                         {editStatus ? editDirectory() : mainDirectory()}
                     </div>
-                    {isAIEditOver && <EditPopUp automaticallyRegenerate = {props.automaticallyRegenerate} regenerateByPrompt = {props.regenerateByPrompt} setLoading = {setLoading} />}
+                    {isAIEditOver && 
+                        <EditPopUp 
+                            automaticallyRegenerate = {props.automaticallyRegenerate} 
+                            regenerateByPrompt = {props.regenerateByPrompt} 
+                            setLoading = {setLoading} 
+                        />
+                    }
                     <h1>{props.title}</h1>
                     <h2>{props.description}</h2>
                     <div className='secondary-table-items'>
@@ -86,6 +96,8 @@ export const ListTable2 = (props) => {
                                         regenerateByPrompt = {props.regenerateByPromptForStep}
                                         loading = {props.loading}
                                         itemClassName = {expandAll ? "expanded-table-item" : "minimised-table-item"}
+                                        setSelectedItem = {setSelectedStage}
+                                        isEditSelected = {isEditSelected}
                                     />
                             ))
                         }

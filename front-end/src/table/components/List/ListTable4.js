@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
 import "../../style/table.css";
-import { AccessTime, ArrowBack, Chat, Download, Edit, MoreHoriz, Share, SimCardDownload } from '@mui/icons-material';
+import { AccessTime, ArrowBack, Chat, Download, Edit, KeyboardArrowDown, KeyboardArrowUp, MoreHoriz, Share, SimCardDownload } from '@mui/icons-material';
 import { openAccessLimitForm, openFutureFeatureWarningForm } from '../../../dashboard/page/dashboard_main';
 import { ListItem } from './ListItem';
 import { dashPattern, letterPattern, numberingPattern, stepPattern } from '../PatternsItem';
+import { EditPopUp } from '../EditPopUp';
 
 export const ListTable4 = (props) => {
     const [editStatus, setEditStatus] = useState(false);
-    const saveBtn = _ => {
+    const [isAIEditOver, setIsAIEditOver] = useState(false);
+    const saveUpdate = _ => {
+        props.saveBtn();
         closeEditMode();
     };
     const closeEditMode = _ => {
+        setIsAIEditOver(false);
         setEditStatus(false);
     };
     const mainDirectory = _ => {
@@ -29,9 +33,11 @@ export const ListTable4 = (props) => {
     const editDirectory = _ => {
         return(
             <div className='table-directory-right-header'>
-                <button className='ai-edit-btn'><img src="./images/ai_icon.png" alt = "icon"/>AI Editing Mode</button>
+                <button className={`ai-edit-btn${isAIEditOver ? " active" : ""}`} onClick={() => setIsAIEditOver(!isAIEditOver)}>
+                    <img src="./images/ai_icon.png" alt = "icon"/> AI Editing Mode {isAIEditOver ? <KeyboardArrowUp/> : <KeyboardArrowDown/>}
+                </button>
                 <hr/>
-                <button className='save-btn' onClick={saveBtn}><SimCardDownload/>Save</button>
+                <button className='save-btn' onClick={saveUpdate}><SimCardDownload/>Save</button>
             </div>
         );
     };
@@ -53,6 +59,13 @@ export const ListTable4 = (props) => {
                     </div>
                     {editStatus ? editDirectory() : mainDirectory()}
                 </div>
+                {isAIEditOver && 
+                    <EditPopUp
+                        automaticallyRegenerate = {props.automaticallyRegenerate} 
+                        regenerateByPrompt = {props.regenerateByPrompt} 
+                        setLoading = {null} 
+                    />
+                }
                 <h1>{props.sub_title2}</h1>
                 <div className='list-table4-desc'>
                     <hr/>

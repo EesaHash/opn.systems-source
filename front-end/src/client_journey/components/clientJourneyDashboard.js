@@ -90,6 +90,7 @@ export const ClientJourneyDashboard = (props) => {
         document.getElementById("client-journey-update-confirm").style.display = "block";
     };
 
+    // Regenerate Client Journey
     const automaticallyRegenerate = (setLoading) => {
         regenerateClientJourney(null, setLoading);
     };

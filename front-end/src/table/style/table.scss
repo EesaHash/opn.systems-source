@@ -1,5 +1,6 @@
 .edit{
     display: grid;
+    margin: 0 !important;
     & .edit-suggestion{
         margin-bottom: 15px;
         & button{
@@ -482,7 +483,7 @@
                 margin-top: -3px;
             }
             & .list-table4-list-item{
-                display: grid;
+                display: flex;
                 padding: 10px;
                 border-radius: 12px;
                 background-color: #FFFFFF;
@@ -500,6 +501,7 @@
                     margin: auto;
                     margin-left: 0;
                     margin-right: 0;
+                    margin-top: -3px;
                     font-size: 20px;
                     color: #ACACAC;
                     min-width: 50px;
@@ -847,6 +849,9 @@
         margin-left: auto;
         margin-right: 0;
     }
+    &.active{
+        box-shadow: 0px 8px 32px -6px rgba(20, 23, 26, 0.207), 0px 6px 20px -6px rgba(20, 23, 26, 0.207);
+    }
 }
 .minimised-table-item{
     cursor: pointer;
@@ -905,10 +910,10 @@
             text-align: justify;
         }
     }
-    & .edit-selected{
-        border-radius: 9px;
-        background-color: rgba(33, 115, 223, 0.30);
-        padding: 0 15px;
-        margin-bottom: 10px;
-    }
+}
+.edit-selected{
+    border-radius: 9px;
+    background-color: rgba(33, 115, 223, 0.30);
+    padding: 10px 15px;
+    margin-bottom: 10px;
 }

@@ -131,6 +131,9 @@ button {
   height: 48px !important;
   border-radius: 4px;
 }
+.form-popup .pop-up-input input {
+  width: 100%;
+}
 .form-popup .pop-up-input input, .form-popup .pop-up-input .dropdown, .form-popup .pop-up-input .dropdown-menu, .form-popup .pop-up-input textarea {
   background-color: #f1f1f1;
 }
