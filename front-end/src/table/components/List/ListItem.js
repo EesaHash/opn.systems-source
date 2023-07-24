@@ -14,7 +14,8 @@ export const ListItem = (props) => {
         setItemClassName("minimised");
         let indent = false;
         let heading = "";
-        let prevHeading = "";
+        let prevPattern = "";
+        let itemPattern = "";
         const temp = [];
         let idx = -1;
         const setHeading = (pattern, data) => {
@@ -42,8 +43,10 @@ export const ListItem = (props) => {
                     data = data.replace(dashPattern, '');
                     break;
             }
-            if((heading.length <= 0 && !indent) || (heading === pattern && !indent) || (prevHeading !== pattern && indent) || (prevHeading !== pattern && pattern === "empty") || (prevHeading === "empty")){
+            if((heading.length <= 0 && !indent) || (!indent && prevPattern === "empty") || (heading === pattern) || (indent && prevPattern !== pattern) || (itemPattern.length > 0 && itemPattern !== pattern) ){
                 indent = false;
+                if(itemPattern.length <= 0 && heading.length > 0 && !(!indent && prevPattern === "empty"))
+                    itemPattern = "*";
                 heading = pattern;
                 temp.push({
                     hyphen,
@@ -51,11 +54,12 @@ export const ListItem = (props) => {
                     item: []
                 });
                 ++idx;
-            }else if(heading !== pattern){
+            }else{
                 indent = true;
                 temp[idx].item.push({hyphen, data});
+                itemPattern = pattern;
             }
-            prevHeading = pattern;
+            prevPattern = pattern;
         };
         props.list.forEach((value, index, arr) => {
             arr[index] = value.trim();
