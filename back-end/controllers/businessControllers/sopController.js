@@ -23,20 +23,35 @@ require('dotenv').config();
 const modelName = "gpt-4";
 const stages = ["awareness", "interest", "evaluation", "decision", "purchase", "implementation", "postPurchase", "retention"];
 
+
+const regenerateSOP = async (req, res) => {
+    try {
+        let regeneratedSOP = null;
+        regeneratedSOP = await regenerateSingleSOP(req.body.sop, req.body.prompt);
+        if (regeneratedSOP == null) {
+            throw `[FAIL] UNABLE TO REGENERATE SOP`;
+        }
+        console.log("[SUCCESS] REGENERATED SOP")
+        return res.status(200).json({ status: true, sop: regeneratedSOP});
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({ status: false });
+    }
+}
+
 const updateSingleSop = async (req, res) => {
     try {
         const sop = await updateSOP(req.body.id, req.body.customSop);
         if (sop == null || sop === 0) {
             throw "SOP NOT FOUND"
         }
-        return res.status(200).json({ status: "SUCCESS", updatedSop: sop });
+        console.log("Successfully updated SOP");
+        return res.status(200).json({ status: true, updatedSop: sop });
     } catch (error) {
         console.log(error);
-        return res.status(500).json({ message: "ERROR" });
+        return res.status(500).json({ message: false });
     }
 }
-
-
 /*
 {
     steps : [] (list of steps)
@@ -44,15 +59,16 @@ const updateSingleSop = async (req, res) => {
     idx :  (index of the step in the list of steps)
 }
 */
-const regenerateSopStep = async (req, res) => {
-    try {
-        const regeneratedListWithStep = await editStep(JSON.parse(req.body.steps), req.body.prompt, req.body.idx);
-        return res.status(200).json({ status: "SUCCESS", step: regeneratedListWithStep[req.body.idx],regeneratedList: JSON.stringify(regeneratedListWithStep)});
-    } catch (error) {
-        console.log(error);
-        return res.status(500).json({ message: "ERROR" });
-    }
-}
+// const regenerateSOP = async (req, res) => {
+//     try {
+//         const singleSOP
+//         console.log("[SUCCESS] REGENERATED SOP STEP");
+//         return res.status(200).json({ status: true, step: regeneratedListWithStep[req.body.idx],regeneratedList: JSON.stringify(regeneratedListWithStep)});
+//     } catch (error) {
+//         console.log(`[FAIL] COULD NOT REGENERATE SOP STEP`,error);
+//         return res.status(500).json({ status: false });
+//     }
+// }
 
 const updateSOP = async (sopID, customSop) => {
     try {
@@ -72,6 +88,8 @@ const updateSOP = async (sopID, customSop) => {
     }
 }
 
+
+
 const deleteSopsForStage = async (req, res) => {
     try {
         const sop = await SOP.destroy({
@@ -81,16 +99,17 @@ const deleteSopsForStage = async (req, res) => {
                 stage: req.body.stage
             }
         });
-        if (sop === 0)
-            return res.status(404).json({ status: "FAILED", message: `SOPS NOT FOUND` });
+        if (sop === 0) {
+            console.log("[FAIL] SOPS DO NOT EXIST")
+            return res.status(404).json({ status: false });}
+        console.log(`SUCCESSFULLY DELETED SOPS FOR STAGE: ${req.body.stage} ID: ${req.body.clientJourneyID}`)
         return res.status(200).json({
-            status: "SUCCESS",
-            message: `SUCCESSFULLY DELETED SOPS FOR ${req.body.stage}`
+            status: true,
         });
     }
     catch (err) {
-        console.log(err);
-        return res.status(500).json({ message: "ERROR" });
+        console.log(`[FAIL] COULD NOT DELETE SOPS FOR ${req.body.clientJourneyID}`,err);
+        return res.status(500).json({ status: false });
     }
 };
 
@@ -120,17 +139,16 @@ const generateSopForStage = async (req, res) => {
                 clientJourneyID: clientJourneyID
             }
         });
+        console.log(`[SUCCESS] GENERATED SOPS FOR CLIENT JOURNEY ID: ${clientJourneyID}`);
         return res.status(200).json({
             status: true,
             sops,
-            message: "success"
         });
     }
     catch (err) {
         console.log(err);
         return res.status(500).json({
             status: false,
-            message: "error"
         });
     }
 };
@@ -144,20 +162,20 @@ const getSopsForStage = async (req, res) => {
             }
         });
         if (sops == null || sops.length == 0) {
+            console.log("[FAIL] SOPS NOT FOUND")
             return res.status(404).json({
                 status: false,
-                message: "NOT FOUND",
             });
         }
+        console.log(`[SUCCESS] RETRIEVED SOPS FOR CLIENT JOURNEY ID: ${req.body.clientJourneyID} STAGE: ${req.body.stage}`);
         return res.status(200).json({
             status: true,
             sops: sops
         });
     } catch (error) {
-        console.log(error);
+        console.log(`[FAIL] COULD NOT RETRIEVE SOPS `,error);
         return res.status(404).json({
             status: false,
-            message: "NOT FOUND",
         });
     }
 };
@@ -170,20 +188,20 @@ const getSopsForClientJourney = async (req, res) => {
             }
         });
         if (sops == null || sops.length == 0) {
+            console.log(`[FAIL] COULD NOT RETRIEVE SOPS FOR CLIENT JOURNEY ${req.body.clientJourneyID}`);
             return res.status(404).json({
                 status: false,
-                message: "NOT FOUND",
             });
         }
+        console.log(`[SUCCESS] RETRIEVED SOPS FOR CLIENT JOURNEY ID: ${req.body.clientJourneyID}`);
         return res.status(200).json({
             status: true,
             sops: sops
         });
     } catch (error) {
-        console.log(error);
+        console.log(`[FAIL] COULD NOT RETRIEVE SOPS `,error);
         return res.status(404).json({
             status: false,
-            message: "NOT FOUND",
         });
     }
 };
@@ -235,18 +253,6 @@ const generateFewSOPs = async (clientJourney, forStage) => {
             });
             sops.push(sop);
         }
-        // for (let i = 0; i < sops.length; i++) {
-        //     await SOP.create({
-        //         title: sops[i].title,
-        //         purpose: sops[i].purpose,
-        //         definitions: sops[i].definitions,
-        //         responsibility: sops[i].responsibility,
-        //         procedure: JSON.stringify(sops[i].procedure),
-        //         documentation: sops[i].documentation,
-        //         stage: forStage,
-        //         clientJourneyID: clientJourney.id
-        //     });
-        // }
         return sops;
     }
     catch (err) {
@@ -506,11 +512,122 @@ async function formatResponsibilityDefinitionDocumentation(responsibility, defin
     }
 }
 
+
+async function regenerateSingleSOP(previousSOP, request) {
+    try{
+        const chat = new ChatOpenAI({ temperature: 0.9, model: modelName});
+        const memory = new BufferMemory({ returnMessages: true, memoryKey: "history" });
+        const messagesPlaceholder = new MessagesPlaceholder("history");
+        const chatPrompt = ChatPromptTemplate.fromPromptMessages([
+            SystemMessagePromptTemplate.fromTemplate(
+            `Standard Operating Procedures (SOPs):
+            Your goal is to use the SOP below and adjust/modify it according to the preference/request AND the user input (provided later)
+            The regenerated information should not deviate too much from the old sop, but you should ellaborate further(by giving real life recommendations, quoting statistics and methods/tools or actual companies that can help with the SOP).
+            Here's the SOP: "${previousSOP}"
+            Here's the REQUEST: "${request}"`
+            ),
+            messagesPlaceholder,
+            HumanMessagePromptTemplate.fromTemplate("{input}"),
+        ]);
+
+        const titleChain = new ConversationChain({
+            memory: memory,
+            prompt: chatPrompt,
+            llm: chat,
+            outputKey: "title",
+        });
+
+        const purposeChain = new ConversationChain({
+            memory: memory,
+            prompt: chatPrompt,
+            llm: chat,
+            outputKey: "purpose"
+        });
+
+        const definitionsChain = new ConversationChain({
+            memory: memory,
+            prompt: chatPrompt,
+            llm: chat,
+            outputKey: "definitions"
+        });
+
+        const responsibilityChain = new ConversationChain({
+            memory: memory,
+            prompt: chatPrompt,
+            llm: chat,
+            outputKey: "responsibility",
+        });
+
+        const procedureChain = new ConversationChain({
+            memory: memory,
+            prompt: chatPrompt,
+            llm: chat,
+            outputKey: "procedure",
+        });
+
+        const documentationChain = new ConversationChain({
+            memory: memory,
+            prompt: chatPrompt,
+            llm: chat,
+            outputKey: "documentation"
+        });
+
+        const title = await titleChain.call({
+            input: `Regenerate the new title. Dont add any labels or tags for example "Title: " `,
+        });
+
+        const purpose = await purposeChain.call({
+            input: `Regenerate the new purpose. Dont add any labels or tags for example "Purpose: " `,
+        });
+
+        const unformattedProcedure = await procedureChain.call({
+            input: `Regenerate the new procedure as a highly detailed paragraph whilst also tailoring to the request. Do not add any labels or tags e.g. "Procedure: "`,
+        });
+
+        const unformattedDocumentation = await documentationChain.call({
+            input: `Regenerate the new documentation. Dont add any labels or tags for example "Documentation: "`
+        });
+
+        const unformattedDefinitions = await definitionsChain.call({
+            input: `List some new abbreviations that WERE USED in procedure (not more than 6). Dont add any labels or tags for example "Definitions: "`
+        });
+
+        const unformattedResponsibility = await responsibilityChain.call({
+            input: `List the new people/roles responsible. Dont add any labels or tags for example "Responsibility: "`
+        });
+
+        let procedure = null;
+        let other = null;
+        let i = 0;
+        while (i < 3) {
+            if (procedure == null) {
+                procedure = await formatProcedure(unformattedProcedure, chat);
+            }
+            if (other == null) {
+                other = await formatResponsibilityDefinitionDocumentation(unformattedResponsibility,unformattedDefinitions, unformattedDocumentation, chat);
+            }
+            i++;
+        }
+
+        if (procedure == null || other == null) {
+            throw "Unable to generate procedure";
+        }
+
+        let output = Object.assign({}, title, purpose, procedure, other);
+        return output;
+    }
+    catch (error) {
+        console.log(error);
+        return null;
+    }
+}
+
 router.post("/generate_for_stage", generateSopForStage);
 router.post("/getall", getSopsForClientJourney);
 router.post("/get_for_stage", getSopsForStage);
 router.post("/delete_for_stage", deleteSopsForStage);
 router.post("/delete_single", deleteSingleSop);
 router.post("/update_single", updateSingleSop);
-router.post("/regenerate_step", regenerateSopStep);
+// router.post("/regenerate_step", regenerateSopStep);
+router.post("/regenerate_sop", regenerateSOP);
 module.exports = router;
