@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 import "../style/procedure.css";
 import { FolderList } from '../../table/components/Folder/FolderList';
 import { openAccessLimitForm } from '../../dashboard/page/dashboard_main';
-import { FifthTableDescAsList, FifthTableDescItem, ListTable4 } from '../../table/components/List/ListTable4';
-import { FormatAlignLeft } from '@mui/icons-material';
+import { ListTable4 } from '../../table/components/List/ListTable4';
 import { FolderList2 } from '../../table/components/Folder/FolderList2';
 import { ListTable3 } from '../../table/components/List/ListTable3';
 import { stages } from '../../client_journey/components/originalStages';
@@ -16,6 +15,7 @@ export const ProceduresDashboard = (props) => {
     const [procedures, setProcedures] = useState([]);
     const [stage, setStage] = useState("");
     const [updateConfirmation, setUpdateConfirmation] = useState(-1);
+    const [deleteConfirmation, setDeleteConfirmation] = useState(-1);
     
     useEffect(() => {
         const mainTable = document.getElementById("procedure-main-table");
@@ -32,36 +32,6 @@ export const ProceduresDashboard = (props) => {
         }
         // eslint-disable-next-line
     }, [props.activeLink2]);
-
-    useEffect(() => {
-        const saveChanges = _ => {
-            try{
-                fetch("/api/sop/", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    }
-                })
-                    .then((res) => {return res.json(); })
-                    .then((data) => {
-                        if(data.status){
-                            props.setProcedure([...props.procedures.filter(obj => obj.id !== procedure.id), procedure]);
-                        }
-                        setUpdateConfirmation(-1);
-                    })
-            }catch(error){
-                console.log(error);
-            }
-        };
-        const discardChanges = _ => {
-            setUpdateConfirmation(-1);
-        };
-        if(updateConfirmation === 1)
-            saveChanges();
-        else
-            discardChanges();
-        // eslint-disable-next-line
-    }, [updateConfirmation])
 
     useEffect(() => {
         const getSOPs = async _ => {
@@ -86,6 +56,7 @@ export const ProceduresDashboard = (props) => {
         }
     }, [journey]);
 
+    // Create New Journey (Folder from First Page)
     const openCreateJourneyForm = _ => {
         if(props.journeys.length > 0)
             return openAccessLimitForm();
@@ -167,8 +138,48 @@ export const ProceduresDashboard = (props) => {
             thirdTable.style.display = "block";
         }
     };
-    
-    // Generate Procedure
+
+    // Save Changes
+    const openUpdateConfirmation = _ => {
+        document.getElementById("procedure-update-confirm").style.display = "block";
+    };
+    useEffect(() => {
+        const saveChanges = _ => {
+            try{
+                // fetch("/api/sop/", {
+                //     method: "POST",
+                //     headers: {
+                //         "Content-Type": "application/json"
+                //     }
+                // })
+                //     .then((res) => {return res.json(); })
+                //     .then((data) => {
+                //         if(data.status){
+                //             props.setProcedure([...props.procedures.filter(obj => obj.id !== procedure.id), procedure]);
+                //         }
+                //         setUpdateConfirmation(-1);
+                //     })
+            }catch(error){
+                console.log(error);
+            }
+        };
+        const discardChanges = _ => {
+            setUpdateConfirmation(-1);
+        };
+        if(updateConfirmation === 1)
+            saveChanges();
+        else
+            discardChanges();
+        // eslint-disable-next-line
+    }, [updateConfirmation]);
+
+    // Generate SOP
+    const openGenerateProcedureForm = _ => {
+        document.getElementById("generateProcedureForm").style.display = "block";
+    };
+    const closeGenerateProduceForm = _ => {
+        document.getElementById("generateProcedureForm").style.display = "none";
+    };
     const generateProcedure = _ => {
         const filteredProcedures = procedures.filter(obj => obj.stage !== stages[index]);
         setProcedures(filteredProcedures);
@@ -193,16 +204,6 @@ export const ProceduresDashboard = (props) => {
                 closeGenerateProduceForm();
             }); 
     };
-    const openGenerateProcedureForm = _ => {
-        document.getElementById("generateProcedureForm").style.display = "block";
-    };
-    const closeGenerateProduceForm = _ => {
-        document.getElementById("generateProcedureForm").style.display = "none";
-    };
-
-    const openUpdateConfirmation = _ => {
-        document.getElementById("procedure-update-confirm").style.display = "block";
-    };
     
     // Regenerate SOP
     const automaticallyRegenerate = (setLoading) => {
@@ -217,6 +218,7 @@ export const ProceduresDashboard = (props) => {
 
     };
 
+    // Regenerate SOP per Item
     const automaticallyRegenerateForItem = (setLoading) => {
         regenerateSOPForItem(null, setLoading);
     };
@@ -228,11 +230,38 @@ export const ProceduresDashboard = (props) => {
     const regenerateSOPForItem = (prompt, setLoading) => {
 
     };
-    
-    const descList = [
-        FifthTableDescItem(<FormatAlignLeft/>, "Objective", procedure.purpose),
-        FifthTableDescAsList(<FormatAlignLeft/>, "Definitions", procedure.definitions)
-    ];
+
+    // Delete SOP
+    const confirmDelete = (data) => {
+        setDeleteConfirmation(data.id);
+    };
+    useEffect(() => {
+        const deleteSOP = _ => {
+            try{
+                fetch("/api/sop/delete_single", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        id: deleteConfirmation
+                    })
+                })
+                    .then((res) => {return res.json(); })
+                    .then((data) => {
+                        if(data.status){
+                            setProcedures([...procedures.filter(obj => obj.id !== deleteConfirmation)]);
+                        }
+                        setDeleteConfirmation(-1);
+                    })
+            }catch(error){
+                console.log(error);
+            }
+        };
+        if(deleteConfirmation !== -1)
+            deleteSOP();
+        // eslint-disable-next-line
+    }, [deleteConfirmation]);
 
     return(
         <div className='procedure'>
@@ -269,6 +298,7 @@ export const ProceduresDashboard = (props) => {
                 list = {procedures.filter(obj => obj.stage === stages[index])}
                 addNewBtn = {generateProcedure}
                 itemActionBtn = {openProcedureDetail}
+                setDeleteConfirmation = {confirmDelete}
             />
             <ListTable4
                 id = "procedure-fourth-table"
@@ -280,7 +310,6 @@ export const ProceduresDashboard = (props) => {
                 button2 = { showStagesList }
                 button3 = { showProcedureList }
                 data = { procedure }
-                desc = { descList }
                 list1Title = "Responsibility"
                 list1 = {procedure.responsibility ? JSON.parse(procedure.responsibility) : []}
                 list2Title = "Procedure"

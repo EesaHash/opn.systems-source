@@ -18,11 +18,12 @@ export const ExpandMinimisedTableItem2 = (props) => {
         <div key={props.index} className={`list-table4-list-item${props.isEditSelected(props.index) ? " active" : ""}`} onClick={() => itemClassName === "minimised" && expandMinimisedBtn()}>
             <h3>{props.data.hyphen}</h3>
             <div className='list-table4-list-item-content'>
-                <div className={`${props.isEditSelected(props.index) ? "edit-selected" : ""}`} style={{marginBottom: props.isEditSelected(props.index) ? "15px" : "0"}} onClick={() => props.setSelectedStep(props.index)}>
-                    <div style={{display: "flex"}} className={props.data.item.length > 0 ? "heading" : ""} onClick={expandMinimisedBtn} >
-                        <text>{props.data.heading}</text>
+                <div style={{marginBottom: props.isEditSelected(props.index) ? "15px" : "0"}} onClick={() => props.setSelectedStep(props.index)}>
+                    <div style={{display: "flex"}} className={props.data.item.length > 0 ? "heading" : ""}>
+                        {/* <text>{props.data.heading}</text> */}
+                        <div className='table-input text' contentEditable = {props.isEditSelected(props.index)}>{props.data.heading}</div>
                         {props.data.item.length > 0 &&
-                            <button>
+                            <button onClick={expandMinimisedBtn} >
                                 {itemClassName === "minimised" ? <KeyboardArrowDown/> : <KeyboardArrowUp/>}
                             </button>
                         }
@@ -33,13 +34,14 @@ export const ExpandMinimisedTableItem2 = (props) => {
                                 {index > 0 && <hr/>}
                                 <div className='sub-items-content'>
                                     <h3>{item.hyphen}</h3>
-                                    <text>{item.data}</text>
+                                    <div className='table-input text' contentEditable = {props.isEditSelected(props.index)}>{item.data}</div>
+                                    {/* <text>{item.data}</text> */}
                                 </div>
                             </div>
                         ))
                     }
                 </div>
-                {props.isEditSelected(props.index) && <EditPrompt index = {props.index}/>}
+                {/* {props.isEditSelected(props.index) && <EditPrompt index = {props.index}/>} */}
             </div>
         </div>
     );

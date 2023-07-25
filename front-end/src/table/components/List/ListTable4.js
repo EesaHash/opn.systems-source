@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import "../../style/table.css";
-import { AccessTime, ArrowBack, Chat, Download, Edit, KeyboardArrowDown, KeyboardArrowUp, MoreHoriz, Share, SimCardDownload } from '@mui/icons-material';
+import { AccessTime, ArrowBack, Chat, Download, Edit, FormatAlignLeft, KeyboardArrowDown, KeyboardArrowUp, MoreHoriz, Share, SimCardDownload } from '@mui/icons-material';
 import { openAccessLimitForm, openFutureFeatureWarningForm } from '../../../dashboard/page/dashboard_main';
 import { ListItem } from './ListItem';
 import { dashPattern, letterPattern, numberingPattern, stepPattern } from '../PatternsItem';
@@ -66,10 +66,11 @@ export const ListTable4 = (props) => {
                         setLoading = {null} 
                     />
                 }
-                <h1>{props.sub_title2}</h1>
+                <div className='table-input h1' contentEditable = {editStatus}>{props.sub_title2}</div>
                 <div className='list-table4-desc'>
                     <hr/>
-                    {props.desc}
+                    {FifthTableDescItem(<FormatAlignLeft/>, "Objective", props.data.purpose, editStatus)}
+                    {FifthTableDescAsList(<FormatAlignLeft/>, "Definitions", props.data.definitions, editStatus)}
                     <hr/>
                 </div>
                 <ListItem 
@@ -94,7 +95,7 @@ export const ListTable4 = (props) => {
         </div>
     );
 };
-export const FifthTableDescAsList = (icon, title, data) => {
+const FifthTableDescAsList = (icon, title, data, editStatus) => {
     const temp = data ? JSON.parse(data) : [];
     return(
         <div className='list-table4-desc-item'>
@@ -103,15 +104,15 @@ export const FifthTableDescAsList = (icon, title, data) => {
                 {temp.map((res, index) => (
                     (res.length > 0) && (
                         numberingPattern.test(res) ? (
-                            numberingItem(index, res)
+                            numberingItem(index, res, editStatus)
                             ) : (
                                 stepPattern.test(res) ? (
-                                    stepItem(index, res)
+                                    stepItem(index, res, editStatus)
                                 ) : (
                                     letterPattern.test(res) ? (
-                                        letterItem(index, res)
+                                        letterItem(index, res, editStatus)
                                     ) : (
-                                        dashItem(index, res)
+                                        dashItem(index, res, editStatus)
                                     )
                                 )
                         )
@@ -121,43 +122,50 @@ export const FifthTableDescAsList = (icon, title, data) => {
         </div>
     )
 };
-const numberingItem = (index, data) => {
+const numberingItem = (index, data, editStatus) => {
     return(
         <div key={index} className='desc-item-list-item'>
             <h3>{index + 1}.</h3>
-            <text>{data.replace(numberingPattern, '')}</text>
+            <div className='table-input text' contentEditable = {editStatus}>{data.replace(numberingPattern, '')}</div>
+            {/* <text>{data.replace(numberingPattern, '')}</text> */}
         </div> 
     );
 };
-const dashItem = (index, data) => {
+const dashItem = (index, data, editStatus) => {
     return(
         <div key={index} className='desc-item-list-item'>
             <h3>-</h3>
-            <text>{data.replace(dashPattern, '')}</text>
+            <div className='table-input text' contentEditable = {editStatus}>{data.replace(dashPattern, '')}</div>
+            {/* <text>{data.replace(dashPattern, '')}</text> */}
         </div> 
     );
 };
-const letterItem = (index, data) => {
+const letterItem = (index, data, editStatus) => {
     return(
         <div key={index} className='desc-item-list-item'>
             <h3>{data.substring(0, data.indexOf('.'))}</h3>
-            <text>{data.replace(letterPattern, '')}</text>
+            <div className='table-input text' contentEditable = {editStatus}>{data.replace(letterPattern, '')}</div>
+            {/* <text>{data.replace(letterPattern, '')}</text> */}
         </div> 
     );
 };
-const stepItem = (index, data) => {
+const stepItem = (index, data, editStatus) => {
+    const stepNumbers = data.match(/\bStep\s+(\d+)\b/g);
+    const numbersOnly = stepNumbers.map(step => parseInt(step.match(/\d+/)[0]));
     return(
         <div key={index} className='desc-item-list-item'>
-            <h3>{data.substring(0, data.indexOf(':'))}</h3>
-            <text>{data.replace(stepPattern, '')}</text>
+            <h3>{numbersOnly}</h3>
+            <div className='table-input text' contentEditable = {editStatus}>{data.replace(stepPattern, '')}</div>
+            {/* <text>{data.replace(stepPattern, '')}</text> */}
         </div> 
     );
 };
-export const FifthTableDescItem = (icon, title, data) => {
+const FifthTableDescItem = (icon, title, data, editStatus) => {
     return(
         <div className='list-table4-desc-item'>
             <h2>{icon}{title}</h2>
-            <text>{data}</text>
+            <div className='table-input text' contentEditable = {editStatus}>{data}</div>
+            {/* <text>{data}</text> */}
         </div>
     )
 };

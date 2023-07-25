@@ -28,7 +28,7 @@ export const ListTable3 = (props) => {
                 <TableHeader list = {props.list}/>
                 {props.list.length <= 0 ?
                     <EmptyTableContent addNewBtn = {props.addNewBtn} buttonTitle = "Generate"/> :
-                    <TableContent1 list = {props.list} itemActionBtn = {props.itemActionBtn} />
+                    <TableContent1 list = {props.list} itemActionBtn = {props.itemActionBtn} setDeleteConfirmation = {props.setDeleteConfirmation} />
                 }
             </div>
         </div>
