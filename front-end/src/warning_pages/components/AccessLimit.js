@@ -20,7 +20,7 @@ export const AccessLimit = _ => {
                 <h1>Oops, you can't access this feature!</h1>
                 <h3>You can access this feature by upgrading your plan.</h3>
                 </div>
-                <div className='upgrade-plan-btn'>
+                <div className='upgrade-plan-btn' style={{position: "relative"}}>
                     <button >Join the Waitlist</button>
                 </div>
             </div>

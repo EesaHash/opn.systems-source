@@ -1,7 +1,7 @@
 .warning-pages {
-  display: grid;
+  display: flex;
   margin-top: 16vh;
-  width: 40vw;
+  width: 37vw;
   margin-left: 32vw;
   margin-right: 32vw;
   left: 0;
@@ -10,7 +10,10 @@
   max-height: 70vh;
   background: linear-gradient(133deg, #3235FF 0%, #5C5FFF 100%) !important;
   border-color: #5C5FFF;
-  padding-bottom: 60px;
+  padding: 35px 40px 50px 40px;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 13px;
 }
 .warning-pages .close-button {
   width: 100%;
@@ -43,22 +46,25 @@
   color: #d1d2d6;
 }
 .warning-pages .upgrade-text {
-  color: #FFF;
+  color: #FFF !important;
 }
 .warning-pages .upgrade-plan-btn {
+  display: flex;
   width: 100%;
   text-align: center;
   margin: auto;
-  padding-top: 15px;
+  padding-top: 12px;
+  align-items: center;
+  justify-content: center;
 }
 .warning-pages .upgrade-plan-btn button {
   background-color: #FFF;
   color: #3235FF;
   padding: 20px;
   border-radius: 8px;
-  font-size: 14px;
-  font-weight: 600;
-  height: 8vh;
+  font-size: 16px;
+  font-weight: 500;
+  height: 6vh;
   width: 12vw;
 }
 

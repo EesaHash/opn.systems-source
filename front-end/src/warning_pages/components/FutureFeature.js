@@ -1,6 +1,7 @@
 import React from 'react';
 import "../style/warning_pages.css";
-import { SettingsSuggest } from '@mui/icons-material';
+import BuiltFeatureIcon from "../svg/builtFeatureIcon";
+import CloseButton from "../svg/closeButton";
 
 export const FutureFeature = _ => {
     const closeForm = _ => {
@@ -10,10 +11,10 @@ export const FutureFeature = _ => {
         <section id="future-feature-warning-form" className="form-popup center form-container warning-pages" style={{display: "none"}}>
             <div className="content-form">
                 <div className='close-button'>
-                    <button onClick={closeForm}>X</button>
+                    <button onClick={closeForm}><CloseButton/></button>
                 </div>
                 <div className='warning-icon'>
-                    <SettingsSuggest/>
+                    <BuiltFeatureIcon/>
                 </div>
                 <h1>This feature is still being built.</h1>
                 <h3>We appreciate your interest and are working as quickly as we can!</h3>
