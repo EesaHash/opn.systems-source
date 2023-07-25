@@ -21,7 +21,7 @@ const item = (data, index, itemActionBtn, editHover, setEditHover, setDeleteConf
         setEditHover(-1);
     };
     const openDeletConfirmation = _ => {
-        document.getElementById("client-journey-delete-confirm").style.display = "block";
+        document.getElementById(`client-journey-delete-confirm-${index}`).style.display = "block";
     };
     return(
         <div 
@@ -31,7 +31,7 @@ const item = (data, index, itemActionBtn, editHover, setEditHover, setDeleteConf
             onMouseLeave={() => {if(editHover !== index) document.getElementById(`table-content-1-item-more${index}`).style.display = "none"}}
         >
             <DeleteConfirmation 
-                id = "client-journey-delete-confirm"
+                id = {`client-journey-delete-confirm-${index}`}
                 documentName = {data.title}
                 setConfirmation = {setDeleteConfirmation}
                 data = {data}

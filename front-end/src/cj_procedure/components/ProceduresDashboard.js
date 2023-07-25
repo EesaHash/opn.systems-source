@@ -147,19 +147,19 @@ export const ProceduresDashboard = (props) => {
     useEffect(() => {
         const saveChanges = _ => {
             try{
-                fetch("/api/sop/", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    }
-                })
-                    .then((res) => {return res.json(); })
-                    .then((data) => {
-                        if(data.status){
-                            props.setProcedure([...props.procedures.filter(obj => obj.id !== procedure.id), procedure]);
-                        }
-                        setUpdateConfirmation(-1);
-                    })
+                // fetch("/api/sop/", {
+                //     method: "POST",
+                //     headers: {
+                //         "Content-Type": "application/json"
+                //     }
+                // })
+                //     .then((res) => {return res.json(); })
+                //     .then((data) => {
+                //         if(data.status){
+                //             props.setProcedure([...props.procedures.filter(obj => obj.id !== procedure.id), procedure]);
+                //         }
+                //         setUpdateConfirmation(-1);
+                //     })
             }catch(error){
                 console.log(error);
             }
@@ -173,7 +173,7 @@ export const ProceduresDashboard = (props) => {
             discardChanges();
         // eslint-disable-next-line
     }, [updateConfirmation]);
-    
+
     // Generate SOP
     const openGenerateProcedureForm = _ => {
         document.getElementById("generateProcedureForm").style.display = "block";
@@ -239,13 +239,29 @@ export const ProceduresDashboard = (props) => {
     useEffect(() => {
         const deleteSOP = _ => {
             try{
-                
+                fetch("/api/sop/delete_single", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        id: deleteConfirmation
+                    })
+                })
+                    .then((res) => {return res.json(); })
+                    .then((data) => {
+                        if(data.status){
+                            setProcedures([...procedures.filter(obj => obj.id !== deleteConfirmation)]);
+                        }
+                        setDeleteConfirmation(-1);
+                    })
             }catch(error){
                 console.log(error);
             }
         };
         if(deleteConfirmation !== -1)
             deleteSOP();
+        // eslint-disable-next-line
     }, [deleteConfirmation]);
     
     const descList = [

@@ -190,22 +190,26 @@ const getSopsForClientJourney = async (req, res) => {
 
 const deleteSingleSop = async (req, res) => {
     try {
-        const sop = await SOP.destroy({
-            where:
-            {
-                id: req.body.id,
-            }
-        });
-        if (sop === 0)
-            return res.status(404).json({ status: "FAILED", message: `SOP NOT FOUND` });
+        const {id} = req.body
+        const sop = await SOP.destroy({ where: { id: id } });
+        if (sop === 0){
+            console.log(`[FAILED] SOP: ${id} to be deleted is not found`);
+            return res.status(404).json({ 
+                status: false,
+                message: `SOP NOT FOUND`
+            });
+        }
+        console.log(`[SUCCESS] Deleted Single SOP: ${id}`);
         return res.status(200).json({
-            status: "SUCCESS",
-            message: `SUCCESSFULLY DELETED SINGLE SOP ID: ${req.body.id}`
+            status: true,
+            message: `SUCCESSFULLY DELETED SINGLE SOP ID: ${id}`
         });
-    }
-    catch (err) {
+    }catch (err) {
         console.log(err);
-        return res.status(500).json({ message: "ERROR" });
+        return res.status(500).json({ 
+            status: false,
+            message: "ERROR" 
+        });
     }
 };
 
