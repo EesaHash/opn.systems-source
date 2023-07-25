@@ -19,8 +19,7 @@ require('dotenv').config()
 const clientJourney = {};
 const stages = ["awareness", "interest", "evaluation", "decision", "purchase", "implementation", "postPurchase", "retention"];
 
-//"gpt-3.5-turbo-16k"
-const modelName = "gpt-3.5-turbo-16k"
+const modelName = "gpt-4"
 
 clientJourney.saveClientJourney = async (req, res) => {
     try {
@@ -32,10 +31,9 @@ clientJourney.saveClientJourney = async (req, res) => {
             if (journey != null) {
                 const stageNames = await saveParaphrasedStages(journey.id,modelName);
                 journey.stages = stageNames;
-                console.log(`[Success] Added client journey for product id: ${product.id}`);
+                console.log(`[SUCCESS] SAVED CLIENT JOURNEY FOR PRODUCT ID: ${product.id}`);
                 return res.status(200).json({
                     status: true,
-                    message: "Successfully add new client journey!",
                     product: product,
                     journey: journey,
                     headings: stageNames
@@ -49,10 +47,10 @@ clientJourney.saveClientJourney = async (req, res) => {
             });
         }
     } catch (error) {
+        console.log(`[FAIL] UNABLE TO SAVE CLIENT JOURNEY`);
         console.log(error);
         return res.status(403).json({
             status: false,
-            message: error,
         });
     }
 }
@@ -63,16 +61,15 @@ clientJourney.getClientJourneyByProductID = async (req, res) => {
         const clientJourney = await ClientJourney.findOne({ where: {productID} });
         const stageNames = await getStages(clientJourney.id);
         clientJourney.dataValues.stages = stageNames;
-        console.log(`Successfully Retrieve client journey for product ID: ${productID}`)
+        console.log(`[SUCCESS] RETRIEVED CLIENT JOURNEY FOR PRODUCT ID: ${productID}`)
         return res.status(200).json({
             status: true,
             clientJourney: clientJourney
         });
     } catch (error) {
-        console.log(error);
+        console.log(`[FAIL] COULD NOT RETRIEVE CLIENT JOURNEY FOR PRODUCT ID: ${req.body.productID}`,error);
         return res.status(403).json({
             status: false,
-            result: `Client Journey for Product ID: ${req.body.productID} not found}`
         });
     }
 }
@@ -82,16 +79,14 @@ clientJourney.deleteClientJourneyByProductID = async (req, res) => {
         const { productID } = req.body;
         const product = await Product.findOne({ where: { id: productID } });
         await product.destroy();
-        console.log(`[Success] Product: ${product.id} deleted!`);
+        console.log(`[SUCCESS] PRODUCT ID: ${product.id} DELETED!`);
         return res.status(200).json({
             status: true,
-            result: `[Success] Product: ${product.id} deleted!`
         });
     } catch (error) {
-        console.log(error);
+        console.log(`[FAIL] COULD NOT DELETE`,error);
         return res.status(404).json({
             status: false,
-            result: error
         });
     }
 }
@@ -115,7 +110,7 @@ clientJourney.saveRegeneratedStage = async (req, res) => {
         const clientJourneyList = await ClientJourney.findAll({ where: { productID: journey.productID } });
         const cj = clientJourneyList[0];
         if (cj == null) {
-            throw "Client Journey or Business not found!";
+            throw "CLIENT JOURNEY/BUSINESS NOT FOUND";
         }
         await ClientJourney.update({
             overview: journey.overview,
@@ -128,19 +123,14 @@ clientJourney.saveRegeneratedStage = async (req, res) => {
             postPurchase: journey.postPurchase,
             retention: journey.retention
         }, { where: { id: journey.id} });
-        console.log(`[Success] update client journey: ${journey.id}`)
-        // const stage = req.body.stage;
-        // const content = req.body.content;
-        // cj[stage] = JSON.stringify(content);
-        // await cj.save();
+        console.log(`[SUCCESS] UPDATED CLIENT JOURNEY ID: ${journey.id}`)
         return res.status(200).json({
             status: true
         });
     } catch (error) {
-        console.log(error);
+        console.log(`[FAIL] COULD NOT DELETE CLIENT JOURNEY`,error);
         return res.status(403).json({
             status: false,
-            result: `Failed`
         });
     }
 }
@@ -165,8 +155,7 @@ clientJourney.regenerateClientJourney = async(req, res) => {
         const product = await Product.findOne({where: {id : cj.productID }})
         const business = await Business.findOne({ where: { id: product.businessID } });
         if (business == null || product == null) {
-            console.log("Entered");
-            return null;
+            throw `[FAIL] UNABLE TO REGENERATE CLIENT JOURNEY ID AS BUSINESS/PRODUCT DOES NOT EXIST: ${journey.id}`;
         }
         const businessDetails = `
         BUSINESS INFORMATION
@@ -219,7 +208,7 @@ clientJourney.regenerateClientJourney = async(req, res) => {
         //     postPurchase: JSON.stringify(stages[6]),
         //     retention: JSON.stringify(stages[7]),
         // })
-        console.log(`[Success] regenerate client journey ${clientJourneyID}`);
+        console.log(`[SUCCESS] REGENERATED CLIENT JOUNREY ID: ${clientJourneyID}`);
         return res.status(200).json({
             status: true,
             clientJourney: {
@@ -238,7 +227,6 @@ clientJourney.regenerateClientJourney = async(req, res) => {
         console.log(error);
         return res.status(500).json({
             status: false,
-            status: "FAILED"
         });
     }
 
@@ -251,7 +239,7 @@ clientJourney.regenerateStage = async (req, res) => {
         // const clientJourneyList = await ClientJourney.findAll({ where: { id: clientJourneyID } });
         // const cj = clientJourneyList[0];
         if (cj == null) {
-            throw "Client Journey or Business not found!";
+            throw "CLIENT JOURNEY OR BUSINESS NOT FOUND";
         }
         if (prompt == null) {
             const product = await Product.findOne({where: {id : cj.productID }})
@@ -278,9 +266,9 @@ clientJourney.regenerateStage = async (req, res) => {
             const stage = req.body.stage.toLowerCase();
             const output = await retryStage(stage, businessDetails);
             if (output == null) {
-                throw "Failed to generate stage!";
+                throw "[FAIL] UNABLE TO REGENERATE";
             }
-            console.log(`[Success] regenerate (automatic) stage for client journey: ${clientJourneyID}`);
+            console.log(`[SUCCESS] REGENERATED (AUTOMATIC) STAGE: ${stage} FOR CLIENT JOURNEY ID: ${clientJourneyID}`);
             return res.status(200).json({
                 status: true,
                 output
@@ -289,9 +277,9 @@ clientJourney.regenerateStage = async (req, res) => {
             const stage = req.body.stage.toLowerCase();
             const output = await regenerateStageWithContext(stage, cj[stage], prompt);
             if (output == null) {
-                throw "Failed to generate stage!";
+                throw "[FAIL] UNABLE TO REGENERATE";
             }
-            console.log(`[Success] regenerate (by prompt) stage for client journey: ${clientJourneyID}`);
+            console.log(`[SUCCESS] REGENERATE STAGE: ${stage} FOR CLIENT JOURNEY ID: ${clientJourneyID}`);
             return res.status(200).json({
                 status: true,
                 output
@@ -301,7 +289,6 @@ clientJourney.regenerateStage = async (req, res) => {
         console.log(error);
         return res.status(403).json({
             status: false,
-            result: `Failed`,
             message: error
         });
     }
