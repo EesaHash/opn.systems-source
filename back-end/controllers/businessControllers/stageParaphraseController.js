@@ -42,7 +42,7 @@ const paraphrase = async (modelName) => {
     const prompt = new PromptTemplate({
         template:
             `You are tasked with generating accurate and professionally appropriate synonyms for a list of words provided. You must provide one synonym for each word.
-             Here's the list of words: {stages}
+             Here's the list of words: {stages}. For some words, do not paraphrase, leave them as is.
              {format_instructions}`,
         inputVariables: ["stages"],
         partialVariables: { format_instructions: formatInstructions },

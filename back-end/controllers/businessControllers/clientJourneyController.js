@@ -91,19 +91,6 @@ clientJourney.deleteClientJourneyByProductID = async (req, res) => {
     }
 }
 
-/*
-Example JSON body:
-{
-    businessId: 1,
-    stage: "awareness"
-    content: {
-        department: "Marketing",
-        role: "Marketing Manager",
-        steps: ["Step 1", "Step 2", "Step 3"]
-    }
-}
-*/
-
 clientJourney.saveRegeneratedStage = async (req, res) => {
     try {
         const {journey} = req.body;
@@ -134,15 +121,6 @@ clientJourney.saveRegeneratedStage = async (req, res) => {
         });
     }
 }
-
-/*
-Example JSON body:
- {
-    clientJourneyID
-    stage: "awareness" -- all lowercase,
-    prompt: "user prompt" can be null
- }
-*/
 
 clientJourney.regenerateClientJourney = async(req, res) => {
     try {
