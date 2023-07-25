@@ -348,6 +348,31 @@
 .main-table .table-directory .table-directory-right-header .css-i4bv87-MuiSvgIcon-root, .secondary-table .table-directory .table-directory-right-header .css-i4bv87-MuiSvgIcon-root, .folder-list .table-directory .table-directory-right-header .css-i4bv87-MuiSvgIcon-root, .folder-list2 .table-directory .table-directory-right-header .css-i4bv87-MuiSvgIcon-root, .fourth-table .table-directory .table-directory-right-header .css-i4bv87-MuiSvgIcon-root, .list-table4 .table-directory .table-directory-right-header .css-i4bv87-MuiSvgIcon-root {
   font-size: 16px;
 }
+.main-table .table-input, .secondary-table .table-input, .folder-list .table-input, .folder-list2 .table-input, .fourth-table .table-input, .list-table4 .table-input {
+  border: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  resize: none;
+  overflow: hidden;
+  text-align: justify;
+}
+.main-table .table-input:focus, .secondary-table .table-input:focus, .folder-list .table-input:focus, .folder-list2 .table-input:focus, .fourth-table .table-input:focus, .list-table4 .table-input:focus {
+  outline: none;
+}
+.main-table .table-input:hover, .secondary-table .table-input:hover, .folder-list .table-input:hover, .folder-list2 .table-input:hover, .fourth-table .table-input:hover, .list-table4 .table-input:hover {
+  cursor: text;
+}
+.main-table .table-input.h1, .secondary-table .table-input.h1, .folder-list .table-input.h1, .folder-list2 .table-input.h1, .fourth-table .table-input.h1, .list-table4 .table-input.h1 {
+  font-size: 32px;
+  font-weight: 700;
+  float: left;
+}
+.main-table .table-input.text, .secondary-table .table-input.text, .folder-list .table-input.text, .folder-list2 .table-input.text, .fourth-table .table-input.text, .list-table4 .table-input.text {
+  background-color: transparent;
+  color: black;
+}
 
 .main-table button {
   border-radius: 4px;
@@ -535,19 +560,20 @@
 .list-table4 .list-table4-content .list-table4-list .list-table4-list-item .edit {
   margin-left: 50px;
 }
-.list-table4 .list-table4-content .list-table4-list .list-table4-list-item text {
+.list-table4 .list-table4-content .list-table4-list .list-table4-list-item .table-input.text {
   margin: auto;
   margin-left: 0;
   margin-right: 10px;
   font-size: 16px;
   color: #343741;
   text-align: justify;
+  padding-top: 4px;
 }
 .list-table4 .list-table4-content .list-table4-list .list-table4-list-item .heading h3 {
   font-size: 20px;
   margin-top: 3px;
 }
-.list-table4 .list-table4-content .list-table4-list .list-table4-list-item .heading text {
+.list-table4 .list-table4-content .list-table4-list .list-table4-list-item .heading .table-input.text {
   font-weight: 900;
   font-size: 22px;
 }
@@ -562,6 +588,9 @@
 }
 .list-table4 .list-table4-content .list-table4-list .list-table4-list-item .sub-items .sub-items-content {
   display: flex;
+}
+.list-table4 .list-table4-content .list-table4-list .list-table4-list-item .sub-items .sub-items-content .table-input.text {
+  padding-top: 10px;
 }
 .list-table4 .list-table4-content .list-table4-list button {
   background-color: transparent;

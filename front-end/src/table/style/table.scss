@@ -340,6 +340,31 @@
             }
         }
     }
+    & .table-input{
+        border: none;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        resize: none;
+        overflow: hidden;
+        text-align: justify;
+        &:focus{
+            outline: none;
+        }
+        &:hover{
+            cursor:text;
+        }
+        &.h1{
+            font-size: 32px;
+            font-weight: 700;
+            float: left;
+        }
+        &.text{
+            background-color: transparent;
+            color: black;
+        }
+    }
 }
 .main-table{
     & button{
@@ -523,20 +548,21 @@
                 & .edit{
                     margin-left: 50px;
                 }
-                & text{
+                & .table-input.text{
                     margin: auto;
                     margin-left: 0;
                     margin-right: 10px;
                     font-size: 16px;
                     color: #343741;
                     text-align: justify;
+                    padding-top: 4px;
                 }
                 & .heading{
                     & h3{
                         font-size: 20px;
                         margin-top: 3px;
                     }
-                    & text{
+                    & .table-input.text{
                         font-weight: 900;
                         font-size: 22px;
                     }
@@ -551,6 +577,9 @@
                     }
                     & .sub-items-content{
                         display: flex;
+                        & .table-input.text{
+                            padding-top: 10px;
+                        }
                     }
                 }
             }

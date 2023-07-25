@@ -112,7 +112,7 @@ export const ListItem = (props) => {
                     />
                 ))
             }
-            {(props.editStatus && itemClassName !== "minimised") && addItem()}
+            {/* {(props.editStatus && itemClassName !== "minimised") && addItem()} */}
         </div>
     );
 };

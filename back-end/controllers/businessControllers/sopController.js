@@ -208,7 +208,7 @@ const deleteSingleSop = async (req, res) => {
         console.log(err);
         return res.status(500).json({ 
             status: false,
-            message: "ERROR" 
+            message: err
         });
     }
 };

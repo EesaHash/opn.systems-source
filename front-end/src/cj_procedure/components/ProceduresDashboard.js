@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 import "../style/procedure.css";
 import { FolderList } from '../../table/components/Folder/FolderList';
 import { openAccessLimitForm } from '../../dashboard/page/dashboard_main';
-import { FifthTableDescAsList, FifthTableDescItem, ListTable4 } from '../../table/components/List/ListTable4';
-import { FormatAlignLeft } from '@mui/icons-material';
+import { ListTable4 } from '../../table/components/List/ListTable4';
 import { FolderList2 } from '../../table/components/Folder/FolderList2';
 import { ListTable3 } from '../../table/components/List/ListTable3';
 import { stages } from '../../client_journey/components/originalStages';
@@ -263,11 +262,6 @@ export const ProceduresDashboard = (props) => {
             deleteSOP();
         // eslint-disable-next-line
     }, [deleteConfirmation]);
-    
-    const descList = [
-        FifthTableDescItem(<FormatAlignLeft/>, "Objective", procedure.purpose),
-        FifthTableDescAsList(<FormatAlignLeft/>, "Definitions", procedure.definitions)
-    ];
 
     return(
         <div className='procedure'>
@@ -316,7 +310,6 @@ export const ProceduresDashboard = (props) => {
                 button2 = { showStagesList }
                 button3 = { showProcedureList }
                 data = { procedure }
-                desc = { descList }
                 list1Title = "Responsibility"
                 list1 = {procedure.responsibility ? JSON.parse(procedure.responsibility) : []}
                 list2Title = "Procedure"
