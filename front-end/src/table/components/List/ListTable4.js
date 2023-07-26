@@ -164,7 +164,7 @@ const FifthTableDescItem = (icon, title, data, editStatus) => {
     return(
         <div className='list-table4-desc-item'>
             <h2>{icon}{title}</h2>
-            <div className='table-input text' contentEditable = {editStatus}>{data}</div>
+            <div className='table-input text' style={{marginLeft: "25px"}} contentEditable = {editStatus}>{data}</div>
             {/* <text>{data}</text> */}
         </div>
     )

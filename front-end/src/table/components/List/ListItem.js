@@ -9,6 +9,8 @@ export const ListItem = (props) => {
     const [expandAll, setExpandAll] = useState(false);
     const [selectedStep, setSelectedStep] = useState(0);
     const [list, setList] = useState([]);
+    const [dragItemIndex, setDragItemIndex] = useState();
+    const [dragOverItemIndex, setDragOverItemIndex] = useState();
 
     useEffect(() => {
         setItemClassName("minimised");
@@ -90,6 +92,7 @@ export const ListItem = (props) => {
     const isEditSelected = (index) => {
         return (props.editStatus && index === selectedStep);
     };
+
     return(
         <div className={`list-table4-list ${itemClassName}`} onClick = {() => itemClassName === "minimised" && expandMinimisedBtn()}>
             <div className='list-table4-list-heading' style={{display: "flex"}} >
@@ -107,22 +110,35 @@ export const ListItem = (props) => {
                         index = {index}
                         isEditSelected = {isEditSelected}
                         setSelectedStep = {setSelectedStep}
+                        editStatus = {props.editStatus}
                         data = {data}
+                        list = {list}   setList = {setList}
+                        dragItemIndex = {dragItemIndex} setDragItemIndex = {setDragItemIndex}
+                        dragOverItemIndex = {dragOverItemIndex}  setDragOverItemIndex = {setDragOverItemIndex}
                         itemClassName = {expandAll ? "expanded" : "minimised"}
                     />
                 ))
             }
-            {/* {(props.editStatus && itemClassName !== "minimised") && addItem()} */}
+            {/* {(props.editStatus && itemClassName !== "minimised") && addItemWithAI()} */}
+            {(props.editStatus && itemClassName !== "minimised") && addItemManual()}
         </div>
     );
 };
 
-const addItem = _ => {
+// const addItemWithAI = _ => {
+//     return(
+//         <div className='add-list-item ai'>
+//             <h3>+</h3>
+//             <text>Add step with AI</text>
+//             <img src="./images/ai_icon2.png" alt = "icon"/>
+//         </div>
+//     );
+// }; 
+const addItemManual = _ => {
     return(
-        <div className='add-list-item'>
+        <div className='add-list-item manual'>
             <h3>+</h3>
-            <text>Add step with AI</text>
-            <img src="./images/ai_icon2.png" alt = "icon"/>
+            <text>Add step</text>
         </div>
     );
-}; 
+};

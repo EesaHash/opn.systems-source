@@ -518,12 +518,24 @@
             & .css-i4bv87-MuiSvgIcon-root{
                 margin-top: -3px;
             }
+            & li{
+                width: 100%;
+                height: fit-content;
+                display: flex;
+                & .edit-icon .css-i4bv87-MuiSvgIcon-root{
+                    margin: 20px 15px;
+                    margin-bottom: 0;
+                    height: 25px;
+                    color: #ACACAC;
+                }
+            }
             & .list-table4-list-item{
                 display: flex;
                 padding: 10px;
                 border-radius: 12px;
                 background-color: #FFFFFF;
                 margin-bottom: 10px;
+                width: 100%;
                 &:hover{
                     cursor: pointer;
                 }
@@ -539,7 +551,7 @@
                     margin: auto;
                     margin-left: 0;
                     margin-right: 0;
-                    margin-top: 0;
+                    margin-top: 10px;
                     font-size: 20px;
                     color: #ACACAC;
                     min-width: 50px;
@@ -550,6 +562,7 @@
                 }
                 & .table-input.text{
                     margin: auto;
+                    margin-top: 10px;
                     margin-left: 0;
                     margin-right: 10px;
                     font-size: 16px;
@@ -598,14 +611,28 @@
         & .add-list-item{
             display: flex;
             border-radius: 12px;
-            border: 2px solid var(--accent-purple-dark, #5D5FEF);
-            background: rgba(165, 166, 246, 0.20);
             padding: 10px;
+            width: calc(100% - 108px);
+            margin: auto;
+            margin-top: 10px;
+            &.ai{
+                border: 2px solid var(--accent-purple-dark, #5D5FEF);
+                background: rgba(165, 166, 246, 0.20);
+                & h3, text, img{
+                    color: var(--accent-purple-dark, #5D5FEF);
+                }
+            }
+            &.manual{
+                border: 2px solid var(--accent-purple-dark, #2173DF);
+                background: rgba(33, 115, 223, 0.10);
+                & h3, text, img{
+                    color: var(--basic-blue, #2173DF);
+                }
+            }
             & h3, text, img{
                 margin: auto;
                 margin-left: 0;
                 margin-right: 0;
-                color: var(--accent-purple-dark, #5D5FEF);
                 font-size: 20px;
                 font-weight: 500;
             }
