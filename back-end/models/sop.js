@@ -1,4 +1,4 @@
-const sequelize = require('../controllers/accountController/connectDatabase').sequelize;
+const sequelize = require('../configuration/DatabaseConfig').sequelize;
 const {DataTypes} = require('sequelize');
 const ClientJourney = require('./client_journey');
 

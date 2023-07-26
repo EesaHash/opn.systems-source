@@ -17,10 +17,10 @@ const {
     StructuredOutputParser,
     OutputFixingParser,
 } = require("langchain/output_parsers");
-const { BufferMemory } = require("langchain/memory")
+const { BufferMemory } = require("langchain/memory");
+const { modelName } = require("../../configuration/AIConfig");
 require('dotenv').config();
 
-const modelName = "gpt-4";
 const stages = ["awareness", "interest", "evaluation", "decision", "purchase", "implementation", "postPurchase", "retention"];
 
 /*
