@@ -17,9 +17,11 @@ const { getStages } = require("./getStageNamesController");
 require('dotenv').config()
 
 const clientJourney = {};
-const stages = ["awareness", "interest", "evaluation", "decision", "purchase", "implementation", "postPurchase", "retention"];
-
 const modelName = "gpt-4"
+
+/*
+    API METHODS
+*/
 
 clientJourney.saveClientJourney = async (req, res) => {
     try {
@@ -272,6 +274,10 @@ clientJourney.regenerateStage = async (req, res) => {
     }
 }
 
+/*
+    Controller Functions
+*/
+
 const generateClientJourney = async (productID, title) => {
     try {
         const product = await Product.findOne({where: {id : productID }})
@@ -351,7 +357,7 @@ async function generateOverview(businessDetailsString) {
         partialVariables: { format_instructions: formatInstructions },
     });
 
-    const model = new OpenAI({ temperature: 1, model: modelName });
+    const model = new OpenAI({ temperature: 1, modelName: modelName });
     const input = await prompt.format({
         businessDetails: businessDetailsString,
     });
@@ -362,7 +368,7 @@ async function generateOverview(businessDetailsString) {
     } catch (e) {
         try {
             const fixParser = OutputFixingParser.fromLLM(
-                new OpenAI({ temperature: 0, model: modelName }),
+                new OpenAI({ temperature: 0, modelName: modelName }),
                 parser
             );
             const output = await fixParser.parse(response);
@@ -393,21 +399,21 @@ async function generateStage(stageString, businessDetailsString) {
             role: z.string().describe(`Identify responsible roles for the ${stageString} stage. Within each department, there are several roles. Roles are the specific job titles or positions that individuals hold within the department. For example, in the Marketing department, roles might include Marketing Manager, Content Strategist, SEO Specialist, etc. Number of roles proportional to business size`),
             steps: z
                 .array(z.string())
-                .describe("Steps to follow in this stage. Be ellaborate by providing a lot of detail."),
+                .describe("Steps to follow in this stage. Be ellaborate by providing a lot of detail. Add stastical/numerical predictions as well"),
         })
     );
 
     const formatInstructions = parser.getFormatInstructions();
     const prompt = new PromptTemplate({
         template:
-        `Generate a client journey's ${stageString} stage
+        `You are a business executive based in Australia. Your task is to generate a client journey's ${stageString} stage.
          Given these details for a business: {businessDetails}
          {format_instructions};`,
         inputVariables: ["businessDetails"],
         partialVariables: { format_instructions: formatInstructions },
     });
 
-    const model = new OpenAI({ temperature: 1, model: modelName });
+    const model = new OpenAI({ temperature: 1, modelName: modelName });
     const input = await prompt.format({
         businessDetails: businessDetailsString,
     });
@@ -419,7 +425,7 @@ async function generateStage(stageString, businessDetailsString) {
         } catch (e) {
             try {
                 const fixParser = OutputFixingParser.fromLLM(
-                    new OpenAI({ temperature: 0, model: modelName }),
+                    new OpenAI({ temperature: 0, modelName: modelName }),
                     parser
                 );
                 const output = await fixParser.parse(response);
@@ -456,7 +462,7 @@ async function regenerateStageWithContextSingle(stageString, previousStageConten
         partialVariables: { format_instructions: formatInstructions },
     });
 
-    const model = new OpenAI({ temperature: 1, model: modelName });
+    const model = new OpenAI({ temperature: 1, modelName: modelName });
     const input = await prompt.format({
         userPreference: userPromptString,
         oldClientJourneyStage: JSON.stringify(previousStageContent),
@@ -468,7 +474,7 @@ async function regenerateStageWithContextSingle(stageString, previousStageConten
     } catch (e) {
         try {
             const fixParser = OutputFixingParser.fromLLM(
-                new OpenAI({ temperature: 0, model: modelName }),
+                new OpenAI({ temperature: 0, modelName: modelName }),
                 parser
             );
             const output = await fixParser.parse(response);
@@ -515,7 +521,7 @@ async function regenerateStageWithContextSingle(stageString, previousStageConten
         partialVariables: { format_instructions: formatInstructions },
     });
 
-    const model = new OpenAI({ temperature: 1, model: modelName });
+    const model = new OpenAI({ temperature: 1, modelName: modelName });
     const input = await prompt.format({
         userPreference: userPromptString,
         oldClientJourneyStage: JSON.stringify(previousStageContent),
@@ -527,7 +533,7 @@ async function regenerateStageWithContextSingle(stageString, previousStageConten
     } catch (e) {
         try {
             const fixParser = OutputFixingParser.fromLLM(
-                new OpenAI({ temperature: 0, model: modelName }),
+                new OpenAI({ temperature: 0, modelName: modelName }),
                 parser
             );
             const output = await fixParser.parse(response);
@@ -567,6 +573,9 @@ async function retryStage(stageString, businessDetailsString) {
     return output;
 }
 
+/*
+   EXPRESS ROUTES
+*/
 router.post("/save", clientJourney.saveClientJourney);
 router.post("/get", clientJourney.getClientJourneyByProductID);
 router.post("/regenerate_stage", clientJourney.regenerateStage);

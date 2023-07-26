@@ -23,6 +23,9 @@ require('dotenv').config();
 const modelName = "gpt-4";
 const stages = ["awareness", "interest", "evaluation", "decision", "purchase", "implementation", "postPurchase", "retention"];
 
+/*
+    API METHODS
+*/
 
 const regenerateSOP = async (req, res) => {
     try {
@@ -52,41 +55,6 @@ const updateSingleSop = async (req, res) => {
         return res.status(500).json({ message: false });
     }
 }
-/*
-{
-    steps : [] (list of steps)
-    prompt : (AI text input by user)
-    idx :  (index of the step in the list of steps)
-}
-*/
-// const regenerateSOP = async (req, res) => {
-//     try {
-//         const singleSOP
-//         console.log("[SUCCESS] REGENERATED SOP STEP");
-//         return res.status(200).json({ status: true, step: regeneratedListWithStep[req.body.idx],regeneratedList: JSON.stringify(regeneratedListWithStep)});
-//     } catch (error) {
-//         console.log(`[FAIL] COULD NOT REGENERATE SOP STEP`,error);
-//         return res.status(500).json({ status: false });
-//     }
-// }
-
-const updateSOP = async (sopID, customSop) => {
-    try {
-        const sop = await SOP.update({
-            title: customSop.title,
-            definitions: JSON.stringify(customSop.definitions),
-            purpose: customSop.purpose,
-            responsibility: JSON.stringify(customSop.responsibility),
-            procedure: JSON.stringify(customSop.procedure),
-            documentation: JSON.stringify(customSop.documentation),
-            stage: customSop.stage
-        }, { where: { id: sopID } });
-        return sop;
-    } catch (error) {
-        console.log(error);
-        return null;
-    }
-}
 
 const deleteSopsForStage = async (req, res) => {
     try {
@@ -112,7 +80,7 @@ const deleteSopsForStage = async (req, res) => {
     }
 };
 
-const generateSopForStage = async (req, res) => {
+const generateStageSops = async (req, res) => {
     try {
         const { clientJourneyID, stage } = req.body;
         const forStage = stages[stage];
@@ -132,7 +100,7 @@ const generateSopForStage = async (req, res) => {
             throw "Client Journey not found!";
         }
 
-        await generateFewSOPs(clientJourney, forStage);
+        await generateSopsForStage(clientJourney, forStage);
         const sops = await SOP.findAll({
             where: {
                 clientJourneyID: clientJourneyID
@@ -230,11 +198,30 @@ const deleteSingleSop = async (req, res) => {
     }
 };
 
+
 /*
-Randomised generation for sops based on a single step for a given client journey stage
-1 SOP per stage, (one for awareness, interest etc... )
+    CONTROLLER FUNCTIONS
 */
-const generateFewSOPs = async (clientJourney, forStage) => {
+
+async function updateSOP(sopID, customSop) {
+    try {
+        const sop = await SOP.update({
+            title: customSop.title,
+            definitions: JSON.stringify(customSop.definitions),
+            purpose: customSop.purpose,
+            responsibility: JSON.stringify(customSop.responsibility),
+            procedure: JSON.stringify(customSop.procedure),
+            documentation: JSON.stringify(customSop.documentation),
+            stage: customSop.stage
+        }, { where: { id: sopID } });
+        return sop;
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
+}
+
+async function generateSopsForStage(clientJourney, forStage) {
     try {
         const stage = JSON.parse(clientJourney.dataValues[forStage]);
         let steps = null;
@@ -263,9 +250,9 @@ const generateFewSOPs = async (clientJourney, forStage) => {
     }
 }
 
-const generateSingleSOP = async (statement) => {
+async function generateSingleSOP(statement) {
     try {
-        const chat = new ChatOpenAI({ temperature: 0.9, model: modelName });
+        const chat = new ChatOpenAI({ temperature: 0.9, modelName: modelName });
         const memory = new BufferMemory({ returnMessages: true, memoryKey: "history" });
         const messagesPlaceholder = new MessagesPlaceholder("history");
         const chatPrompt = ChatPromptTemplate.fromPromptMessages([
@@ -378,7 +365,6 @@ const generateSingleSOP = async (statement) => {
     }
 }
 
-
 async function editStep(stepList, userPrompt, idx) {
 
     const parser = StructuredOutputParser.fromNamesAndDescriptions({
@@ -402,7 +388,7 @@ async function editStep(stepList, userPrompt, idx) {
         inputVariables: ["userPrompt"],
         partialVariables: { format_instructions: formatInstructions },
     });
-    const model = new OpenAI({ temperature: 1, model: modelName });
+    const model = new OpenAI({ temperature: 1, modelName: modelName });
     const chain = new LLMChain({
         prompt: prompt,
         llm: model,
@@ -429,7 +415,7 @@ async function formatProcedure(procedure, chat) {
         })
     );
     const fixParser = OutputFixingParser.fromLLM(
-        new ChatOpenAI({ temperature: 0 }),
+        new ChatOpenAI({ modelName: modelName, temperature: 0 }),
         parser
     );
 
@@ -521,38 +507,39 @@ async function regenerateSingleSOP(previousSOP, request) {
             title: z.string().describe(`If suitable change the title`),
             purpose: z.string()
                 .array(z.string())
-                .describe(`Refine the purpose with verified statistical information and real life entities if necessary`),
+                .describe(`Purpose with verified statistical information(quote them as well) and real life entities if necessary`),
             responsibility: z
                 .array(z.string())
-                .describe(`This should be diverse, and depenedant on the size of the business`),
+                .describe(`This should be diverse, and depenedant on the size of the business.`),
             procedure: z
                 .array(z.string())
-                .describe(`*IMPORTANT* Ellaborate in detail (and adjust/modify according to the user's request) on the procedure, include statistical information derived from real internet sources.`),
+                .describe(`Ellaborate in detail (and adjust/modify according to the user's request) on the procedure, include plenty of statistical(numerical) information derived from real internet sources.
+                Provide solid solutions to the steps as well`),
             documentation: z
                 .array(z.string())
-                .describe(`Standard, do not change too much unless necessary`),
+                .describe(`What are some legal firms in Australia`),
             definitions: z
                 .array(z.string())
                 .describe(`Definitions should be concise, and contain all the abbreviations, terms used in procedure`),
         })
     );
     const fixParser = OutputFixingParser.fromLLM(
-        new ChatOpenAI({ temperature: 0 }),
+        new ChatOpenAI({ temperature: 0, modelName: modelName}),
         parser
     );
 
     const formatInstructions = parser.getFormatInstructions();
     const prompt = new PromptTemplate({
         template:
-            `As the assistant, you are provided with a Standard Operating Procedure (SOP), which you must improve upon according
-             to the user's request or preference.
-             Here's the SOP: {sop}
+            `As the assistant based in Australia, you are provided with a Standard Operating Procedure (SOP), which you must improve upon according
+             to the user's request or preference. You must use real sources, and mention companies that actually exist.
              And the REQUEST/PREFERENCE: {request}
+             Here's the SOP: {sop}
              {format_instructions}`,
         inputVariables: ["sop", "request"],
         partialVariables: { format_instructions: formatInstructions },
     });
-    const chat = new ChatOpenAI({ temperature: 1, model: modelName });
+    const chat = new ChatOpenAI({ temperature: 0.9, modelName: modelName, maxTokens: -1 });
     const chain = new LLMChain({
         prompt: prompt,
         llm: chat,
@@ -560,7 +547,6 @@ async function regenerateSingleSOP(previousSOP, request) {
         outputParser: parser,
         fixParser: fixParser
     })
-
     try {
         const output = await chain.call({
             sop: JSON.stringify(previousSOP),
@@ -573,7 +559,11 @@ async function regenerateSingleSOP(previousSOP, request) {
     }
 }
 
-router.post("/generate_for_stage", generateSopForStage);
+/* 
+    EXPRESS ROUTES
+*/
+
+router.post("/generate_for_stage", generateStageSops);
 router.post("/getall", getSopsForClientJourney);
 router.post("/get_for_stage", getSopsForStage);
 router.post("/delete_for_stage", deleteSopsForStage);

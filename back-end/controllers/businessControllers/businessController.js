@@ -6,6 +6,9 @@ const { saveKeyContact }  = require("../businessControllers/keyContactsControlle
 
 const business = {};
 
+/*
+    API METHODS
+*/
 business.addNewBusiness = async (req, res) => {
     try {
         const {
@@ -129,7 +132,9 @@ business.getAllBusinesses = async (req, res) => {
 };
 
 
-// Define the routes
+/*
+    EXPRESS ROUTES
+*/
 router.post('/addNewBusiness', business.addNewBusiness);
 router.post('/updateBusiness', business.updateBusiness);
 router.post('/removeBusiness', business.removeBusiness);
