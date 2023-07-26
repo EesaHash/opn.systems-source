@@ -3,7 +3,9 @@ import React from 'react';
 import "../style/businessOverview.css"
 import ChatIcon from '../svg/chatIcon';
 import PeopleIcon from '../svg/peopleIcon';
-
+import WavingWoman from '../svg/wavingWoman';
+import PhoneIcon from '../svg/phoneIcon';
+import EmailIcon from '../svg/emailIcon';
 
 export const businessOverview = (business) => {
     return(
@@ -15,20 +17,20 @@ export const businessOverview = (business) => {
                 <p style={{fontSize:"14px"}}>Here's some tips to get you started</p>
                 <div style={{justifyContent:"center", alignItems:"center", display:"inline-flex", gap:"8px"}}>
                 <button className="howToButtons"><ChatIcon/> How to edit your files</button>
-                <button className="howToButtons"><ChatIcon/> How to connect other apps</button>
+                <button className="howToButtons"><ChatIcon/> What are your next steps</button>
                 
                 </div>
             
                 <div className="container">
                     <div className="message-container">
                         <div className="message">
-                        <div className="text"><PeopleIcon/> You’ve reached your business limit (1/1)</div>
+                        <div className="text"><WavingWoman/> Key Contact Information</div>
                         </div>
                     </div>
-                    <div className="upgrade-container">
-                        <div className="upgrade-text">
-                        When you upgrade to Premium, you can create unlimited business, roles, and invite your team members.
-                        </div>
+                    <div className="contact-container">
+                        <div className="contact-icon"><PeopleIcon/></div>
+                        <div className="contact-icon"><PhoneIcon/></div>
+                        <div className="contact-icon"><EmailIcon/></div>
                     </div>
                     </div>
                 </div>

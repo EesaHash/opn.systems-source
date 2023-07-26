@@ -60,7 +60,7 @@ const emptyPane = (user) => {
                         <img className="party" src="./images/partypopper.png" alt="party"/>
                         <p style={{fontSize:"14px"}}>Here's some tips to get you started</p>
                         <div style={{justifyContent:"center", alignItems:"center", display:"inline-flex", gap:"8px"}}>
-                        <button className="howToButtons"><ChatIcon/> How to connect other apps</button>
+                        <button className="howToButtons"><ChatIcon/> What are your next steps</button>
                         <button className="howToButtons"  style={{marginRight:"10px"}}><ChatIcon/> How to edit your files</button>
                         </div>
                        

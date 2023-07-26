@@ -202,7 +202,7 @@
 }
 .businesses-overview .container {
   width: calc((100vw - 240px - 8vw) * 0.5 - 4vw + 0.5vw);
-  height: 10vh;
+  height: 18vh;
   border-radius: 9px;
   border: 0.5px #3235FF dotted;
   flex-direction: column;
@@ -226,6 +226,7 @@
   display: inline-flex;
 }
 .businesses-overview .container .message-container .message .text {
+  margin-top: 6px;
   text-align: center;
   color: #343741;
   font-size: 1.5vh;
@@ -234,7 +235,7 @@
   word-wrap: break-word;
   gap: 2px;
 }
-.businesses-overview .container .upgrade-container {
+.businesses-overview .container .contact-container {
   align-self: stretch;
   height: 48px;
   flex-direction: column;
@@ -243,7 +244,7 @@
   gap: 8px;
   display: flex;
 }
-.businesses-overview .container .upgrade-container .upgrade-text {
+.businesses-overview .container .contact-container .upgrade-text {
   flex: 1 1 0;
   text-align: center;
   color: #343741;
@@ -328,4 +329,9 @@
   border: #FEC514;
   color: #000;
   margin: auto;
+}
+
+.contact-icon {
+  margin-top: -20px;
+  flex-shrink: 0;
 }/*# sourceMappingURL=pane.css.map */
