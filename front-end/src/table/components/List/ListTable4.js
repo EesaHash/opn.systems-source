@@ -15,7 +15,7 @@ export const ListTable4 = (props) => {
             if(!textarea)
                 return;
             textarea.addEventListener("keyup", e => {
-                textarea.style.height = "100%";
+                textarea.style.height = "50%";
                 let scrollHeight = e.target.scrollHeight;
                 textarea.style.height = `${scrollHeight}px`;
             });
