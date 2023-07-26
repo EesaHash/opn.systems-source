@@ -150,7 +150,7 @@ export const ProceduresDashboard = (props) => {
                 //     method: "POST",
                 //     headers: {
                 //         "Content-Type": "application/json"
-                //     }
+                //     },
                 // })
                 //     .then((res) => {return res.json(); })
                 //     .then((data) => {
@@ -159,6 +159,7 @@ export const ProceduresDashboard = (props) => {
                 //         }
                 //         setUpdateConfirmation(-1);
                 //     })
+                console.log(procedure);
             }catch(error){
                 console.log(error);
             }
@@ -172,6 +173,48 @@ export const ProceduresDashboard = (props) => {
             discardChanges();
         // eslint-disable-next-line
     }, [updateConfirmation]);
+    const updateResposibility = (list) => {
+        if(list.length <= 0)
+            return;
+        let temp = {...procedure};
+        let result = "[";
+        list.forEach((data, index) => {
+            result += `"${data.heading}"`;
+            if(index !== list.length - 1)
+                result += ",";
+        });
+        result += "]";
+        temp.responsibility = result;
+        setProcedure(temp);
+    };
+    const updateProcedure = (list) => {
+        if(list.length <= 0)
+            return;
+        let temp = {...procedure};
+        let result = "[";
+        list.forEach((data, index) => {
+            result += `"${data.heading}"`;
+            if(index !== list.length - 1)
+                result += ",";
+        });
+        result += "]";
+        temp.procedure = result;
+        setProcedure(temp);
+    };
+    const updateDocumentation = (list) => {
+        if(list.length <= 0)
+            return;
+        let temp = {...procedure};
+        let result = "[";
+        list.forEach((data, index) => {
+            result += `"${data.heading}"`;
+            if(index !== list.length - 1)
+                result += ",";
+        });
+        result += "]";
+        temp.documentation = result;
+        setProcedure(temp);
+    };
 
     // Generate SOP
     const openGenerateProcedureForm = _ => {
@@ -263,6 +306,10 @@ export const ProceduresDashboard = (props) => {
         // eslint-disable-next-line
     }, [deleteConfirmation]);
 
+    useEffect(() => {
+        console.log(procedure);
+    }, [procedure])
+
     return(
         <div className='procedure'>
             <UpdateConfirmation
@@ -306,21 +353,34 @@ export const ProceduresDashboard = (props) => {
                 title = {`${journey.title}'s Procedures`}
                 sub_title = {stage}
                 sub_title2 = {procedure.title}
+
                 button1 = { showJourneyList }
                 button2 = { showStagesList }
                 button3 = { showProcedureList }
+
                 data = { procedure }
+                setData = {setProcedure}
+
                 list1Title = "Responsibility"
                 list1 = {procedure.responsibility ? JSON.parse(procedure.responsibility) : []}
+                updateList1 = {updateResposibility}
+
                 list2Title = "Procedure"
                 list2 = {procedure.procedure ? JSON.parse(procedure.procedure) : []}
+                updateList2 = {updateProcedure}
+
                 list3Title = "Documentation"
                 list3 = {procedure.documentation ? JSON.parse(procedure.documentation) : []}
+                updateList3 = {updateDocumentation}
+
                 saveBtn = {openUpdateConfirmation}
+
                 automaticallyRegenerate = {automaticallyRegenerate}
                 regenerateByPrompt = {regenerateByPrompt}
+
                 automaticallyRegenerateForItem = {automaticallyRegenerateForItem}
                 regenerateByPromptForItem = {regenerateByPromptForItem}
+
                 loadingTitle = {"AI is regenreating the procedure for"}
             />
         </div>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import "../../style/table.css";
 import { Delete, DensityMedium, KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material';
-import { EditPrompt } from '../EditPrompt';
+// import { EditPrompt } from '../EditPrompt';
 
 export const ExpandMinimisedTableItem2 = (props) => {
     const [itemClassName, setItemClassName] = useState(props.itemClassName);
@@ -31,6 +31,8 @@ export const ExpandMinimisedTableItem2 = (props) => {
         _list.splice(props.dragOverItemIndex, 0, dragItem);
         // Update the state with the new list
         props.setList(_list);
+        // Update the original list
+        props.updateList(_list);
     };
     const handleDragEnter = (index) => {
         props.setDragOverItemIndex(index);
@@ -43,7 +45,7 @@ export const ExpandMinimisedTableItem2 = (props) => {
         const _list = [...props.list];
         _list.splice(props.index, 1);
         props.setList(_list);
-
+        props.updateList(_list);
     };
 
     return(

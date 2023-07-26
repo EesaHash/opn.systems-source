@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import "../../style/table.css";
 import { AccessTime, ArrowBack, Chat, Download, Edit, FormatAlignLeft, KeyboardArrowDown, KeyboardArrowUp, MoreHoriz, Share, SimCardDownload } from '@mui/icons-material';
 import { openAccessLimitForm, openFutureFeatureWarningForm } from '../../../dashboard/page/dashboard_main';
@@ -9,6 +9,21 @@ import { EditPopUp } from '../EditPopUp';
 export const ListTable4 = (props) => {
     const [editStatus, setEditStatus] = useState(false);
     const [isAIEditOver, setIsAIEditOver] = useState(false);
+    useEffect(() => {
+        const setTextAreaHeight = (id) => {
+            const textarea = document.querySelector(id);
+            if(!textarea)
+                return;
+            textarea.addEventListener("keyup", e => {
+                textarea.style.height = "100%";
+                let scrollHeight = e.target.scrollHeight;
+                textarea.style.height = `${scrollHeight}px`;
+            });
+            textarea.style.height = `${textarea.scrollHeight}px`;
+        };
+        setTextAreaHeight(".h1");
+        setTextAreaHeight(".text");
+    }, [props.data]);
     const saveUpdate = _ => {
         props.saveBtn();
         closeEditMode();
@@ -41,6 +56,9 @@ export const ListTable4 = (props) => {
             </div>
         );
     };
+    const updatePurpose = (newData) => {
+        props.setData({...props.data, purpose: newData});
+    };
     return(
         <div className='list-table4' id = {props.id}>
             <div className='list-table4-content'>
@@ -66,29 +84,36 @@ export const ListTable4 = (props) => {
                         setLoading = {null} 
                     />
                 }
-                <div className='table-input h1' contentEditable = {editStatus}>{props.sub_title2}</div>
+                <textarea className='table-input h1' type="text" value={props.data.title} onChange={(event) => props.setData({...props.data, title: event.target.value})} readOnly = {!editStatus} />
+                {/* <div className='table-input h1' type="text" onInput={(event) => props.setData({...props.data, title: event.target.textContent})} contentEditable = {editStatus} >{props.data.title}</div> */}
                 <div className='list-table4-desc'>
                     <hr/>
-                    {FifthTableDescItem(<FormatAlignLeft/>, "Objective", props.data.purpose, editStatus)}
+                    {FifthTableDescItem(<FormatAlignLeft/>, "Objective", props.data.purpose, updatePurpose, editStatus)}
                     {FifthTableDescAsList(<FormatAlignLeft/>, "Definitions", props.data.definitions, editStatus)}
                     <hr/>
                 </div>
                 <ListItem 
                     listTitle = {props.list1Title}
                     list = {props.list1}
+                    updateList = {props.updateList1}
                     editStatus = {editStatus}
+                    setEditStatus = {setEditStatus}
                     data = {props.desc}
                 />
                 <ListItem 
                     listTitle = {props.list2Title}
                     list = {props.list2}
+                    updateList = {props.updateList2}
                     editStatus = {editStatus}
+                    setEditStatus = {setEditStatus}
                     data = {props.desc}
                 />
                 <ListItem 
                     listTitle = {props.list3Title}
                     list = {props.list3}
+                    updateList = {props.updateList3}
                     editStatus = {editStatus}
+                    setEditStatus = {setEditStatus}
                     data = {props.desc}
                 />
             </div>
@@ -127,7 +152,6 @@ const numberingItem = (index, data, editStatus) => {
         <div key={index} className='desc-item-list-item'>
             <h3>{index + 1}.</h3>
             <div className='table-input text' contentEditable = {editStatus}>{data.replace(numberingPattern, '')}</div>
-            {/* <text>{data.replace(numberingPattern, '')}</text> */}
         </div> 
     );
 };
@@ -136,7 +160,6 @@ const dashItem = (index, data, editStatus) => {
         <div key={index} className='desc-item-list-item'>
             <h3>-</h3>
             <div className='table-input text' contentEditable = {editStatus}>{data.replace(dashPattern, '')}</div>
-            {/* <text>{data.replace(dashPattern, '')}</text> */}
         </div> 
     );
 };
@@ -145,7 +168,6 @@ const letterItem = (index, data, editStatus) => {
         <div key={index} className='desc-item-list-item'>
             <h3>{data.substring(0, data.indexOf('.'))}</h3>
             <div className='table-input text' contentEditable = {editStatus}>{data.replace(letterPattern, '')}</div>
-            {/* <text>{data.replace(letterPattern, '')}</text> */}
         </div> 
     );
 };
@@ -155,17 +177,16 @@ const stepItem = (index, data, editStatus) => {
     return(
         <div key={index} className='desc-item-list-item'>
             <h3>{numbersOnly}</h3>
+            {/* <textarea className='table-input text' type="text" value={data.replace(stepPattern, '')} onChange={(event) => setData(event.target.value)} readOnly = {!editStatus} /> */}
             <div className='table-input text' contentEditable = {editStatus}>{data.replace(stepPattern, '')}</div>
-            {/* <text>{data.replace(stepPattern, '')}</text> */}
         </div> 
     );
 };
-const FifthTableDescItem = (icon, title, data, editStatus) => {
+const FifthTableDescItem = (icon, title, data, setData, editStatus) => {
     return(
         <div className='list-table4-desc-item'>
             <h2>{icon}{title}</h2>
-            <div className='table-input text' style={{marginLeft: "25px"}} contentEditable = {editStatus}>{data}</div>
-            {/* <text>{data}</text> */}
+            <textarea className='table-input text' type="text" value={data} onChange={(event) => setData(event.target.value)} readOnly = {!editStatus} />
         </div>
-    )
+    );
 };

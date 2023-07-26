@@ -13,7 +13,10 @@ export const ListItem = (props) => {
     const [dragOverItemIndex, setDragOverItemIndex] = useState();
 
     useEffect(() => {
-        setItemClassName("minimised");
+        if(props.list.length <= 0){
+            setItemClassName("minimised");
+            props.setEditStatus(false);
+        }
         let indent = false;
         let heading = "";
         let prevPattern = "";
@@ -81,6 +84,7 @@ export const ListItem = (props) => {
             }
         });
         setList(temp);
+        // eslint-disable-next-line
     }, [props.list]);
 
     const expandMinimisedBtn = _ => {
@@ -113,6 +117,7 @@ export const ListItem = (props) => {
                         editStatus = {props.editStatus}
                         data = {data}
                         list = {list}   setList = {setList}
+                        updateList = {props.updateList}
                         dragItemIndex = {dragItemIndex} setDragItemIndex = {setDragItemIndex}
                         dragOverItemIndex = {dragOverItemIndex}  setDragOverItemIndex = {setDragOverItemIndex}
                         itemClassName = {expandAll ? "expanded" : "minimised"}
