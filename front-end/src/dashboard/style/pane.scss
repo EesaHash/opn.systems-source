@@ -231,7 +231,7 @@ $secondary-color: #3235FF;
 
    & .container {
         width: calc($halfbox-width + 0.5vw);
-        height:10vh;
+        height:18vh;
         //padding: 16px 20px;
         border-radius: 9px;
         border: 0.50px $secondary-color dotted;
@@ -256,6 +256,7 @@ $secondary-color: #3235FF;
             display: inline-flex;
             
             & .text {
+            margin-top: 6px;
               text-align: center;
               color: $primary-color;
               font-size: calc(3vh * 0.5);
@@ -268,7 +269,7 @@ $secondary-color: #3235FF;
           }
         }
       
-        & .upgrade-container {
+        & .contact-container {
           align-self: stretch;
           height: 48px;
           flex-direction: column;
@@ -376,6 +377,13 @@ $people-height: calc(96vh - 50px - 1vh - 12vh - 33vh - 32px);
         margin: auto;
     }
 }
+
+.contact-icon{
+    margin-top: -20px;
+    flex-shrink: 0;
+
+}
+
 
 
 
