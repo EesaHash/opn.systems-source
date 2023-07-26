@@ -252,7 +252,7 @@ async function generateSopsForStage(clientJourney, forStage) {
 
 async function generateSingleSOP(statement) {
     try {
-        const chat = new ChatOpenAI({ temperature: 0.9, modelName: modelName });
+        const chat = new ChatOpenAI({ temperature: 0.9, modelName: modelName, maxTokens: -1 });
         const memory = new BufferMemory({ returnMessages: true, memoryKey: "history" });
         const messagesPlaceholder = new MessagesPlaceholder("history");
         const chatPrompt = ChatPromptTemplate.fromPromptMessages([
@@ -531,7 +531,7 @@ async function regenerateSingleSOP(previousSOP, request) {
     const formatInstructions = parser.getFormatInstructions();
     const prompt = new PromptTemplate({
         template:
-            `As the assistant based in Australia, you are provided with a Standard Operating Procedure (SOP), which you must improve upon according
+            `You are an assistant based in Australia and you have been provided with a Standard Operating Procedure (SOP), which you must improve upon according
              to the user's request or preference. You must use real sources, and mention companies that actually exist.
              And the REQUEST/PREFERENCE: {request}
              Here's the SOP: {sop}
