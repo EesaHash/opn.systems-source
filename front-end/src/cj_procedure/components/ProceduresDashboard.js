@@ -180,7 +180,7 @@ export const ProceduresDashboard = (props) => {
         let result = "[";
         list.forEach((data, index) => {
             result += toString(data);
-            if(index !== list.length - 1 && data.item.length <= 0)
+            if(index < list.length - 1 || data.item.length > 0)
                 result += ",";
             data.item.forEach((item, index2) => {
                 result += toString(item);
@@ -189,6 +189,7 @@ export const ProceduresDashboard = (props) => {
             });
         });
         result += "]";
+        console.log(result);
         temp.responsibility = result;
         setProcedure(temp);
     };
@@ -199,11 +200,11 @@ export const ProceduresDashboard = (props) => {
         let result = "[";
         list.forEach((data, index) => {
             result += toString(data);
-            if(index !== list.length - 1 && data.item.length <= 0)
+            if(index < list.length - 1 || data.item.length > 0)
                 result += ",";
             data.item.forEach((item, index2) => {
                 result += toString(item);
-                if(index2 !== data.item.length - 1)
+                if(index2 !== data.item.length - 1 || index < list.length - 1)
                     result += ",";
             });
         });
@@ -219,7 +220,7 @@ export const ProceduresDashboard = (props) => {
         let result = "[";
         list.forEach((data, index) => {
             result += toString(data);
-            if(index !== list.length - 1 && data.item.length <= 0)
+            if(index < list.length - 1 || data.item.length > 0)
                 result += ",";
             data.item.forEach((item, index2) => {
                 result += toString(item);
@@ -228,23 +229,30 @@ export const ProceduresDashboard = (props) => {
             });
         });
         result += "]";
+        console.log(result);
         temp.documentation = result;
         setProcedure(temp);
     };
     const toString = (data) => {
-        let hyphen = data.hyphen;
-        switch(hyphen){
-            case "*":
-                hyphen = "";
+        let hyphen;
+        switch(data.pattern){
+            case "number":
+                hyphen = `${data.hyphen}. `;
                 break;
-            case "-":
-                hyphen = "- ";
+            case "step":
+                hyphen = `Step ${data.hyphen}: `;
+                break;
+            case "letter":
+                hyphen = ` ${data.hyphen}. `;
+                break;
+            case "dash":
+                hyphen = ` ${data.hyphen} `;
                 break;
             default:
-                hyphen = `${hyphen}. `;
+                hyphen = ``;
                 break;
         };
-        return `${hyphen}${data.data}`;
+        return (`"${hyphen}${data.data}"`);
     };
     // Generate SOP
     const openGenerateProcedureForm = _ => {

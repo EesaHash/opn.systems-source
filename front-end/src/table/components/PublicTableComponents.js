@@ -3,22 +3,43 @@ export const dashPattern = /^[-•]\s+/;
 export const letterPattern = /^[a-z]\.\s*/;
 export const stepPattern = /Step\s\d+:\s/;
 export const updateListItem = (temp, index, newValue) => {
-    const temp2 = [...temp];
+    const result = [...temp];
     const newValueList = newValue.split('\n');
     let idxCounter = 0;
     newValueList.forEach((data) => {
         if(idxCounter === 0){
-            temp2[index].data = data;
+            result[index].data = data;
         }else{
             const idx = index + idxCounter;
             const newData = {
-                hyphen: temp2[idx - 1].hyphen,
-                data: data,
+                pattern: result[idx - 1].pattern,
+                hyphen: result[idx - 1].hyphen,
+                data,
                 item: []
             };
-            temp2.splice(idx, 0, newData);
+            result.splice(idx, 0, newData);
         }
         ++idxCounter;
     });
-    return temp2;
+    return result;
+};
+export const updateListSubItem = (temp, itemIdx, subItemIdx, newValue) => {
+    const result = [...temp];
+    const newValueList = newValue.split('\n');
+    let idxCounter = 0;
+    newValueList.forEach((data) => {
+        if(idxCounter === 0){
+            result[itemIdx].item[subItemIdx].data = data;
+        }else{
+            const idx = subItemIdx + idxCounter;
+            const newData = {
+                pattern: result[itemIdx].item[subItemIdx].pattern,
+                hyphen: result,
+                data,
+            };
+            result[itemIdx].item.splice(idx, 0, newData);
+        }
+        ++idxCounter;
+    });
+    return result;
 };

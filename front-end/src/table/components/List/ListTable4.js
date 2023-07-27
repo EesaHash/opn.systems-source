@@ -144,8 +144,9 @@ const FifthTableDescAsList = (icon, title, data, setData, editStatus) => {
                 break;
         }
         temp.push({
+            pattern,
             hyphen,
-            data: data,
+            data,
             item: []
         });
     };

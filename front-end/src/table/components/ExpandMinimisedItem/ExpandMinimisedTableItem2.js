@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import "../../style/table.css";
 import { Delete, DensityMedium, KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material';
-import { updateListItem } from '../PublicTableComponents';
+import { updateListItem, updateListSubItem } from '../PublicTableComponents';
 // import { EditPrompt } from '../EditPrompt';
 
 export const ExpandMinimisedTableItem2 = (props) => {
@@ -48,6 +48,11 @@ export const ExpandMinimisedTableItem2 = (props) => {
         props.setList(result);
         props.updateList(result);
     };
+    const updateSubItemContent = (index, newValue) => {
+        const result = updateListSubItem(props.list, props.index, index, newValue);
+        props.setList(result);
+        props.updateList(result);
+    };
     const deleteItem = _ => {
         const _list = [...props.list];
         _list.splice(props.index, 1);
@@ -85,7 +90,7 @@ export const ExpandMinimisedTableItem2 = (props) => {
                                     {index > 0 && <hr/>}
                                     <div className='sub-items-content'>
                                         <h3>{item.hyphen}</h3>
-                                        <textarea className='table-input text' type="text" value={item.data} onChange={null} readOnly = {!props.isEditSelected(props.index)} />
+                                        <textarea className='table-input text' type="text" value={item.data} onChange={(event) => updateSubItemContent(index, event.target.value)} readOnly = {!props.isEditSelected(props.index)} />
                                     </div>
                                 </div>
                             ))

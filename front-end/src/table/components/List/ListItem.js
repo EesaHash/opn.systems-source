@@ -23,21 +23,20 @@ export const ListItem = (props) => {
         let itemPattern = "";
         const temp = [];
         let idx = -1;
+        let idx2 = 1;
         const setHeading = (pattern, data) => {
             let hyphen = "*";
             switch (pattern) {
                 case "number":
-                    hyphen = data.substring(0, data.indexOf('.'));
+                    hyphen = idx2++;
                     data = data.replace(numberingPattern, '');
                     break;
                 case "step":
-                    const stepNumbers = data.match(/\bStep\s+(\d+)\b/g);
-                    const numbersOnly = stepNumbers.map(step => parseInt(step.match(/\d+/)[0]));
-                    hyphen = numbersOnly;
+                    hyphen = idx2++;
                     data = data.replace(stepPattern, '');
                     break;
                 case "letter":
-                    hyphen =  `${data.substring(0, data.indexOf('.'))}.`;
+                    hyphen =  `${data.substring(0, data.indexOf('.'))}`;
                     data = data.replace(letterPattern, '');
                     break;
                 case "dash":
@@ -54,14 +53,15 @@ export const ListItem = (props) => {
                     itemPattern = "*";
                 heading = pattern;
                 temp.push({
+                    pattern,
                     hyphen,
-                    data: data,
+                    data,
                     item: []
                 });
                 ++idx;
             }else{
                 indent = true;
-                temp[idx].item.push({hyphen, data});
+                temp[idx].item.push({pattern, hyphen, data});
                 itemPattern = pattern;
             }
             prevPattern = pattern;
@@ -70,7 +70,7 @@ export const ListItem = (props) => {
             if(list.length <= 0)
                 arr[index] = value.trim();
             else
-                arr[index] = value;
+                arr[index] = value.trim();
             const data = arr[index];
             // if(data.length > 0){
                 if(numberingPattern.test(data)){
