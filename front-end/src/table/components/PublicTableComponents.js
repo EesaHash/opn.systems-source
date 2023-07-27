@@ -34,7 +34,7 @@ export const updateListSubItem = (temp, itemIdx, subItemIdx, newValue) => {
             const idx = subItemIdx + idxCounter;
             const newData = {
                 pattern: result[itemIdx].item[subItemIdx].pattern,
-                hyphen: result,
+                hyphen: result[itemIdx].item[subItemIdx].hyphen,
                 data,
             };
             result[itemIdx].item.splice(idx, 0, newData);
