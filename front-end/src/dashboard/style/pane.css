@@ -128,6 +128,7 @@
   display: flex;
   margin-top: 16px;
   height: 33vh;
+  gap: 10px;
 }
 .businesses-overview .yourbusiness,
 .businesses-overview .update {
@@ -135,7 +136,7 @@
 }
 .businesses-overview .yourbusiness {
   display: flex;
-  padding: 20px 30px 40px 30px;
+  padding: 10px 30px 0 25px;
   flex-direction: column;
   align-items: flex-start;
   align-self: stretch;
@@ -146,8 +147,8 @@
   height: 100% !important;
 }
 .businesses-overview .updates {
-  margin: 0 15px;
   display: flex;
+  width: calc((100vw - 240px - 8vw) * 0.5 - 4vw);
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -202,21 +203,23 @@
 }
 .businesses-overview .container {
   width: calc((100vw - 240px - 8vw) * 0.5 - 4vw + 0.5vw);
-  height: 18vh;
+  height: 16vh;
   border-radius: 9px;
   border: 0.5px #3235FF dotted;
+  display: flex;
+  padding: 16px 20px;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   display: flex;
 }
 .businesses-overview .container .message-container {
   align-self: stretch;
-  height: 8vh;
+  height: 10vh;
+  margin-bottom: 5px;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  gap: 4px;
+  gap: 5px;
   display: flex;
 }
 .businesses-overview .container .message-container .message {
@@ -233,18 +236,9 @@
   font-family: "Inter";
   font-weight: 600;
   word-wrap: break-word;
-  gap: 2px;
+  gap: 6px;
 }
-.businesses-overview .container .contact-container {
-  align-self: stretch;
-  height: 48px;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 8px;
-  display: flex;
-}
-.businesses-overview .container .contact-container .upgrade-text {
+.businesses-overview .container .upgrade-text {
   flex: 1 1 0;
   text-align: center;
   color: #343741;
@@ -334,4 +328,5 @@
 .contact-icon {
   margin-top: -20px;
   flex-shrink: 0;
+  margin-bottom: 8px;
 }/*# sourceMappingURL=pane.css.map */

@@ -3,26 +3,12 @@
   margin-top: 16px;
   height: 33vh;
 }
-.businesses-overview .editB {
-  display: flex;
-  width: 245px;
-  height: 64px;
-  padding: 8px 20px;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  border-radius: 8px;
-  border-style: solid;
-  opacity: 80%;
-  border-color: rgba(165, 166, 246, 0.2);
-  background: #9ac71f;
-}
 .businesses-overview .yourbusiness, .businesses-overview .update {
-  width: calc(halfbox-width * 0.5 - 15px);
+  width: calc((100vw - 240px - 8vw) * 0.5 - 4vw);
 }
 .businesses-overview .yourbusiness {
   display: flex;
-  padding: 20px 30px 40px 30px;
+  padding: 10px 30px 0 25px;
   flex-direction: column;
   align-items: flex-start;
   align-self: stretch;
@@ -33,13 +19,12 @@
   height: 100% !important;
 }
 .businesses-overview .updates {
-  margin: 0 15px;
+  margin-left: 15px;
   display: flex;
   padding: 2vh 20.956px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 8px;
   flex: 1 0 0;
   align-self: stretch;
   border-radius: 13.971px;
@@ -88,18 +73,73 @@
   background-color: #FFF;
   margin-top: -10px;
 }
-
-.editB {
-  display: flex;
-  width: 245px;
-  height: 64px;
-  padding: 8px 20px;
+.businesses-overview .container1 {
+  width: calc((100vw - 240px - 8vw) * 0.5 - 4vw + 0.5vw);
+  height: 13vh;
+  border-radius: 9px;
+  border: 0.5px #3235FF dotted;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  display: flex;
+}
+.businesses-overview .container1 .message-container1 {
+  display: flex;
+  align-self: stretch;
+  height: 8vh;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 4px;
+}
+.businesses-overview .container1 .message-container1 .message {
+  justify-content: center;
+  align-items: center;
+  gap: 1px;
+  display: inline-flex;
+}
+.businesses-overview .container1 .message-container1 .text {
+  text-align: center;
+  color: #343741;
+  font-size: 1.5vh;
+  font-family: "Inter";
+  font-weight: 600;
+  word-wrap: break-word;
+  gap: 2px;
+}
+.businesses-overview .container1 .upgrade-container {
+  align-self: stretch;
+  height: 48px;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
   gap: 8px;
+  display: flex;
+}
+.businesses-overview .container1 .upgrade-container .upgrade-text {
+  flex: 1 1 0;
+  text-align: center;
+  color: #343741;
+  font-size: 1.2vh;
+  font-family: "Inter";
+  font-weight: 400;
+  line-height: 24px;
+  word-wrap: break-word;
+}
+
+.howToButtons {
+  gap: 4px;
+  margin-top: -5px;
+  margin-bottom: 10px;
+  color: #000;
   border-radius: 8px;
-  border-style: solid;
-  opacity: 80%;
-  border-color: rgba(165, 166, 246, 0.2);
-  background: #a5a6f6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: calc(((100vw - 240px - 8vw) * 0.5 - 4vw) * 0.5);
+  height: 7vh;
+  padding: 8px 20px;
+  border-width: thin;
+  background: rgba(165, 166, 246, 0.2);
+  font-size: 1.5vh;
 }/*# sourceMappingURL=businessOverview.css.map */

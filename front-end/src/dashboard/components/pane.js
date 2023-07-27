@@ -53,7 +53,7 @@ const emptyPane = (user) => {
                     </>
                 )}
                 </div>
-                 <div className="businesses-overview">
+                <div className="businesses-overview">
                 <div className="yourbusiness">
                     <div className="businesstitle">
                         <text>Welcome to Opn.Systems </text>
@@ -68,8 +68,8 @@ const emptyPane = (user) => {
                             <p style={{fontSize:"12px"}}><BusinessIcon2/> You've reached your business limit (1/1)</p>
                             <p style={{fontSize:"12px"}}>When you upgrade to Premium, you can create unlimited businesses, roles, and invite your team members.</p>
                         </div> */}
-                        <div className="container">
-                            <div className="message-container">
+                        <div className="container1">
+                            <div className="message-container1">
                                 <div className="message">
                                 <div className="text"><BusinessIcon2/> You’ve reached your business limit (1/1)</div>
                                 </div>
