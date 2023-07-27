@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { transporter } = require("../emailController/emailSenderController");
+const { transporter } = require("../email/emailSenderController");
 const { getUsers } = require("./UserController");
 
 router.post("/", async (req, res) => {

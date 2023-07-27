@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const Business = require('../../models/business');
-const { addTeamMembers } = require("../teamMemberController/addTeamMemberController");
-const { saveKeyContact }  = require("../businessControllers/keyContactsController");
+const { addTeamMembers } = require("../team/addTeamMemberController");
+const { saveKeyContact }  = require("../business/keyContactsController");
 
 const business = {};
 

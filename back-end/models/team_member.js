@@ -1,5 +1,4 @@
-const sequelize = require('../controllers/accountController/connectDatabase').sequelize;
-// const User = require('./user');
+const sequelize = require('../configuration/DatabaseConfig').sequelize;
 const Business = require('./business');
 const { DataTypes } = require('sequelize');
 
@@ -18,7 +17,6 @@ const Team_Member = sequelize.define('Team_Member', {
     }
 });
 
-// User.hasMany(Team_Member, { foreignKey: 'email' });
 Business.hasMany(Team_Member, { 
     foreignKey: 'id',
     onUpdate: 'CASCADE',

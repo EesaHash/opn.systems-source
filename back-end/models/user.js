@@ -1,6 +1,6 @@
 const { DataTypes } = require('sequelize');
 const bcrypt = require('bcrypt');
-const sequelize = require('../controllers/accountController/connectDatabase').sequelize;
+const sequelize = require('../configuration/DatabaseConfig').sequelize;
 
 const User = sequelize.define('User', {
     email: {
