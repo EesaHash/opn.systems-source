@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import "../../style/table.css";
 import { Delete, DensityMedium, KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material';
+import { updateListItem } from '../PublicTableComponents';
 // import { EditPrompt } from '../EditPrompt';
 
 export const ExpandMinimisedTableItem2 = (props) => {
@@ -30,6 +31,7 @@ export const ExpandMinimisedTableItem2 = (props) => {
         // Insert the dragged item into the new position in the copied list
         _list.splice(props.dragOverItemIndex, 0, dragItem);
         // Update the state with the new list
+        console.log(_list);
         props.setList(_list);
         // Update the original list
         props.updateList(_list);
@@ -40,6 +42,11 @@ export const ExpandMinimisedTableItem2 = (props) => {
     const handleDragEnd = (event) => {
         props.setDragItemIndex(undefined);
         props.setDragOverItemIndex(undefined);
+    };
+    const updateItemContent = (newValue) => {
+        const result = updateListItem(props.list, props.index, newValue);
+        props.setList(result);
+        props.updateList(result);
     };
     const deleteItem = _ => {
         const _list = [...props.list];
@@ -65,8 +72,7 @@ export const ExpandMinimisedTableItem2 = (props) => {
                 <div className='list-table4-list-item-content'>
                     <div style={{marginBottom: props.isEditSelected(props.index) ? "15px" : "0"}} onClick={() => props.setSelectedStep(props.index)}>
                         <div style={{display: "flex"}} className={props.data.item.length > 0 ? "heading" : ""}>
-                            {/* <text>{props.data.heading}</text> */}
-                            <div className='table-input text' contentEditable = {props.isEditSelected(props.index)}>{props.data.heading}</div>
+                            <textarea className='table-input text' type="text" value={props.data.data} onChange={(event) => updateItemContent(event.target.value)} readOnly = {!props.isEditSelected(props.index)} />
                             {props.data.item.length > 0 &&
                                 <button onClick={expandMinimisedBtn} >
                                     {itemClassName === "minimised" ? <KeyboardArrowDown/> : <KeyboardArrowUp/>}
@@ -79,8 +85,7 @@ export const ExpandMinimisedTableItem2 = (props) => {
                                     {index > 0 && <hr/>}
                                     <div className='sub-items-content'>
                                         <h3>{item.hyphen}</h3>
-                                        <div className='table-input text' contentEditable = {props.isEditSelected(props.index)}>{item.data}</div>
-                                        {/* <text>{item.data}</text> */}
+                                        <textarea className='table-input text' type="text" value={item.data} onChange={null} readOnly = {!props.isEditSelected(props.index)} />
                                     </div>
                                 </div>
                             ))

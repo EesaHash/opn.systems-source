@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import "../../style/table.css";
 import { KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material';
-import { dashPattern, letterPattern, numberingPattern, stepPattern } from '../PatternsItem';
+import { dashPattern, letterPattern, numberingPattern, stepPattern } from '../PublicTableComponents';
 import { ExpandMinimisedTableItem2 } from '../ExpandMinimisedItem/ExpandMinimisedTableItem2';
 
 export const ListItem = (props) => {
@@ -55,7 +55,7 @@ export const ListItem = (props) => {
                 heading = pattern;
                 temp.push({
                     hyphen,
-                    heading: data,
+                    data: data,
                     item: []
                 });
                 ++idx;
@@ -67,9 +67,12 @@ export const ListItem = (props) => {
             prevPattern = pattern;
         };
         props.list.forEach((value, index, arr) => {
-            arr[index] = value.trim();
+            if(list.length <= 0)
+                arr[index] = value.trim();
+            else
+                arr[index] = value;
             const data = arr[index];
-            if(data.length > 0){
+            // if(data.length > 0){
                 if(numberingPattern.test(data)){
                     setHeading("number", data);
                 }else if(stepPattern.test(data)){
@@ -81,7 +84,7 @@ export const ListItem = (props) => {
                 }else{
                     setHeading("empty", data);
                 }
-            }
+            // }
         });
         setList(temp);
         // eslint-disable-next-line
@@ -115,12 +118,15 @@ export const ListItem = (props) => {
                         isEditSelected = {isEditSelected}
                         setSelectedStep = {setSelectedStep}
                         editStatus = {props.editStatus}
+                        itemClassName = {expandAll ? "expanded" : "minimised"}
+
                         data = {data}
                         list = {list}   setList = {setList}
+
                         updateList = {props.updateList}
+
                         dragItemIndex = {dragItemIndex} setDragItemIndex = {setDragItemIndex}
                         dragOverItemIndex = {dragOverItemIndex}  setDragOverItemIndex = {setDragOverItemIndex}
-                        itemClassName = {expandAll ? "expanded" : "minimised"}
                     />
                 ))
             }

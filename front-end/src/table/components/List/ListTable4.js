@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import "../../style/table.css";
-import { AccessTime, ArrowBack, Chat, Download, Edit, FormatAlignLeft, KeyboardArrowDown, KeyboardArrowUp, MoreHoriz, Share, SimCardDownload } from '@mui/icons-material';
+import { AccessTime, ArrowBack, Chat, Delete, Download, Edit, FormatAlignLeft, KeyboardArrowDown, KeyboardArrowUp, MoreHoriz, Share, SimCardDownload } from '@mui/icons-material';
 import { openAccessLimitForm, openFutureFeatureWarningForm } from '../../../dashboard/page/dashboard_main';
 import { ListItem } from './ListItem';
-import { dashPattern, letterPattern, numberingPattern, stepPattern } from '../PatternsItem';
+import { dashPattern, letterPattern, numberingPattern, stepPattern, updateListItem } from '../PublicTableComponents';
 import { EditPopUp } from '../EditPopUp';
 
 export const ListTable4 = (props) => {
@@ -59,6 +59,9 @@ export const ListTable4 = (props) => {
     const updatePurpose = (newData) => {
         props.setData({...props.data, purpose: newData});
     };
+    const updateDefinition = (newData) => {
+        props.setData({...props.data, definitions: newData});
+    };
     return(
         <div className='list-table4' id = {props.id}>
             <div className='list-table4-content'>
@@ -89,7 +92,7 @@ export const ListTable4 = (props) => {
                 <div className='list-table4-desc'>
                     <hr/>
                     {FifthTableDescItem(<FormatAlignLeft/>, "Objective", props.data.purpose, updatePurpose, editStatus)}
-                    {FifthTableDescAsList(<FormatAlignLeft/>, "Definitions", props.data.definitions, editStatus)}
+                    {FifthTableDescAsList(<FormatAlignLeft/>, "Definitions", (props.data.definitions ? JSON.parse(props.data.definitions) : []), updateDefinition, editStatus)}
                     <hr/>
                 </div>
                 <ListItem 
@@ -98,7 +101,6 @@ export const ListTable4 = (props) => {
                     updateList = {props.updateList1}
                     editStatus = {editStatus}
                     setEditStatus = {setEditStatus}
-                    data = {props.desc}
                 />
                 <ListItem 
                     listTitle = {props.list2Title}
@@ -106,7 +108,6 @@ export const ListTable4 = (props) => {
                     updateList = {props.updateList2}
                     editStatus = {editStatus}
                     setEditStatus = {setEditStatus}
-                    data = {props.desc}
                 />
                 <ListItem 
                     listTitle = {props.list3Title}
@@ -114,72 +115,90 @@ export const ListTable4 = (props) => {
                     updateList = {props.updateList3}
                     editStatus = {editStatus}
                     setEditStatus = {setEditStatus}
-                    data = {props.desc}
                 />
             </div>
         </div>
     );
 };
-const FifthTableDescAsList = (icon, title, data, editStatus) => {
-    const temp = data ? JSON.parse(data) : [];
+const FifthTableDescAsList = (icon, title, data, setData, editStatus) => {
+    const temp = [];
+    const setHeading = (pattern, data) => {
+        let hyphen = "-";
+        switch (pattern) {
+            case "number":
+                hyphen = data.substring(0, data.indexOf('.'));
+                data = data.replace(numberingPattern, '');
+                break;
+            case "step":
+                const stepNumbers = data.match(/\bStep\s+(\d+)\b/g);
+                const numbersOnly = stepNumbers.map(step => parseInt(step.match(/\d+/)[0]));
+                hyphen = numbersOnly;
+                data = data.replace(stepPattern, '');
+                break;
+            case "letter":
+                hyphen =  `${data.substring(0, data.indexOf('.'))}.`;
+                data = data.replace(letterPattern, '');
+                break;
+            default:
+                data = data.replace(dashPattern, '');
+                break;
+        }
+        temp.push({
+            hyphen,
+            data: data,
+            item: []
+        });
+    };
+    data.forEach((value, index, arr) => {
+        arr[index] = value;
+        const data = arr[index];
+        // if(data.length > 0){
+            if(numberingPattern.test(data)){
+                setHeading("number", data);
+            }else if(stepPattern.test(data)){
+                setHeading("step", data);
+            }else if(letterPattern.test(data)){
+                setHeading("letter", data);
+            }else if(dashPattern.test(data)){
+                setHeading("dash", data);
+            }else{
+                setHeading("empty", data);
+            }
+        // }
+    });
+    const updateDataContent = (index, newValue) => {
+        const temp2 = updateListItem(temp, index, newValue);
+        const result = toString(temp2);
+        setData(result);
+    };
+    const deleteItem = (index) => {
+        const _list = [...temp];
+        _list.splice(index, 1);
+        setData(toString(_list));
+    };
+    const toString = (list) => {
+        let result = "[";
+        list.forEach((data, index) => {
+            result += `"${(data.data)}"`;
+            if(index !== list.length - 1)
+                result += ",";
+        });
+        result += "]";
+        return result;
+    };
     return(
         <div className='list-table4-desc-item'>
             <h2>{icon}{title}</h2>
             <div className='desc-item-list'>
-                {temp.map((res, index) => (
-                    (res.length > 0) && (
-                        numberingPattern.test(res) ? (
-                            numberingItem(index, res, editStatus)
-                            ) : (
-                                stepPattern.test(res) ? (
-                                    stepItem(index, res, editStatus)
-                                ) : (
-                                    letterPattern.test(res) ? (
-                                        letterItem(index, res, editStatus)
-                                    ) : (
-                                        dashItem(index, res, editStatus)
-                                    )
-                                )
-                        )
-                    )
-                ))}
+            {temp.map((res, index) => (
+                <div key={index} className='desc-item-list-item'>
+                    { editStatus && <div className='edit-icon' onClick={() => deleteItem(index)}><Delete/></div> }
+                    <h3>{res.hyphen}</h3>
+                    <textarea className='table-input text' type="text" value={res.data} onChange={(event) => updateDataContent(index, event.target.value)} readOnly = {!editStatus} />
+                </div>
+            ))}
             </div>
         </div>
-    )
-};
-const numberingItem = (index, data, editStatus) => {
-    return(
-        <div key={index} className='desc-item-list-item'>
-            <h3>{index + 1}.</h3>
-            <div className='table-input text' contentEditable = {editStatus}>{data.replace(numberingPattern, '')}</div>
-        </div> 
-    );
-};
-const dashItem = (index, data, editStatus) => {
-    return(
-        <div key={index} className='desc-item-list-item'>
-            <h3>-</h3>
-            <div className='table-input text' contentEditable = {editStatus}>{data.replace(dashPattern, '')}</div>
-        </div> 
-    );
-};
-const letterItem = (index, data, editStatus) => {
-    return(
-        <div key={index} className='desc-item-list-item'>
-            <h3>{data.substring(0, data.indexOf('.'))}</h3>
-            <div className='table-input text' contentEditable = {editStatus}>{data.replace(letterPattern, '')}</div>
-        </div> 
-    );
-};
-const stepItem = (index, data, editStatus) => {
-    const stepNumbers = data.match(/\bStep\s+(\d+)\b/g);
-    const numbersOnly = stepNumbers.map(step => parseInt(step.match(/\d+/)[0]));
-    return(
-        <div key={index} className='desc-item-list-item'>
-            <h3>{numbersOnly}</h3>
-            {/* <textarea className='table-input text' type="text" value={data.replace(stepPattern, '')} onChange={(event) => setData(event.target.value)} readOnly = {!editStatus} /> */}
-            <div className='table-input text' contentEditable = {editStatus}>{data.replace(stepPattern, '')}</div>
-        </div> 
     );
 };
 const FifthTableDescItem = (icon, title, data, setData, editStatus) => {

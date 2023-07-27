@@ -202,7 +202,7 @@
 }
 .businesses-overview .container {
   width: calc((100vw - 240px - 8vw) * 0.5 - 4vw + 0.5vw);
-  height: 15vh;
+  height: 18vh;
   border-radius: 9px;
   border: 0.5px #3235FF dotted;
   flex-direction: column;
