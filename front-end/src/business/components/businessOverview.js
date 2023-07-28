@@ -6,6 +6,7 @@ import PeopleIcon from '../svg/peopleIcon';
 import WavingWoman from '../svg/wavingWoman';
 import PhoneIcon from '../svg/phoneIcon';
 import EmailIcon from '../svg/emailIcon';
+import PartyPopper from '../svg/partyPopper';
 
 
 
@@ -16,8 +17,7 @@ export const businessOverview = (business) => {
         <div className="businesses-overview">
         <div className="yourbusiness">
             <div className="businesstitle">
-                <text>Welcome to Opn.Systems </text>
-                <img className="party"src="./images/partypopper.png" alt="party"/>
+                <text>Welcome to Opn.Systems <PartyPopper/></text>
                 <p style={{fontSize:"14px"}}>Here's some tips to get you started</p>
                 <div style={{justifyContent:"center", alignItems:"center", display:"inline-flex", gap:"8px"}}>
                 <button className="howToButtons"><ChatIcon/> How to edit your files</button>
