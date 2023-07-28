@@ -1,7 +1,7 @@
 const express = require ("express");
 const router = express.Router();
-const { sendEmailConfirmation } = require("../emailController/emailSenderController");
-const { transporter } = require("../emailController/emailSenderController");
+const { sendEmailConfirmation } = require("../email/emailSenderController");
+const { transporter } = require("../email/emailSenderController");
 const User = require("../../models/user");
 const { isEmailExist } = require("./UserController");
 

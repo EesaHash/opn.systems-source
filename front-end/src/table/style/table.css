@@ -355,7 +355,6 @@
   width: 100%;
   resize: none;
   overflow: hidden;
-  white-space: pre-wrap;
 }
 .main-table .table-input:focus, .secondary-table .table-input:focus, .folder-list .table-input:focus, .folder-list2 .table-input:focus, .fourth-table .table-input:focus, .list-table4 .table-input:focus {
   outline: none;
@@ -372,6 +371,16 @@
   background-color: transparent;
   color: black;
   text-align: justify;
+}
+.main-table .edit-icon .css-i4bv87-MuiSvgIcon-root, .secondary-table .edit-icon .css-i4bv87-MuiSvgIcon-root, .folder-list .edit-icon .css-i4bv87-MuiSvgIcon-root, .folder-list2 .edit-icon .css-i4bv87-MuiSvgIcon-root, .fourth-table .edit-icon .css-i4bv87-MuiSvgIcon-root, .list-table4 .edit-icon .css-i4bv87-MuiSvgIcon-root {
+  margin: 20px 15px;
+  margin-bottom: 0;
+  height: 25px;
+  color: #ACACAC;
+}
+.main-table .edit-icon .css-i4bv87-MuiSvgIcon-root:hover, .secondary-table .edit-icon .css-i4bv87-MuiSvgIcon-root:hover, .folder-list .edit-icon .css-i4bv87-MuiSvgIcon-root:hover, .folder-list2 .edit-icon .css-i4bv87-MuiSvgIcon-root:hover, .fourth-table .edit-icon .css-i4bv87-MuiSvgIcon-root:hover, .list-table4 .edit-icon .css-i4bv87-MuiSvgIcon-root:hover {
+  color: #787878;
+  cursor: pointer;
 }
 
 .main-table button {
@@ -479,10 +488,12 @@
 }
 .list-table4 .list-table4-content .list-table4-desc .list-table4-desc-item .desc-item-list {
   display: grid;
+  margin-left: -25px;
+  margin-bottom: -20px;
 }
 .list-table4 .list-table4-content .list-table4-desc .list-table4-desc-item .desc-item-list .desc-item-list-item {
   display: flex;
-  margin-bottom: 5px;
+  margin-bottom: -16px;
 }
 .list-table4 .list-table4-content .list-table4-desc .list-table4-desc-item .desc-item-list .desc-item-list-item h3 {
   min-width: 30px;
@@ -491,7 +502,7 @@
   padding: 0;
   margin-top: 3px;
 }
-.list-table4 .list-table4-content .list-table4-desc .list-table4-desc-item .desc-item-list .desc-item-list-item text {
+.list-table4 .list-table4-content .list-table4-desc .list-table4-desc-item .desc-item-list .desc-item-list-item .text {
   margin-bottom: 2px;
 }
 .list-table4 .list-table4-content .list-table4-list {
@@ -526,20 +537,11 @@
   font-weight: 700;
   line-height: 140%;
 }
-.list-table4 .list-table4-content .list-table4-list .css-i4bv87-MuiSvgIcon-root {
-  margin-top: -3px;
-}
 .list-table4 .list-table4-content .list-table4-list li {
   width: 100%;
   height: -moz-fit-content;
   height: fit-content;
   display: flex;
-}
-.list-table4 .list-table4-content .list-table4-list li .edit-icon .css-i4bv87-MuiSvgIcon-root {
-  margin: 20px 15px;
-  margin-bottom: 0;
-  height: 25px;
-  color: #ACACAC;
 }
 .list-table4 .list-table4-content .list-table4-list .list-table4-list-item {
   display: flex;
@@ -555,20 +557,20 @@
 .list-table4 .list-table4-content .list-table4-list .list-table4-list-item.active {
   box-shadow: 0px 8px 32px -6px rgba(20, 23, 26, 0.207), 0px 6px 20px -6px rgba(20, 23, 26, 0.207);
 }
-.list-table4 .list-table4-content .list-table4-list .list-table4-list-item .list-table4-list-item-content {
-  display: grid;
-  width: 100%;
-  margin: auto;
-}
 .list-table4 .list-table4-content .list-table4-list .list-table4-list-item h3 {
   margin: auto;
   margin-left: 0;
   margin-right: 0;
-  margin-top: 10px;
+  margin-top: 7.5px;
   font-size: 20px;
   color: #ACACAC;
   min-width: 50px;
   padding: 10px;
+}
+.list-table4 .list-table4-content .list-table4-list .list-table4-list-item .list-table4-list-item-content {
+  display: grid;
+  width: 100%;
+  margin: auto;
 }
 .list-table4 .list-table4-content .list-table4-list .list-table4-list-item .edit {
   margin-left: 50px;
@@ -581,7 +583,6 @@
   font-size: 16px;
   color: #343741;
   text-align: justify;
-  padding-top: 4px;
 }
 .list-table4 .list-table4-content .list-table4-list .list-table4-list-item .heading h3 {
   font-size: 20px;
@@ -590,6 +591,8 @@
 .list-table4 .list-table4-content .list-table4-list .list-table4-list-item .heading .table-input.text {
   font-weight: 900;
   font-size: 22px;
+  margin-top: 12.5px;
+  margin-bottom: -18px;
 }
 .list-table4 .list-table4-content .list-table4-list .list-table4-list-item .sub-items {
   display: grid;

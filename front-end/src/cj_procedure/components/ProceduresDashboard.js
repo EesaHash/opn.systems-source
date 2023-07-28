@@ -179,11 +179,17 @@ export const ProceduresDashboard = (props) => {
         let temp = {...procedure};
         let result = "[";
         list.forEach((data, index) => {
-            result += `"${data.heading}"`;
-            if(index !== list.length - 1)
+            result += toString(data);
+            if(index < list.length - 1 || data.item.length > 0)
                 result += ",";
+            data.item.forEach((item, index2) => {
+                result += toString(item);
+                if(index2 !== data.item.length - 1)
+                    result += ",";
+            });
         });
         result += "]";
+        console.log(result);
         temp.responsibility = result;
         setProcedure(temp);
     };
@@ -193,11 +199,17 @@ export const ProceduresDashboard = (props) => {
         let temp = {...procedure};
         let result = "[";
         list.forEach((data, index) => {
-            result += `"${data.heading}"`;
-            if(index !== list.length - 1)
+            result += toString(data);
+            if(index < list.length - 1 || data.item.length > 0)
                 result += ",";
+            data.item.forEach((item, index2) => {
+                result += toString(item);
+                if(index2 !== data.item.length - 1 || index < list.length - 1)
+                    result += ",";
+            });
         });
         result += "]";
+        console.log(result);
         temp.procedure = result;
         setProcedure(temp);
     };
@@ -207,15 +219,41 @@ export const ProceduresDashboard = (props) => {
         let temp = {...procedure};
         let result = "[";
         list.forEach((data, index) => {
-            result += `"${data.heading}"`;
-            if(index !== list.length - 1)
+            result += toString(data);
+            if(index < list.length - 1 || data.item.length > 0)
                 result += ",";
+            data.item.forEach((item, index2) => {
+                result += toString(item);
+                if(index2 !== data.item.length - 1)
+                    result += ",";
+            });
         });
         result += "]";
+        console.log(result);
         temp.documentation = result;
         setProcedure(temp);
     };
-
+    const toString = (data) => {
+        let hyphen;
+        switch(data.pattern){
+            case "number":
+                hyphen = `${data.hyphen}. `;
+                break;
+            case "step":
+                hyphen = `Step ${data.hyphen}: `;
+                break;
+            case "letter":
+                hyphen = ` ${data.hyphen}. `;
+                break;
+            case "dash":
+                hyphen = ` ${data.hyphen} `;
+                break;
+            default:
+                hyphen = ``;
+                break;
+        };
+        return (`"${hyphen}${data.data}"`);
+    };
     // Generate SOP
     const openGenerateProcedureForm = _ => {
         document.getElementById("generateProcedureForm").style.display = "block";

@@ -6,18 +6,17 @@ const { PromptTemplate } = require("langchain/prompts");
 const Product = require('../../models/product');
 const Business = require('../../models/business');
 const ClientJourney = require('../../models/client_journey');
-const { saveParaphrasedStages } = require('../businessControllers/stageParaphraseController');
+const { saveParaphrasedStages } = require('../business/stageParaphraseController');
 const {
     StructuredOutputParser,
     OutputFixingParser,
 } = require("langchain/output_parsers");
-const { addProduct } = require("../ProductController/saveProductController");
+const { addProduct } = require("../product/saveProductController");
 const { getStages } = require("./getStageNamesController");
-
+const { modelName } = require("../../configuration/AIConfig");
 require('dotenv').config()
 
 const clientJourney = {};
-const modelName = "gpt-4"
 
 /*
     API METHODS

@@ -1,41 +1,32 @@
 const express = require("express");
-const path = require('path');
 require("dotenv").config();
-const https = require("https");
 
 const PORT = process.env.PORT || 3001;
 const app = express();
 app.use(express.json());
 
 // ===== CONNECTION TO DATABASE =====
-require("./controllers/accountController/connectDatabase").connectDatabase();
+require("./configuration/DatabaseConfig").connectDatabase();
 
 // ACCOUNT APIs CONTROLLERS
-app.use("/api/login", require("./controllers/accountController/loginController"));
-app.use("/api/signup", require("./controllers/accountController/registrationController"));
-app.use("/api/authenticatelogin", require("./controllers/accountController/AuthenticateLoginController"));
-app.use("/confirmation", require("./controllers/emailController/emailConfirmationController"));
-app.use("/api/forgetpassword", require("./controllers/accountController/forgetPasswordController"));
-app.use("/api/authenticateuser", require("./controllers/accountController/authenticateUserController"));
-app.use("/api/getuserdata", require("./controllers/accountController/getUserDataController"));
+app.use("/api/login", require("./controllers/account/loginController"));
+app.use("/api/signup", require("./controllers/account/registrationController"));
+app.use("/api/authenticatelogin", require("./controllers/account/AuthenticateLoginController"));
+app.use("/confirmation", require("./controllers/email/emailConfirmationController"));
+app.use("/api/forgetpassword", require("./controllers/account/forgetPasswordController"));
+app.use("/api/authenticateuser", require("./controllers/account/authenticateUserController"));
+app.use("/api/getuserdata", require("./controllers/account/getUserDataController"));
 
 // TEAM MEMBERS APIs CONTROLLERS
-app.use("/api/teammember/getbusinessteam", require("./controllers/teamMemberController/getTeamMemberController"));
+app.use("/api/teammember/getbusinessteam", require("./controllers/team/getTeamMemberController"));
 
 // BUSINESS APIs CONTROLLERS
-app.use("/api/business", require("./controllers/businessControllers/businessController"));
-app.use("/api/clientjourney", require("./controllers/businessControllers/clientJourneyController"));
-app.use("/api/sop", require("./controllers/businessControllers/sopController"));
-// app.use("/api/stages/getbyjourneyid", require("./controllers/businessControllers/getStageNamesController"));
+app.use("/api/business", require("./controllers/business/businessController"));
+app.use("/api/clientjourney", require("./controllers/business/clientJourneyController"));
+app.use("/api/sop", require("./controllers/business/sopController"));
 
 // PRODUCT APIs CONTROLLERS
-app.use("/api/product/getall", require("./controllers/ProductController/getAllProductController"));
-
-// https
-//   .createServer(app)
-//   .listen(PORT, ()=>{
-//     console.log(`Server listening on ${PORT}`)
-//   });
+app.use("/api/product/getall", require("./controllers/product/getAllProductController"));
 
 app.listen(PORT, () => {
     console.log();
@@ -43,4 +34,3 @@ app.listen(PORT, () => {
 app.on('error', (err) => {
     console.log(err.message);
 });
-
