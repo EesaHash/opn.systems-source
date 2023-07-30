@@ -3,24 +3,13 @@ import "../../style/table.css";
 import { AccessTime, ArrowBack, Chat, Delete, Download, Edit, FormatAlignLeft, KeyboardArrowDown, KeyboardArrowUp, MoreHoriz, Share, SimCardDownload } from '@mui/icons-material';
 import { openAccessLimitForm, openFutureFeatureWarningForm } from '../../../dashboard/page/dashboard_main';
 import { ListItem } from './ListItem';
-import { dashPattern, letterPattern, numberingPattern, stepPattern, updateListItem } from '../PublicTableComponents';
+import { dashPattern, letterPattern, numberingPattern, setTextAreaHeight, stepPattern, updateListItem } from '../PublicTableComponents';
 import { EditPopUp } from '../EditPopUp';
 
 export const ListTable4 = (props) => {
     const [editStatus, setEditStatus] = useState(false);
     const [isAIEditOver, setIsAIEditOver] = useState(false);
     useEffect(() => {
-        const setTextAreaHeight = (id) => {
-            const textarea = document.querySelector(id);
-            if(!textarea)
-                return;
-            textarea.addEventListener("keyup", e => {
-                textarea.style.height = "50%";
-                let scrollHeight = e.target.scrollHeight;
-                textarea.style.height = `${scrollHeight}px`;
-            });
-            textarea.style.height = `${textarea.scrollHeight}px`;
-        };
         setTextAreaHeight(".h1");
         setTextAreaHeight(".text");
     }, [props.data]);
@@ -191,13 +180,16 @@ const FifthTableDescAsList = (icon, title, data, setData, editStatus) => {
         <div className='list-table4-desc-item'>
             <h2>{icon}{title}</h2>
             <div className='desc-item-list'>
-            {temp.map((res, index) => (
-                <div key={index} className='desc-item-list-item'>
-                    { editStatus && <div className='edit-icon' onClick={() => deleteItem(index)}><Delete/></div> }
-                    <h3>{res.hyphen}</h3>
-                    <textarea className='table-input text' type="text" value={res.data} onChange={(event) => updateDataContent(index, event.target.value)} readOnly = {!editStatus} />
-                </div>
-            ))}
+                {temp.map((res, index) => (
+                    <div key={index} className='desc-item-list-item'>
+                        {index > 0 && <hr/>}
+                        <div style={{display: "flex"}}>
+                            <h3>{res.hyphen}</h3>
+                            <textarea className='table-input text' type="text" value={res.data} onChange={(event) => updateDataContent(index, event.target.value)} readOnly = {!editStatus} />
+                            { editStatus && <div className='edit-icon' onClick={() => deleteItem(index)}><Delete/></div> }
+                        </div>
+                    </div>
+                ))}
             </div>
         </div>
     );

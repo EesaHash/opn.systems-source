@@ -184,7 +184,7 @@ export const ProceduresDashboard = (props) => {
                 result += ",";
             data.item.forEach((item, index2) => {
                 result += toString(item);
-                if(index2 !== data.item.length - 1)
+                if(index2 !== data.item.length - 1 || index < list.length - 1)
                     result += ",";
             });
         });
@@ -224,7 +224,7 @@ export const ProceduresDashboard = (props) => {
                 result += ",";
             data.item.forEach((item, index2) => {
                 result += toString(item);
-                if(index2 !== data.item.length - 1)
+                if(index2 !== data.item.length - 1 || index < list.length - 1)
                     result += ",";
             });
         });
@@ -243,7 +243,7 @@ export const ProceduresDashboard = (props) => {
                 hyphen = `Step ${data.hyphen}: `;
                 break;
             case "letter":
-                hyphen = ` ${data.hyphen}. `;
+                hyphen = `${data.hyphen}. `;
                 break;
             case "dash":
                 hyphen = ` ${data.hyphen} `;

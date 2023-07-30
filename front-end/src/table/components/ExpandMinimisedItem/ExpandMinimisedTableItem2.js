@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import "../../style/table.css";
 import { Delete, DensityMedium, KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material';
-import { updateListItem, updateListSubItem } from '../PublicTableComponents';
+import { setTextAreaHeight, updateListItem, updateListSubItem } from '../PublicTableComponents';
 // import { EditPrompt } from '../EditPrompt';
 
 export const ExpandMinimisedTableItem2 = (props) => {
     const [itemClassName, setItemClassName] = useState(props.itemClassName);
-
+    useEffect(() => {
+        setTextAreaHeight(".text");
+    }, [props.list]);
     useEffect(() => {
         setItemClassName(props.itemClassName);
     }, [props.itemClassName]);
@@ -59,6 +61,9 @@ export const ExpandMinimisedTableItem2 = (props) => {
         props.setList(_list);
         props.updateList(_list);
     };
+    const deleteSubItem = (index) => {
+
+    };
 
     return(
         <li 
@@ -91,6 +96,7 @@ export const ExpandMinimisedTableItem2 = (props) => {
                                     <div className='sub-items-content'>
                                         <h3>{item.hyphen}</h3>
                                         <textarea className='table-input text' type="text" value={item.data} onChange={(event) => updateSubItemContent(index, event.target.value)} readOnly = {!props.isEditSelected(props.index)} />
+                                        {props.isEditSelected(props.index) && <div className='edit-icon' onClick={(event) => deleteSubItem(index)}><Delete/></div>}
                                     </div>
                                 </div>
                             ))

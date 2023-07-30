@@ -492,8 +492,12 @@
   margin-bottom: -20px;
 }
 .list-table4 .list-table4-content .list-table4-desc .list-table4-desc-item .desc-item-list .desc-item-list-item {
-  display: flex;
+  display: grid;
   margin-bottom: -16px;
+}
+.list-table4 .list-table4-content .list-table4-desc .list-table4-desc-item .desc-item-list .desc-item-list-item hr {
+  margin-top: 5px !important;
+  margin-bottom: 15px !important;
 }
 .list-table4 .list-table4-content .list-table4-desc .list-table4-desc-item .desc-item-list .desc-item-list-item h3 {
   min-width: 30px;

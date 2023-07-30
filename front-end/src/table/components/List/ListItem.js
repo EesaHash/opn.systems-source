@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import "../../style/table.css";
 import { KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material';
-import { dashPattern, letterPattern, numberingPattern, stepPattern } from '../PublicTableComponents';
+import { dashPattern, incrementLetter, letterPattern, numberingPattern, stepPattern } from '../PublicTableComponents';
 import { ExpandMinimisedTableItem2 } from '../ExpandMinimisedItem/ExpandMinimisedTableItem2';
 
 export const ListItem = (props) => {
@@ -24,26 +24,35 @@ export const ListItem = (props) => {
         const temp = [];
         let idx = -1;
         let idx2 = 1;
+        let letter = '';
         const setHeading = (pattern, data) => {
             let hyphen = "*";
             switch (pattern) {
                 case "number":
+                    letter = '';
                     hyphen = idx2++;
                     data = data.replace(numberingPattern, '');
                     break;
                 case "step":
+                    letter = '';
                     hyphen = idx2++;
                     data = data.replace(stepPattern, '');
                     break;
                 case "letter":
-                    hyphen =  `${data.substring(0, data.indexOf('.'))}`;
+                    if(letter.length <= 0)
+                        letter = `${data.substring(0, data.indexOf('.'))}`;
+                    else
+                        letter = incrementLetter(letter);
+                    hyphen =  letter;
                     data = data.replace(letterPattern, '');
                     break;
                 case "dash":
+                    letter = '';
                     hyphen = "-";
                     data = data.replace(dashPattern, '');
                     break;
                 default:
+                    letter = '';
                     data = data.replace(dashPattern, '');
                     break;
             }
@@ -67,10 +76,7 @@ export const ListItem = (props) => {
             prevPattern = pattern;
         };
         props.list.forEach((value, index, arr) => {
-            if(list.length <= 0)
-                arr[index] = value.trim();
-            else
-                arr[index] = value.trim();
+            arr[index] = value.trimStart();
             const data = arr[index];
             // if(data.length > 0){
                 if(numberingPattern.test(data)){

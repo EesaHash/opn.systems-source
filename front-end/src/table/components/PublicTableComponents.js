@@ -15,7 +15,11 @@ export const updateListItem = (temp, index, newValue) => {
                 pattern: result[idx - 1].pattern,
                 hyphen: result[idx - 1].hyphen,
                 data,
-                item: []
+                item: [{
+                    pattern: result[index].item.length > 0 ? result[index].item[0].pattern : "dash", 
+                    hyphen: result[index].item.length > 0 ? result[index].item[0].hyphen : "-", 
+                    data: ""
+                }]
             };
             result.splice(idx, 0, newData);
         }
@@ -42,4 +46,26 @@ export const updateListSubItem = (temp, itemIdx, subItemIdx, newValue) => {
         ++idxCounter;
     });
     return result;
+};
+export const incrementLetter = (currentLetter) => {
+    if(currentLetter === 'z'){
+        return 'aa';
+    }else{
+        const nextCharCode = currentLetter.charCodeAt(0) + 1;
+        return String.fromCharCode(nextCharCode);
+    }
+};
+export const setTextAreaHeight = (id) => {
+    const textareas = document.querySelectorAll(id);
+    if(textareas.length <= 0)
+        return;
+    textareas.forEach(textarea => {
+        textarea.addEventListener("keyup", e => {
+            textarea.style.height = "50%";
+            let scrollHeight = e.target.scrollHeight;
+            textarea.style.height = `${scrollHeight}px`;
+        });
+        textarea.style.height = `${textarea.scrollHeight}px`;
+        console.log(textarea.scrollHeight);
+    });
 };
