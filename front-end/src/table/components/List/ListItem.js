@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import "../../style/table.css";
 import { KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material';
-import { dashPattern, incrementLetter, letterPattern, numberingPattern, stepPattern } from '../PublicTableComponents';
+import { addListItem, dashPattern, incrementLetter, letterPattern, numberingPattern, stepPattern } from '../PublicTableComponents';
 import { ExpandMinimisedTableItem2 } from '../ExpandMinimisedItem/ExpandMinimisedTableItem2';
 
 export const ListItem = (props) => {
@@ -137,7 +137,7 @@ export const ListItem = (props) => {
                 ))
             }
             {/* {(props.editStatus && itemClassName !== "minimised") && addItemWithAI()} */}
-            {(props.editStatus && itemClassName !== "minimised") && addItemManual()}
+            {(props.editStatus && itemClassName !== "minimised") && addItemManual(list, setList, props.updateList)}
         </div>
     );
 };
@@ -151,9 +151,14 @@ export const ListItem = (props) => {
 //         </div>
 //     );
 // }; 
-const addItemManual = _ => {
+const addItemManual = (list, setList, updateList) => {
+    const addItem = _ => {
+        const result = addListItem(list);
+        setList(result);
+        updateList(result);
+    };
     return(
-        <div className='add-list-item manual'>
+        <div className='add-list-item manual' onClick={addItem}>
             <h3>+</h3>
             <text>Add step</text>
         </div>

@@ -2,6 +2,27 @@ export const numberingPattern = /^\d+\.\s+/;
 export const dashPattern = /^[-•]\s+/;
 export const letterPattern = /^[a-z]\.\s*/;
 export const stepPattern = /Step\s\d+:\s/;
+export const addListItem = (list) => {
+    let result;
+    if(list.length <= 0){
+        result = [];
+        result.push({
+            pattern: "number",
+            hyphen: "1",
+            data: "",
+            item: [{pattern: "dash", hyphen: "-", data: ""}]
+        });
+    }else{
+        result = [...list];
+        result.push({
+            pattern: list[list.length - 1].pattern,
+            hyphen: list[list.length - 1].hyphen,
+            data: "",
+            item: [{pattern: "dash", hyphen: "-", data: ""}]
+        });
+    }
+    return result;
+};
 export const updateListItem = (temp, index, newValue) => {
     const result = [...temp];
     const newValueList = newValue.split('\n');
@@ -61,7 +82,7 @@ export const setTextAreaHeight = (id) => {
         return;
     textareas.forEach(textarea => {
         textarea.addEventListener("keyup", e => {
-            textarea.style.height = "50%";
+            textarea.style.height = "100%";
             let scrollHeight = e.target.scrollHeight;
             textarea.style.height = `${scrollHeight}px`;
         });
