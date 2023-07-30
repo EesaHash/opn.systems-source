@@ -22,8 +22,9 @@ export const ListItem = (props) => {
         let prevPattern = "";
         let itemPattern = "";
         const temp = [];
-        let idx = -1;
-        let idx2 = 1;
+        let index = 0; // Keep track of the overall list index
+        let idx = -1; // Keep track of the heading index
+        let idx2 = 1; // Keep track of the headng numbering
         let letter = '';
         const setHeading = (pattern, data) => {
             let hyphen = "*";
@@ -56,7 +57,8 @@ export const ListItem = (props) => {
                     data = data.replace(dashPattern, '');
                     break;
             }
-            if((heading.length <= 0 && !indent) || (!indent && prevPattern === "empty") || (heading === pattern) || (indent && prevPattern !== pattern) || (itemPattern.length > 0 && itemPattern !== pattern) ){
+            // if((heading.length <= 0 && !indent) || (!indent && prevPattern === "empty") || (heading === pattern) || ((indent && prevPattern !== pattern)) || ((itemPattern.length > 0 && itemPattern !== pattern)) ){
+            if((heading.length <= 0 && !indent) || (heading === pattern) || (!indent && prevPattern === "empty") || (index === props.list.length - 1 && itemPattern !== pattern && pattern === "empty")){
                 indent = false;
                 if(itemPattern.length <= 0 && heading.length > 0 && !(!indent && prevPattern === "empty"))
                     itemPattern = "*";
@@ -71,9 +73,11 @@ export const ListItem = (props) => {
             }else{
                 indent = true;
                 temp[idx].item.push({pattern, hyphen, data});
-                itemPattern = pattern;
+                if(pattern === itemPattern)
+                    itemPattern = pattern;
             }
             prevPattern = pattern;
+            ++index;
         };
         props.list.forEach((value, index, arr) => {
             arr[index] = value.trimStart();
