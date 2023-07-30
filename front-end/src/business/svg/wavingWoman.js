@@ -4,8 +4,8 @@ function Icon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="30"
-      height="30"
+      width="32"
+      height="32"
       fill="none"
       viewBox="0 0 40 40"
     >
@@ -87,7 +87,7 @@ function Icon() {
             x="0.5"
             y="0.5"
             fill="#fff"
-            rx="19.5"
+            rx="19.5" 
           ></rect>
         </clipPath>
       </defs>

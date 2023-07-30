@@ -5,6 +5,8 @@ import EmailIcon from '../svg/emailIcon';
 import ChatIcon from '../svg/chatIcon';
 import BusinessIcon2 from '../svg/businessIcon2';
 import CreateIcon from '@mui/icons-material/Create';
+import PartyPopper from '../svg/partyPopper';
+import WorkflowThing from '../svg/workflowThing'
 
 const openAccountSettingForm = _ => {
     document.getElementById("account-setting-Form").style.display = "block";
@@ -53,23 +55,23 @@ const emptyPane = (user) => {
                     </>
                 )}
                 </div>
-                 <div className="businesses-overview">
+                <div className="businesses-overview">
                 <div className="yourbusiness">
                     <div className="businesstitle">
-                        <text>Welcome to Opn.Systems </text>
-                        <img className="party" src="./images/partypopper.png" alt="party"/>
+                        <text>Welcome to Opn.Systems <PartyPopper/></text>
+                
                         <p style={{fontSize:"14px"}}>Here's some tips to get you started</p>
                         <div style={{justifyContent:"center", alignItems:"center", display:"inline-flex", gap:"8px"}}>
-                        <button className="howToButtons"><ChatIcon/> What are your next steps</button>
-                        <button className="howToButtons"  style={{marginRight:"10px"}}><ChatIcon/> How to edit your files</button>
+                        <button className="howToButtons"><ChatIcon/> How to use Opn.Systems</button>
+                        <button className="howToButtons"  style={{marginRight:"10px"}}><ChatIcon/>What are your next steps</button>
                         </div>
                        
                         {/* <div className="limit-box">
                             <p style={{fontSize:"12px"}}><BusinessIcon2/> You've reached your business limit (1/1)</p>
                             <p style={{fontSize:"12px"}}>When you upgrade to Premium, you can create unlimited businesses, roles, and invite your team members.</p>
                         </div> */}
-                        <div className="container">
-                            <div className="message-container">
+                        <div className="container1">
+                            <div className="message-container1">
                                 <div className="message">
                                 <div className="text"><BusinessIcon2/> You’ve reached your business limit (1/1)</div>
                                 </div>
@@ -99,10 +101,11 @@ const emptyPane = (user) => {
 
             <div className="main-dashboard-people" style={{height:"auto"}}>
                 <div className="businesstitle">
-                    <text>People</text>
+                    <text>Steps to follow</text>
                 </div>
+                <WorkflowThing/>
 
-                <div className="teammember" style={{margin:"0 auto 0 auto"}}>
+                {/* <div className="teammember" style={{margin:"0 auto 0 auto"}}>
                     {peopleTemplate("male")}
                     {peopleTemplate("female")}
                     {peopleTemplate("male")}
@@ -121,7 +124,7 @@ const emptyPane = (user) => {
 
                 <div className="invite-button">
                     <button >+ Invite team members</button>
-                </div>
+                </div> */}
 
             </div>
         </div>
