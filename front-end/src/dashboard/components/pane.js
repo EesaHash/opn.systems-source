@@ -58,12 +58,12 @@ const emptyPane = (user) => {
                 <div className="businesses-overview">
                 <div className="yourbusiness">
                     <div className="businesstitle">
-                        <text>Welcome to Opn.Systems <PartyPopper/></text>
-                
-                        <p style={{fontSize:"14px"}}>Here's some tips to get you started</p>
-                        <div style={{justifyContent:"center", alignItems:"center", display:"inline-flex", gap:"8px"}}>
+                        <text style={{fontSize:"2.2vw"}}>Welcome to Opn.Systems <PartyPopper/></text>
+                        <p style={{fontSize:"0.95vw"}}>Here's some tips to get you started</p>
+                    </div>
+                        <div style={{display:"flex", justifyContent:"center", alignItems:"center",alignSelf: "stretch",  gap:"1vh"}}>
                         <button className="howToButtons"><ChatIcon/> How to use Opn.Systems</button>
-                        <button className="howToButtons"  style={{marginRight:"10px"}}><ChatIcon/>What are your next steps</button>
+                        <button className="howToButtons"><ChatIcon/>What are your next steps</button>
                         </div>
                        
                         {/* <div className="limit-box">
@@ -72,18 +72,14 @@ const emptyPane = (user) => {
                         </div> */}
                         <div className="container1">
                             <div className="message-container1">
-                                <div className="message">
-                                <div className="text"><BusinessIcon2/> You’ve reached your business limit (1/1)</div>
-                                </div>
+                                <div className="text" style={{marginTop:"3.5%"}}><BusinessIcon2/> You've reached your business limit (1/1)</div>
                             </div>
-                            <div className="upgrade-container">
-                                <div className="upgrade-text">
+                                <div className="upgrade-text"style={{marginTop:"3.5%"}}>
                                 When you upgrade to Premium, you can create unlimited business, roles, and invite your team members.
                                 </div>
                             </div>
-                            </div>
                         </div>
-                </div>
+                    
                 <div className="updates">
                     <img className="updateslogo" src="./images/notificationlogo.png" alt="logo"/>
                     <div className="updatestitle">
@@ -99,12 +95,13 @@ const emptyPane = (user) => {
                 </div>
             </div>
 
-            <div className="main-dashboard-people" style={{height:"auto"}}>
+            <div className="main-dashboard-people">
                 <div className="businesstitle">
-                    <text>Steps to follow</text>
+                    <text style={{fontSize:"2.5vw"}}>Steps to follow</text>
                 </div>
+                <div className="work" style={{margin:"0 10vw 0 9vw"}}>
                 <WorkflowThing/>
-
+                </div>
                 {/* <div className="teammember" style={{margin:"0 auto 0 auto"}}>
                     {peopleTemplate("male")}
                     {peopleTemplate("female")}

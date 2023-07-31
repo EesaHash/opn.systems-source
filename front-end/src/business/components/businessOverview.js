@@ -17,22 +17,19 @@ export const businessOverview = (business) => {
         <div className="businesses-overview">
         <div className="yourbusiness">
             <div className="businesstitle">
-                <text>Welcome to Opn.Systems <PartyPopper/></text>
-                <p style={{fontSize:"14px"}}>Here's some tips to get you started</p>
+                <text style={{fontSize:"2.2vw"}}>Welcome to Opn.Systems <PartyPopper/></text>
+                <p style={{fontSize:"2vh"}}>Here's some tips to get you started</p>
                 <div style={{justifyContent:"center", alignItems:"center", display:"inline-flex", gap:"8px"}}>
                 <button className="howToButtons"><ChatIcon/> How to edit your files</button>
                 <button className="howToButtons"><ChatIcon/> What are your next steps</button>
             </div>
-            
             <div className="container">
                     <div className="message-container">
-                        <div className="message">
                         <div className="text"><WavingWoman/> Key Contact Information</div>
-                        </div>
                     </div>
-                    <div className="contacts-container">
-                        <div className="contact-icon"><PeopleIcon/>{name}</div>
-                        <div className="contact-icon"><PhoneIcon/>{phoneNumber}</div>
+                    <div className="contact-block">
+                        <div className="contact-icon"><PeopleIcon />{name} omkar bodas</div>
+                        <div className="contact-icon"><PhoneIcon/>{phoneNumber}0493020494</div>
                         <div className="contact-icon"><EmailIcon/>{email}</div>
                     </div>
                     </div>
