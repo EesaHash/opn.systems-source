@@ -153,6 +153,7 @@ const getSopsForClientJourney = async (req, res) => {
             where: {
                 clientJourneyID: req.body.clientJourneyID
             },
+            order: ['id'],
             raw: true
         });
         if (sops == null || sops.length == 0) {
@@ -161,13 +162,6 @@ const getSopsForClientJourney = async (req, res) => {
                 status: false,
             });
         }
-
-        sops.forEach((s) => {
-            s.definitions = JSON.parse(s.definitions);
-            s.responsibility = JSON.parse(s.responsibility);
-            s.procedure = JSON.parse(s.procedure);
-            s.documentation = JSON.parse(s.documentation);
-        })
 
         console.log(`[SUCCESS] RETRIEVED SOPS FOR CLIENT JOURNEY ID: ${req.body.clientJourneyID}`);
         return res.status(200).json({
@@ -216,11 +210,11 @@ async function updateSOP(sopID, customSop) {
     try {
         const sop = await SOP.update({
             title: customSop.title,
-            definitions: JSON.stringify(customSop.definitions),
+            definitions: JSON.stringify(JSON.parse(customSop.definitions)),
             purpose: customSop.purpose,
-            responsibility: JSON.stringify(customSop.responsibility),
-            procedure: JSON.stringify(customSop.procedure),
-            documentation: JSON.stringify(customSop.documentation),
+            responsibility: JSON.stringify(JSON.parse(customSop.responsibility)),
+            procedure: JSON.stringify(JSON.parse(customSop.procedure)),
+            documentation: JSON.stringify(JSON.parse(customSop.documentation)),
             stage: customSop.stage
         }, { where: { id: sopID } });
         return sop;

@@ -44,6 +44,11 @@ export const getBusinessTypeList = _ => {
 export const getCompanySizeList = _ => {
     return ["Startup", "Small-Scale", "Medium-Scale", "Large-Enterprise"];
 };
+export const sortListByID = (list, setList) => {
+    const temp = [...list];
+    temp.sort((a, b) => a.id - b.id);
+    setList(temp);
+};
 
 function App() {
     return (

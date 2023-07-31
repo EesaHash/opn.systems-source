@@ -10,7 +10,7 @@ export const ListItem = (props) => {
     const [selectedStep, setSelectedStep] = useState(0);
     const [list, setList] = useState([]);
     const [mainHeading, setMainHeading] = useState({pattern: "number", hyphen: "1"});
-    const [itemHeading, setItemHeading] = useState({pattern: "dash", hyphen: "-"});
+    const [itemHeading, setItemHeading] = useState({pattern: "letter", hyphen: "a"});
     const [dragItemIndex, setDragItemIndex] = useState();
     const [dragOverItemIndex, setDragOverItemIndex] = useState();
 
@@ -103,11 +103,11 @@ export const ListItem = (props) => {
         });
         if(itemPattern.length <= 0 && temp.length > 0)
             setMainHeading({pattern: (temp.length > 1 ? temp[1].pattern : temp[0].pattern), hyphen: (temp.length > 1 ? temp[1].hyphen : temp[0].hyphen)});
-        const patternOptions = [{pattern: "dash", hyphen: "-"}, {pattern: "letter", hyphen: "a"}, {pattern: "empty", hyphen: "*"}, {pattern: "number", hyphen: "1"}];
-        let i = 0;
-        while(itemHeading.pattern === mainHeading.pattern){
-            setItemHeading(patternOptions[i++]);
-        }
+        // const patternOptions = [{pattern: "dash", hyphen: "-"}, {pattern: "letter", hyphen: "a"}, {pattern: "empty", hyphen: "*"}, {pattern: "number", hyphen: "1"}];
+        // let i = 0;
+        // while(itemHeading.pattern === mainHeading.pattern && temp.length > 0){
+        //     setItemHeading(patternOptions[i++]);
+        // }
         setList(temp);
         // eslint-disable-next-line
     }, [props.list]);

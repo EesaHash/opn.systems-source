@@ -7,11 +7,13 @@ import { FolderList2 } from '../../table/components/Folder/FolderList2';
 import { ListTable3 } from '../../table/components/List/ListTable3';
 import { stages } from '../../client_journey/components/originalStages';
 import { UpdateConfirmation } from '../../public_components/UpdateConfirmation';
+import { sortListByID } from '../../App';
 
 export const ProceduresDashboard = (props) => {
     const [index, setIndex] = useState(-1);
     const [journey, setJourney] = useState({});
     const [procedure, setProcedure] = useState({});
+    const [procedureIdx, setProcedureIdx] = useState(-1);
     const [procedures, setProcedures] = useState([]);
     const [stage, setStage] = useState("");
     const [updateConfirmation, setUpdateConfirmation] = useState(-1);
@@ -87,12 +89,13 @@ export const ProceduresDashboard = (props) => {
     };
 
     // Going to Tab 4
-    const openProcedureDetail = (param) => {
+    const openProcedureDetail = (param, index) => {
         const thirdTable = document.getElementById("procedure-third-table");
         const fourthTable = document.getElementById("procedure-fourth-table");
         if(thirdTable && fourthTable) {
             thirdTable.style.display = "none";
             setProcedure(param);
+            setProcedureIdx(index);
             fourthTable.style.display = "block";
         }
     };
@@ -106,6 +109,7 @@ export const ProceduresDashboard = (props) => {
         if(mainTable && secondaryTable && thirdTable && fourthTable){
             mainTable.style.display = "block";
             setProcedure({});
+            setProcedureIdx(-1);
             setStage("");
             setIndex(-1);
             setJourney({});
@@ -135,6 +139,7 @@ export const ProceduresDashboard = (props) => {
         if(thirdTable && fourthTable){
             fourthTable.style.display = "none";
             setProcedure({});
+            setProcedureIdx(-1);
             thirdTable.style.display = "block";
         }
     };
@@ -146,30 +151,35 @@ export const ProceduresDashboard = (props) => {
     useEffect(() => {
         const saveChanges = _ => {
             try{
-                // fetch("/api/sop/", {
-                //     method: "POST",
-                //     headers: {
-                //         "Content-Type": "application/json"
-                //     },
-                // })
-                //     .then((res) => {return res.json(); })
-                //     .then((data) => {
-                //         if(data.status){
-                //             props.setProcedure([...props.procedures.filter(obj => obj.id !== procedure.id), procedure]);
-                //         }
-                //         setUpdateConfirmation(-1);
-                //     })
-                console.log(procedure);
+                fetch("/api/sop/update_single", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        id: procedure.id,
+                        customSop: procedure
+                    })
+                })
+                    .then((res) => {return res.json(); })
+                    .then((data) => {
+                        if(data.status){
+                            setProcedures([...procedures.filter(obj => obj.id !== procedure.id), procedure]);
+                            sortListByID(procedures, setProcedures);
+                        }
+                        setUpdateConfirmation(-1);
+                    })
             }catch(error){
                 console.log(error);
             }
         };
         const discardChanges = _ => {
+            setProcedure(procedures[procedureIdx]);
             setUpdateConfirmation(-1);
         };
         if(updateConfirmation === 1)
             saveChanges();
-        else
+        else if(updateConfirmation === 0)
             discardChanges();
         // eslint-disable-next-line
     }, [updateConfirmation]);
@@ -332,6 +342,7 @@ export const ProceduresDashboard = (props) => {
                     .then((data) => {
                         if(data.status){
                             setProcedures([...procedures.filter(obj => obj.id !== deleteConfirmation)]);
+                            sortListByID(procedures, setProcedures);
                         }
                         setDeleteConfirmation(-1);
                     })
@@ -343,10 +354,6 @@ export const ProceduresDashboard = (props) => {
             deleteSOP();
         // eslint-disable-next-line
     }, [deleteConfirmation]);
-
-    useEffect(() => {
-        console.log(procedure);
-    }, [procedure])
 
     return(
         <div className='procedure'>
