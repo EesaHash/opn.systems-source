@@ -34,6 +34,14 @@ const regenerateSOP = async (req, res) => {
         if (regeneratedSOP == null) {
             throw `[FAIL] UNABLE TO REGENERATE SOP`;
         }
+        regeneratedSOP = {
+            ...regeneratedSOP,
+            purpose: regeneratedSOP.purpose[0],
+            definitions: JSON.stringify(regeneratedSOP.definitions),
+            responsibility: JSON.stringify(regeneratedSOP.responsibility),
+            procedure: JSON.stringify(regeneratedSOP.procedure),
+            documentation: JSON.stringify(regeneratedSOP.documentation)
+        }
         console.log("[SUCCESS] REGENERATED SOP");
         return res.status(200).json({ status: true, sop: regeneratedSOP });
     } catch (error) {

@@ -5,10 +5,13 @@ import { openAccessLimitForm, openFutureFeatureWarningForm } from '../../../dash
 import { ListItem } from './ListItem';
 import { dashPattern, letterPattern, numberingPattern, setTextAreaHeight, stepPattern, updateListItem } from '../PublicTableComponents';
 import { EditPopUp } from '../EditPopUp';
+import { LoadingTableItem } from '../LoadingTableItem';
 
 export const ListTable4 = (props) => {
+    const [loading, setLoading] = useState(false);
     const [editStatus, setEditStatus] = useState(false);
     const [isAIEditOver, setIsAIEditOver] = useState(false);
+
     useEffect(() => {
         setTextAreaHeight(".h1");
         setTextAreaHeight(".text");
@@ -53,59 +56,62 @@ export const ListTable4 = (props) => {
     };
     return(
         <div className='list-table4' id = {props.id}>
-            <div className='list-table4-content'>
-                <div className='table-directory'>
-                    <div className='table-directory-left-header'>
-                        <button onClick={editStatus ? closeEditMode : props.button3}><ArrowBack/></button>
-                        <button onClick={props.button1}>{`${props.type}`}</button>
-                        <h3>/</h3>
-                        <button onClick={props.button2} >{`${props.title}`}</button>
-                        <h3>/</h3>
-                        <button onClick={props.button3} >{`${props.sub_title}`}</button>
-                        <h3>/</h3>
-                        <button onClick={closeEditMode}>{`${props.sub_title2}`}</button>
-                        {editStatus && <h3>/</h3>}
-                        {editStatus && <button>Editing<Edit/></button>}
+            {loading ? (
+                <LoadingTableItem title={props.loadingTitle} documentName = {props.sub_title2}/>
+            ):(
+                <div className='list-table4-content'>
+                    <div className='table-directory'>
+                        <div className='table-directory-left-header'>
+                            <button onClick={editStatus ? closeEditMode : props.button3}><ArrowBack/></button>
+                            <button onClick={props.button1}>{`${props.type}`}</button>
+                            <h3>/</h3>
+                            <button onClick={props.button2} >{`${props.title}`}</button>
+                            <h3>/</h3>
+                            <button onClick={props.button3} >{`${props.sub_title}`}</button>
+                            <h3>/</h3>
+                            <button onClick={closeEditMode}>{`${props.sub_title2}`}</button>
+                            {editStatus && <h3>/</h3>}
+                            {editStatus && <button>Editing<Edit/></button>}
+                        </div>
+                        {editStatus ? editDirectory() : mainDirectory()}
                     </div>
-                    {editStatus ? editDirectory() : mainDirectory()}
-                </div>
-                {isAIEditOver && 
-                    <EditPopUp
-                        automaticallyRegenerate = {props.automaticallyRegenerate} 
-                        regenerateByPrompt = {props.regenerateByPrompt} 
-                        setLoading = {null} 
+                    {isAIEditOver && 
+                        <EditPopUp
+                            automaticallyRegenerate = {props.automaticallyRegenerate} 
+                            regenerateByPrompt = {props.regenerateByPrompt} 
+                            setLoading = {setLoading} 
+                        />
+                    }
+                    <textarea className='table-input h1' type="text" value={props.data.title} onChange={(event) => props.setData({...props.data, title: event.target.value})} readOnly = {!editStatus} />
+                    <div className='list-table4-desc'>
+                        <hr/>
+                        {FifthTableDescItem(<FormatAlignLeft/>, "Objective", props.data.purpose, updatePurpose, editStatus)}
+                        {FifthTableDescAsList(<FormatAlignLeft/>, "Definitions", (props.data.definitions ? JSON.parse(props.data.definitions) : []), updateDefinition, editStatus)}
+                        <hr/>
+                    </div>
+                    <ListItem 
+                        listTitle = {props.list1Title}
+                        list = {props.list1}
+                        updateList = {props.updateList1}
+                        editStatus = {editStatus}
+                        setEditStatus = {setEditStatus}
                     />
-                }
-                <textarea className='table-input h1' type="text" value={props.data.title} onChange={(event) => props.setData({...props.data, title: event.target.value})} readOnly = {!editStatus} />
-                {/* <div className='table-input h1' type="text" onInput={(event) => props.setData({...props.data, title: event.target.textContent})} contentEditable = {editStatus} >{props.data.title}</div> */}
-                <div className='list-table4-desc'>
-                    <hr/>
-                    {FifthTableDescItem(<FormatAlignLeft/>, "Objective", props.data.purpose, updatePurpose, editStatus)}
-                    {FifthTableDescAsList(<FormatAlignLeft/>, "Definitions", (props.data.definitions ? JSON.parse(props.data.definitions) : []), updateDefinition, editStatus)}
-                    <hr/>
+                    <ListItem 
+                        listTitle = {props.list2Title}
+                        list = {props.list2}
+                        updateList = {props.updateList2}
+                        editStatus = {editStatus}
+                        setEditStatus = {setEditStatus}
+                    />
+                    <ListItem 
+                        listTitle = {props.list3Title}
+                        list = {props.list3}
+                        updateList = {props.updateList3}
+                        editStatus = {editStatus}
+                        setEditStatus = {setEditStatus}
+                    />
                 </div>
-                <ListItem 
-                    listTitle = {props.list1Title}
-                    list = {props.list1}
-                    updateList = {props.updateList1}
-                    editStatus = {editStatus}
-                    setEditStatus = {setEditStatus}
-                />
-                <ListItem 
-                    listTitle = {props.list2Title}
-                    list = {props.list2}
-                    updateList = {props.updateList2}
-                    editStatus = {editStatus}
-                    setEditStatus = {setEditStatus}
-                />
-                <ListItem 
-                    listTitle = {props.list3Title}
-                    list = {props.list3}
-                    updateList = {props.updateList3}
-                    editStatus = {editStatus}
-                    setEditStatus = {setEditStatus}
-                />
-            </div>
+            )}
         </div>
     );
 };
@@ -183,7 +189,7 @@ const FifthTableDescAsList = (icon, title, data, setData, editStatus) => {
                 {temp.map((res, index) => (
                     <div key={index} className='desc-item-list-item'>
                         {index > 0 && <hr/>}
-                        <div style={{display: "flex"}}>
+                        <div style={{display: "flex", paddingBottom: "15px"}}>
                             <h3>{res.hyphen}</h3>
                             <textarea className='table-input text' type="text" value={res.data} onChange={(event) => updateDataContent(index, event.target.value)} readOnly = {!editStatus} />
                             { editStatus && <div className='edit-icon' onClick={() => deleteItem(index)}><Delete/></div> }

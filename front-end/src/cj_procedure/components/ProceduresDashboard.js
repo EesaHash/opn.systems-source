@@ -7,7 +7,6 @@ import { FolderList2 } from '../../table/components/Folder/FolderList2';
 import { ListTable3 } from '../../table/components/List/ListTable3';
 import { stages } from '../../client_journey/components/originalStages';
 import { UpdateConfirmation } from '../../public_components/UpdateConfirmation';
-import { sortListByID } from '../../App';
 
 export const ProceduresDashboard = (props) => {
     const [index, setIndex] = useState(-1);
@@ -164,8 +163,9 @@ export const ProceduresDashboard = (props) => {
                     .then((res) => {return res.json(); })
                     .then((data) => {
                         if(data.status){
-                            setProcedures([...procedures.filter(obj => obj.id !== procedure.id), procedure]);
-                            sortListByID(procedures, setProcedures);
+                            const temp = [...procedures.filter(obj => obj.id !== procedure.id), procedure];
+                            temp.sort((a, b) => a.id - b.id);
+                            setProcedures(temp);
                         }
                         setUpdateConfirmation(-1);
                     })
@@ -177,10 +177,11 @@ export const ProceduresDashboard = (props) => {
             setProcedure(procedures[procedureIdx]);
             setUpdateConfirmation(-1);
         };
-        if(updateConfirmation === 1)
+        if(updateConfirmation === 1){
             saveChanges();
-        else if(updateConfirmation === 0)
+        }else if(updateConfirmation === 0){
             discardChanges();
+        }
         // eslint-disable-next-line
     }, [updateConfirmation]);
     const updateResposibility = (list) => {
@@ -306,7 +307,30 @@ export const ProceduresDashboard = (props) => {
         }
     };
     const regenerateSOP = (prompt, setLoading) => {
-
+        try{
+            setLoading(true);
+            fetch("/api/sop/regenerate_sop", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    sop: procedure,
+                    prompt
+                })
+            })
+                .then((res) => {return res.json(); })
+                .then((data) => {
+                    console.log(data);
+                    if(data.status){
+                        setProcedure({...procedure, ...data.sop});
+                        console.log({...procedure, ...data.sop});
+                        setLoading(false);
+                    }
+                });
+        }catch(error){
+            console.log(error);
+        }
     };
 
     // Regenerate SOP per Item
@@ -319,7 +343,11 @@ export const ProceduresDashboard = (props) => {
         }
     };
     const regenerateSOPForItem = (prompt, setLoading) => {
+        try{
 
+        }catch(error){
+            console.log(error);
+        }
     };
 
     // Delete SOP
@@ -342,7 +370,6 @@ export const ProceduresDashboard = (props) => {
                     .then((data) => {
                         if(data.status){
                             setProcedures([...procedures.filter(obj => obj.id !== deleteConfirmation)]);
-                            sortListByID(procedures, setProcedures);
                         }
                         setDeleteConfirmation(-1);
                     })

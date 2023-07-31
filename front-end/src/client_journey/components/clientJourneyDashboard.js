@@ -119,12 +119,11 @@ export const ClientJourneyDashboard = (props) => {
                     console.log(data);
                     if(data.status){
                         setJourney({...journey, ...data.clientJourney});
-                        console.log(journey);
                         setLoading(false);
                     }
                 });
         } catch (error) {
-            alert(error);
+            console.log(error);
         }
     };
     
@@ -191,7 +190,7 @@ export const ClientJourneyDashboard = (props) => {
                     }
                 });
         }catch(error){
-            alert(error);
+            console.log(error);
         }
     };
 
