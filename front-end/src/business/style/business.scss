@@ -27,7 +27,6 @@
 }
 
 .edit-business {
-    margin-top: 8vh;
     width: 50vw;
     height: 80vh;
     left: 0;
@@ -38,7 +37,6 @@
     & .business-icon {
         width: 20%;
         margin-right: 20px;
-
         & img {
             width: 6vw;
             border-radius: 17px;
@@ -113,7 +111,7 @@ $navbaritem-width: calc(pane.$mainbox-width / 7 + 1.5vw);
 
                     & .dropdown-content {
                         margin-top: 30px;
-                        left: -170px;
+                        left: -150px;
                     }
                 }
             }

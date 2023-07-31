@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "../style/profile.css";
 import { logOut } from "../../App";
 import MeetingRoom from '@mui/icons-material/MeetingRoom';
@@ -6,11 +6,15 @@ import TuneSharpIcon from '@mui/icons-material/TuneSharp';
 
 import SettingsIcon from '../../business/svg/clientjourneyIcon.js';
 
-const openAccountSettingForm = _ => {
-    document.getElementById("account-setting-Form").style.display = "block";
-}
-
 export const Profile = (props) => {
+    const [dropdownStatus, setDropdownStatus] = useState(false);
+    const openAccountSettingForm = _ => {
+        document.getElementById("account-setting-Form").style.display = "block";
+    };
+    const profileDropwdownAction = _ => {
+        document.getElementById("profile-dropdown").style.display = dropdownStatus ? "none" : "grid";
+        setDropdownStatus(!dropdownStatus);
+    };
     return (
         <div className="profile-header">
             <div className="profile-picture">
@@ -23,8 +27,8 @@ export const Profile = (props) => {
                 <h2>Business Owner</h2>
             </div>
             <div className="dropdown-arrow-area">
-                <div className="dropdown-arrow">
-                    <div className="dropdown-content">
+                <div className="dropdown-arrow" onClick={profileDropwdownAction}>
+                    <div id = "profile-dropdown" className="dropdown-content">
                         <button ><TuneSharpIcon />Admin Console</button>
                         <button onClick={openAccountSettingForm}><SettingsIcon /> Account Settings</button>
                         <a href="/" onClick={logOut} style={{ color: 'red' }}><MeetingRoom />Log Out</a>

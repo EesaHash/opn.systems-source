@@ -9,7 +9,6 @@ import { Pane } from "../components/pane";
 import { Profile } from "../components/profile";
 import { getUserID } from "../../App";
 import { CreateBusiness } from "../../business/components/createBusiness";
-import { EditBusinessDetail } from "../../business/components/editBusinessDetail";
 import { CreateClientJourney } from "../../client_journey/components/createClientJourney";
 import { ModifyAccountDetails } from "../components/account_settings";
 import { AccessLimit } from "../../warning_pages/components/AccessLimit";
@@ -115,7 +114,7 @@ export const DashboardPage = () => {
         }catch(error){
             alert(error);
         }
-    }, [business]);
+    }, [business.id]);
 
     useEffect(() => {
         setJourneys([]);
@@ -177,11 +176,6 @@ export const DashboardPage = () => {
                     setUser = {setUser}
                 />
                 <CreateBusiness businesses = {businesses} setBusinesses = {setBusinesses} userID = {userID} />
-                <EditBusinessDetail 
-                    businesses = {businesses} setBusinesses = {setBusinesses} 
-                    index = {activeLink2 - 1}
-                    business = {business} setBusiness = {setBusiness}
-                />
                 <CreateClientJourney  
                     products = {products} setProducts = {setProducts}
                     journeys = {journeys} setJourneys = {setJourneys}

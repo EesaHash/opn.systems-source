@@ -4,23 +4,17 @@ import { getBusinessTypeList, getCompanySizeList } from '../../App';
 import { DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown } from "reactstrap";
 
 export const EditBusinessDetail = (props) => {
+    
     useEffect(() => {
         if(props.index >= 0)
             props.setBusiness(props.businesses[props.index]);
         // eslint-disable-next-line
     }, [props.businesses, props.setBusiness, props.index]);
 
-    const closeForm = _ => {
-        if(!checkChanges())
-            if(window.confirm("Do you want to save the changes you made?"))
-                updateData();
-            else
-                props.setBusiness(props.businesses[props.index]);
-        document.getElementById("editBusinessForm").style.display = "none";
-    };
+    // Update Data
     const updateData = _ => {
         try{
-            if(!props.business.businessName || !props.business.businessType || !props.business.industry || !props.business.companySize || !props.business.businessObjective || !props.business.coreServices || !props.business.targetMarket || !props.business.productOrServiceDescription || !props.business.fundingStrategy)
+            if(!props.business.businessName || !props.business.businessType || !props.business.industry || !props.business.companySize || !props.business.businessObjective)
                 return alert("Please fill in all fields!");
             fetch("/api/business/updateBusiness", {
                 method: "POST",
@@ -36,14 +30,12 @@ export const EditBusinessDetail = (props) => {
                         temp[props.index] = props.business;
                         props.setBusinesses(temp);
                         alert(data.message);
+                        closeForm();
                     }
                 });
         }catch(error){
             alert(error);
         }
-    };
-    const checkChanges = _ => {
-        return Object.entries(props.business).toString() === Object.entries(props.businesses[props.index]).toString();
     };
     const updateBusinessName = (value) => {
         props.setBusiness({...props.business, businessName: value});
@@ -54,6 +46,22 @@ export const EditBusinessDetail = (props) => {
     const updateBusinessObjective = (value) => {
         props.setBusiness({...props.business, businessObjective: value});
     };
+
+    // Close Form
+    const closeForm = _ => {
+        if(!checkChanges())
+            if(window.confirm("Do you want to save the changes you made?"))
+                updateData();
+            else
+                props.setBusiness(props.businesses[props.index]);
+        document.getElementById("editBusinessForm").style.display = "none";
+    };
+
+    // Check of any changes made
+    const checkChanges = _ => {
+        return Object.entries(props.business).toString() === Object.entries(props.businesses[props.index]).toString();
+    };
+
     return(
         <section id="editBusinessForm" className="form-popup center form-container edit-business">
             <div className="content-form">

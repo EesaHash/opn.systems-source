@@ -16,6 +16,7 @@ import { ProceduresDashboard } from '../../cj_procedure/components/ProceduresDas
 import { PoliciesDashboard } from '../../cj_policies/components/PoliciesDashboard';
 import { TeamMembers } from '../../client_journey/components/TeamMembers';
 import { DepartmentRolesDashboard } from '../../cj_department_roles/components/DepartmentRolesDashboard';
+import { EditBusinessDetail } from './editBusinessDetail';
 
 export const BusinessDashboard = (props) => {
     const deleteBusiness = _ => {
@@ -59,6 +60,11 @@ export const BusinessDashboard = (props) => {
 
     return(
         <div className='business-dashboard'>
+            <EditBusinessDetail
+                businesses = {props.businesses} setBusinesses = {props.setBusinesses} 
+                index = {props.activeLink2 - 1}
+                business = {props.business} setBusiness = {props.setBusiness}
+            />
             {title(props.business, (props.activeLink2 - 1), deleteBusiness)}
             {body(
                 props.business, props.activeLink2,

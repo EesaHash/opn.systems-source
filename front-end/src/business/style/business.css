@@ -344,7 +344,6 @@
 }
 
 .edit-business {
-  margin-top: 8vh;
   width: 50vw;
   height: 80vh;
   left: 0;
@@ -418,7 +417,7 @@
 }
 .business-dashboard .business-dashboard-title .business-dashboard-title-content .business-title .dropdown-arrow .dropdown-content {
   margin-top: 30px;
-  left: -170px;
+  left: -150px;
 }
 .business-dashboard .business-dashboard-title .business-dashboard-title-content h3 {
   margin: 0;

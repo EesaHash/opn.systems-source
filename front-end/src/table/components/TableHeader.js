@@ -9,7 +9,7 @@ export const TableHeader = (props) => {
             <div style={{display: "flex"}}>
                 <div className='left-header'>
                     <div className='table-header-item'>
-                        <input type="checkbox"/>
+                        {/* <input type="checkbox"/> */}
                         <label>count</label>
                         <h3>{props.list.length}</h3>
                     </div>
