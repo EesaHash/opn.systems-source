@@ -34,9 +34,8 @@
 }
 
 .howToButtons {
-  gap: 4px;
   margin-top: -5px;
-  margin-bottom: 10px;
+  margin-bottom: 0.8vh;
   color: #000;
   border-radius: 8px;
   display: flex;
@@ -158,8 +157,8 @@
 .businesses-overview {
   display: flex;
   margin-top: 16px;
-  height: 33vh;
-  gap: 10px;
+  height: 34vh;
+  gap: 1px;
 }
 .businesses-overview .yourbusiness,
 .businesses-overview .update {
@@ -167,7 +166,7 @@
 }
 .businesses-overview .yourbusiness {
   display: flex;
-  padding: 10px 30px 0 25px;
+  padding: 10px 10px 0 25px;
   flex-direction: column;
   align-items: flex-start;
   align-self: stretch;
@@ -183,7 +182,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   flex: 1 0 0;
   align-self: stretch;
   border-radius: 13.971px;
@@ -232,20 +231,21 @@
   background-color: #FFF;
   margin-top: -10px;
 }
-.businesses-overview .container {
-  width: calc((100vw - 240px - 8vw) * 0.5 - 4vw + 0.5vw);
-  height: 16vh;
-  border-radius: 9px;
-  border: 0.5px #3235FF dotted;
+.businesses-overview .container1 {
   display: flex;
-  padding: 16px 20px;
+  width: calc((100vw - 240px - 8vw) * 0.5 - 4vw);
+  height: 8.5vh;
   flex-direction: column;
   align-items: center;
-  display: flex;
+  justify-content: center;
+  align-self: center;
+  border-radius: 13.971px;
+  text-align: center;
+  border: 0.5px #3235FF dotted;
 }
-.businesses-overview .container .message-container {
+.businesses-overview .container1 .message-container1 {
   align-self: stretch;
-  height: 10vh;
+  height: 3vh;
   margin-bottom: 5px;
   flex-direction: column;
   justify-content: flex-start;
@@ -253,14 +253,8 @@
   gap: 5px;
   display: flex;
 }
-.businesses-overview .container .message-container .message {
-  justify-content: center;
-  align-items: center;
-  gap: 1px;
-  display: inline-flex;
-}
-.businesses-overview .container .message-container .message .text {
-  margin-top: 6px;
+.businesses-overview .container1 .message-container1 .text {
+  padding-bottom: 0.5vh;
   text-align: center;
   color: #343741;
   font-size: 1.5vh;
@@ -269,7 +263,7 @@
   word-wrap: break-word;
   gap: 6px;
 }
-.businesses-overview .container .upgrade-text {
+.businesses-overview .upgrade-text {
   flex: 1 1 0;
   text-align: center;
   color: #343741;
@@ -301,59 +295,6 @@
   align-self: stretch;
   border-radius: 20px;
   background: #FFF;
-}
-
-.teammember {
-  display: flex;
-  margin-bottom: 20px;
-}
-.teammember .team-member-icon {
-  display: flex;
-}
-.teammember .team-member-icon img {
-  height: calc((96vh - 50px - 1vh - 12vh - 33vh - 32px) * 0.2);
-  border-radius: 100px;
-  background: #FFF;
-  opacity: 60%;
-}
-.teammember .emptyname {
-  width: calc((100vw - 240px - 8vw) / 4 - (96vh - 50px - 1vh - 12vh - 33vh - 32px) * 0.2 - (100vw - 240px - 8vw) * 0.04 - 60px);
-  min-width: -moz-fit-content;
-  min-width: fit-content;
-  height: calc((96vh - 50px - 1vh - 12vh - 33vh - 32px) * 0.1);
-  margin: 0 calc((100vw - 240px - 8vw) * 0.04);
-  margin-top: 16px;
-  border-radius: 9px;
-  background: rgba(217, 217, 217, 0.3);
-}
-
-.collaborate {
-  display: flex;
-  flex-direction: column;
-  align-self: stretch;
-  color: var(--text-subdued-text, #ACACAC);
-  text-align: center;
-  font-size: 22px;
-  font-family: DM Sans;
-  font-weight: 500;
-  line-height: 140%;
-}
-
-.invite-button {
-  width: 100%;
-  margin-top: -8px;
-}
-.invite-button button {
-  display: flex;
-  height: 43px;
-  padding: 18px;
-  justify-content: center;
-  align-items: center;
-  border-radius: 8px;
-  background: var(--accent-yellow-dark, #FEC514);
-  border: #FEC514;
-  color: #000;
-  margin: auto;
 }
 
 .contact-icon {

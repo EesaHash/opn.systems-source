@@ -21,11 +21,10 @@
 .businesses-overview .updates {
   margin-left: 15px;
   display: flex;
-  padding: 2vh 20.956px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex: 1 0 0;
+  flex: 1 1 0;
   align-self: stretch;
   border-radius: 13.971px;
   background: linear-gradient(133deg, #3235FF 0%, #5C5FFF 100%);
@@ -73,58 +72,33 @@
   background-color: #FFF;
   margin-top: -10px;
 }
-.businesses-overview .container1 {
+.businesses-overview .container {
   width: calc((100vw - 240px - 8vw) * 0.5 - 4vw + 0.5vw);
-  height: 13vh;
+  height: auto;
   border-radius: 9px;
   border: 0.5px #3235FF dotted;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   display: flex;
+  row-gap: 0px;
 }
-.businesses-overview .container1 .message-container1 {
-  display: flex;
-  align-self: stretch;
-  height: 8vh;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 4px;
+.businesses-overview .contact-block {
+  margin: auto;
 }
-.businesses-overview .container1 .message-container1 .message {
-  justify-content: center;
-  align-items: center;
-  gap: 1px;
-  display: inline-flex;
+.businesses-overview .contact-icon {
+  padding: 2.4vh 0 0;
+  font-size: 1.3vh;
+  color: #9382b4;
+  gap: 5px;
 }
-.businesses-overview .container1 .message-container1 .text {
+.businesses-overview .text {
   text-align: center;
   color: #343741;
-  font-size: 1.5vh;
+  font-size: 1.8vh;
   font-family: "Inter";
   font-weight: 600;
-  word-wrap: break-word;
-  gap: 2px;
-}
-.businesses-overview .container1 .upgrade-container {
-  align-self: stretch;
-  height: 48px;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 8px;
-  display: flex;
-}
-.businesses-overview .container1 .upgrade-container .upgrade-text {
-  flex: 1 1 0;
-  text-align: center;
-  color: #343741;
-  font-size: 1.2vh;
-  font-family: "Inter";
-  font-weight: 400;
-  line-height: 24px;
-  word-wrap: break-word;
+  color: #6453a5;
 }
 
 .howToButtons {
