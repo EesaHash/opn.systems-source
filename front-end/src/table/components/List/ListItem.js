@@ -9,6 +9,8 @@ export const ListItem = (props) => {
     const [expandAll, setExpandAll] = useState(false);
     const [selectedStep, setSelectedStep] = useState(0);
     const [list, setList] = useState([]);
+    const [mainHeading, setMainHeading] = useState({pattern: "number", hyphen: "1"});
+    const [itemHeading, setItemHeading] = useState({pattern: "dash", hyphen: "-"});
     const [dragItemIndex, setDragItemIndex] = useState();
     const [dragOverItemIndex, setDragOverItemIndex] = useState();
 
@@ -60,8 +62,8 @@ export const ListItem = (props) => {
             // if((heading.length <= 0 && !indent) || (!indent && prevPattern === "empty") || (heading === pattern) || ((indent && prevPattern !== pattern)) || ((itemPattern.length > 0 && itemPattern !== pattern)) ){
             if((heading.length <= 0 && !indent) || (heading === pattern) || (!indent && prevPattern === "empty") || (index === props.list.length - 1 && itemPattern !== pattern && pattern === "empty")){
                 indent = false;
-                if(itemPattern.length <= 0 && heading.length > 0 && !(!indent && prevPattern === "empty"))
-                    itemPattern = "*";
+                // if(itemPattern.length <= 0 && heading.length > 0 && !(!indent && prevPattern === "empty"))
+                //     itemPattern = "*";
                 heading = pattern;
                 temp.push({
                     pattern,
@@ -71,10 +73,13 @@ export const ListItem = (props) => {
                 });
                 ++idx;
             }else{
-                indent = true;
                 temp[idx].item.push({pattern, hyphen, data});
-                if(pattern === itemPattern)
+                if(pattern === itemPattern || itemPattern.length <= 0){
                     itemPattern = pattern;
+                    setItemHeading({pattern: itemPattern, hyphen: hyphen});
+                }
+                setMainHeading({pattern: temp[idx].pattern, hyphen: temp[idx].hyphen});
+                indent = true;
             }
             prevPattern = pattern;
             ++index;
@@ -96,6 +101,13 @@ export const ListItem = (props) => {
                 }
             // }
         });
+        if(itemPattern.length <= 0 && temp.length > 0)
+            setMainHeading({pattern: (temp.length > 1 ? temp[1].pattern : temp[0].pattern), hyphen: (temp.length > 1 ? temp[1].hyphen : temp[0].hyphen)});
+        const patternOptions = [{pattern: "dash", hyphen: "-"}, {pattern: "letter", hyphen: "a"}, {pattern: "empty", hyphen: "*"}, {pattern: "number", hyphen: "1"}];
+        let i = 0;
+        while(itemHeading.pattern === mainHeading.pattern){
+            setItemHeading(patternOptions[i++]);
+        }
         setList(temp);
         // eslint-disable-next-line
     }, [props.list]);
@@ -141,7 +153,7 @@ export const ListItem = (props) => {
                 ))
             }
             {/* {(props.editStatus && itemClassName !== "minimised") && addItemWithAI()} */}
-            {(props.editStatus && itemClassName !== "minimised") && addItemManual(list, setList, props.updateList)}
+            {(props.editStatus && itemClassName !== "minimised") && addItemManual(list, setList, props.updateList, mainHeading, itemHeading)}
         </div>
     );
 };
@@ -155,9 +167,9 @@ export const ListItem = (props) => {
 //         </div>
 //     );
 // }; 
-const addItemManual = (list, setList, updateList) => {
+const addItemManual = (list, setList, updateList, mainHeading, itemHeading) => {
     const addItem = _ => {
-        const result = addListItem(list);
+        const result = addListItem(list, mainHeading, itemHeading);
         setList(result);
         updateList(result);
     };

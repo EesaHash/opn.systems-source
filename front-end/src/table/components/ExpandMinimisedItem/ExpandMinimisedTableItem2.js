@@ -62,7 +62,15 @@ export const ExpandMinimisedTableItem2 = (props) => {
         props.updateList(_list);
     };
     const deleteSubItem = (index) => {
-
+        const _item = [...props.list[props.index].item];
+        if(_item.length > 1)
+            _item.splice(index, 1);
+        else
+            _item[0].data = "";
+        const _list = [...props.list];
+        _list[props.index].item = _item;
+        props.setList(_list);
+        props.updateList(_list);
     };
 
     return(
