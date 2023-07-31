@@ -149,10 +149,11 @@ const getSopsForStage = async (req, res) => {
 
 const getSopsForClientJourney = async (req, res) => {
     try {
-        const sops = await SOP.findAll({
+        let sops = await SOP.findAll({
             where: {
                 clientJourneyID: req.body.clientJourneyID
-            }
+            },
+            raw: true
         });
         if (sops == null || sops.length == 0) {
             console.log(`[FAIL] COULD NOT RETRIEVE SOPS FOR CLIENT JOURNEY ${req.body.clientJourneyID}`);
@@ -160,6 +161,14 @@ const getSopsForClientJourney = async (req, res) => {
                 status: false,
             });
         }
+
+        sops.forEach((s) => {
+            s.definitions = JSON.parse(s.definitions);
+            s.responsibility = JSON.parse(s.responsibility);
+            s.procedure = JSON.parse(s.procedure);
+            s.documentation = JSON.parse(s.documentation);
+        })
+
         console.log(`[SUCCESS] RETRIEVED SOPS FOR CLIENT JOURNEY ID: ${req.body.clientJourneyID}`);
         return res.status(200).json({
             status: true,
