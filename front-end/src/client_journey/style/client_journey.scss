@@ -17,6 +17,7 @@ $create-client-journey-height: 85vh;
     height: fit-content;
     max-height: $create-client-journey-height;
     width: $create-client-journey-width;
+    min-width: fit-content;
     left: calc((100vw - $create-client-journey-width) / 2);
     right: calc((100vw - $create-client-journey-width) / 2);
 }

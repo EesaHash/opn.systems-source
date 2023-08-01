@@ -29,7 +29,7 @@ export const SignUp = _ => {
         try{
             // Check if the required fields are filled
             if(!userInput.email || !userInput.username || !userInput.password || !userInput.firstName || !userInput.lastName){
-                return alert("Please fill in all non-optional fields!");
+                return alert("Please fill in all fields!");
             }
 
             // Check if the password is at least 8 characters

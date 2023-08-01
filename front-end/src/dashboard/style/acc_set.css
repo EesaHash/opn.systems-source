@@ -1,15 +1,14 @@
-/*comments (things to remember to include)*/
-/*when fields get filled there's supposed to be a purple underline underneath*/
 .account-setting {
   font-size: 14px;
-  margin-top: 15vh;
+  top: 5vh;
+  height: -moz-fit-content;
+  height: fit-content;
   max-height: 90vh;
-  width: 39vw;
+  width: 40vw;
   min-width: -moz-fit-content;
   min-width: fit-content;
-  left: 0;
-  margin-left: 30vw;
-  margin-right: 30vw;
+  left: 30vw;
+  right: 30vw;
   overflow: scroll;
 }
 .account-setting .close-button {
@@ -24,9 +23,6 @@
   margin-top: auto;
   margin-left: 150px;
   width: 23vw;
-}
-.account-setting .pop-up-input .email-placeholder {
-  color: #8496AE;
 }
 .account-setting .pop-up-input .change-pass-button {
   color: #2173DF;

@@ -1,48 +1,45 @@
+$account-setting-width: 40vw;
+$account-setting-height: 90vh;
+.account-setting {
+    font-size: 14px;
+    top: calc((100vh - $account-setting-height) / 2);
+    height: fit-content;
+    max-height: $account-setting-height;
+    width: $account-setting-width;
+    min-width: fit-content;
+    left: calc((100vw - $account-setting-width) / 2);
+    right: calc((100vw - $account-setting-width) / 2);
+    overflow: scroll;
 
-/*comments (things to remember to include)*/
-/*when fields get filled there's supposed to be a purple underline underneath*/
-
-.account-setting{
-  font-size: 14px;
-  margin-top: 15vh;
-  max-height: 90vh;
-  width: 39vw;
-  min-width: fit-content;
-  left: 0;
-  margin-left: 30vw;
-  margin-right: 30vw;
-  overflow: scroll;
-    & .close-button{
-      color: black;
-      background: transparent;
-      border: 0;
-      align-items: right;
-      float:right;
-      margin-top: 0;
+    & .close-button {
+        color: black;
+        background: transparent;
+        border: 0;
+        align-items: right;
+        float: right;
+        margin-top: 0;
     }
 
-    & .pop-up-input{
-      //margin-right: 0;
-      margin-top: auto;
-      margin-left: 150px ;
-      width: 23vw;
-      & .email-placeholder{
-        color: #8496AE;
-      }
-      
-      & .change-pass-button{
-        color: #2173DF;
-        font-size: 14px;
-        background: transparent;
-        border:transparent;
-        width: 395px;
-        height: auto;
-        padding: 0 0 0 0;
-        margin-top:auto;
-        text-align: left;
-      }
+    & .pop-up-input {
+        //margin-right: 0;
+        margin-top: auto;
+        margin-left: 150px;
+        width: 23vw;
+
+        & .change-pass-button {
+            color: #2173DF;
+            font-size: 14px;
+            background: transparent;
+            border: transparent;
+            width: 395px;
+            height: auto;
+            padding: 0 0 0 0;
+            margin-top: auto;
+            text-align: left;
+        }
     }
 }
+
 .initial {
     font-size: 30px;
     color: #000000;
@@ -51,32 +48,33 @@
     height: 70px;
     padding-top: 12px;
     border-radius: 50%;
-    text-align:center;
+    text-align: center;
     font-weight: 1000;
     text-transform: uppercase;
     margin-top: 20px;
     margin-left: 20px;
-  }
- 
- .back-button{
-  background: transparent;
-  color: #000000;
-  border: none;
- }
+}
 
- 
- 
-.pop-up-input2{
-  margin-left: 0;
-  & .input[type]{
-    margin-left:0px;
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    border-radius: 4px;
-  }
+.back-button {
+    background: transparent;
+    color: #000000;
+    border: none;
+}
 
-  & .pass-placeholder-color{
-    color: #8496AE;
-  }
+
+
+.pop-up-input2 {
+    margin-left: 0;
+
+    & .input[type] {
+        margin-left: 0px;
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        border-radius: 4px;
+    }
+
+    & .pass-placeholder-color {
+        color: #8496AE;
+    }
 }
