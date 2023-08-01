@@ -32,7 +32,7 @@ const homepageHeader = _ => {
 };
 const otherHeader = _ => {
     return(
-        <div className="menu-bar" style={{backgroundColor: "#030C14"}}>
+        <div className="menu-bar" style={{backgroundColor: "transparent"}}>
             <ul>
                 <li id="logo" className="logo"><a href="/"><img src="./images/green_profile_logo.png" alt="logo"/>Opn.Systems</a></li>
             </ul>
