@@ -84,7 +84,7 @@ button {
   background-color: #F7F8FC;
   border-radius: 9px;
 }
-.dropdown-content .css-i4bv87-MuiSvgIcon-root {
+.dropdown-content .css-i4bv87-MuiSvgIcon-root, .dropdown-content svg {
   margin: 0;
   margin-right: 10px;
 }

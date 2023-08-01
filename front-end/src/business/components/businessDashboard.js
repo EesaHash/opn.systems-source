@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ClientjourneyIcon from '../svg/clientjourneyIcon';
 import OverviewIcon from '../svg/overviewIcon';
 import ProceduresIcon from '../svg/proceduresIcon';
@@ -17,8 +17,11 @@ import { PoliciesDashboard } from '../../cj_policies/components/PoliciesDashboar
 import { TeamMembers } from '../../client_journey/components/TeamMembers';
 import { DepartmentRolesDashboard } from '../../cj_department_roles/components/DepartmentRolesDashboard';
 import { EditBusinessDetail } from './editBusinessDetail';
+import { ArrowForwardIos, KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material';
 
 export const BusinessDashboard = (props) => {
+    const [dropdownStatus, setDropdownStatus] = useState(false);
+    const [hoveredMenu, setHoveredMenu] = useState("");
     const deleteBusiness = _ => {
         try{
             if(!window.confirm("Are you sure to delete this business?"))
@@ -35,6 +38,7 @@ export const BusinessDashboard = (props) => {
                     alert(data.message);
                 });
             removeBusiness();
+            setDropdownStatus(false);
         }catch(error){
             alert(error);
         }
@@ -65,7 +69,13 @@ export const BusinessDashboard = (props) => {
                 index = {props.activeLink2 - 1}
                 business = {props.business} setBusiness = {props.setBusiness}
             />
-            {title(props.business, (props.activeLink2 - 1), deleteBusiness)}
+            {title(
+                props.business, 
+                (props.activeLink2 - 1), 
+                deleteBusiness, 
+                dropdownStatus, setDropdownStatus,
+                hoveredMenu, setHoveredMenu
+            )}
             {body(
                 props.business, props.activeLink2,
                 props.activeLink3, props.setActiveLink3, 
@@ -76,9 +86,13 @@ export const BusinessDashboard = (props) => {
         </div>
     );
 };
-const title = (business, businessIndex, deleteBusiness) => {
+const title = (business, businessIndex, deleteBusiness, dropdownStatus, setDropdownStatus, hoveredMenu, setHoveredMenu) => {
+    const editBusinessDetailDropdown = _ => {
+        setDropdownStatus(!dropdownStatus);
+    };
     const openEditBusinessForm = _ => {
         document.getElementById("editBusinessForm").style.display = "block";
+        setDropdownStatus(false);
     };
     return(
         <div id="business-dashboard-title" className='business-dashboard-title'>
@@ -86,14 +100,13 @@ const title = (business, businessIndex, deleteBusiness) => {
                 <div className='business-title'>
                     <img src={`./images/businessIcon/businessIcon${(businessIndex%6)+1}.png`} alt="logo"/>
                     <h1>{business.businessName}</h1>
-                    <div className='dropdown-arrow-area'>
-                        <div className='dropdown-arrow'>
-                            <div className="dropdown-content">
-                                <button onClick={openEditBusinessForm}><EditBusinessIcon/>  Edit Business Details</button>
-                                <button onClick={deleteBusiness} style={{color: "#EB5757"}} ><DeleteBusinessIcon style={{color: "#EB5757"}}/>  Delete</button>
-                            </div>
+                    <button className="business-dropdown-menu" onClick={editBusinessDetailDropdown} >{dropdownStatus ? <KeyboardArrowUp/> : <KeyboardArrowDown/>}</button>
+                    { dropdownStatus &&
+                        <div className="dropdown-content">
+                            <button onClick={openEditBusinessForm} onMouseEnter={() => setHoveredMenu("edit-business-details")} onMouseLeave={() => setHoveredMenu("")} ><EditBusinessIcon/>  Edit Business Details{hoveredMenu === "edit-business-details" && <ArrowForwardIos className="hover-arrow"/> } </button>
+                            <button onClick={deleteBusiness} style={{color: "#EB5757"}} onMouseEnter={() => setHoveredMenu("delete-business")} onMouseLeave={() => setHoveredMenu("")}><DeleteBusinessIcon style={{color: "#EB5757"}}/>  Delete{hoveredMenu === "delete-business" && <ArrowForwardIos className="hover-arrow"/> }</button>
                         </div>
-                    </div>
+                    }
                 </div>
                 <h3>{`${business.industry} - ${business.companySize}`}</h3>
             </div>

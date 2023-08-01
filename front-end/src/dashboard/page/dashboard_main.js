@@ -108,6 +108,7 @@ export const DashboardPage = () => {
                     setProducts(data.products);
                 }
             };
+            setProducts([]);
             if(business.id){
                 getProduct();
             }

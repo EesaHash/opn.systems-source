@@ -327,6 +327,17 @@
   height: 15vh;
   margin-bottom: 1vw;
 }
+.business-dashboard .business-dashboard-title .business-dropdown-menu {
+  background-color: transparent;
+  border: none;
+  color: black;
+}
+.business-dashboard .business-dashboard-title .dropdown-content {
+  float: none;
+  margin-top: 30px;
+  margin-left: 200px;
+  width: 275px;
+}
 .business-dashboard .business-dashboard-title .business-dashboard-title-content {
   padding: 3vh;
   display: block;
