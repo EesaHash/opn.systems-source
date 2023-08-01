@@ -72,9 +72,9 @@ const emptyPane = (user) => {
                         </div> */}
                         <div className="container1">
                             <div className="message-container1">
-                                <div className="text" style={{marginTop:"3.5%"}}><BusinessIcon2/> You've reached your business limit (1/1)</div>
+                                <div className="text" style={{paddingTop:"0.8vh"}}><BusinessIcon2/> You've reached your business limit (1/1)</div>
                             </div>
-                                <div className="upgrade-text"style={{marginTop:"3.5%"}}>
+                                <div className="upgrade-text"style={{paddingTop:"0.8vh", paddingBottom:"1.2vh"}}>
                                 When you upgrade to Premium, you can create unlimited business, roles, and invite your team members.
                                 </div>
                             </div>
@@ -97,9 +97,9 @@ const emptyPane = (user) => {
 
             <div className="main-dashboard-people">
                 <div className="businesstitle">
-                    <text style={{fontSize:"2.5vw"}}>Steps to follow</text>
+                    <text style={{fontSize:"2.3vw"}}>Walkthrough</text>
                 </div>
-                <div className="work" style={{margin:"0 10vw 0 9vw"}}>
+                <div className="work" style={{ padding: "0 10% 0 9%" }}>
                 <WorkflowThing/>
                 </div>
                 {/* <div className="teammember" style={{margin:"0 auto 0 auto"}}>

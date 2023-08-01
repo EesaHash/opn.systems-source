@@ -139,8 +139,8 @@ $secondary-color: #3235FF;
 
 .businesses-overview {
     display: flex;
-    margin-top: 16px;
-    height: 34vh;
+    margin-top: 10px;
+    height: 32vh;
     gap:1px;
 
     & .yourbusiness,
@@ -154,8 +154,8 @@ $secondary-color: #3235FF;
         flex-direction: column;
         align-items: flex-start;
         align-self: stretch;
-        gap: 16px;
-        flex: 1 0 0;
+        gap: 2%;
+        flex: 1 1 0;
         border-radius: 20px;
         background: #FFF;
         height: 100% !important;
@@ -168,13 +168,14 @@ $secondary-color: #3235FF;
         justify-content: center;
         align-items: center;
         gap: 10px;
-        flex: 1 0 0;
+        flex: 1 1 0;
         align-self: stretch;
         border-radius: 13.971px;
         background: linear-gradient(133deg, #3235FF 0%, #5C5FFF 100%);
         color: #F7F8FC;
         text-align: center;
         overflow: scroll;
+        height: 100%;
 
         & .updateslogo {
             align-items: center;
@@ -224,7 +225,7 @@ $secondary-color: #3235FF;
    & .container1 {
         display: flex;
         width:$halfbox-width;
-        height:8.5vh;
+        height:8.4vh;
         flex-direction: column;
         align-items: center;
         justify-content: center;
@@ -292,7 +293,7 @@ $people-height: calc(96vh - 50px - 1vh - 12vh - 33vh - 32px);
     height: fit-content !important;
     width: $mainbox-width;
     display: flex;
-    padding: 20px 30px 40px 30px;
+    padding: 10px 30px 30px 30px;
     flex-direction: column;
     align-items: flex-start;
     gap: 16px;

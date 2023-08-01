@@ -20,7 +20,8 @@ export const CreateBusiness = (props) => {
         position: "",
         teamContactEmail: "",
         phoneNumber: ""
-    });
+    } );
+    
     const [loading, setLoading] = useState(false);
     const titlePage = "Create Business";
 
@@ -218,6 +219,7 @@ export const CreateBusiness = (props) => {
         const setKeyContactPhone = (value) => {
             setKeyContact({...keyContact, phoneNumber: value.replace(/\D/g, '')});
         };
+   
         return(
             <div id="create-business-step2" className="content-form" style={{display: "none"}}>
                 <h2>{titlePage}</h2>
@@ -384,3 +386,4 @@ export const teamMemberInputElements = (teamList, setTeamList, index, removeTeam
         </div>
     );
 };
+
