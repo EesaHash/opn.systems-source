@@ -4,8 +4,9 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import CloseIcon from '@mui/icons-material/Close';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { passwordInputItem, readOnlyInput, textInputItem } from '../../public_components/popupInput';
+import { logOut } from '../../App';
 
-export const ModifyAccountDetails = (props) => {
+export const AccountSetting = (props) => {
     // Update Profile
     const [accountDetailsInput, setAccountDetailsInput] = useState(props.user);
     useEffect(() => {
@@ -124,6 +125,9 @@ export const ModifyAccountDetails = (props) => {
                     {passwordInputItem("Old Password", passwordInput.oldPassword, updateOldPassword, handleKeypress2)}
                     {passwordInputItem("New Password", passwordInput.newPassword, updateNewPassword, handleKeypress2)}
                     {passwordInputItem("Confirm Password", passwordInput.confirmPassword, updateConfirmPassword, handleKeypress2)}
+                    <div className="pop-up-input">
+                        <button className='change-pass-button' onClick={forgotPassword}>Forgot Password?</button>
+                    </div>
                 </div>
                 <div className='pop-up-button'>
                     <button className='cancel-button' onClick={closeForm}>Cancel</button>
@@ -178,6 +182,10 @@ export const ModifyAccountDetails = (props) => {
     const changePassword = _ => {
         document.getElementById("setup_acc").style.display = "none";
         document.getElementById("change_pass").style.display = "block";
+    };
+    const forgotPassword = _ => {
+        logOut();
+        window.location.href = '/forgotpassword';
     };
 
     // Close Form

@@ -10,12 +10,12 @@ import { Profile } from "../components/profile";
 import { getUserID } from "../../App";
 import { CreateBusiness } from "../../business/components/createBusiness";
 import { CreateClientJourney } from "../../client_journey/components/createClientJourney";
-import { ModifyAccountDetails } from "../components/account_settings";
 import { AccessLimit } from "../../warning_pages/components/AccessLimit";
 import { FutureFeature } from "../../warning_pages/components/FutureFeature";
 import { CreateProcedure } from "../../cj_procedure/components/CreateProcedure";
 import { InviteTeamMember } from "../../client_journey/components/InviteTeamMember";
 import { GenerateProcedure } from "../../cj_procedure/components/GenerateProcedure";
+import { AccountSetting } from "../../account/components/AccountSetting";
 
 export const DashboardPage = () => {
     const [userID, setUserID] = useState();
@@ -172,7 +172,7 @@ export const DashboardPage = () => {
                 <AccessLimit/>
                 <FutureFeature/>
                 <GenerateProcedure documentName = {business.businessName} />
-                <ModifyAccountDetails
+                <AccountSetting
                     user = {user}
                     setUser = {setUser}
                 />
