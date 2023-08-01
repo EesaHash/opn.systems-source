@@ -59,6 +59,7 @@
 .user-authentication button {
   width: -moz-fit-content;
   width: fit-content;
+  padding: 12px 24px;
 }
 .user-authentication .forgot-password {
   width: auto;

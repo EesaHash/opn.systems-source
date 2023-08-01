@@ -18,6 +18,7 @@ app.use("/api/authenticateuser", require("./controllers/account/authenticateUser
 app.use("/api/getuserdata", require("./controllers/account/getUserDataController"));
 app.use("/api/updateuserdata", require("./controllers/account/UpdateUserDataController"));
 app.use("/api/updatepassword", require("./controllers/account/UpdatePasswordController"));
+app.use("/api/resetpassword", require("./controllers/account/ResetPasswordController"));
 
 // TEAM MEMBERS APIs CONTROLLERS
 app.use("/api/teammember/getbusinessteam", require("./controllers/team/getTeamMemberController"));

@@ -151,20 +151,21 @@ export const ForgotPassword = _ => {
             return alert("Password must be at least 8 characters long!");
         if(!(password === confirmPassword))
             return alert("Confirm password does not match with new password!");
-        fetch("/api/", {
+        fetch("/api/resetpassword", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                email: userID
+                email: emailInput,
+                password: password
             })
         })
             .then((res) => {return res.json(); })
             .then((data) => {
                 alert(data.message);
                 if(data.status){
-                    
+                    window.location.href = '/signin';
                 }
             });
     };
