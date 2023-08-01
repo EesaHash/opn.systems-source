@@ -33,7 +33,7 @@ export const ModifyAccountDetails = (props) => {
                 .then((data) => {
                     if(data.status){
                         props.setUser(accountDetailsInput);
-                        closeForm();
+                        resetForm();
                     }
                     alert(data.message);
                 });
@@ -55,6 +55,9 @@ export const ModifyAccountDetails = (props) => {
     const closeForm = _ => {
         // Reset the input fields
         setAccountDetailsInput(props.user);
+        resetForm();
+    };
+    const resetForm = _ => {
         // Reset the form to step 1
         // document.getElementById("setup_acc").style.display = "block";
         // Close the form
