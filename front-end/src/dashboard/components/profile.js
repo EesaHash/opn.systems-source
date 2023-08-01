@@ -1,18 +1,17 @@
 import React, { useState } from "react";
 import "../style/profile.css";
 import { logOut } from "../../App";
-import MeetingRoom from '@mui/icons-material/MeetingRoom';
-import TuneSharpIcon from '@mui/icons-material/TuneSharp';
-
-import SettingsIcon from '../../business/svg/clientjourneyIcon.js';
+// eslint-disable-next-line
+import { ArrowForwardIos, KeyboardArrowDown, KeyboardArrowUp, Logout, Notifications, Settings } from "@mui/icons-material";
 
 export const Profile = (props) => {
     const [dropdownStatus, setDropdownStatus] = useState(false);
+    const [hoveredMenu, setHoveredMenu] = useState("");
     const openAccountSettingForm = _ => {
         document.getElementById("account-setting-Form").style.display = "block";
+        setDropdownStatus(false);
     };
     const profileDropwdownAction = _ => {
-        document.getElementById("profile-dropdown").style.display = dropdownStatus ? "none" : "grid";
         setDropdownStatus(!dropdownStatus);
     };
     return (
@@ -26,15 +25,14 @@ export const Profile = (props) => {
                 <h1>{props.user && `${props.user.first_name}`}</h1>
                 <h2>Business Owner</h2>
             </div>
-            <div className="dropdown-arrow-area">
-                <div className="dropdown-arrow" onClick={profileDropwdownAction}>
-                    <div id = "profile-dropdown" className="dropdown-content">
-                        <button ><TuneSharpIcon />Admin Console</button>
-                        <button onClick={openAccountSettingForm}><SettingsIcon /> Account Settings</button>
-                        <a href="/" onClick={logOut} style={{ color: 'red' }}><MeetingRoom />Log Out</a>
-                    </div>
+            <button className="profile-dropdown-menu" onClick={profileDropwdownAction} >{dropdownStatus ? <KeyboardArrowUp/> : <KeyboardArrowDown/>}</button>
+            { dropdownStatus &&
+                <div className="dropdown-content">
+                    <button onClick={openAccountSettingForm} onMouseEnter={() => setHoveredMenu("account-setting")} onMouseLeave={() => setHoveredMenu("")} ><Settings /> Account Settings {hoveredMenu === "account-setting" && <ArrowForwardIos className="hover-arrow"/> } </button>
+                    {/* <button onClick={null} onMouseEnter={() => setHoveredMenu("notification")} onMouseLeave={() => setHoveredMenu("")} ><Notifications /> Notifications {hoveredMenu === "notification" && <ArrowForwardIos className="hover-arrow"/> } </button> */}
+                    <a href="/" onClick={logOut} style={{ color: 'red' }} onMouseEnter={() => setHoveredMenu("logout")} onMouseLeave={() => setHoveredMenu("")} ><Logout />Log Out  {hoveredMenu === "logout" && <ArrowForwardIos className="hover-arrow"/> } </a>
                 </div>
-            </div>
+            }
         </div>
 
     );

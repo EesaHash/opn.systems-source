@@ -3,8 +3,6 @@ const router = express.Router();
 const { sendEmailConfirmation } = require("../email/emailSenderController");
 const jwt = require("jsonwebtoken");
 const { getUsers } = require("./UserController");
-const User = require("../../models/user");
-const { updateAll } = require("../../security/encryptAll");
 
 router.post("/", async (req, res) => {
     try{

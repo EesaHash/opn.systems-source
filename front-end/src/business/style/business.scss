@@ -77,6 +77,18 @@ $navbaritem-width: calc(pane.$mainbox-width / 7 + 1.5vw);
         height: 15vh;
         margin-bottom: 1vw;
 
+        & .business-dropdown-menu{
+            background-color: transparent;
+            border: none;
+            color: black;
+        }
+        & .dropdown-content{
+            float: none;
+            margin-top: 30px;
+            margin-left: 200px;
+            width: 275px;
+        }
+
         & .business-dashboard-title-content {
             padding: 3vh;
             display: block;

@@ -4,6 +4,22 @@ export const emailInputItem = (label, input, setInput, handleKeypress) => {
 export const textInputItem = (label, input, setInput, handleKeypress) => {
     return inputItem(label, input, setInput, handleKeypress, "text");
 };
+export const passwordInputItem = (label, input, setInput, handleKeypress) => {
+    return inputItem(label, input, setInput, handleKeypress, "password");
+};
+export const readOnlyInput = (label, input, type) => {
+    return(
+        <div className="pop-up-input">
+            <label>{label}</label>
+            <input 
+                style={{color: "#8496AE"}}
+                type={type}
+                value={input}
+                readOnly
+            />
+        </div>  
+    );
+};
 const inputItem = (label, input, setInput, handleKeypress, type) => {
     return(
         <div className="pop-up-input">

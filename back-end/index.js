@@ -16,6 +16,8 @@ app.use("/confirmation", require("./controllers/email/emailConfirmationControlle
 app.use("/api/forgetpassword", require("./controllers/account/forgetPasswordController"));
 app.use("/api/authenticateuser", require("./controllers/account/authenticateUserController"));
 app.use("/api/getuserdata", require("./controllers/account/getUserDataController"));
+app.use("/api/updateuserdata", require("./controllers/account/UpdateUserDataController"));
+app.use("/api/updatepassword", require("./controllers/account/UpdatePasswordController"));
 
 // TEAM MEMBERS APIs CONTROLLERS
 app.use("/api/teammember/getbusinessteam", require("./controllers/team/getTeamMemberController"));
