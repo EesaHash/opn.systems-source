@@ -107,7 +107,7 @@ export const ModifyAccountDetails = (props) => {
         confirmPassword: ""
     });
     useEffect(() => {
-        if(passwordInput.oldPassword && passwordInput.newPassword && passwordInput.newPassword === passwordInput.confirmPassword)
+        if(passwordInput.oldPassword && passwordInput.newPassword.length >= 8 && passwordInput.newPassword === passwordInput.confirmPassword)
             document.getElementById("change-pass-btn").style.backgroundColor = "#5D5FEF";
         else
             document.getElementById("change-pass-btn").style.backgroundColor = "#A2ABBA";
