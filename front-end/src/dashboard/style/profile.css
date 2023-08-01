@@ -332,14 +332,6 @@
   margin: auto;
   height: 50px;
   position: relative;
-  /*@media screen and (max-width: 750px) {
-      & .profile-picture{
-          display: none;
-          width: 0;
-          height: 0;
-          margin-right: 0;
-      }
-  }*/
 }
 .profile-header .profile-picture {
   display: block;
@@ -351,13 +343,11 @@
 .profile-header .profile-name {
   display: block;
   width: calc(15vw - 30px - 35px - 1vw);
-  overflow: scroll;
   margin-right: 1vw;
 }
 .profile-header .profile-name h1 {
   font-size: 16px;
   white-space: nowrap;
-  overflow: scroll;
   margin-top: 3px;
 }
 .profile-header .profile-name h2 {
@@ -365,27 +355,13 @@
   color: #808080;
   margin-top: -5px;
 }
-.profile-header .dropdown-arrow {
-  border-top-color: black;
-  top: 15px;
-  display: block;
-  position: relative;
+.profile-header .profile-dropdown-menu {
+  background-color: transparent;
+  border: none;
+  color: black;
 }
-.profile-header .dropdown-arrow:hover {
-  margin-top: -15px;
-}
-.profile-header .dropdown-arrow .dropdown-content {
-  margin-top: 15px;
-  right: 50px;
-  position: fixed;
-}
-.profile-header .dropdown-arrow .dropdown-content a, .profile-header .dropdown-arrow .dropdown-content button {
-  text-decoration: none;
-}
-.profile-header .dropdown-arrow .dropdown-content a:hover, .profile-header .dropdown-arrow .dropdown-content button:hover {
-  border-bottom: transparent;
-  display: block;
-}
-.profile-header .dropdown-arrow .css-i4bv87-MuiSvgIcon-root {
-  margin-right: 10px;
+.profile-header .dropdown-content {
+  margin-top: 30px;
+  right: 0px;
+  width: 250px;
 }/*# sourceMappingURL=profile.css.map */

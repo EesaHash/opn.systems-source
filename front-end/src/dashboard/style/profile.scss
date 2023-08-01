@@ -39,11 +39,9 @@ $profile-name-width: calc(15vw - 30px - 35px - 1vw);
     & .profile-name{
         display: block;
         width: $profile-name-width;
-        overflow: scroll;
         & h1{
             font-size: 16px;
             white-space: nowrap;
-            overflow: scroll;
             margin-top: 3px;
         }
         & h2{
@@ -53,36 +51,14 @@ $profile-name-width: calc(15vw - 30px - 35px - 1vw);
         }
         margin-right: 1vw;
     }
-    & .dropdown-arrow{
-        border-top-color: black;
-        top: 15px;
-        display: block;
-        position: relative;
-        &:hover{
-            margin-top: -15px;
-        }
-        & .dropdown-content{
-            margin-top: 15px;
-            right: 50px;
-            position: fixed;
-            & a, button{
-                text-decoration: none;
-                &:hover{
-                    border-bottom: transparent;
-                    display: block;
-                }
-            }
-        }
-        & .css-i4bv87-MuiSvgIcon-root{
-            margin-right: 10px;
-        }
+    & .profile-dropdown-menu{
+        background-color: transparent;
+        border: none;
+        color: black;
     }
-    /*@media screen and (max-width: 750px) {
-        & .profile-picture{
-            display: none;
-            width: 0;
-            height: 0;
-            margin-right: 0;
-        }
-    }*/
+    & .dropdown-content{
+        margin-top: 30px;
+        right: 0px;
+        width: 250px;
+    }
 }

@@ -42,9 +42,6 @@ button{
 // -----DROPDOWN ARROW-----
 .dropdown-arrow-area{
     height: 100px;
-    &:hover .dropdown-content{
-        display: grid;
-    }
 }
 .dropdown-arrow {
     margin-left: 10px;
@@ -59,28 +56,43 @@ button{
         border-bottom: 10px solid black !important;
         border-top: 10px solid transparent !important;
     }
-    & .dropdown-content{
-        display: none;
-        position: absolute;
-        z-index: 1;
-        background-color: #FFF;
-        white-space: nowrap;
-        padding: 10px;
-        width: fit-content;
-        box-shadow: 0 0 10px #888888;
-        border-radius: 9px;
-        & button, a{
-            margin: 8px 0;
-            padding: 12px;
-            background-color: transparent;
-            border: none;
-            color: black;
-            text-align: left;
-            &:hover{
-                background-color: #F7F8FC;
-                border-radius: 9px;
-            }
+}
+
+// -----DROPDOWN MENU-----
+.dropdown-content{
+    display: grid;
+    position: absolute;
+    z-index: 500;
+    float: right;
+    background-color: #FFF;
+    white-space: nowrap;
+    padding: 10px;
+    width: fit-content;
+    box-shadow: 0 0 10px #888888;
+    border-radius: 9px;
+    & button, a{
+        margin: 8px 0;
+        padding: 12px;
+        background-color: transparent;
+        border: none;
+        color: black;
+        text-align: left;
+        text-decoration: none;
+        &:hover{
+            background-color: #F7F8FC;
+            border-radius: 9px;
         }
+    }
+    & .css-i4bv87-MuiSvgIcon-root{
+        margin: 0;
+        margin-right: 10px;
+    }
+    & .hover-arrow{
+        margin-top: 3px;
+        margin-right: 0;
+        margin-left: 10px;
+        float: right;
+        font-size: 16px;
     }
 }
 
