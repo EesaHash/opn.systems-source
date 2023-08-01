@@ -18,8 +18,25 @@ export const ModifyAccountDetails = (props) => {
     // Update Profile
     const updateProfile = _ => {
         try {
-            if(!accountDetailsInput.username || !accountDetailsInput.first_name || !accountDetailsInput.last_name)
+            if(!accountDetailsInput.username || !accountDetailsInput.first_name || !accountDetailsInput.last_name || !accountDetailsInput.password)
                 return alert("Please fill in all fields!");
+            fetch("/api/updateuserdata", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    userData: accountDetailsInput
+                })
+            })
+                .then((res) => {return res.json(); })
+                .then((data) => {
+                    if(data.status){
+                        props.setUser(accountDetailsInput);
+                        closeForm();
+                    }
+                    alert(data.message);
+                });
         } catch (error) {
             console.log(error);
         }
