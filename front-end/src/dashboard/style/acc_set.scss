@@ -10,6 +10,22 @@ $account-setting-height: 90vh;
     left: calc((100vw - $account-setting-width) / 2);
     right: calc((100vw - $account-setting-width) / 2);
     overflow: scroll;
+    
+    & .header{
+        display: flex;
+        & h2{
+            margin: 0;
+        }
+        & svg{
+            margin-right: 10px;
+        }
+        & .close-button{
+            float: right;
+            text-align: right;
+            margin: auto;
+            margin-right: -10px;
+        }
+    }
 
     & .close-button {
         color: black;
@@ -31,7 +47,7 @@ $account-setting-height: 90vh;
             font-size: 14px;
             background: transparent;
             border: transparent;
-            width: 395px;
+            width: fit-content;
             height: auto;
             padding: 0 0 0 0;
             margin-top: auto;
@@ -63,18 +79,11 @@ $account-setting-height: 90vh;
 
 
 
-.pop-up-input2 {
+.change-password-content {
     margin-left: 0;
 
-    & .input[type] {
-        margin-left: 0px;
+    & .pop-up-input{
         width: 100%;
-        padding: 12px 20px;
-        margin: 8px 0;
-        border-radius: 4px;
-    }
-
-    & .pass-placeholder-color {
-        color: #8496AE;
+        margin-left: 0;
     }
 }

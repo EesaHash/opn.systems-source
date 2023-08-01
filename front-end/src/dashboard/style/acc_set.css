@@ -11,6 +11,21 @@
   right: 30vw;
   overflow: scroll;
 }
+.account-setting .header {
+  display: flex;
+}
+.account-setting .header h2 {
+  margin: 0;
+}
+.account-setting .header svg {
+  margin-right: 10px;
+}
+.account-setting .header .close-button {
+  float: right;
+  text-align: right;
+  margin: auto;
+  margin-right: -10px;
+}
 .account-setting .close-button {
   color: black;
   background: transparent;
@@ -29,7 +44,8 @@
   font-size: 14px;
   background: transparent;
   border: transparent;
-  width: 395px;
+  width: -moz-fit-content;
+  width: fit-content;
   height: auto;
   padding: 0 0 0 0;
   margin-top: auto;
@@ -57,16 +73,10 @@
   border: none;
 }
 
-.pop-up-input2 {
+.change-password-content {
   margin-left: 0;
 }
-.pop-up-input2 .input[type] {
-  margin-left: 0px;
+.change-password-content .pop-up-input {
   width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  border-radius: 4px;
-}
-.pop-up-input2 .pass-placeholder-color {
-  color: #8496AE;
+  margin-left: 0;
 }/*# sourceMappingURL=acc_set.css.map */
