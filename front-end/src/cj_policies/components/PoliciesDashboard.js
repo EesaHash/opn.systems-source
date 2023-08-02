@@ -2,11 +2,10 @@ import React, { useEffect, useState } from 'react';
 import "../style/policies.css";
 import { FolderList } from '../../table/components/Folder/FolderList';
 import { openAccessLimitForm, openFutureFeatureWarningForm } from '../../dashboard/page/dashboard_main';
-import { ListTable3 } from '../../table/components/List/ListTable3';
 
 export const PoliciesDashboard = (props) => {
-    const [journey, setJourney] = useState({});
-    const [index, setIndex] = useState(-1);
+    const [setJourney] = useState({});
+    const [setIndex] = useState(-1);
     useEffect(() => {
         const mainTable = document.getElementById("policies-main-table");
         const secondaryTable = document.getElementById("policies-secondary-table");
@@ -15,6 +14,7 @@ export const PoliciesDashboard = (props) => {
             setJourney({});
             secondaryTable.style.display = "none";
         }
+        // eslint-disable-next-line
     }, [props.activeLink2]);
     const openCreateJourneyForm = _ => {
         if(props.journeys.length > 0)
@@ -31,21 +31,6 @@ export const PoliciesDashboard = (props) => {
             setIndex(index);
             secondaryTable.style.display = "block";
         }
-    };
-    const showJourneyList = _ => {
-        const mainTable = document.getElementById("policies-main-table");
-        const secondaryTable = document.getElementById("policies-secondary-table");
-        if(mainTable && secondaryTable){
-            mainTable.style.display = "block";
-            setJourney({});
-            secondaryTable.style.display = "none";
-        }
-    };
-    const openCreatePolicyForm = _ => {
-        openAccessLimitForm();
-    };
-    const openPolicyDetail = _ => {
-        openAccessLimitForm();
     };
 
     return(

@@ -32,7 +32,7 @@ export const BusinessDashboard = (props) => {
                     headers: {
                         "Content-Type": "application/json"
                     },
-                    body: JSON.stringify({id: props.business.id})
+                    body: JSON.stringify({id: deleteConfirmation})
                 })
                     .then((res) => {return res.json(); })
                     .then((data) => {
@@ -47,6 +47,7 @@ export const BusinessDashboard = (props) => {
         };
         if(deleteConfirmation !== -1)
             deleteBusiness();
+        // eslint-disable-next-line
     }, [deleteConfirmation]);
     const openDeleteConfirmation = _ => {
         try{

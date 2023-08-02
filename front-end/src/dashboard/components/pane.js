@@ -127,11 +127,3 @@ const emptyPane = (user) => {
         </div>
     );
 };
-const peopleTemplate = (gender) => {
-    return(
-        <div className="team-member-icon">
-            <img src={`./images/${gender}_profile.png`} alt="femicon"/>
-            <div className="emptyname"></div>
-        </div>
-    );
-};
