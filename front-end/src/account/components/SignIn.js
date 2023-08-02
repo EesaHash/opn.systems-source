@@ -1,3 +1,4 @@
+// Import necessary libraries and modules
 import React, {useEffect, useState} from "react";
 import "../style/account.css";
 import { getUserID } from "../../App";
@@ -10,21 +11,24 @@ export const SignIn = _ => {
     });
     let rememberMe = false;
 
+    /* Fetch the user ID and set it in the state on component mount */
     getUserID().then(res => setUserID(res));
 
+    /* Update the "Sign In" button's background color based on email and password input validation */
     useEffect(() => {
         if(input.email && input.password.length >= 8)
             document.getElementById("sign-in-btn").style.backgroundColor = "#5D5FEF";
         else
             document.getElementById("sign-in-btn").style.backgroundColor = "#A2ABBA";
     }, [input]);
-
+    /* Function to handle the sign-in process */
     const signIn = _ => {
         try{
             // Check if the required fields are filled
             if(!input.email || !input.password){
                 return alert("Please fill in all non-optional fields!");
             }
+            // Send a POST request to the server to validate the login credentials
             fetch("/api/login", {
                 method: "POST",
                 headers: {
@@ -38,6 +42,7 @@ export const SignIn = _ => {
             })
                 .then((res) => {return res.json(); })
                 .then((data) => {
+                    // If login is successful, store the login token and redirect to the dashboard
                     if(data.status){
                         localStorage.setItem("rememberMe", rememberMe);
                         if(rememberMe)
@@ -53,15 +58,18 @@ export const SignIn = _ => {
             return alert(error);
         }
     };
+    /* Function to handle changes in the "Remember Me" checkbox */
     const handleChange = (e) => {
         rememberMe = e.target.checked;
     };
+    /* Function to handle Enter key press event for the sign-in process */
     const handleKeypress = e => {
         if(e.key === "Enter"){
             signIn();
         }
     };
 
+    /* If the user is already authenticated (has a userID), redirect to the dashboard */
     if(userID !== "none") return window.location.href = "/";
     return(
         <div className = "page1">
