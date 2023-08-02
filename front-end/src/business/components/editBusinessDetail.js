@@ -70,7 +70,6 @@ export const EditBusinessDetail = (props) => {
                     <h2>Edit Business Details</h2>
                     <button className='close-button' onClick={closeForm}><Close /></button>
                 </div>
-                <h2>Edit Business Details <button className='close-button' onClick={closeForm}><CloseIcon /></button></h2>
                 <hr/>
                 <div style={{display: "flex"}}>
                     <div className='business-icon'>

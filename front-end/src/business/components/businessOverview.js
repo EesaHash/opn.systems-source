@@ -1,7 +1,6 @@
 import React from 'react';
 //import "../style/business.css";
 import "../style/businessOverview.css"
-import ChatIcon from '../svg/chatIcon';
 import PeopleIcon from '../svg/peopleIcon';
 import WavingWoman from '../svg/wavingWoman';
 import PhoneIcon from '../svg/phoneIcon';
