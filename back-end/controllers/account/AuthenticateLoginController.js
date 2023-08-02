@@ -4,6 +4,11 @@ const jwt = require("jsonwebtoken");
 const { isEmailExist } = require("./UserController");
 require ("dotenv").config();
 
+/**
+ * POST MAPPING for login authentication. Verifies the existence of an email in DB
+ * JWT tokens are used for verification
+ */
+
 router.post("/", async (req, res) => {
     try{
         const token = req.body.token;
@@ -31,18 +36,3 @@ router.post("/", async (req, res) => {
     }
 });
 module.exports = router;
-
-// const isUserExists = (userID) => {
-//     const sql = `SELECT * FROM user_t WHERE user_id = '${userID}';`;
-
-//     return new Promise((resolve, reject) => {
-//         connection.query(sql, (err, result) => {
-//             if(err){
-//                 console.log(err);
-//                 return reject(null);
-//             }else{
-//                 return resolve(result.rows);
-//             }
-//         });
-//     });
-// };

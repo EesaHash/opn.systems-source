@@ -2,6 +2,10 @@ const express = require ("express");
 const router = express.Router();
 const { isEmailExist, isUsernameExist } = require("./UserController");
 
+
+/**
+ * POST MAPPING for user authentication, checks for existing email/username then sends an indicative response.
+ */
 router.post("/", async (req, res) => {
     try{
         const {username, email} = req.body;

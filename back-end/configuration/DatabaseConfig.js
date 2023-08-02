@@ -2,6 +2,11 @@ require ("dotenv").config();
 const { Client } = require("pg");
 const Sequelize = require("sequelize");
 
+
+/**
+ * Sequelize Instatiation, 
+ * Providing the variables for the AWS database from the env file.
+ */
 const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
   host: process.env.DB_HOST,
   dialect: 'postgres',
@@ -9,6 +14,10 @@ const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, proces
 });
 
 
+
+/**
+ * Syncing the models and tables together. Alteration has been set to true, enabling addition of columns, changing properties
+ */
 (async () => {
   try {
     await sequelize.sync({ alter: true });
@@ -17,6 +26,10 @@ const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, proces
     console.error('Error syncing Sequelize models:', error);
   }
 })();
+
+/**
+ * Manual Connection to Database, may not be required but testing needed to determine for sure.
+ */
 
 const db = {
   host: process.env.DB_HOST,

@@ -1,19 +1,8 @@
 const sequelize = require('../configuration/DatabaseConfig').sequelize;
 const User = require('./user');
-const {DataTypes} = require('sequelize');
-/*
-    Business Model
-    - id
-    - businessName
-    - businessType
-    - industry
-    - companySize
-    - businessObjective
-    - email
-    These are the variables that will be stored in the database containing responses entered by the app user
-    Note: these variables do not accurately represent the questions put forth to the user, they are just to store the answers.
-    This means that what the user sees on screen may be different to how it is called internally in code language.
-*/
+const { DataTypes } = require('sequelize');
+
+// Define the Business model using Sequelize
 const Business = sequelize.define('Business', {
     id: {
         type: DataTypes.INTEGER,
@@ -42,14 +31,16 @@ const Business = sequelize.define('Business', {
     }
 });
 
-// Relation with User
-User.hasMany(Business, { 
+// Establish the relationship between Business and User using Sequelize associations
+// A User can have many Businesses, so the User model has a one-to-many relationship with the Business model.
+// 'email' is the foreign key linking them.
+User.hasMany(Business, {
     foreignKey: 'email',
-    onUpdate: 'CASCADE',
-    onDelete: 'CASCADE'
+    onUpdate: 'CASCADE', // If a user's email is updated, all associated businesses will also be updated.
+    onDelete: 'CASCADE' // If a user is deleted, all associated businesses will also be deleted.
 });
 Business.belongsTo(User, {
-    foreignKey: 'email'
+    foreignKey: 'email' // The foreign key in the Business model that references the User model.
 });
 
 module.exports = Business;
