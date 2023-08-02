@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 //import "../style/business.css";
 import "../style/businessOverview.css"
 import PeopleIcon from '../svg/peopleIcon';
