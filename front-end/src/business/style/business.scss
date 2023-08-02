@@ -57,8 +57,10 @@
         textarea,
         .dropdown {
             margin-bottom: 20px;
+            border-width: thin;
         }
     }
+    
 }
 
 $body-height: calc(100vh - 2vw - 15vh - 50px - 4vh);
@@ -137,7 +139,7 @@ $navbaritem-width: calc(pane.$mainbox-width / 7 + 1.5vw);
                 }
 
                 & .dropdown-arrow {
-                    border-top-color: black;
+                    border-bottom-color: black;
                     display: block;
                     top: 20px;
                     position: relative;
@@ -272,4 +274,13 @@ $navbaritem-width: calc(pane.$mainbox-width / 7 + 1.5vw);
             height: 10vh !important;
         }
     }
+}
+
+.close-button {
+    color: black;
+    background: transparent;
+    border: 0;
+    align-items: right;
+    float: right;
+    margin-top: 0;
 }

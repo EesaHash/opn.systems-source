@@ -314,6 +314,7 @@
 .edit-business .business-detail textarea,
 .edit-business .business-detail .dropdown {
   margin-bottom: 20px;
+  border-width: thin;
 }
 
 .business-dashboard {
@@ -382,7 +383,7 @@
   white-space: nowrap;
 }
 .business-dashboard .business-dashboard-title .business-dashboard-title-content .business-title .dropdown-arrow {
-  border-top-color: black;
+  border-bottom-color: black;
   display: block;
   top: 20px;
   position: relative;
@@ -496,4 +497,13 @@
 }
 .business-details .business-details-item textarea {
   height: 10vh !important;
+}
+
+.close-button {
+  color: black;
+  background: transparent;
+  border: 0;
+  align-items: right;
+  float: right;
+  margin-top: 0;
 }/*# sourceMappingURL=business.css.map */

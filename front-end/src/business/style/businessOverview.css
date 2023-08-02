@@ -92,8 +92,8 @@
   margin-top: -10px;
 }
 .businesses-overview .container {
-  width: 27vw;
-  height: 13vh;
+  width: 33vw;
+  height: 25vh;
   border-radius: 9px;
   border: 0.5px #3235FF dotted;
   flex-direction: column;
@@ -105,8 +105,8 @@
 }
 .businesses-overview .contact-icon {
   padding: 2.4vh 0 0;
-  font-size: 1.3vh;
-  color: #9382b4;
+  font-size: 1.7vh;
+  color: #343741;
   gap: 5px;
 }
 .businesses-overview .text {
@@ -115,5 +115,5 @@
   font-size: 1.8vh;
   font-family: "Inter";
   font-weight: 600;
-  color: #6453a5;
+  color: #343741;
 }/*# sourceMappingURL=businessOverview.css.map */
