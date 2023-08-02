@@ -1,6 +1,11 @@
 const User = require("../../models/user");
 const { Op } = require("sequelize");
 
+/**
+ * Checks if an email already exists in the database.
+ * @param {string} data - The email to check.
+ * @returns {boolean} - Returns true if the email exists, otherwise false.
+ */
 const isEmailExist = async (data) => {
     return (await User.findAll({
         where: {
@@ -9,6 +14,11 @@ const isEmailExist = async (data) => {
     })).length > 0;
 };
 
+/**
+ * Checks if a username already exists in the database.
+ * @param {string} data - The username to check.
+ * @returns {boolean} - Returns true if the username exists, otherwise false.
+ */
 const isUsernameExist = async (data) => {
     return (await User.findAll({
         where: {
@@ -17,6 +27,11 @@ const isUsernameExist = async (data) => {
     })).length > 0;
 };
 
+/**
+ * Retrieves users based on their email or username.
+ * @param {string} email - The email or username to search for.
+ * @returns {Array} - An array of user objects.
+ */
 const getUsers = async (email) => {
     const inputEmail = String(email).toLowerCase();
     return (await User.findAll({
@@ -27,7 +42,7 @@ const getUsers = async (email) => {
             ]
         },
         raw: false
-    }))
+    }));
 };
 
-module.exports = {isEmailExist, isUsernameExist, getUsers}
+module.exports = { isEmailExist, isUsernameExist, getUsers };

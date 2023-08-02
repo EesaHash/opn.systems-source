@@ -1,7 +1,8 @@
 const sequelize = require('../configuration/DatabaseConfig').sequelize;
-const {DataTypes} = require('sequelize');
+const { DataTypes } = require('sequelize');
 const Product = require('./product');
 
+// Define the ClientJourney model using Sequelize
 const ClientJourney = sequelize.define('Client Journey', {
     id: {
         type: DataTypes.INTEGER,
@@ -42,14 +43,16 @@ const ClientJourney = sequelize.define('Client Journey', {
     }
 });
 
-// Relation with Product
-Product.hasOne(ClientJourney, { 
+// Establish the relationship between ClientJourney and Product using Sequelize associations
+// Each product can have one client journey, so the Product model has a one-to-one relationship with the ClientJourney model.
+// 'productID' is the foreign key linking them.
+Product.hasOne(ClientJourney, {
     foreignKey: 'productID',
-    onUpdate: 'CASCADE',
-    onDelete: 'CASCADE'
+    onUpdate: 'CASCADE', // If a product is updated, the associated client journey will also be updated.
+    onDelete: 'CASCADE' // If a product is deleted, the associated client journey will also be deleted.
 });
 ClientJourney.belongsTo(Product, {
-    foreignKey: 'productID'
+    foreignKey: 'productID' // The foreign key in the ClientJourney model that references the Product model.
 });
 
 module.exports = ClientJourney;

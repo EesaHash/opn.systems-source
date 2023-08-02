@@ -1,7 +1,8 @@
 const sequelize = require('../configuration/DatabaseConfig').sequelize;
-const {DataTypes} = require('sequelize');
+const { DataTypes } = require('sequelize');
 const Business = require('./business');
 
+// Define the KeyContact model using Sequelize
 const KeyContact = sequelize.define("Key_Contact", {
     id: {
         type: DataTypes.INTEGER,
@@ -25,14 +26,16 @@ const KeyContact = sequelize.define("Key_Contact", {
     }
 });
 
-// Relation with Business
+// Establish the relationship between KeyContact and Business using Sequelize associations
+// A Business can have one KeyContact, so the Business model has a one-to-one relationship with the KeyContact model.
+// 'businessID' is the foreign key linking them.
 Business.hasOne(KeyContact, { 
     foreignKey: 'businessID',
-    onUpdate: 'CASCADE',
-    onDelete: 'CASCADE'
+    onUpdate: 'CASCADE', // If a business's ID is updated, the associated KeyContact will also be updated.
+    onDelete: 'CASCADE' // If a business is deleted, the associated KeyContact will also be deleted.
 });
 KeyContact.belongsTo(Business, {
-    foreignKey: 'businessID'
+    foreignKey: 'businessID' // The foreign key in the KeyContact model that references the Business model.
 });
 
 module.exports = KeyContact;
