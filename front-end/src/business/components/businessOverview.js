@@ -16,11 +16,7 @@ export const businessOverview = (business) => {
             <div className="yourbusiness">
                     <div className="businesstitle">
                         <text style={{fontSize:"2.2vw"}}>Welcome to Opn.Systems <PartyPopper/></text>
-                        <p style={{fontSize:"0.95vw"}}>Here's some tips to get you started</p>
-                    </div>
-                    <div style={{display:"flex", justifyContent:"center", alignItems:"center",alignSelf: "stretch",  gap:"1vh"}}>
-                        <button className="howToButtons"><ChatIcon/> How to use Opn.Systems</button>
-                        <button className="howToButtons"><ChatIcon/>What are your next steps</button>
+                       
                     </div>
                     <div className="container">
                       <div className="message-container">
