@@ -107,6 +107,24 @@ button{
     box-shadow: 0px 0px 10px 100vw #0000007c;
     & .content-form{
         margin: 20px 40px;
+        & .header{
+            display: flex;
+            & h2{
+                margin: 0;
+            }
+            & svg{
+                margin-right: 10px;
+            }
+            & .close-button{
+                float: right;
+                text-align: right;
+                margin: auto;
+                margin-right: -10px;
+                background-color: transparent;
+                border: none;
+                color: black;
+            }
+        }
     }
     & h1, h2, h3, .pop-up-input{
         margin: 20px 0;
@@ -218,7 +236,7 @@ button{
 .dropdown{
     &.show{
         & .btn{
-            border: 2.5px solid #555;
+            border-bottom: 1.5px solid #5D5FEF;
         }
     }
     & button, button:active, button:hover{
@@ -235,7 +253,8 @@ button{
         margin-bottom: 5px;
     }
     & button:hover{
-        background-color: rgb(108, 117, 125);
+        // background-color: rgb(108, 117, 125);
+        background-color: #5d5fef44;
     }
 }
 .help-btn{
@@ -310,6 +329,7 @@ $confirmation-height: 50vh;
             margin: auto;
             margin-left: 0;
             margin-right: 0;
+            border-radius: 8px;
         }
         & input{
             margin-top: 0;

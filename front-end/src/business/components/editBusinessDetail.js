@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import "../style/business.css";
 import { getBusinessTypeList, getCompanySizeList } from '../../App';
 import { DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown } from "reactstrap";
+import { Close } from '@mui/icons-material';
 
 export const EditBusinessDetail = (props) => {
     
@@ -65,7 +66,10 @@ export const EditBusinessDetail = (props) => {
     return(
         <section id="editBusinessForm" className="form-popup center form-container edit-business">
             <div className="content-form">
-                <h2>Edit Business Details</h2>
+                <div className='header'>
+                    <h2>Edit Business Details</h2>
+                    <button className='close-button' onClick={closeForm}><Close /></button>
+                </div>
                 <hr/>
                 <div style={{display: "flex"}}>
                     <div className='business-icon'>

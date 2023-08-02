@@ -11,21 +11,6 @@
   right: 30vw;
   overflow: scroll;
 }
-.account-setting .header {
-  display: flex;
-}
-.account-setting .header h2 {
-  margin: 0;
-}
-.account-setting .header svg {
-  margin-right: 10px;
-}
-.account-setting .header .close-button {
-  float: right;
-  text-align: right;
-  margin: auto;
-  margin-right: -10px;
-}
 .account-setting .close-button {
   color: black;
   background: transparent;

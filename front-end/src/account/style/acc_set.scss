@@ -10,22 +10,6 @@ $account-setting-height: 90vh;
     left: calc((100vw - $account-setting-width) / 2);
     right: calc((100vw - $account-setting-width) / 2);
     overflow: scroll;
-    
-    & .header{
-        display: flex;
-        & h2{
-            margin: 0;
-        }
-        & svg{
-            margin-right: 10px;
-        }
-        & .close-button{
-            float: right;
-            text-align: right;
-            margin: auto;
-            margin-right: -10px;
-        }
-    }
 
     & .close-button {
         color: black;

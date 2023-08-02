@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ClientjourneyIcon from '../svg/clientjourneyIcon';
 import OverviewIcon from '../svg/overviewIcon';
 import ProceduresIcon from '../svg/proceduresIcon';
@@ -18,26 +18,39 @@ import { TeamMembers } from '../../client_journey/components/TeamMembers';
 import { DepartmentRolesDashboard } from '../../cj_department_roles/components/DepartmentRolesDashboard';
 import { EditBusinessDetail } from './editBusinessDetail';
 import { ArrowForwardIos, KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material';
+import { DeleteBusinesConfirmation } from './DeleteBusinessConfirmation';
 
 export const BusinessDashboard = (props) => {
     const [dropdownStatus, setDropdownStatus] = useState(false);
     const [hoveredMenu, setHoveredMenu] = useState("");
-    const deleteBusiness = _ => {
+    const [deleteConfirmation, setDeleteConfirmation] = useState(-1);
+    useEffect(() => {
+        const deleteBusiness = _ => {
+            try {
+                fetch("/api/business/removeBusiness", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({id: props.business.id})
+                })
+                    .then((res) => {return res.json(); })
+                    .then((data) => {
+                        if(!data.status){
+                            alert(data.message);
+                        }
+                    });
+                removeBusiness();
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        if(deleteConfirmation !== -1)
+            deleteBusiness();
+    }, [deleteConfirmation]);
+    const openDeleteConfirmation = _ => {
         try{
-            if(!window.confirm("Are you sure to delete this business?"))
-                return;
-            fetch("/api/business/removeBusiness", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({id: props.business.id})
-            })
-                .then((res) => {return res.json(); })
-                .then((data) => {
-                    alert(data.message);
-                });
-            removeBusiness();
+            document.getElementById("delete-business-confirm").style.display = "block";
             setDropdownStatus(false);
         }catch(error){
             alert(error);
@@ -69,10 +82,17 @@ export const BusinessDashboard = (props) => {
                 index = {props.activeLink2 - 1}
                 business = {props.business} setBusiness = {props.setBusiness}
             />
+            <DeleteBusinesConfirmation
+                id = "delete-business-confirm"
+                documentName = {props.business.businessName}
+                imgSrc = {`./images/businessIcon/businessIcon${((props.activeLink2 - 1)%6)+1}.png`}
+                setConfirmation = {setDeleteConfirmation}
+                data = {props.business.id}
+            />
             {title(
                 props.business, 
                 (props.activeLink2 - 1), 
-                deleteBusiness, 
+                openDeleteConfirmation, 
                 dropdownStatus, setDropdownStatus,
                 hoveredMenu, setHoveredMenu
             )}
@@ -86,7 +106,7 @@ export const BusinessDashboard = (props) => {
         </div>
     );
 };
-const title = (business, businessIndex, deleteBusiness, dropdownStatus, setDropdownStatus, hoveredMenu, setHoveredMenu) => {
+const title = (business, businessIndex, openDeleteConfirmation, dropdownStatus, setDropdownStatus, hoveredMenu, setHoveredMenu) => {
     const editBusinessDetailDropdown = _ => {
         setDropdownStatus(!dropdownStatus);
     };
@@ -104,7 +124,7 @@ const title = (business, businessIndex, deleteBusiness, dropdownStatus, setDropd
                     { dropdownStatus &&
                         <div className="dropdown-content">
                             <button onClick={openEditBusinessForm} onMouseEnter={() => setHoveredMenu("edit-business-details")} onMouseLeave={() => setHoveredMenu("")} ><EditBusinessIcon/>  Edit Business Details{hoveredMenu === "edit-business-details" && <ArrowForwardIos className="hover-arrow"/> } </button>
-                            <button onClick={deleteBusiness} style={{color: "#EB5757"}} onMouseEnter={() => setHoveredMenu("delete-business")} onMouseLeave={() => setHoveredMenu("")}><DeleteBusinessIcon style={{color: "#EB5757"}}/>  Delete{hoveredMenu === "delete-business" && <ArrowForwardIos className="hover-arrow"/> }</button>
+                            <button onClick={openDeleteConfirmation} style={{color: "#EB5757"}} onMouseEnter={() => setHoveredMenu("delete-business")} onMouseLeave={() => setHoveredMenu("")}><DeleteBusinessIcon style={{color: "#EB5757"}}/>  Delete{hoveredMenu === "delete-business" && <ArrowForwardIos className="hover-arrow"/> }</button>
                         </div>
                     }
                 </div>
