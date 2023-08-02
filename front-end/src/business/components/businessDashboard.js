@@ -10,7 +10,7 @@ import EditBusinessIcon from '../svg/editBusinessIcon';
 import DeleteBusinessIcon from '../svg/deleteBusinessIcon';
 import "../style/business.css";
 import { businessDetails } from './businessDetails';
-import { businessOverview } from './businessOverview';
+import { BusinessOverview } from './businessOverview';
 import { ClientJourneyDashboard } from '../../client_journey/components/clientJourneyDashboard';
 import { ProceduresDashboard } from '../../cj_procedure/components/ProceduresDashboard';
 import { PoliciesDashboard } from '../../cj_policies/components/PoliciesDashboard';
@@ -154,7 +154,10 @@ const body = (  business, activeLink2,
                 <hr/>
                 {
                     activeLink3 === "Overview" ?
-                        businessOverview(business) :
+                        <BusinessOverview
+                            business = {business}
+                        />
+                        :
                     activeLink3 === "Details" ?
                         businessDetails(business) :
                     activeLink3 === "Client Journey" ?

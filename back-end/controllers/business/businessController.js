@@ -3,7 +3,7 @@ const express = require("express");
 const router = express.Router();
 const Business = require('../../models/business');
 const { addTeamMembers } = require("../team/addTeamMemberController");
-const { saveKeyContact } = require("../business/keyContactsController");
+const { saveKeyContact, getSingleKeyContact } = require("../business/keyContactsController");
 
 // Create an empty object to hold business-related methods
 const business = {};
@@ -47,13 +47,14 @@ business.addNewBusiness = async (req, res) => {
         });
 
         // Save the key contact for the business in the database
-        await saveKeyContact({
+        const keyContact = await saveKeyContact({
             name: name,
             position: position,
-            teamContactEmail: teamContactEmail,
+            email: teamContactEmail,
             phoneNumber: phoneNumber,
             businessID: business.id,
         });
+        business.dataValues.keyContact = keyContact.dataValues;
 
         // Add team members for the business in the database
         await addTeamMembers(teamList, business.id);
@@ -63,7 +64,7 @@ business.addNewBusiness = async (req, res) => {
         return res.status(200).json({
             status: true,
             message: "Successfully added new business!",
-            business: business
+            business: business.dataValues
         });
     } catch (error) {
         // Log error and respond with error status and message
@@ -145,7 +146,6 @@ business.updateBusiness = async (req, res) => {
     }
 };
 
-
 /**
  * Get details of a single business from the database based on its ID.
  *
@@ -159,6 +159,8 @@ business.getSingleBusiness = async (req, res) => {
 
         // Find the business with the provided ID in the database
         const business = await Business.findAll({ where: { id } });
+        const keyContact = await getSingleKeyContact(id);
+        business.dataValues.keyContact = keyContact;
 
         // If business is found, log success message and respond with the retrieved business details
         console.log(`[Success] Retrieved business details`);
@@ -182,6 +184,10 @@ business.getAllBusinesses = async (req, res) => {
 
         // Find all businesses for the given user in the database, ordered by ID
         const businesses = await Business.findAll({ where: { email }, order: ['id'] });
+        for(let i = 0; i < businesses.length; ++i){
+            const keyContact = await getSingleKeyContact(businesses[i].id);
+            businesses[i].dataValues.keyContact = keyContact;
+        }
 
         // If businesses are found, log success message and respond with the retrieved business details for the user
         console.log(`[Success] Retrieved business details for ${email}`);

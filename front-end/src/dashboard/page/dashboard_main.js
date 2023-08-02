@@ -80,7 +80,6 @@ export const DashboardPage = () => {
             if(userID != null && userID !== "none"){
                 getUserData();
                 getBusinessList();
-                
             }
         }catch(error){
             console.log(error);

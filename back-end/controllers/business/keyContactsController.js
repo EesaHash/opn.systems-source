@@ -14,14 +14,21 @@ const KeyContact = require("../../models/key_contact");
  */
 const saveKeyContact = async (details) => {
     // Create a new entry in the KeyContact model with the provided details
-    await KeyContact.create({
+    return (await KeyContact.create({
         name: details.name,
         positon: details.position,
-        email: details.teamContactEmail,
+        email: details.email,
         phoneNumber: details.phoneNumber,
         businessID: details.businessID
-    });
-}
+    }));
+};
+const getSingleKeyContact = async (businessID) => {
+    return (await KeyContact.findAll({
+        where: {
+            businessID: businessID
+        }
+    }))[0];
+};
 
 // Export the saveKeyContact function for use in other modules
-module.exports = { saveKeyContact };
+module.exports = { saveKeyContact, getSingleKeyContact };
