@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import "../style/policies.css";
 import { FolderList } from '../../table/components/Folder/FolderList';
-import { openAccessLimitForm } from '../../dashboard/page/dashboard_main';
+import { openAccessLimitForm, openFutureFeatureWarningForm } from '../../dashboard/page/dashboard_main';
 import { ListTable3 } from '../../table/components/List/ListTable3';
 
 export const PoliciesDashboard = (props) => {
@@ -24,6 +24,7 @@ export const PoliciesDashboard = (props) => {
     const openPilicyList = (param, index) => {
         const mainTable = document.getElementById("policies-main-table");
         const secondaryTable = document.getElementById("policies-secondary-table");
+        openFutureFeatureWarningForm();
         if(mainTable && secondaryTable){
             mainTable.style.display = "none";
             setJourney(param);
@@ -56,15 +57,6 @@ export const PoliciesDashboard = (props) => {
                 list2 = {props.policies.length > 0 ? props.policies : [[]]}
                 addNewBtn = {openCreateJourneyForm}
                 itemActionBtn = {openPilicyList}
-            />
-            <ListTable3
-                id = "policies-secondary-table"
-                type = "Policies"
-                title = {`${journey.title}'s Policies`}
-                list = {(props.policies.length > 0 && index >= 0) ? props.policies[index] : []}
-                button1 = {showJourneyList}
-                addNewBtn = {openCreatePolicyForm}
-                itemActionBtn = {openPolicyDetail}
             />
         </div>
     );
