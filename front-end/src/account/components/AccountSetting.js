@@ -8,7 +8,7 @@ import { passwordInputItem, readOnlyInput, textInputItem } from '../../public_co
 import { logOut } from '../../App';
 
 export const AccountSetting = (props) => {
-    /* ======================================== UPDATE PROFILE ======================================== */
+    /* =================================== UPDATE PROFILE =================================== */
     /* State to store user account details */
     const [accountDetailsInput, setAccountDetailsInput] = useState(props.user);
     /* Update the background color of "Save" button based on user details input */
@@ -126,9 +126,9 @@ export const AccountSetting = (props) => {
         // Open the account panel form
         document.getElementById("setup_acc").style.display = "block";
     };
-    /* ==================================================================================================== */
+    /* ========================================================================================== */
 
-    /* ======================================== UPDATE PASSWORD ======================================== */
+    /* =================================== UPDATE PASSWORD =================================== */
     /* State to store password input fields */
     const [passwordInput, setPasswordInput] = useState({
         oldPassword: "",
@@ -234,9 +234,9 @@ export const AccountSetting = (props) => {
         logOut(); // Log out the user
         window.location.href = '/forgotpassword'; // Direct the user to the forgotpassword page
     };
-    /* ==================================================================================================== */
+    /* ========================================================================================== */
 
-    /* ======================================== CLOSE THE FORM ======================================== */
+    /* =================================== CLOSE THE FORM =================================== */
     const closeForm = _ => {
         // Reset the input fields
         setAccountDetailsInput(props.user);
@@ -255,7 +255,7 @@ export const AccountSetting = (props) => {
         // Close the form
         document.getElementById("account-setting-Form").style.display = "none";
     };
-    /* ==================================================================================================== */
+    /* ========================================================================================== */
 
     return (
         <section id="account-setting-Form" className="form-popup center form-container account-setting" >
