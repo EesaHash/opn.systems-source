@@ -6,7 +6,6 @@ import "../style/pane.css";
 import { Sidebar } from "../components/sidebar";
 import { SearchBar } from "../components/search";
 import { Pane } from "../components/pane";
-import { Profile } from "../components/profile";
 import { getUserID } from "../../App";
 import { CreateBusiness } from "../../business/components/createBusiness";
 import { CreateClientJourney } from "../../client_journey/components/createClientJourney";
@@ -16,6 +15,7 @@ import { CreateProcedure } from "../../cj_procedure/components/CreateProcedure";
 import { InviteTeamMember } from "../../client_journey/components/InviteTeamMember";
 import { GenerateProcedure } from "../../cj_procedure/components/GenerateProcedure";
 import { AccountSetting } from "../../account/components/AccountSetting";
+import { Profile } from "../../account/components/Profile";
 
 export const DashboardPage = () => {
     const [userID, setUserID] = useState();

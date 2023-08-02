@@ -1,5 +1,5 @@
-@use './searchbar';
-@use './pane';
+@use '../../dashboard/style/searchbar';
+@use '../../dashboard/style/pane';
 $profile-width: calc(pane.$mainbox-width - searchbar.$search-bar-width - 2vw);
 $profile-name-width: calc(15vw - 30px - 35px - 1vw);
 
