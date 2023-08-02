@@ -1,3 +1,4 @@
+// Import necessary libraries and modules
 import React, {useEffect, useState} from "react";
 import { getUserID } from "../../App";
 import { useSearchParams } from "react-router-dom";
@@ -18,82 +19,15 @@ export const SignUp = _ => {
 
     getUserID().then(res => setUserID(res));
 
+    /* =================================== FILL IN ACCOUNT DETAILS =================================== */
+    /* Update the "Sign Up" button's background color based on input validation */
     useEffect(() => {
         if(userInput.email && userInput.username && userInput.password.length >= 8 && userInput.firstName && userInput.lastName)
             document.getElementById("create-account-btn").style.backgroundColor = "#5D5FEF";
         else
             document.getElementById("create-account-btn").style.backgroundColor = "#A2ABBA";
     }, [userInput]);
-
-    const nextAction = _ => {
-        try{
-            // Check if the required fields are filled
-            if(!userInput.email || !userInput.username || !userInput.password || !userInput.firstName || !userInput.lastName){
-                return alert("Please fill in all fields!");
-            }
-
-            // Check if the password is at least 8 characters
-            if(userInput.password.length < 8)
-                return alert("Password must be at least 8 characters long!");
-
-            fetch("/api/authenticateuser", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    username: userInput.username,
-                    email: userInput.email
-                })
-            })
-                .then((res) => {return res.json(); })
-                .then((data) => {
-                    if(!data.status){
-                        alert(data.message);
-                    }
-                    else{
-                        document.getElementById("step1").style.display = "none";
-                        document.getElementById("step2").style.display = "block";
-                    }
-                });
-        }catch(error){
-            return alert(error);
-        }
-    };
-    const backAction = _ => {
-        document.getElementById("step1").style.display = "block";
-        document.getElementById("step2").style.display = "none";
-    };
-    const createAccount = _ => {
-        try{
-            fetch("/api/signup", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    ...userInput,
-                    emails: invitationList
-                })
-            })
-                .then((res) => {return res.json(); })
-                .then((data) => {
-                    if(!data.status){
-                        alert(data.message);
-                    }else{
-                        alert("Please check your email inbox and verify your email to activate your account via the link sent in your email!");
-                        window.location.href = '/signin';
-                    }
-                });
-        }catch(error){
-            return alert(error);
-        }
-    };
-    const handleKeypress = e => {
-        if(e.key === "Enter"){
-            nextAction();
-        }
-    };
+    /* Function to render Step 1 of the sign-up form */
     const signUpStep1 = _ => {
         return(
             <div className = "sign-up" id ="step1">
@@ -145,6 +79,56 @@ export const SignUp = _ => {
             </div>
         );
     };
+    /* Function to handle Enter key press event for the next action */
+    const handleKeypress = e => {
+        if(e.key === "Enter"){
+            nextAction();
+        }
+    };
+    /* Function to handle the next action (proceed to Step 2) */
+    const nextAction = _ => {
+        try{
+            // Check if the required fields are filled
+            if(!userInput.email || !userInput.username || !userInput.password || !userInput.firstName || !userInput.lastName)
+                return alert("Please fill in all fields!");
+            // Check if the password is at least 8 characters
+            if(userInput.password.length < 8)
+                return alert("Password must be at least 8 characters long!");
+
+            // Send a POST request to the server to validate the user's email and username
+            fetch("/api/authenticateuser", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    username: userInput.username,
+                    email: userInput.email
+                })
+            })
+                .then((res) => {return res.json(); })
+                .then((data) => {
+                    if(!data.status){
+                        alert(data.message);
+                    }else{
+                        // Proceed to Step 2
+                        document.getElementById("step1").style.display = "none";
+                        document.getElementById("step2").style.display = "block";
+                    }
+                });
+        }catch(error){
+            return alert(error);
+        }
+    };
+    /* Function to handle the back action (go back to Step 1) */
+    const backAction = _ => {
+        document.getElementById("step1").style.display = "block";
+        document.getElementById("step2").style.display = "none";
+    };
+    /* ========================================================================================== */
+
+    /* =================================== INVITE TEAM MEMBERS =================================== */
+    /* Function to render Step 2 of the sign-up form */
     const signUpStep2 = _ => {
         return(
             <div className = "sign-up2" id ="step2" style={{display: "none"}}>
@@ -190,10 +174,19 @@ export const SignUp = _ => {
             </div>
         );
     };
+    /* Function to handle Enter key press event for adding an invitation */
+    const handleKeypress2 = e => {
+        if(e.key === "Enter"){
+            addInvitation();
+        }
+    };
+    /* Function to add an invitation to the email list */
     const addInvitation = _ => {
+        // Validate email input
         const email = document.getElementById("invitation-email").value;
         if(!email)
             return alert("Please fill in the input field!");
+        // Adjust the box to contains the list of invited team member
         if(document.getElementById("invitation-list").style.display === "none"){
             document.getElementById("step2").style.maxHeight = "75vh";
             document.getElementById("step2").style.height = "fit-content";
@@ -203,6 +196,7 @@ export const SignUp = _ => {
         setInvitationList([...invitationList, email]);
         document.getElementById("invitation-email").value = "";
     };
+    /* Function to cancel an email invitation */
     const cancelEmailInvitation = (index) => {
         const list = [...emailList];
         list.splice(index, 1);
@@ -216,12 +210,36 @@ export const SignUp = _ => {
             document.getElementById("invitation-list").style.display = "none";
         }
     };
-    const handleKeypress2 = e => {
-        if(e.key === "Enter"){
-            addInvitation();
+    /* Function to create the user account */
+    const createAccount = _ => {
+        try{
+            // Send a POST request to the server to create the user account
+            fetch("/api/signup", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    ...userInput,
+                    emails: invitationList
+                })
+            })
+                .then((res) => {return res.json(); })
+                .then((data) => {
+                    if(!data.status){
+                        alert(data.message);
+                    }else{
+                        alert("Please check your email inbox and verify your email to activate your account via the link sent in your email!");
+                        window.location.href = '/signin';
+                    }
+                });
+        }catch(error){
+            return alert(error);
         }
     };
+    /* ========================================================================================== */
 
+    /* If the user is already authenticated (has a userID), redirect to the home page */
     if(userID !== "none") return window.location.href = "/";
     return(
         <div className = "page1">
