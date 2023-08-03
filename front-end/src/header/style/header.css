@@ -2,23 +2,25 @@
   position: fixed;
   width: 100%;
   z-index: 10;
-  margin-left: 20px;
-  margin-top: 10px;
+  margin-left: 0px;
+  margin-top: 0px;
 }
 
 ul {
   list-style-type: none;
-  margin: 0 !important;
-  padding: 0 !important;
   overflow: hidden;
   background-color: transparent;
   display: flex;
+  transition: background-color 0.3s ease;
+}
+ul:hover {
+  background-color: rgb(0, 0, 0);
 }
 ul .right-header {
   margin-block: 15px;
   position: fixed;
   top: 0;
-  right: 0%;
+  right: 0;
 }
 
 li {
