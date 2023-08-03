@@ -32,8 +32,9 @@ app.use("/api/sop", require("./controllers/business/sopController"));
 app.use("/api/product/getall", require("./controllers/product/getAllProductController"));
 
 app.listen(PORT, () => {
-    console.log();
+    console.log(`Server listening on ${PORT}`);
 });
 app.on('error', (err) => {
     console.log(err.message);
 });
+module.exports = app
