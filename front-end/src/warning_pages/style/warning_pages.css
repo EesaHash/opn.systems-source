@@ -16,6 +16,7 @@
   border-radius: 13px;
 }
 .warning-pages .close-button {
+  margin-top: 0;
   width: 100%;
   text-align: right;
   margin: auto;

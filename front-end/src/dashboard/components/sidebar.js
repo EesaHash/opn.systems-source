@@ -3,6 +3,7 @@ import "../style/sidebar.css";
 import { SidebarData } from './SidebarData';
 import { createNewBusinessForm } from '../page/dashboard_main';
 import { KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material';
+import OpnLogo from '../svg/opnLogo';
 
 export const Sidebar = (props) => {
     return (
@@ -10,10 +11,9 @@ export const Sidebar = (props) => {
             <ul className="sidebar-list">
                 <p className="opn-systems-text">
                 <ul>
-                    <li id="logo" className="logo">
+                    <li>
                     <a href="/dashboard">
-                        <img src="./images/green_profile_logo.png" alt="logo"/>
-                        Opn.Systems
+                        <div style={{width: "10vw", float:"left"}}> <OpnLogo/> Opn.Systems</div>
                     </a>
                     </li>
                 </ul>

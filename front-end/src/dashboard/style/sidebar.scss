@@ -69,6 +69,7 @@
             & .sub-items-content{
                 display: flex;
                 height: 100%;
+                border-radius: 8px;
                 margin: auto;
                 align-items: center;
                 color: white;
@@ -87,6 +88,8 @@
                     overflow: hidden;
                     text-overflow: ellipsis;
                     white-space: nowrap;
+
+                    
                 }
             }
             & .active .sub-items-content{
@@ -132,4 +135,8 @@
     font-size: 1.5rem;
     margin-left: 20%;
     margin-top: 5%;
+
+    & .open-systems-text:hover{
+        color: #A5A6F6 !important;
+    }
 }

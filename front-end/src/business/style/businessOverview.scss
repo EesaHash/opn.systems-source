@@ -3,6 +3,7 @@ $halfbox-width: calc($mainbox-width * 0.5 - 4vw);
 $button-width: calc($halfbox-width*0.5);
 $primary-color: #343741;
 $secondary-color: #3235FF;
+$people-height: calc(96vh - 50px - 1vh - 12vh - 33vh - 32px);
 
 .howToButtons{
   // gap: 4px;
@@ -32,7 +33,7 @@ $secondary-color: #3235FF;
     & .yourbusiness, .update{
         width: $halfbox-width;
     }
-    & .yourbusiness{
+    & .yourbusiness2{
       display: flex;
         padding: 1vw 1vh 0 1vw;
         flex-direction: column;
@@ -126,7 +127,7 @@ $secondary-color: #3235FF;
        }
          & .contact-icon{
           padding: 2.4vh 0 0;
-          font-size:1.7vh;
+          font-size:2vh;
           color: #343741;
           gap:5px;
         }
@@ -148,9 +149,10 @@ $secondary-color: #3235FF;
           //   display: inline-flex;
           // }
             & .text {
+              margin-top: 16px;
               text-align: center;
               color: $primary-color;
-              font-size: calc(3vh * 0.6);
+              font-size: calc(3vh * 0.7);
               font-family: 'Inter';
               font-weight: 600;
               color:#343741;
@@ -182,5 +184,60 @@ $secondary-color: #3235FF;
         // }
       
         
-
+        .teammember {
+              display: flex;
+              margin-bottom: 20px;
+          
+              & .team-member-icon {
+                  display: flex;
+          
+                  & img {
+                      height: calc($people-height * 0.20);
+                      border-radius: 100px;
+                      background: #FFF;
+                      opacity: 60%;
+          
+                  }
+              }
+          
+              & .emptyname {
+                  width: calc(($mainbox-width / 4) - ($people-height * 0.20) - ($mainbox-width * 0.04) - 60px);
+                  min-width: fit-content;
+                  height: calc($people-height * 0.10);
+                  margin: 0 calc($mainbox-width * 0.04);
+                  margin-top: 16px;
+                  border-radius: 9px;
+                  background: rgba(217, 217, 217, 0.30);
+              }
+          }
+          
+          .collaborate {
+              display: flex;
+              flex-direction: column;
+              align-self: stretch;
+              color: var(--text-subdued-text, #ACACAC);
+              text-align: center;
+              font-size: 22px;
+              font-family: DM Sans;
+              font-weight: 500;
+              line-height: 140%;
+          }
+          
+          .invite-button {
+              width: 100%;
+              margin-top: -8px;
+          
+              & button {
+                  display: flex;
+                  height: 43px;
+                  padding: 18px;
+                  justify-content: center;
+                  align-items: center;
+                  border-radius: 8px;
+                  background: var(--accent-yellow-dark, #FEC514);
+                  border: #FEC514;
+                  color: #000;
+                  margin: auto;
+              }
+          }
 

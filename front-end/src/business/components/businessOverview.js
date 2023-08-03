@@ -10,7 +10,7 @@ import PartyPopper from '../svg/partyPopper';
 export const BusinessOverview = (props) => {
     return (
         <div className="businesses-overview">
-            <div className="yourbusiness">
+            <div className="yourbusiness2">
                 <div className="businesstitle">
                     <text style={{ fontSize: "2.2vw" }}>Welcome to Opn.Systems <PartyPopper /></text>
 
@@ -40,6 +40,27 @@ export const BusinessOverview = (props) => {
                     <button className="updatesbutton">Upgrade your plan</button>
                 </div>
             </div>
+
+            {/* <div className="teammember" style={{margin:"0 auto 0 auto"}}>
+                    {peopleTemplate("male")}
+                    {peopleTemplate("female")}
+                    {peopleTemplate("male")}
+                    {peopleTemplate("female")}
+                </div>
+                <div className="teammember"style={{margin:"5vh auto 0 auto"}}>
+                    {peopleTemplate("male")}
+                    {peopleTemplate("female")}
+                    {peopleTemplate("male")}
+                    {peopleTemplate("female")}
+                </div>
+
+                <div className="collaborate" style={{margin:"2vh 0 2vh 0"}}>
+                <text>Invite your team members to collaborate.</text>
+                </div>
+
+                <div className="invite-button">
+                    <button >+ Invite team members</button>
+                </div>  */}
         </div>
     );
 };
