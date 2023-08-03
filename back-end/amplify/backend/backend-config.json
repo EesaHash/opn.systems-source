@@ -1,0 +1,43 @@
+{
+  "api": {
+    "opnsystems": {
+      "dependsOn": [
+        {
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "category": "function",
+          "resourceName": "opnsystemsd9273f65"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "API Gateway"
+    }
+  },
+  "function": {
+    "opnsystemsd9273f65": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_function_opnsystemsd9273f65_deploymentBucketName": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "opnsystemsd9273f65"
+        }
+      ]
+    },
+    "AMPLIFY_function_opnsystemsd9273f65_s3Key": {
+      "usedBy": [
+        {
+          "category": "function",
+          "resourceName": "opnsystemsd9273f65"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "paths": {
+    "/opn": {
+      "name": "/opn",
+      "lambdaFunction": "opnsystemsd9273f65",
+      "permissions": {
+        "setting": "open"
+      }
+    }
+  }
+}
