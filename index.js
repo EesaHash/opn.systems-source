@@ -44,4 +44,3 @@ app.listen(PORT, () => {
 app.on('error', (err) => {
     console.log(err.message);
 });
-module.exports = app;
