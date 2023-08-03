@@ -73,6 +73,7 @@
 .sidebar-list .row .sub-items .sub-items-content {
   display: flex;
   height: 100%;
+  border-radius: 8px;
   margin: auto;
   align-items: center;
   color: white;
@@ -132,4 +133,7 @@
   font-size: 1.5rem;
   margin-left: 20%;
   margin-top: 5%;
+}
+.opn-systems-text .open-systems-text:hover {
+  color: #A5A6F6 !important;
 }/*# sourceMappingURL=sidebar.css.map */

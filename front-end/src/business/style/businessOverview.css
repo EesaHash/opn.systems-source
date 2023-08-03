@@ -24,7 +24,7 @@
 .businesses-overview .yourbusiness, .businesses-overview .update {
   width: calc((100vw - 240px - 8vw) * 0.5 - 4vw);
 }
-.businesses-overview .yourbusiness {
+.businesses-overview .yourbusiness2 {
   display: flex;
   padding: 1vw 1vh 0 1vw;
   flex-direction: column;
@@ -105,15 +105,69 @@
 }
 .businesses-overview .contact-icon {
   padding: 2.4vh 0 0;
-  font-size: 1.7vh;
+  font-size: 2vh;
   color: #343741;
   gap: 5px;
 }
 .businesses-overview .text {
+  margin-top: 16px;
   text-align: center;
   color: #343741;
-  font-size: 1.8vh;
+  font-size: 2.1vh;
   font-family: "Inter";
   font-weight: 600;
   color: #343741;
+}
+
+.teammember {
+  display: flex;
+  margin-bottom: 20px;
+}
+.teammember .team-member-icon {
+  display: flex;
+}
+.teammember .team-member-icon img {
+  height: calc((96vh - 50px - 1vh - 12vh - 33vh - 32px) * 0.2);
+  border-radius: 100px;
+  background: #FFF;
+  opacity: 60%;
+}
+.teammember .emptyname {
+  width: calc((100vw - 240px - 8vw) / 4 - (96vh - 50px - 1vh - 12vh - 33vh - 32px) * 0.2 - (100vw - 240px - 8vw) * 0.04 - 60px);
+  min-width: -moz-fit-content;
+  min-width: fit-content;
+  height: calc((96vh - 50px - 1vh - 12vh - 33vh - 32px) * 0.1);
+  margin: 0 calc((100vw - 240px - 8vw) * 0.04);
+  margin-top: 16px;
+  border-radius: 9px;
+  background: rgba(217, 217, 217, 0.3);
+}
+
+.collaborate {
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+  color: var(--text-subdued-text, #ACACAC);
+  text-align: center;
+  font-size: 22px;
+  font-family: DM Sans;
+  font-weight: 500;
+  line-height: 140%;
+}
+
+.invite-button {
+  width: 100%;
+  margin-top: -8px;
+}
+.invite-button button {
+  display: flex;
+  height: 43px;
+  padding: 18px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  background: var(--accent-yellow-dark, #FEC514);
+  border: #FEC514;
+  color: #000;
+  margin: auto;
 }/*# sourceMappingURL=businessOverview.css.map */

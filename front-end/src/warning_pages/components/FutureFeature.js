@@ -9,7 +9,7 @@ export const FutureFeature = _ => {
     };
     return(
         <section id="future-feature-warning-form" className="form-popup center form-container warning-pages" style={{display: "none"}}>
-            <div className="content-form">
+            <div>
                 <div className='close-button'>
                     <button onClick={closeForm}><CloseButton/></button>
                 </div>

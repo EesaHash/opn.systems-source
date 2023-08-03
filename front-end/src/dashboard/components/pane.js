@@ -59,25 +59,14 @@ const emptyPane = (user) => {
                 <div className="yourbusiness">
                     <div className="businesstitle">
                         <text style={{fontSize:"2.2vw"}}>Welcome to Opn.Systems <PartyPopper/></text>
-                        <p style={{fontSize:"0.95vw"}}>Here's some tips to get you started</p>
+                        <p style={{fontSize:"0.90vw"}}>Here's some tips to get you started</p>
                     </div>
-                        <div style={{display:"flex", justifyContent:"center", alignItems:"center",alignSelf: "stretch",  gap:"1vh"}}>
+                        <div style={{marginTop: "-2vh", display:"flex", justifyContent:"center", alignItems:"center",alignSelf: "stretch",  gap:"1vh"}}>
                         <button className="howToButtons"><ChatIcon/> How to use Opn.Systems</button>
-                        <button className="howToButtons"><ChatIcon/>What are your next steps</button>
+                        <button className="howToButtons"><ChatIcon/> What are your next steps</button>
                         </div>
+                    
                        
-                        {/* <div className="limit-box">
-                            <p style={{fontSize:"12px"}}><BusinessIcon2/> You've reached your business limit (1/1)</p>
-                            <p style={{fontSize:"12px"}}>When you upgrade to Premium, you can create unlimited businesses, roles, and invite your team members.</p>
-                        </div> */}
-                        <div className="container1">
-                            <div className="message-container1">
-                                <div className="text" style={{paddingTop:"0.8vh"}}><BusinessIcon2/> You've reached your business limit (1/1)</div>
-                            </div>
-                                <div className="upgrade-text"style={{paddingTop:"0.8vh", paddingBottom:"1.2vh"}}>
-                                When you upgrade to Premium, you can create unlimited business, roles, and invite your team members.
-                                </div>
-                            </div>
                         </div>
                     
                 <div className="updates">
@@ -97,7 +86,7 @@ const emptyPane = (user) => {
 
             <div className="main-dashboard-people">
                 <div className="businesstitle">
-                    <text style={{fontSize:"2.3vw"}}>Walkthrough</text>
+                    <text style={{fontSize:"2.3vw"}}>Process</text>
                 </div>
                 <div className="work" style={{ padding: "0 10% 0 9%" }}>
                 <WorkflowThing/>

@@ -9,7 +9,7 @@ export const AccessLimit = _ => {
     };
     return(
         <section id="access-limit-form" className="form-popup center form-container warning-pages" style={{display: "none"}}>
-            <div className="content-form">
+            <div>
                 <div className='close-button'>
                     <button onClick={closeForm}><CloseButton/></button>
                 </div>
