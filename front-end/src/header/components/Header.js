@@ -17,11 +17,11 @@ export const Header = (props) => {
 
 const homepageHeader = _ => {
     return(
-        <div className="menu-bar" style={{backgroundColor: "transparent"}}>
+        <div className="menu-bar">
             <ul>
-                <li id="logo" className="logo"><a href="/"><img src="./images/green_profile_logo.png" alt="logo"/></a></li>
-                <li><a href="#page-2">Features</a></li>
-                <li><a href="#page-2">About OPN</a></li>
+                <li style={{marginTop:"1vh"}} id="logo" className="logo"><a href="/"><img src="./images/green_profile_logo.png" alt="logo"/></a></li>
+                <li style={{marginTop:"2.2vh"}}><a href="#page-2">Features</a></li>
+                <li style={{marginTop:"2.2vh"}}><a href="#page-2">About OPN</a></li>
                 <div className="right-header">
                     <a href="/SignUp" className="signup">Sign up</a>
                     <a href="/SignIn" className="login">Login</a>

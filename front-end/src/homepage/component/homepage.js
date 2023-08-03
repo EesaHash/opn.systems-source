@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../style/homepage.css";
 import { getUserID } from "../../App";
+import CcfImage from '../svg/ccfImage';
 
 export const Homepage = _ => {
     const [userID, setUserID] = useState("none");
@@ -25,16 +26,16 @@ export const Homepage = _ => {
                 <div className="free-trial">
                     <div className="form-floating">
                         <input type="email" className="form-control" id="email" placeholder="Email Address" onKeyPress={handleKeypress} />
-                        <label for="floatingInput">Email Address</label>
+                        <label style={{fontSize:"100%"}} for="floatingInput">Email Address</label>
                     </div>
-                    <button onClick={signUp}>{`Start your free trial >`}</button>
+                    <button style={{fontSize:"100%"}} onClick={signUp}>{`Start your free trial >`}</button>
                 </div>
             </div>
             <div className="page-2" id="page-2">
                 <div className="sponsor" >
                     <h3>Trusted by various companies</h3>
                     <div className="sponsor-list" >
-                        <img src="./images/green_logo.png" alt="logo" />
+                        <img src="./images/green_logo.png" alt="logo"/>
                         <img src="./images/blue_logo.png" alt="logo" />
                         <img src="./images/green_logo.png" alt="logo" />
                         <img src="./images/blue_logo.png" alt="logo" style={{marginRight: "0"}} />
@@ -43,13 +44,13 @@ export const Homepage = _ => {
                 <div className="ai-driven" >
                     <h1>AI Driven</h1>
                     <h2>Regeneration</h2>
-                    <h3>AI generated. Streamlined SOPs. Continuous improvement.<br/>Your improved operations.</h3>
+                    <h3 style={{fontSize:"2vw"}}>AI generated. Streamlined SOPs. Continuous improvement.<br/>Your improved operations.</h3>
                     <div className="ai-driven-content">
-                        <div className="ai-driven-content-1"></div>
-                        <div style={{display: "block", backgroundColor: "transparent"}}>
-                            <div className="ai-driven-content-2"></div>
-                            <div className="ai-driven-content-3"></div>
-                        </div>
+                        <div className="ai-driven-content-1" style={{backgroundColor: "transparent"}}> <CcfImage/></div>
+                        <div className="ai-driven-msg">
+                            <h3 style={{color:"white"}}>Client Jorney creation made easy</h3><hr></hr>
+                            <text>Let our highly-trained and adaptive AI takes care of the rest while you sit back and relax.</text>
+                         </div>
                     </div>
                 </div>
                 <div className="customer-journey">
@@ -111,22 +112,22 @@ export const Homepage = _ => {
                 <div className="plan-list">
                     <div className="plan-content">
                         <h2>Basic</h2>
-                        <h1>12$</h1>
-                        <h3>{`Billed annually (1$ if billed monthly)`}</h3>
+                        <h1 style={{filter:"blur(9px)"}}>12$</h1>
+                        <h3 style={{filter:"blur(9px)"}}>{`Billed annually (1$ if billed monthly)`}</h3>
                         <p>For business owners that need to automate their business SOPs.</p>
                         <button onClick={e => window.location.href = "signup"}>Get Started</button>
                     </div>
                     <div className="plan-content">
                         <h2>Pro</h2>
-                        <h1>24$</h1>
-                        <h3>{`Billed annually (2$ if billed monthly)`}</h3>
+                        <h1 style={{filter:"blur(9px)"}}>$24</h1>
+                        <h3 style={{filter:"blur(9px)"}}>{`Billed annually (2$ if billed monthly)`}</h3>
                         <p>For small teams that need to manage work and scale collaboration.</p>
                         <button onClick={e => window.location.href = "signup"}>Get Started</button>
                     </div>
                     <div className="plan-content" style={{marginRight: "0"}}>
                     <h2>Enterprise</h2>
-                        <h1>48$</h1>
-                        <h3>{`Billed annually (4$ if billed monthly)`}</h3>
+                        <h1 style={{filter:"blur(9px)"}}>48$</h1>
+                        <h3 style={{filter:"blur(9px)"}}>{`Billed annually (4$ if billed monthly)`}</h3>
                         <p>For large enterprises that need to manage work and scale collaboration.</p>
                         <button onClick={e => window.location.href = "signup"}>Get Started</button>
                     </div>
