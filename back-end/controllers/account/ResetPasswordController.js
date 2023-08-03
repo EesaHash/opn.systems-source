@@ -1,4 +1,4 @@
-const express = require ("express");
+const express = require ("../../../front-end/node_modules/@types/express");
 const router = express.Router();
 const User = require("../../models/user");
 const { getUsers } = require("./UserController");

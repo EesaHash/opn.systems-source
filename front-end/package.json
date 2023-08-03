@@ -20,8 +20,7 @@
     "reactstrap": "^9.2.0",
     "styled-components": "^5.3.5",
     "web-vitals": "^2.1.4",
-    "yarn": "^1.22.19",
-    "vercel": "^28.18.3"
+    "yarn": "^1.22.19"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -47,5 +46,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://localhost:3001"
+  "proxy": "https://opn-systems-source.vercel.app"
 }

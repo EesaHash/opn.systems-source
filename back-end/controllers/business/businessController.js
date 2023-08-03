@@ -1,5 +1,5 @@
 // Import required modules
-const express = require("express");
+const express = require("../../../front-end/node_modules/@types/express");
 const router = express.Router();
 const Business = require('../../models/business');
 const { addTeamMembers } = require("../team/addTeamMemberController");
