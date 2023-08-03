@@ -1,4 +1,4 @@
-const express = require("../../../front-end/node_modules/@types/express");
+const express = require("express");
 const router = express.Router();
 const { z } = require("zod");
 const { OpenAI } = require("langchain/llms/openai");

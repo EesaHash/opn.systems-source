@@ -1,4 +1,4 @@
-const express = require("../../../front-end/node_modules/@types/express");
+const express = require("express");
 const Product = require("../../models/product");
 const router = express.Router();
 

@@ -1,4 +1,4 @@
-const express = require("../../../front-end/node_modules/@types/express");
+const express = require("express");
 const router = express.Router();
 const { transporter } = require("../email/emailSenderController");
 const { getUsers } = require("./UserController");

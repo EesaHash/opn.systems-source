@@ -262,7 +262,7 @@
                 font-size: 12px;
                 max-width: 20vw;
                 white-space: nowrap;
-                & .css-i4bv87-MuiSvgIcon-root{
+                & svg{
                     color: #2173DF;
                     margin-left: 5px;
                     margin-top: -2.5px;
@@ -304,7 +304,7 @@
                 border-color: transparent;
                 color: black;
                 margin-right: 0;
-                & .css-i4bv87-MuiSvgIcon-root{
+                & svg{
                     margin-right: 4px;
                 }
             }
@@ -331,11 +331,11 @@
                 &:hover{
                     color: black;
                 }
-                & .css-i4bv87-MuiSvgIcon-root{
+                & svg{
                     margin-right: 5px;
                 }
             }
-            & .css-i4bv87-MuiSvgIcon-root{
+            & svg{
                 font-size: 16px;
             }
         }
@@ -364,7 +364,7 @@
             text-align: justify;
         }
     }
-    & .edit-icon .css-i4bv87-MuiSvgIcon-root{
+    & .edit-icon svg{
         margin: 20px 15px;
         margin-bottom: 0;
         height: 25px;
@@ -425,7 +425,7 @@
                     color: black;
                     background-color: transparent;
                     border: none;
-                    & .css-i4bv87-MuiSvgIcon-root{
+                    & svg{
                         color: #A2ABBA;
                         font-size: 20px;
                     }
@@ -453,11 +453,11 @@
             & .list-table4-desc-item{
                 display: flex;
                 padding: 8px 15px;
-                & h2, text, .css-i4bv87-MuiSvgIcon-root, .desc-item-list{
+                & h2, text, svg, .desc-item-list{
                     font-size: 16px;
                     padding: 0;
                 }
-                & h2, .css-i4bv87-MuiSvgIcon-root{
+                & h2, svg{
                     height: 20px;
                 }
                 & h2{
@@ -468,7 +468,7 @@
                     width: calc(100% - 170px);
                     text-align: justify;
                 }
-                & .css-i4bv87-MuiSvgIcon-root{
+                & svg{
                     margin-top: -1.5px;
                     margin-right: 5px;
                     font-size: 18px;
@@ -519,7 +519,7 @@
                     font-size: 12px;
                     white-space: nowrap;
                 }
-                & .css-i4bv87-MuiSvgIcon-root{
+                & svg{
                     height: 20px;
                     color: #A2ABBA;
                 }
@@ -702,11 +702,11 @@
                 border-color: transparent;
                 color: black;
                 margin-right: 0;
-                & .css-i4bv87-MuiSvgIcon-root{
+                & svg{
                     margin-right: 4px;
                 }
             }
-            & .css-i4bv87-MuiSvgIcon-root{
+            & svg{
                 font-size: 20px;
                 color: #ACACAC;
             }
