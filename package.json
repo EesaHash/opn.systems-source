@@ -47,5 +47,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://opn-systems-source.vercel.app"
+  "proxy": "https://localhost:3001"
 }
