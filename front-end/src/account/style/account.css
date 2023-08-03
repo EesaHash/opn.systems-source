@@ -99,8 +99,8 @@
   margin-top: 10px;
   margin-bottom: 25px !important;
 }
-.page1 .alert .css-i4bv87-MuiSvgIcon-root {
-  font-size: 15px;
+.page1 .alert svg {
+  font-size: 15px !important;
 }
 .page1 .alert label {
   margin-left: 5px;

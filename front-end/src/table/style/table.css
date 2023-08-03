@@ -273,15 +273,15 @@
   max-width: 20vw;
   white-space: nowrap;
 }
-.main-table .table-directory .table-directory-left-header button .css-i4bv87-MuiSvgIcon-root, .secondary-table .table-directory .table-directory-left-header button .css-i4bv87-MuiSvgIcon-root, .folder-list .table-directory .table-directory-left-header button .css-i4bv87-MuiSvgIcon-root, .folder-list2 .table-directory .table-directory-left-header button .css-i4bv87-MuiSvgIcon-root, .fourth-table .table-directory .table-directory-left-header button .css-i4bv87-MuiSvgIcon-root, .list-table4 .table-directory .table-directory-left-header button .css-i4bv87-MuiSvgIcon-root {
-  color: #2173DF;
-  margin-left: 5px;
-  margin-top: -2.5px;
-  font-size: 15px;
+.main-table .table-directory .table-directory-left-header button svg, .secondary-table .table-directory .table-directory-left-header button svg, .folder-list .table-directory .table-directory-left-header button svg, .folder-list2 .table-directory .table-directory-left-header button svg, .fourth-table .table-directory .table-directory-left-header button svg, .list-table4 .table-directory .table-directory-left-header button svg {
+  color: #2173DF !important;
+  margin-left: 5px !important;
+  margin-top: -2.5px !important;
+  font-size: 15px !important;
 }
 .main-table .table-directory .table-directory-left-header button:hover, .secondary-table .table-directory .table-directory-left-header button:hover, .folder-list .table-directory .table-directory-left-header button:hover, .folder-list2 .table-directory .table-directory-left-header button:hover, .fourth-table .table-directory .table-directory-left-header button:hover, .list-table4 .table-directory .table-directory-left-header button:hover {
-  cursor: pointer;
-  color: #5D5FEF;
+  cursor: pointer !important;
+  color: #5D5FEF !important;
 }
 .main-table .table-directory .table-directory-right-header, .secondary-table .table-directory .table-directory-right-header, .folder-list .table-directory .table-directory-right-header, .folder-list2 .table-directory .table-directory-right-header, .fourth-table .table-directory .table-directory-right-header, .list-table4 .table-directory .table-directory-right-header {
   display: flex;
@@ -315,8 +315,8 @@
   color: black;
   margin-right: 0;
 }
-.main-table .table-directory .table-directory-right-header .edit-btn .css-i4bv87-MuiSvgIcon-root, .secondary-table .table-directory .table-directory-right-header .edit-btn .css-i4bv87-MuiSvgIcon-root, .folder-list .table-directory .table-directory-right-header .edit-btn .css-i4bv87-MuiSvgIcon-root, .folder-list2 .table-directory .table-directory-right-header .edit-btn .css-i4bv87-MuiSvgIcon-root, .fourth-table .table-directory .table-directory-right-header .edit-btn .css-i4bv87-MuiSvgIcon-root, .list-table4 .table-directory .table-directory-right-header .edit-btn .css-i4bv87-MuiSvgIcon-root {
-  margin-right: 4px;
+.main-table .table-directory .table-directory-right-header .edit-btn svg, .secondary-table .table-directory .table-directory-right-header .edit-btn svg, .folder-list .table-directory .table-directory-right-header .edit-btn svg, .folder-list2 .table-directory .table-directory-right-header .edit-btn svg, .fourth-table .table-directory .table-directory-right-header .edit-btn svg, .list-table4 .table-directory .table-directory-right-header .edit-btn svg {
+  margin-right: 4px !important;
 }
 .main-table .table-directory .table-directory-right-header .ai-edit-btn, .secondary-table .table-directory .table-directory-right-header .ai-edit-btn, .folder-list .table-directory .table-directory-right-header .ai-edit-btn, .folder-list2 .table-directory .table-directory-right-header .ai-edit-btn, .fourth-table .table-directory .table-directory-right-header .ai-edit-btn, .list-table4 .table-directory .table-directory-right-header .ai-edit-btn {
   background-color: #A5A6F6;
@@ -342,11 +342,11 @@
 .main-table .table-directory .table-directory-right-header .save-btn:hover, .secondary-table .table-directory .table-directory-right-header .save-btn:hover, .folder-list .table-directory .table-directory-right-header .save-btn:hover, .folder-list2 .table-directory .table-directory-right-header .save-btn:hover, .fourth-table .table-directory .table-directory-right-header .save-btn:hover, .list-table4 .table-directory .table-directory-right-header .save-btn:hover {
   color: black;
 }
-.main-table .table-directory .table-directory-right-header .save-btn .css-i4bv87-MuiSvgIcon-root, .secondary-table .table-directory .table-directory-right-header .save-btn .css-i4bv87-MuiSvgIcon-root, .folder-list .table-directory .table-directory-right-header .save-btn .css-i4bv87-MuiSvgIcon-root, .folder-list2 .table-directory .table-directory-right-header .save-btn .css-i4bv87-MuiSvgIcon-root, .fourth-table .table-directory .table-directory-right-header .save-btn .css-i4bv87-MuiSvgIcon-root, .list-table4 .table-directory .table-directory-right-header .save-btn .css-i4bv87-MuiSvgIcon-root {
-  margin-right: 5px;
+.main-table .table-directory .table-directory-right-header .save-btn svg, .secondary-table .table-directory .table-directory-right-header .save-btn svg, .folder-list .table-directory .table-directory-right-header .save-btn svg, .folder-list2 .table-directory .table-directory-right-header .save-btn svg, .fourth-table .table-directory .table-directory-right-header .save-btn svg, .list-table4 .table-directory .table-directory-right-header .save-btn svg {
+  margin-right: 5px !important;
 }
-.main-table .table-directory .table-directory-right-header .css-i4bv87-MuiSvgIcon-root, .secondary-table .table-directory .table-directory-right-header .css-i4bv87-MuiSvgIcon-root, .folder-list .table-directory .table-directory-right-header .css-i4bv87-MuiSvgIcon-root, .folder-list2 .table-directory .table-directory-right-header .css-i4bv87-MuiSvgIcon-root, .fourth-table .table-directory .table-directory-right-header .css-i4bv87-MuiSvgIcon-root, .list-table4 .table-directory .table-directory-right-header .css-i4bv87-MuiSvgIcon-root {
-  font-size: 16px;
+.main-table .table-directory .table-directory-right-header svg, .secondary-table .table-directory .table-directory-right-header svg, .folder-list .table-directory .table-directory-right-header svg, .folder-list2 .table-directory .table-directory-right-header svg, .fourth-table .table-directory .table-directory-right-header svg, .list-table4 .table-directory .table-directory-right-header svg {
+  font-size: 16px !important;
 }
 .main-table .table-input, .secondary-table .table-input, .folder-list .table-input, .folder-list2 .table-input, .fourth-table .table-input, .list-table4 .table-input {
   border: none;
@@ -372,15 +372,15 @@
   color: black;
   text-align: justify;
 }
-.main-table .edit-icon .css-i4bv87-MuiSvgIcon-root, .secondary-table .edit-icon .css-i4bv87-MuiSvgIcon-root, .folder-list .edit-icon .css-i4bv87-MuiSvgIcon-root, .folder-list2 .edit-icon .css-i4bv87-MuiSvgIcon-root, .fourth-table .edit-icon .css-i4bv87-MuiSvgIcon-root, .list-table4 .edit-icon .css-i4bv87-MuiSvgIcon-root {
-  margin: 20px 15px;
-  margin-bottom: 0;
-  height: 25px;
-  color: #ACACAC;
+.main-table .edit-icon svg, .secondary-table .edit-icon svg, .folder-list .edit-icon svg, .folder-list2 .edit-icon svg, .fourth-table .edit-icon svg, .list-table4 .edit-icon svg {
+  margin: 20px 15px !important;
+  margin-bottom: 0 !important;
+  height: 25px !important;
+  color: #ACACAC !important;
 }
-.main-table .edit-icon .css-i4bv87-MuiSvgIcon-root:hover, .secondary-table .edit-icon .css-i4bv87-MuiSvgIcon-root:hover, .folder-list .edit-icon .css-i4bv87-MuiSvgIcon-root:hover, .folder-list2 .edit-icon .css-i4bv87-MuiSvgIcon-root:hover, .fourth-table .edit-icon .css-i4bv87-MuiSvgIcon-root:hover, .list-table4 .edit-icon .css-i4bv87-MuiSvgIcon-root:hover {
-  color: #787878;
-  cursor: pointer;
+.main-table .edit-icon svg:hover, .secondary-table .edit-icon svg:hover, .folder-list .edit-icon svg:hover, .folder-list2 .edit-icon svg:hover, .fourth-table .edit-icon svg:hover, .list-table4 .edit-icon svg:hover {
+  color: #787878 !important;
+  cursor: pointer !important;
 }
 
 .main-table button {
@@ -437,9 +437,9 @@
   background-color: transparent;
   border: none;
 }
-.secondary-table .secondary-table-content .secondary-table-items .items-title button .css-i4bv87-MuiSvgIcon-root {
-  color: #A2ABBA;
-  font-size: 20px;
+.secondary-table .secondary-table-content .secondary-table-items .items-title button svg {
+  color: #A2ABBA !important;
+  font-size: 20px !important;
 }
 
 .list-table4 {
@@ -466,12 +466,12 @@
   display: flex;
   padding: 8px 15px;
 }
-.list-table4 .list-table4-content .list-table4-desc .list-table4-desc-item h2, .list-table4 .list-table4-content .list-table4-desc .list-table4-desc-item text, .list-table4 .list-table4-content .list-table4-desc .list-table4-desc-item .css-i4bv87-MuiSvgIcon-root, .list-table4 .list-table4-content .list-table4-desc .list-table4-desc-item .desc-item-list {
-  font-size: 16px;
-  padding: 0;
+.list-table4 .list-table4-content .list-table4-desc .list-table4-desc-item h2, .list-table4 .list-table4-content .list-table4-desc .list-table4-desc-item text, .list-table4 .list-table4-content .list-table4-desc .list-table4-desc-item svg, .list-table4 .list-table4-content .list-table4-desc .list-table4-desc-item .desc-item-list {
+  font-size: 16px !important;
+  padding: 0 !important;
 }
-.list-table4 .list-table4-content .list-table4-desc .list-table4-desc-item h2, .list-table4 .list-table4-content .list-table4-desc .list-table4-desc-item .css-i4bv87-MuiSvgIcon-root {
-  height: 20px;
+.list-table4 .list-table4-content .list-table4-desc .list-table4-desc-item h2, .list-table4 .list-table4-content .list-table4-desc .list-table4-desc-item svg {
+  height: 20px !important;
 }
 .list-table4 .list-table4-content .list-table4-desc .list-table4-desc-item h2 {
   color: #ACACAC;
@@ -481,10 +481,10 @@
   width: calc(100% - 170px);
   text-align: justify;
 }
-.list-table4 .list-table4-content .list-table4-desc .list-table4-desc-item .css-i4bv87-MuiSvgIcon-root {
-  margin-top: -1.5px;
-  margin-right: 5px;
-  font-size: 18px;
+.list-table4 .list-table4-content .list-table4-desc .list-table4-desc-item svg {
+  margin-top: -1.5px !important;
+  margin-right: 5px !important;
+  font-size: 18px !important;
 }
 .list-table4 .list-table4-content .list-table4-desc .list-table4-desc-item .desc-item-list {
   display: grid;
@@ -531,9 +531,9 @@
   font-size: 12px;
   white-space: nowrap;
 }
-.list-table4 .list-table4-content .list-table4-list .list-table4-list-heading .css-i4bv87-MuiSvgIcon-root {
-  height: 20px;
-  color: #A2ABBA;
+.list-table4 .list-table4-content .list-table4-list .list-table4-list-heading svg {
+  height: 20px !important;
+  color: #A2ABBA !important;
 }
 .list-table4 .list-table4-content .list-table4-list h2 {
   color: #343741;
@@ -712,12 +712,12 @@
   color: black;
   margin-right: 0;
 }
-.folder-list .folder-list-title .folder-list-right-header .add-btn .css-i4bv87-MuiSvgIcon-root, .folder-list2 .folder-list-title .folder-list-right-header .add-btn .css-i4bv87-MuiSvgIcon-root {
-  margin-right: 4px;
+.folder-list .folder-list-title .folder-list-right-header .add-btn svg, .folder-list2 .folder-list-title .folder-list-right-header .add-btn svg {
+  margin-right: 4px !important;
 }
-.folder-list .folder-list-title .folder-list-right-header .css-i4bv87-MuiSvgIcon-root, .folder-list2 .folder-list-title .folder-list-right-header .css-i4bv87-MuiSvgIcon-root {
-  font-size: 20px;
-  color: #ACACAC;
+.folder-list .folder-list-title .folder-list-right-header svg, .folder-list2 .folder-list-title .folder-list-right-header svg {
+  font-size: 20px !important;
+  color: #ACACAC !important;
 }
 .folder-list .folder-list-content, .folder-list2 .folder-list-content {
   width: 100%;

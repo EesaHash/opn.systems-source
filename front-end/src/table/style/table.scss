@@ -263,14 +263,14 @@
                 max-width: 20vw;
                 white-space: nowrap;
                 & svg{
-                    color: #2173DF;
-                    margin-left: 5px;
-                    margin-top: -2.5px;
-                    font-size: 15px;
+                    color: #2173DF !important;
+                    margin-left: 5px !important;
+                    margin-top: -2.5px !important;
+                    font-size: 15px !important;
                 }
                 &:hover{
-                    cursor: pointer;
-                    color: #5D5FEF;
+                    cursor: pointer !important;
+                    color: #5D5FEF !important;
                 }
             }
         }
@@ -305,7 +305,7 @@
                 color: black;
                 margin-right: 0;
                 & svg{
-                    margin-right: 4px;
+                    margin-right: 4px !important;
                 }
             }
             & .ai-edit-btn{
@@ -332,11 +332,11 @@
                     color: black;
                 }
                 & svg{
-                    margin-right: 5px;
+                    margin-right: 5px !important;
                 }
             }
             & svg{
-                font-size: 16px;
+                font-size: 16px !important;
             }
         }
     }
@@ -365,13 +365,13 @@
         }
     }
     & .edit-icon svg{
-        margin: 20px 15px;
-        margin-bottom: 0;
-        height: 25px;
-        color: #ACACAC;
+        margin: 20px 15px !important;
+        margin-bottom: 0 !important;
+        height: 25px !important;
+        color: #ACACAC !important;
         &:hover{
-            color: #787878;
-            cursor: pointer;
+            color: #787878 !important;
+            cursor: pointer !important;
         }
     }
 }
@@ -426,8 +426,8 @@
                     background-color: transparent;
                     border: none;
                     & svg{
-                        color: #A2ABBA;
-                        font-size: 20px;
+                        color: #A2ABBA !important;
+                        font-size: 20px !important;
                     }
                 }
             }
@@ -454,11 +454,11 @@
                 display: flex;
                 padding: 8px 15px;
                 & h2, text, svg, .desc-item-list{
-                    font-size: 16px;
-                    padding: 0;
+                    font-size: 16px !important;
+                    padding: 0 !important;
                 }
                 & h2, svg{
-                    height: 20px;
+                    height: 20px !important;
                 }
                 & h2{
                     color: #ACACAC;
@@ -469,9 +469,9 @@
                     text-align: justify;
                 }
                 & svg{
-                    margin-top: -1.5px;
-                    margin-right: 5px;
-                    font-size: 18px;
+                    margin-top: -1.5px !important;
+                    margin-right: 5px !important;
+                    font-size: 18px !important;
                 }
                 & .desc-item-list{
                     display: grid;
@@ -520,8 +520,8 @@
                     white-space: nowrap;
                 }
                 & svg{
-                    height: 20px;
-                    color: #A2ABBA;
+                    height: 20px !important;
+                    color: #A2ABBA !important;
                 }
             }
             & h2{
@@ -703,12 +703,12 @@
                 color: black;
                 margin-right: 0;
                 & svg{
-                    margin-right: 4px;
+                    margin-right: 4px !important;
                 }
             }
             & svg{
-                font-size: 20px;
-                color: #ACACAC;
+                font-size: 20px !important;
+                color: #ACACAC !important;
             }
         }
     }
