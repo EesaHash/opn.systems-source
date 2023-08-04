@@ -1,67 +1,70 @@
-.menu-bar{
+.menu-bar {
     position: fixed;
     width: 100%;
     z-index: 10;
     margin-left: 0px;
     margin-top: 0px;
-}
 
-ul {
-    list-style-type: none;
-    // margin: 0 !important;
-    // padding: 0 !important;
-    overflow: hidden;
-    background-color: transparent;
-    display: flex;
-    transition: background-color 0.3s ease;
-    &:hover {
-        background-color: rgb(0, 0, 0); 
-    }
-  
-    & .right-header {
-      margin-block: 15px;
-      position: fixed;
-      top: 0;
-      right: 0;
-       
-    }
-  }
-
-li {
-    border-radius: 10px;
-    background-color: transparent;
-    width: 100px;
-    height: 40px;
-    margin-top: 10px;
-}
-
-li a {
-    display: block;
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    font-size: 16px;
-    text-align: center;
-}
-
-.logo{
-    width: auto;
-    height: 60px;
-    float: left;
-    background-color: transparent;
-    margin-top: 0;
-
-    & a{
-        text-align: left;
-    }
-
-    & a:hover:not(.active), .active{
+    & ul {
+        list-style-type: none;
+        // margin: 0 !important;
+        // padding: 0 !important;
+        overflow: hidden;
         background-color: transparent;
+        display: flex;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+            background-color: rgb(0, 0, 0);
+        }
+
+        & .right-header {
+            margin-block: 15px;
+            position: fixed;
+            top: 0;
+            right: 0;
+
+        }
     }
-    & img{
-        text-align: left;
-        width: 42px;
-        height: 43px;
-        margin-right: 5px;
+
+    & li {
+        border-radius: 10px;
+        background-color: transparent;
+        width: fit-content;
+        height: 40px;
+        margin-top: 10px;
+    }
+
+    & li a {
+        display: block;
+        color: white;
+        text-align: center;
+        text-decoration: none;
+        font-size: 16px;
+        text-align: center;
+    }
+
+    & .logo {
+        width: auto;
+        height: 60px;
+        float: left;
+        background-color: transparent;
+        margin-top: 0;
+
+        & a {
+            text-align: left;
+        }
+
+        & a:hover:not(.active),
+        .active {
+            background-color: transparent;
+        }
+
+        & img {
+            text-align: left;
+            width: 42px;
+            height: 43px;
+            margin-right: 5px;
+        }
     }
 }

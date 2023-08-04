@@ -1,7 +1,7 @@
 .sidebar {
   height: 96vh;
   width: 240px;
-  background-color: #0E1116;
+  background-color: black;
   border-radius: 12px;
   margin: 0;
 }
@@ -15,6 +15,7 @@
   height: 100%;
   width: 100%;
   display: block;
+  padding: 0;
 }
 .sidebar-list .row {
   width: 85%;
@@ -127,13 +128,41 @@
 .sidebar-list div#icon {
   width: 14%;
 }
-
-.opn-systems-text {
+.sidebar-list .opn-systems-text {
+  display: flex;
   color: white;
   font-size: 1.5rem;
-  margin-left: 20%;
-  margin-top: 5%;
+  margin-top: 10%;
 }
-.opn-systems-text .open-systems-text:hover {
+.sidebar-list .opn-systems-text ul {
+  list-style-type: none;
+  overflow: hidden;
+  background-color: transparent;
+  display: flex;
+  transition: background-color 0.3s ease;
+  display: flex;
+  padding: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+.sidebar-list .opn-systems-text ul:hover {
+  background-color: rgb(0, 0, 0);
+}
+.sidebar-list .opn-systems-text li {
+  width: -moz-fit-content;
+  width: fit-content;
+  border-radius: 10px;
+  background-color: transparent;
+  height: 40px;
+}
+.sidebar-list .opn-systems-text li a {
+  display: block;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  text-align: center;
+}
+.sidebar-list .opn-systems-text .open-systems-text:hover {
   color: #A5A6F6 !important;
 }/*# sourceMappingURL=sidebar.css.map */

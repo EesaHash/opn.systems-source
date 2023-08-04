@@ -13,7 +13,7 @@ export const Sidebar = (props) => {
                 <ul>
                     <li>
                     <a href="/dashboard">
-                        <div style={{width: "10vw", float:"left"}}> <OpnLogo/> Opn.Systems</div>
+                        <div style={{width: "10vw"}}> <OpnLogo/> Opn.Systems</div>
                     </a>
                     </li>
                 </ul>

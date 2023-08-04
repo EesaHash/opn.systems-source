@@ -5,33 +5,31 @@
   margin-left: 0px;
   margin-top: 0px;
 }
-
-ul {
+.menu-bar ul {
   list-style-type: none;
   overflow: hidden;
   background-color: transparent;
   display: flex;
   transition: background-color 0.3s ease;
 }
-ul:hover {
+.menu-bar ul:hover {
   background-color: rgb(0, 0, 0);
 }
-ul .right-header {
+.menu-bar ul .right-header {
   margin-block: 15px;
   position: fixed;
   top: 0;
   right: 0;
 }
-
-li {
+.menu-bar li {
   border-radius: 10px;
   background-color: transparent;
-  width: 100px;
+  width: -moz-fit-content;
+  width: fit-content;
   height: 40px;
   margin-top: 10px;
 }
-
-li a {
+.menu-bar li a {
   display: block;
   color: white;
   text-align: center;
@@ -39,21 +37,21 @@ li a {
   font-size: 16px;
   text-align: center;
 }
-
-.logo {
+.menu-bar .logo {
   width: auto;
   height: 60px;
   float: left;
   background-color: transparent;
   margin-top: 0;
 }
-.logo a {
+.menu-bar .logo a {
   text-align: left;
 }
-.logo a:hover:not(.active), .logo .active {
+.menu-bar .logo a:hover:not(.active),
+.menu-bar .logo .active {
   background-color: transparent;
 }
-.logo img {
+.menu-bar .logo img {
   text-align: left;
   width: 42px;
   height: 43px;

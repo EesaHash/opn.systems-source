@@ -33,9 +33,9 @@ app.use("/api/sop", require("./controllers/business/sopController"));
 app.use("/api/product/getall", require("./controllers/product/getAllProductController"));
 
 // CONNECTION TO FRONTEND BUILD
-app.use(express.static(path.join(__dirname, 'build')));
+app.use(express.static(path.join(__dirname, './front-end/build')));
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+    res.sendFile(path.join(__dirname, './front-end/build', 'index.html'));
 });
 
 app.listen(PORT, () => {

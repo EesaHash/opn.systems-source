@@ -2,7 +2,7 @@ html * {
     font-family: 'DM Sans' !important;
 }
 
-button{
+button {
     border-radius: 10px;
     background-color: #5D5FEF;
     border-style: solid;
@@ -10,26 +10,31 @@ button{
     color: #F7F8FC;
 }
 
+
 // -----LOADING PAGE FOR CREATION-----
-.loading-page{
+.loading-page {
     display: grid;
-    & .loading-message{
+
+    & .loading-message {
         white-space: nowrap;
         display: flex;
         width: fit-content;
         margin: auto;
         margin-top: 20px;
-        & img{
+
+        & img {
             height: 25px;
             margin-right: 10px;
         }
-        & h2{
+
+        & h2 {
             font-size: 16px;
             color: #5D5FEF;
             margin: 0 !important;
         }
     }
-    & input{
+
+    & input {
         margin-top: 20px !important;
         margin-bottom: 20px !important;
         margin: auto;
@@ -40,9 +45,10 @@ button{
 }
 
 // -----DROPDOWN ARROW-----
-.dropdown-arrow-area{
+.dropdown-arrow-area {
     height: 100px;
 }
+
 .dropdown-arrow {
     margin-left: 10px;
     height: 0;
@@ -51,7 +57,8 @@ button{
     border-right: 10px solid transparent;
     border-top: 10px solid black;
     background-color: transparent;
-    &:hover{
+
+    &:hover {
         cursor: pointer;
         border-bottom: 10px solid black !important;
         border-top: 10px solid transparent !important;
@@ -59,7 +66,7 @@ button{
 }
 
 // -----DROPDOWN MENU-----
-.dropdown-content{
+.dropdown-content {
     display: grid;
     position: absolute;
     z-index: 500;
@@ -70,7 +77,9 @@ button{
     width: fit-content;
     box-shadow: 0 0 10px #888888;
     border-radius: 9px;
-    & button, a{
+
+    & button,
+    a {
         margin: 8px 0;
         padding: 12px;
         background-color: transparent;
@@ -78,16 +87,19 @@ button{
         color: black;
         text-align: left;
         text-decoration: none;
-        &:hover{
+
+        &:hover {
             background-color: #F7F8FC;
             border-radius: 9px;
         }
     }
-    & svg{
+
+    & svg {
         margin: 0 !important;
         margin-right: 10px !important;
     }
-    & .hover-arrow{
+
+    & .hover-arrow {
         margin-top: 3px;
         margin-right: 0;
         margin-left: 10px;
@@ -105,17 +117,22 @@ button{
     overflow: scroll;
     border-radius: 30px;
     box-shadow: 0px 0px 10px 100vw #0000007c;
-    & .content-form{
+
+    & .content-form {
         margin: 20px 40px;
-        & .header{
+
+        & .header {
             display: flex;
-            & h2{
+
+            & h2 {
                 margin: 0;
             }
-            & svg{
+
+            & svg {
                 margin-right: 10px !important;
             }
-            & .close-button{
+
+            & .close-button {
                 float: right;
                 text-align: right;
                 margin: auto;
@@ -126,57 +143,81 @@ button{
             }
         }
     }
-    & h1, h2, h3, .pop-up-input{
+
+    & h1,
+    h2,
+    h3,
+    .pop-up-input {
         margin: 20px 0;
     }
-    & h1{
+
+    & h1 {
         font-size: 24px;
         color: #343741;
         font-weight: 700;
     }
-    & h2{
+
+    & h2 {
         font-size: 20px;
     }
-    & h3, label, input::placeholder{
+
+    & h3,
+    label,
+    input::placeholder {
         font-size: 14px;
         color: #ACACAC;
     }
-    & hr{
+
+    & hr {
         margin: 20px -40px;
         width: auto;
-       
+
     }
 
-    & .pop-up-input{
+    & .pop-up-input {
         display: grid;
-        & .dropdown button{
+
+        & .dropdown button {
             color: black;
             text-align: left;
         }
-        & input, button, .dropdown, textarea{
-            height: 48px  !important;
+
+        & input,
+        button,
+        .dropdown,
+        textarea {
+            height: 48px !important;
             border-radius: 4px;
         }
-        & input{
+
+        & input {
             width: 100%;
         }
-        & input, .dropdown, .dropdown-menu, textarea{
+
+        & input,
+        .dropdown,
+        .dropdown-menu,
+        textarea {
             background-color: #f1f1f1;
         }
-        & textarea{
+
+        & textarea {
             height: 10vh !important;
         }
-        & textarea:focus, input:focus{
+
+        & textarea:focus,
+        input:focus {
             outline: none;
             border-bottom: 1.5px solid #5D5FEF;
         }
     }
 
-    & .pop-up-button{
+    & .pop-up-button {
         display: flex;
         float: right;
         margin-bottom: 12px;
-        & button{
+
+        & button {
             min-height: fit-content;
             height: 5vh;
             width: 7vw;
@@ -184,102 +225,129 @@ button{
             border: 1.5px solid transparent;
             font-size: 16px;
         }
-        & .cancel-button{
+
+        & .cancel-button {
             background-color: transparent;
             margin-right: 20px;
             color: black;
 
         }
-        & .next-button{
+
+        & .next-button {
             background-color: #A2ABBA;
         }
     }
-    & .title{
+
+    & .title {
         display: flex;
         margin-top: -20px;
         margin-bottom: -20px;
         margin-left: -10px;
-        & button{
+
+        & button {
             color: #ACACAC;
             background-color: transparent;
             border-color: transparent;
         }
-        & span{
+
+        & span {
             font-size: 20px;
         }
     }
 }
+
 .form-container {
     padding: 10px;
     background-color: white;
 }
-.form-container{
-    & input, select, textarea{
+
+.form-container {
+
+    & input,
+    select,
+    textarea {
         padding: 15px;
         margin: 5px 0 0 0;
         border: none;
         background: #f1f1f1;
     }
 }
-.form-container input:focus, .form-container select:focus{
+
+.form-container input:focus,
+.form-container select:focus {
     outline: none;
 }
-.form-floating select{
+
+.form-floating select {
     height: calc(3.5rem + 2px);
 }
 
 // -----DROPDOWN INPUT-----
-.dropdown, .dropdown-menu{
+.dropdown,
+.dropdown-menu {
     width: 100%;
     font-size: 16px;
 }
-.dropdown{
-    &.show{
-        & .btn{
+
+.dropdown {
+    &.show {
+        & .btn {
             border-bottom: 1.5px solid #5D5FEF;
         }
     }
-    & button, button:active, button:hover{
+
+    & button,
+    button:active,
+    button:hover {
         background-color: transparent;
     }
-    & button{
+
+    & button {
         width: 100%;
         border: none;
         color: black;
     }
 }
-.dropdown-menu{
-    & button{
+
+.dropdown-menu {
+    & button {
         margin-bottom: 5px;
     }
-    & button:hover{
+
+    & button:hover {
         // background-color: rgb(108, 117, 125);
         background-color: #5d5fef44;
     }
 }
-.help-btn{
+
+.help-btn {
     display: flex;
     border-radius: 9px;
     padding: 5px 8px;
     font-size: 12px;
     text-align: left;
-    &:hover, &.active{
+
+    &:hover,
+    &.active {
         cursor: pointer;
         background-color: #F7F8FC;
     }
-    & img{
+
+    & img {
         height: 25px;
         margin: auto;
         margin-right: 10px;
         margin-left: 0;
     }
-    & button{
+
+    & button {
         background-color: transparent;
         border: none;
         color: black;
         padding: 0;
     }
-    & svg{
+
+    & svg {
         margin: auto !important;
         margin-right: 0 !important;
         height: 15px !important;
@@ -289,52 +357,62 @@ button{
 // ------CONFIRMATION POP UP-----
 $confirmation-width: 40vw;
 $confirmation-height: 50vh;
-.confirmation{
+
+.confirmation {
     top: calc((100vh - $confirmation-height) / 2);
     height: fit-content;
     max-height: $confirmation-height;
     width: $confirmation-width;
     left: calc((100vw - $confirmation-width) / 2);
     right: calc((100vw - $confirmation-width) / 2);
-    & .title{
+
+    & .title {
         display: grid;
         text-align: center;
-        & h1{
+
+        & h1 {
             margin-bottom: 10px;
             font-size: 24px;
             font-weight: 700;
             color: #343741;
         }
-        & h3{
+
+        & h3 {
             margin-top: 0;
             font-size: 16px;
             color: #1A1C21;
         }
     }
-    & .cancel-button{
+
+    & .cancel-button {
         border-color: #BD271E !important;
         color: #BD271E !important;
     }
-    & .delete-button{
+
+    & .delete-button {
         color: white !important;
         background-color: #BD271E !important;
     }
-    & .pop-up-input{
+
+    & .pop-up-input {
         display: flex;
         background-color: #F8F8F8;
         padding: 3px 15px;
         border-radius: 28px;
-        & img{
+
+        & img {
             height: 25px;
             margin: auto;
             margin-left: 0;
             margin-right: 0;
             border-radius: 8px;
         }
-        & input{
+
+        & input {
             margin-top: 0;
             background-color: transparent;
-            &:focus{
+
+            &:focus {
                 border-color: transparent !important;
             }
         }

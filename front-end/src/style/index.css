@@ -71,7 +71,8 @@ button {
   box-shadow: 0 0 10px #888888;
   border-radius: 9px;
 }
-.dropdown-content button, .dropdown-content a {
+.dropdown-content button,
+.dropdown-content a {
   margin: 8px 0;
   padding: 12px;
   background-color: transparent;
@@ -80,7 +81,8 @@ button {
   text-align: left;
   text-decoration: none;
 }
-.dropdown-content button:hover, .dropdown-content a:hover {
+.dropdown-content button:hover,
+.dropdown-content a:hover {
   background-color: #F7F8FC;
   border-radius: 9px;
 }
@@ -126,7 +128,10 @@ button {
   border: none;
   color: black;
 }
-.form-popup h1, .form-popup h2, .form-popup h3, .form-popup .pop-up-input {
+.form-popup h1,
+.form-popup h2,
+.form-popup h3,
+.form-popup .pop-up-input {
   margin: 20px 0;
 }
 .form-popup h1 {
@@ -141,7 +146,9 @@ button {
   font-size: 14px;
   color: #ACACAC;
 }
-.form-popup h3, .form-popup label, .form-popup input::placeholder {
+.form-popup h3,
+.form-popup label,
+.form-popup input::placeholder {
   font-size: 14px;
   color: #ACACAC;
 }
@@ -156,20 +163,27 @@ button {
   color: black;
   text-align: left;
 }
-.form-popup .pop-up-input input, .form-popup .pop-up-input button, .form-popup .pop-up-input .dropdown, .form-popup .pop-up-input textarea {
+.form-popup .pop-up-input input,
+.form-popup .pop-up-input button,
+.form-popup .pop-up-input .dropdown,
+.form-popup .pop-up-input textarea {
   height: 48px !important;
   border-radius: 4px;
 }
 .form-popup .pop-up-input input {
   width: 100%;
 }
-.form-popup .pop-up-input input, .form-popup .pop-up-input .dropdown, .form-popup .pop-up-input .dropdown-menu, .form-popup .pop-up-input textarea {
+.form-popup .pop-up-input input,
+.form-popup .pop-up-input .dropdown,
+.form-popup .pop-up-input .dropdown-menu,
+.form-popup .pop-up-input textarea {
   background-color: #f1f1f1;
 }
 .form-popup .pop-up-input textarea {
   height: 10vh !important;
 }
-.form-popup .pop-up-input textarea:focus, .form-popup .pop-up-input input:focus {
+.form-popup .pop-up-input textarea:focus,
+.form-popup .pop-up-input input:focus {
   outline: none;
   border-bottom: 1.5px solid #5D5FEF;
 }
@@ -215,14 +229,17 @@ button {
   background-color: white;
 }
 
-.form-container input, .form-container select, .form-container textarea {
+.form-container input,
+.form-container select,
+.form-container textarea {
   padding: 15px;
   margin: 5px 0 0 0;
   border: none;
   background: #f1f1f1;
 }
 
-.form-container input:focus, .form-container select:focus {
+.form-container input:focus,
+.form-container select:focus {
   outline: none;
 }
 
@@ -230,7 +247,8 @@ button {
   height: calc(3.5rem + 2px);
 }
 
-.dropdown, .dropdown-menu {
+.dropdown,
+.dropdown-menu {
   width: 100%;
   font-size: 16px;
 }
@@ -238,7 +256,9 @@ button {
 .dropdown.show .btn {
   border-bottom: 1.5px solid #5D5FEF;
 }
-.dropdown button, .dropdown button:active, .dropdown button:hover {
+.dropdown button,
+.dropdown button:active,
+.dropdown button:hover {
   background-color: transparent;
 }
 .dropdown button {
