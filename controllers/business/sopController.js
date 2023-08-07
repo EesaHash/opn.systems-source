@@ -345,12 +345,16 @@ async function generateSopsForStage(clientJourney, forStage) {
             statement = steps[i];
 
             // Generate a single SOP for the current step/statement
-            const sop = await generateSingleSOP(statement);
+            //const sop = await generateSingleSOP(statement);
+            const sop = await retrySOP(statement);
+            if (sop == null) {
+                return null;
+            }
 
             // Save the generated SOP in the database using Sequelize Model.create
             await SOP.create({
-                title: sop.title,
-                purpose: sop.purpose,
+                title: JSON.stringify(sop.title),
+                purpose: JSON.stringify(sop.purpose),
                 definitions: JSON.stringify(sop.definitions),
                 responsibility: JSON.stringify(sop.responsibility),
                 procedure: JSON.stringify(sop.procedure),
@@ -371,127 +375,209 @@ async function generateSopsForStage(clientJourney, forStage) {
         return null;
     }
 }
-/**
- * Generates a (single) SOP for a given statement/procedure step from the clientJourney
- * Uses langchain standard class methods, and ChatPromptTemplate as the default system theme. 
- * Context Aware, as the SOP is sequentially generated affected by previous chains (See langchain documentation) due to stored memory.
- * @param {statement} req 
- * @returns {sop} res
- */
+
+
 async function generateSingleSOP(statement) {
+    // Create a parser to extract structured information from the generated output
+    const parser = StructuredOutputParser.fromZodSchema(
+        z.object({
+            // Define the schema for different sections of the SOP
+            title: z.string().describe(`The title should clearly and concisely describe the procedure. Rephrase the statement to something thats appropriate`),
+            purpose: z.string().describe(`This section explains why the SOP is necessary and under what circumstances it should be followed. It could include the potential benefits and the objectives the SOP is designed to achieve.`),
+            responsibility: z.array(z.string()).describe(`Detail who is responsible for executing the SOP, including any secondary roles that may be involved in supporting or overseeing the process.`),
+            procedure: z.array(z.string()).describe(`This is the core of the SOP. It provides a step-by-step guide on how to complete the procedure. It should be detailed and specific enough that someone unfamiliar with the process could complete it by following the instructions. Please inlude real-world statistical information along with citations as well.`),
+            documentation: z.array(z.string()).describe(`This section specifies any necessary documentation related to the procedure, such as forms to be filled out, records to be kept, or reports to be submitted. Add Australian based companies/firms that can help out with the documentation`),
+            definitions: z.array(z.string()).describe(`This section includes any specific terms, abbreviations, or acronyms used within the SOP.`),
+        })
+    );
+
+    // Create a fix parser to handle any issues with parsing the output
+    const fixParser = OutputFixingParser.fromLLM(
+        new ChatOpenAI({ temperature: 0, modelName: modelName }),
+        parser
+    );
+
+    // Create a prompt template with the instruction format and input variables
+    const formatInstructions = parser.getFormatInstructions();
+    const prompt = new PromptTemplate({
+        template:
+            `You are an assistant based in Australia tasked with generating the following:
+            Standard Operating Procedures (SOPs): For a given statement, generate a single SOP based on the statement provided.
+            Be extremely detailed and precise, it is IMPERATIVE that you include Australian companies that might help with a step
+            and Australian statistics that are correct and valid. 
+
+            Here's the statement: {statement}
+
+            {format_instructions}`,
+        inputVariables: ["statement"],
+        partialVariables: { format_instructions: formatInstructions },
+    });
+
+    // Create a new ChatOpenAI instance with the specified options
+    const chat = new ChatOpenAI({ temperature: 0.9, modelName: modelName, maxTokens: -1 });
+
+    // Create an LLMChain to handle the conversation and output parsing
+    const chain = new LLMChain({
+        prompt: prompt,
+        llm: chat,
+        outputKey: "result",
+        outputParser: parser,
+        fixParser: fixParser
+    });
+
     try {
-        const chat = new ChatOpenAI({ temperature: 0.9, modelName: modelName, maxTokens: -1 });
-        const memory = new BufferMemory({ returnMessages: true, memoryKey: "history" });
-        const messagesPlaceholder = new MessagesPlaceholder("history");
-        const chatPrompt = ChatPromptTemplate.fromPromptMessages([
-            SystemMessagePromptTemplate.fromTemplate(
-                `Standard Operating Procedures (SOPs): For a given statement, generate a single SOP.
-            
-            Here's a general format for creating an SOP:
-            
-            1. Title: The title should clearly and concisely describe the procedure.
-            2. Purpose/Scope: This section explains why the SOP is necessary and under what circumstances it should be followed. It could include the potential benefits and the objectives the SOP is designed to achieve.
-            3. Definitions: This section includes any specific terms, abbreviations, or acronyms used within the SOP.
-            4. Responsibility: Detail who is responsible for executing the SOP, including any secondary roles that may be involved in supporting or overseeing the process.
-            5. Procedure: This is the core of the SOP. It provides a step-by-step guide on how to complete the procedure. It should be detailed and specific enough that someone unfamiliar with the process could complete it by following the instructions.
-            6. Documentation/Records: This section specifies any necessary documentation related to the procedure, such as forms to be filled out, records to be kept, or reports to be submitted.
-
-            Here's the statement: "${statement}"`
-            ),
-            messagesPlaceholder,
-            HumanMessagePromptTemplate.fromTemplate("{input}"),
-        ]);
-
-        const titleChain = new ConversationChain({
-            memory: memory,
-            prompt: chatPrompt,
-            llm: chat,
-            outputKey: "title",
+        // Call the chain with the previous SOP and user's request to regenerate the SOP
+        const output = await chain.call({
+            statement: statement,
         });
 
-        const purposeChain = new ConversationChain({
-            memory: memory,
-            prompt: chatPrompt,
-            llm: chat,
-            outputKey: "purpose"
-        });
-
-        const definitionsChain = new ConversationChain({
-            memory: memory,
-            prompt: chatPrompt,
-            llm: chat,
-            outputKey: "definitions"
-        });
-
-        const responsibilityChain = new ConversationChain({
-            memory: memory,
-            prompt: chatPrompt,
-            llm: chat,
-            outputKey: "responsibility",
-        });
-
-        const procedureChain = new ConversationChain({
-            memory: memory,
-            prompt: chatPrompt,
-            llm: chat,
-            outputKey: "procedure",
-        });
-
-        const documentationChain = new ConversationChain({
-            memory: memory,
-            prompt: chatPrompt,
-            llm: chat,
-            outputKey: "documentation"
-        });
-
-        const title = await titleChain.call({
-            input: `Generate the title. Dont add any labels or tags for example "Title: " `,
-        });
-
-        const purpose = await purposeChain.call({
-            input: `Generate the purpose. Dont add any labels or tags for example "Purpose: " `,
-        });
-
-        const unformattedProcedure = await procedureChain.call({
-            input: `Generate the procedure as a detailed paragraph".`,
-        });
-
-        const unformattedDocumentation = await documentationChain.call({
-            input: `Generate the documentation. Dont add any labels or tags for example "Documentation: "`
-        });
-
-        const unformattedDefinitions = await definitionsChain.call({
-            input: `List some abbreviations that WERE USED in procedure (not more than 4). Dont add any labels or tags for example "Definitions: "`
-        });
-
-        const unformattedResponsibility = await responsibilityChain.call({
-            input: `List the people roles responsible. Dont add any labels or tags for example "Responsibility: "`
-        });
-
-        let procedure = null;
-        let other = null;
-        let i = 0;
-        while (i < 3) {
-            if (procedure == null) {
-                procedure = await formatProcedure(unformattedProcedure, chat);
-            }
-            if (other == null) {
-                other = await formatResponsibilityDefinitionDocumentation(unformattedResponsibility, unformattedDefinitions, unformattedDocumentation, chat);
-            }
-            i++;
-        }
-
-        if (procedure == null || other == null) {
-            throw "Unable to generate procedure";
-        }
-
-        let output = Object.assign({}, title, purpose, procedure, other);
-        return output;
-    } catch (err) {
-        console.log(err);
+        // Return the regenerated SOP after applying the modifications as per the user's request
+        return output.result;
+    } catch (error) {
+        // If any errors occur during the regeneration process, catch the error, log it, and return null.
+        console.log(error);
         return null;
     }
 }
+
+async function retrySOP(statement) {
+    let i = 0;
+    let sop = null;
+    while (i < 5) {
+        sop = await generateSingleSOP(statement);
+        console.log(sop);
+        i++;
+        if (sop == null || sop.title == null || sop.purpose == null || sop.definitions == null || sop.responsibility == null || sop.documentation == null || sop.procedure == null) {
+            continue;
+        }
+        else {
+            return sop;
+        }
+    }
+    return sop;
+}
+
+// /**
+//  * Generates a (single) SOP for a given statement/procedure step from the clientJourney
+//  * Uses langchain standard class methods, and ChatPromptTemplate as the default system theme. 
+//  * Context Aware, as the SOP is sequentially generated affected by previous chains (See langchain documentation) due to stored memory.
+//  * @param {statement} req 
+//  * @returns {sop} res
+//  */
+// async function generateSingleSOP(statement) {
+//     try {
+//         const chat = new ChatOpenAI({ temperature: 0.9, modelName: modelName, maxTokens: -1 });
+//         const memory = new BufferMemory({ returnMessages: true, memoryKey: "history" });
+//         const messagesPlaceholder = new MessagesPlaceholder("history");
+//         const chatPrompt = ChatPromptTemplate.fromPromptMessages([
+//             SystemMessagePromptTemplate.fromTemplate(
+//                 `Standard Operating Procedures (SOPs): For a given statement, generate a single SOP.
+            
+//             Here's a general format for creating an SOP:
+            
+//             1. Title: The title should clearly and concisely describe the procedure.
+//             2. Purpose/Scope: This section explains why the SOP is necessary and under what circumstances it should be followed. It could include the potential benefits and the objectives the SOP is designed to achieve.
+//             3. Definitions: This section includes any specific terms, abbreviations, or acronyms used within the SOP.
+//             4. Responsibility: Detail who is responsible for executing the SOP, including any secondary roles that may be involved in supporting or overseeing the process.
+//             5. Procedure: This is the core of the SOP. It provides a step-by-step guide on how to complete the procedure. It should be detailed and specific enough that someone unfamiliar with the process could complete it by following the instructions.
+//             6. Documentation/Records: This section specifies any necessary documentation related to the procedure, such as forms to be filled out, records to be kept, or reports to be submitted.
+
+//             Here's the statement: "${statement}"`
+//             ),
+//             messagesPlaceholder,
+//             HumanMessagePromptTemplate.fromTemplate("{input}"),
+//         ]);
+
+//         const titleChain = new ConversationChain({
+//             memory: memory,
+//             prompt: chatPrompt,
+//             llm: chat,
+//             outputKey: "title",
+//         });
+
+//         const purposeChain = new ConversationChain({
+//             memory: memory,
+//             prompt: chatPrompt,
+//             llm: chat,
+//             outputKey: "purpose"
+//         });
+
+//         const definitionsChain = new ConversationChain({
+//             memory: memory,
+//             prompt: chatPrompt,
+//             llm: chat,
+//             outputKey: "definitions"
+//         });
+
+//         const responsibilityChain = new ConversationChain({
+//             memory: memory,
+//             prompt: chatPrompt,
+//             llm: chat,
+//             outputKey: "responsibility",
+//         });
+
+//         const procedureChain = new ConversationChain({
+//             memory: memory,
+//             prompt: chatPrompt,
+//             llm: chat,
+//             outputKey: "procedure",
+//         });
+
+//         const documentationChain = new ConversationChain({
+//             memory: memory,
+//             prompt: chatPrompt,
+//             llm: chat,
+//             outputKey: "documentation"
+//         });
+
+//         const title = await titleChain.call({
+//             input: `Generate the title. Dont add any labels or tags for example "Title: " `,
+//         });
+
+//         const purpose = await purposeChain.call({
+//             input: `Generate the purpose. Dont add any labels or tags for example "Purpose: " `,
+//         });
+
+//         const unformattedProcedure = await procedureChain.call({
+//             input: `Generate the procedure as a detailed paragraph".`,
+//         });
+
+//         const unformattedDocumentation = await documentationChain.call({
+//             input: `Generate the documentation. Dont add any labels or tags for example "Documentation: "`
+//         });
+
+//         const unformattedDefinitions = await definitionsChain.call({
+//             input: `List some abbreviations that WERE USED in procedure (not more than 4). Dont add any labels or tags for example "Definitions: "`
+//         });
+
+//         const unformattedResponsibility = await responsibilityChain.call({
+//             input: `List the people roles responsible. Dont add any labels or tags for example "Responsibility: "`
+//         });
+
+//         let procedure = null;
+//         let other = null;
+//         let i = 0;
+//         while (i < 3) {
+//             if (procedure == null) {
+//                 procedure = await formatProcedure(unformattedProcedure, chat);
+//             }
+//             if (other == null) {
+//                 other = await formatResponsibilityDefinitionDocumentation(unformattedResponsibility, unformattedDefinitions, unformattedDocumentation, chat);
+//             }
+//             i++;
+//         }
+
+//         if (procedure == null || other == null) {
+//             throw "Unable to generate procedure";
+//         }
+
+//         let output = Object.assign({}, title, purpose, procedure, other);
+//         return output;
+//     } catch (err) {
+//         console.log(err);
+//         return null;
+//     }
+// }
 /**
  * Formats the procedure section of an SOP. It applies specific formatting instructions provided in the prompt to structure the provided procedure steps correctly.
  * @param {Array} procedure - An array of procedure steps to be formatted.
