@@ -6,16 +6,20 @@ import { ListTable2 } from '../../table/components/List/ListTable2';
 import { stages } from './originalStages';
 import { UpdateConfirmation } from '../../public_components/UpdateConfirmation';
 
+// The ClientJourneyDashboard component
 export const ClientJourneyDashboard = (props) => {
+    // State variables for the component
     const [index, setIndex] = useState(-1);
     const [journey, setJourney] = useState({});
     const [updateConfirmation, setUpdateConfirmation] = useState(-1);
     const [deleteConfirmation, setDeleteConfirmation] = useState(-1);
 
+    // Effect hook to handle the initial display of main and secondary tables.
     useEffect(() => {
         const mainTable = document.getElementById("client-journey-main-table");
         const secondaryTable = document.getElementById("client-journey-secondary-table");
-        if(mainTable && secondaryTable){
+
+        if (mainTable && secondaryTable) {
             mainTable.style.display = "block";
             setJourney({});
             setIndex(-1);
@@ -23,18 +27,19 @@ export const ClientJourneyDashboard = (props) => {
         }
     }, [props.activeLink2]);
 
-    // Create New Journey
+    // Function to open the Create Journey Form.
     const openCreateJourneyForm = _ => {
-        if(props.journeys.length > 0)
+        if (props.journeys.length > 0)
             return openAccessLimitForm();
         document.getElementById("createClientJourney").style.display = "block";
     };
 
-    // Going to Tab 2
+    // Function to switch to Tab 2 (Client Journey Details).
     const openClientJourneyDetails = (param, index) => {
         const mainTable = document.getElementById("client-journey-main-table");
         const secondaryTable = document.getElementById("client-journey-secondary-table");
-        if(mainTable && secondaryTable){
+
+        if (mainTable && secondaryTable) {
             mainTable.style.display = "none";
             setJourney(param);
             setIndex(index);
@@ -42,11 +47,12 @@ export const ClientJourneyDashboard = (props) => {
         }
     };
 
-    // Going back to Tab 1
+    // Function to show the Journey List (Back to Tab 1).
     const showJourneyList = _ => {
         const mainTable = document.getElementById("client-journey-main-table");
         const secondaryTable = document.getElementById("client-journey-secondary-table");
-        if(mainTable && secondaryTable){
+
+        if (mainTable && secondaryTable) {
             mainTable.style.display = "block";
             setJourney({});
             setIndex(-1);
@@ -54,13 +60,14 @@ export const ClientJourneyDashboard = (props) => {
         }
     };
 
-    // Save Changes
+    // Function to handle update confirmation and save changes.
     const openUpdateConfirmation = _ => {
         document.getElementById("client-journey-update-confirm").style.display = "block";
     };
+
     useEffect(() => {
         const saveChanges = _ => {
-            try{
+            try {
                 fetch("/api/clientjourney/save_regenerated_stage", {
                     method: "POST",
                     headers: {
@@ -70,14 +77,14 @@ export const ClientJourneyDashboard = (props) => {
                         journey
                     })
                 })
-                    .then((res) => {return res.json(); })
+                    .then((res) => { return res.json(); })
                     .then((data) => {
-                        if(data.status){
+                        if (data.status) {
                             props.setJourneys([...props.journeys.filter(obj => obj.id !== journey.id), journey]);
                         }
                         setUpdateConfirmation(-1);
-                    })
-            }catch(error){
+                    });
+            } catch (error) {
                 console.log(error);
             }
         };
@@ -85,40 +92,46 @@ export const ClientJourneyDashboard = (props) => {
             setJourney(props.journeys[index]);
             setUpdateConfirmation(-1);
         };
-        if(updateConfirmation === 1)
+        if (updateConfirmation === 1)
             saveChanges();
-        else if(updateConfirmation === 0)
+        else if (updateConfirmation === 0)
             discardChanges();
         // eslint-disable-next-line
     }, [updateConfirmation]);
 
-    // Regenerate Client Journey
+    // Function to automatically regenerate the client journey
     const automaticallyRegenerate = (setLoading) => {
         regenerateClientJourney(null, setLoading);
     };
+
+    // Function to regenerate the client journey by providing a prompt
     const regenerateByPrompt = (prompt, setLoading) => {
-        if(prompt){
+        if (prompt) {
             regenerateClientJourney(prompt, setLoading);
         }
     };
+
+    // Function to regenerate the client journey
     const regenerateClientJourney = (prompt, setLoading) => {
         try {
             setLoading(true);
+            // Sending a request to the server to regenerate the client journey
             fetch("/api/clientjourney/regenerate_client_journey", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    clientJourneyID: journey.id,
-                    prompt
+                    clientJourneyID: journey.id, // The ID of the client journey to regenerate
+                    prompt // The optional prompt for regeneration
                 })
             })
-                .then((res) => {return res.json(); })
+                .then((res) => { return res.json(); })
                 .then((data) => {
                     console.log(data);
-                    if(data.status){
-                        setJourney({...journey, ...data.clientJourney});
+                    if (data.status) {
+                        // Update the client journey with the regenerated data
+                        setJourney({ ...journey, ...data.clientJourney });
                         setLoading(false);
                     }
                 });
@@ -126,37 +139,40 @@ export const ClientJourneyDashboard = (props) => {
             console.log(error);
         }
     };
-    
+
     // Regenerate Client Journey for Stage
     const automaticallyRegenerateForStage = (index, setLoading) => {
         regenerateClientJourneyForStage(index, null, setLoading);
     };
     const regenerateByPromptForStage = (index, prompt, setLoading) => {
-        if(prompt){
+        if (prompt) {
             regenerateClientJourneyForStage(index, prompt, setLoading);
         }
     };
+    // Function to regenerate a specific stage of the client journey
     const regenerateClientJourneyForStage = (index, prompt, setLoading) => {
-        try{
-            const stage = stages[index];
+        try {
+            const stage = stages[index]; // Get the stage name based on the index
             setLoading(true);
+            // Sending a request to the server to regenerate the specified stage
             fetch("/api/clientjourney/regenerate_stage", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                    cj: journey,
-                    businessId: journey.businessId,
-                    stage: stage,
-                    prompt: prompt
+                    cj: journey, // The client journey object to regenerate
+                    businessId: journey.businessId, // The business ID associated with the journey
+                    stage: stage, // The specific stage to regenerate
+                    prompt: prompt // The optional prompt for regeneration
                 })
             })
-                .then((res) => {return res.json(); })
+                .then((res) => { return res.json(); })
                 .then((data) => {
-                    if(data.status){
-                        const temp = {...journey};
-                        switch(stage){
+                    if (data.status) {
+                        const temp = { ...journey };
+                        // Update the corresponding stage data in the client journey based on the regenerated output
+                        switch (stage) {
                             case "awareness":
                                 temp.awareness = JSON.stringify(data.output);
                                 break;
@@ -181,80 +197,93 @@ export const ClientJourneyDashboard = (props) => {
                             case "retention":
                                 temp.retention = JSON.stringify(data.output);
                                 break;
-                            default: 
+                            default:
                                 console.log("Unexisting column");
                                 break;
                         }
+                        // Update the journey state with the updated stage data
                         setJourney(temp);
                         setLoading(false);
                     }
                 });
-        }catch(error){
+        } catch (error) {
             console.log(error);
         }
     };
 
-    // Delete Journey
+
+    // Function to prompt user for confirmation before deleting a journey
     const confirmDelete = (data) => {
-        setDeleteConfirmation(data.productID);
+        setDeleteConfirmation(data.productID); // Set the productID of the journey to be deleted
     };
+
     useEffect(() => {
+        // Function to delete the journey when deleteConfirmation is not -1 (i.e., user confirmed deletion)
         const deleteJourney = _ => {
-            try{
+            try {
+                // Sending a POST request to the server to delete the specified journey
                 fetch("/api/clientjourney/delete", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
                     },
                     body: JSON.stringify({
-                        productID: deleteConfirmation
+                        productID: deleteConfirmation // The productID of the journey to be deleted
                     })
                 })
-                    .then((res) => {return res.json(); })
+                    .then((res) => { return res.json(); })
                     .then((data) => {
-                        if(data.status){
+                        if (data.status) {
+                            // Update the journeys state by removing the deleted journey from the list
                             props.setJourneys([...props.journeys.filter(obj => obj.productID !== deleteConfirmation)]);
                         }
+                        // Reset deleteConfirmation to -1 after the journey is deleted or action is canceled
                         setDeleteConfirmation(-1);
                     })
-            }catch(error){
+            } catch (error) {
                 console.log(error);
             }
         };
-        if(deleteConfirmation !== -1)
+
+        // Call deleteJourney when deleteConfirmation changes (i.e., user confirms or cancels deletion)
+        if (deleteConfirmation !== -1)
             deleteJourney();
         // eslint-disable-next-line
     }, [deleteConfirmation]);
 
-    return(
+
+    return (
         <div className='client-journey'>
+            {/* UpdateConfirmation component to handle updates */}
             <UpdateConfirmation
-                id = "client-journey-update-confirm"
-                documentName = {journey.title}
-                setConfirmation = {setUpdateConfirmation}
+                id="client-journey-update-confirm"
+                documentName={journey.title}
+                setConfirmation={setUpdateConfirmation}
             />
-            <ListTable 
-                id = "client-journey-main-table"
-                title = "Client Journey" 
-                list = {props.journeys}
-                addNewBtn = {openCreateJourneyForm}
-                itemActionBtn = {openClientJourneyDetails}
-                setDeleteConfirmation = {confirmDelete}
+            {/* First ListTable to display the list of client journeys */}
+            <ListTable
+                id="client-journey-main-table"
+                title="Client Journey"
+                list={props.journeys}
+                addNewBtn={openCreateJourneyForm}
+                itemActionBtn={openClientJourneyDetails}
+                setDeleteConfirmation={confirmDelete}
             />
+            {/* Second ListTable to display the details of a selected client journey */}
             <ListTable2
-                id = "client-journey-secondary-table"
-                type = {"Client Journey"}
-                title = {journey.title}
-                description = {journey.overview ? JSON.parse(journey.overview).overview : ""}
-                dataHeading = {journey.stages}
-                data = {journey}
-                button1 = {showJourneyList}
-                saveBtn = {openUpdateConfirmation}
-                automaticallyRegenerate = {automaticallyRegenerate}
-                regenerateByPrompt = {regenerateByPrompt}
-                automaticallyRegenerateForStep = {automaticallyRegenerateForStage}
-                regenerateByPromptForStep = {regenerateByPromptForStage}
-                loadingTitle = {"AI is regenerating the client journey for"}
+                id="client-journey-secondary-table"
+                type={"Client Journey"}
+                title={journey.title}
+                description={journey.overview ? JSON.parse(journey.overview).overview : ""}
+                dataHeading={journey.stages}
+                data={journey}
+                button1={showJourneyList}
+                saveBtn={openUpdateConfirmation}
+                automaticallyRegenerate={automaticallyRegenerate}
+                regenerateByPrompt={regenerateByPrompt}
+                automaticallyRegenerateForStep={automaticallyRegenerateForStage}
+                regenerateByPromptForStep={regenerateByPromptForStage}
+                loadingTitle={"AI is regenerating the client journey for"}
             />
         </div>
     );
