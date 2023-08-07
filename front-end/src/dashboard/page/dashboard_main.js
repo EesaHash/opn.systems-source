@@ -1,3 +1,4 @@
+// Import necessary dependencies and styles
 import React, { useEffect, useState } from "react";
 import "../style/searchbar.css";
 import "../style/sidebar.css";
@@ -17,7 +18,11 @@ import { GenerateProcedure } from "../../cj_procedure/components/GenerateProcedu
 import { AccountSetting } from "../../account/components/AccountSetting";
 import { Profile } from "../../account/components/Profile";
 
+/**
+ * Component for rendering the main dashboard page.
+ */
 export const DashboardPage = () => {
+    // States to manage user data and various dashboard-related data
     const [userID, setUserID] = useState();
     const [user, setUser] = useState({});
     const [loading, setLoading] = useState(false);
@@ -31,18 +36,20 @@ export const DashboardPage = () => {
     const [procedures, setProcedures] = useState([]);
     const [policies, setPolicies] = useState([]);
 
+    // Fetch user ID when the component mounts
     useEffect(() => {
-        try{
+        try {
             getUserID().then(res => setUserID(res));
-        }catch(error){
+        } catch (error) {
             console.log(error);
         }
     }, []);
 
+    // Fetch user data and business list based on the user ID
     useEffect(() => {
-        try{
+        try {
             setLoading(true);
-            const getUserData = async _ => {
+            const getUserData = async () => {
                 const res = await fetch("/api/getuserdata", {
                     method: "POST",
                     headers: {
@@ -53,14 +60,15 @@ export const DashboardPage = () => {
                     })
                 });
                 const data = await res.json();
-                if(data.status){
+                if (data.status) {
                     setUser(data.user);
                     setLoading(false);
-                }else{
+                } else {
                     alert(data.message);
                 }
             };
-            const getBusinessList = async _ => {
+
+            const getBusinessList = async () => {
                 const res = await fetch("/api/business/getAllBusinesses", {
                     method: "POST",
                     headers: {
@@ -71,26 +79,27 @@ export const DashboardPage = () => {
                     })
                 });
                 const data = await res.json();
-                if(data.status){
+                if (data.status) {
                     setBusinesses(data.businesses);
-                }else{
+                } else {
                     alert(data.message);
                 }
             };
-            if(userID != null && userID !== "none"){
+
+            if (userID != null && userID !== "none") {
                 getUserData();
                 getBusinessList();
             }
-        }catch(error){
+        } catch (error) {
             console.log(error);
         }
     }, [userID]);
 
-    // Get client journeys from database
+    // Fetch client journeys from the database when the products change
     useEffect(() => {
-        try{
+        try {
             setLoading(true);
-            const getProduct = async _ => {
+            const getProduct = async () => {
                 setProducts([]);
                 const res = await fetch("/api/product/getall", {
                     method: "POST",
@@ -143,81 +152,132 @@ export const DashboardPage = () => {
             for (const item of products) {
                 await fetchJourney(item.id, list);
             }
-            setJourneys(list);
-            setLoading(false);
-          } catch (error) {
+        } catch (error) {
             alert(error);
-          }
+        }
+    }, [business.id]);
+
+    // Reset journeys when the second active link changes
+    useEffect(() => {
+        setJourneys([]);
+    }, [activeLink2]);
+
+    // Fetch client journeys based on the products
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const fetchJourney = async (productID) => {
+                    const res = await fetch("/api/clientjourney/get", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                            productID: productID
+                        })
+                    });
+                    const data = await res.json();
+                    console.log(data);
+                    if (data.status) {
+                        return data.clientJourney;
+                    } else {
+                        return null;
+                    }
+                };
+
+                const list = [];
+                for (const item of products) {
+                    list.push(await fetchJourney(item.id));
+                }
+                setJourneys(list);
+                setLoading(false);
+            } catch (error) {
+                alert(error);
+            }
         };
-    
+
         fetchData();
-      }, [products]);
-    
-    if(userID === "none") return window.location.href = "/";
+    }, [products]);
+
+    // Redirect to the home page if the userID is not found
+    if (userID === "none") return window.location.href = "/";
+
+    // Render the dashboard components
     return (
-        <div id = "background" className="background">
+        <div id="background" className="background">
             <div id="bash" className="bash">
                 <Sidebar
-                    loading = {loading}
-                    businesses = {businesses} 
-                    activeLink = {activeLink}   setActiveLink = {setActiveLink} 
-                    activeLink2 = {activeLink2} setActiveLink2 = {setActiveLink2}
+                    loading={loading}
+                    businesses={businesses}
+                    activeLink={activeLink}
+                    setActiveLink={setActiveLink}
+                    activeLink2={activeLink2}
+                    setActiveLink2={setActiveLink2}
                 />
             </div>
             {!loading &&
-            <div>
-                <AccessLimit/>
-                <FutureFeature/>
-                <GenerateProcedure documentName = {business.businessName} />
-                <AccountSetting
-                    user = {user}
-                    setUser = {setUser}
-                />
-                <CreateBusiness businesses = {businesses} setBusinesses = {setBusinesses} userID = {userID} />
-                <CreateClientJourney  
-                    products = {products} setProducts = {setProducts}
-                    journeys = {journeys} setJourneys = {setJourneys}
-                    business = {business}
-                />
-                <CreateProcedure
-                    procedures = {procedures} setProcedures = {setProcedures}
-                />
-                <InviteTeamMember />
-                <div id="dashboard-content" className="dashboard-content">
-                    <div id="dashboard-heading" style={{display: "flex"}}>
-                        <div className="search">
-                            <SearchBar />
+                <div>
+                    {/* Components that might be conditionally displayed */}
+                    <AccessLimit />
+                    <FutureFeature />
+                    <GenerateProcedure documentName={business.businessName} />
+                    <AccountSetting
+                        user={user}
+                        setUser={setUser}
+                    />
+                    <CreateBusiness businesses={businesses} setBusinesses={setBusinesses} userID={userID} />
+                    <CreateClientJourney
+                        products={products} setProducts={setProducts}
+                        journeys={journeys} setJourneys={setJourneys}
+                        business={business}
+                    />
+                    <CreateProcedure
+                        procedures={procedures} setProcedures={setProcedures}
+                    />
+                    <InviteTeamMember />
+
+                    {/* Main dashboard content */}
+                    <div id="dashboard-content" className="dashboard-content">
+                        <div id="dashboard-heading" style={{ display: "flex" }}>
+                            {/* Search bar component */}
+                            <div className="search">
+                                <SearchBar />
+                            </div>
+                            {/* Profile component */}
+                            <div className="profile">
+                                <Profile user={user} />
+                            </div>
                         </div>
-                        <div className="profile">
-                            <Profile user = {user} />
+                        {/* Pane component */}
+                        <div className="pane">
+                            <Pane
+                                business={business} setBusiness={setBusiness}
+                                businesses={businesses} setBusinesses={setBusinesses}
+                                activeLink={activeLink}
+                                activeLink2={activeLink2} setActiveLink2={setActiveLink2}
+                                activeLink3={activeLink3} setActiveLink3={setActiveLink3}
+                                user={user}
+                                journeys={journeys} setJourneys={setJourneys}
+                                procedures={procedures} setProcedures={setProcedures}
+                                policies={policies} setPolicies={setPolicies}
+                            />
                         </div>
-                    </div>
-                    <div className="pane">
-                        <Pane 
-                            business = {business} setBusiness = {setBusiness}
-                            businesses = {businesses} setBusinesses = {setBusinesses} 
-                            activeLink = {activeLink} 
-                            activeLink2 = {activeLink2} setActiveLink2 = {setActiveLink2}
-                            activeLink3 = {activeLink3} setActiveLink3 = {setActiveLink3} 
-                            user = {user} 
-                            journeys = {journeys} setJourneys = {setJourneys}
-                            procedures = {procedures} setProcedures = {setProcedures}
-                            policies = {policies} setPolicies = {setPolicies}
-                        />
                     </div>
                 </div>
-            </div>
             }
         </div>
     );
 }
 
-export const openAccessLimitForm = _ => {
+// Functions to handle form display, might be used elsewhere in the code
+export const openAccessLimitForm = () => {
     document.getElementById("access-limit-form").style.display = "block";
 };
-export const openFutureFeatureWarningForm = _ => {
+
+export const openFutureFeatureWarningForm = () => {
     document.getElementById("future-feature-warning-form").style.display = "block";
 };
+
 export const createNewBusinessForm = (businesses) => {
     // if(businesses.length > 0)
     //     return openAccessLimitForm();
