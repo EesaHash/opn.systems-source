@@ -17,6 +17,7 @@ export const ProceduresDashboard = (props) => {
     const [stage, setStage] = useState("");
     const [updateConfirmation, setUpdateConfirmation] = useState(-1);
     const [deleteConfirmation, setDeleteConfirmation] = useState(-1);
+    const stages = ["awareness", "interest", "evaluation", "decision", "purchase", "implementation", "postPurchase", "retention"];
     
     useEffect(() => {
         const mainTable = document.getElementById("procedure-main-table");
@@ -269,13 +270,19 @@ export const ProceduresDashboard = (props) => {
     const openGenerateProcedureForm = _ => {
         document.getElementById("generateProcedureForm").style.display = "block";
     };
-    const closeGenerateProduceForm = _ => {
+    const closeGenerateProcedureForm = _ => {
         document.getElementById("generateProcedureForm").style.display = "none";
     };
-    const generateProcedure = _ => {
+    const generateProcedure = async _ => {
         const filteredProcedures = procedures.filter(obj => obj.stage !== stages[index]);
         setProcedures(filteredProcedures);
         openGenerateProcedureForm();
+        
+        // const steps = JSON.parse(journey[stages[index]]).steps;
+        // for(let i = 0; i < steps.length; ++i){
+        //     // await generateSingleSOP(steps[i]);
+        //     console.log(steps[i]);
+        // }
         
         fetch("/api/sop/generate_for_stage", {
             method: "POST",
@@ -293,8 +300,31 @@ export const ProceduresDashboard = (props) => {
                 if(data.status){
                     setProcedures(data.sops);
                 }
-                closeGenerateProduceForm();
+                closeGenerateProcedureForm();
             }); 
+    };
+    const generateSingleSOP = async (step) => {
+        try {
+            const response = await fetch("/api/sop/generate_single_for_stage", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    clientJourneyID: journey.id,
+                    statement: step
+                })
+            });
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const data = await response.json();
+            if (data.status) {
+                console.log(data.sop);
+            }
+        } catch (error) {
+            console.log(error);
+        }
     };
     
     // Regenerate SOP

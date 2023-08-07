@@ -91,7 +91,8 @@ clientJourney.getClientJourneyByProductID = async (req, res) => {
 
         // Find the client journey in the database based on the productID
         const clientJourney = await ClientJourney.findOne({ where: { productID } });
-
+        if(!clientJourney)
+            throw (`Client journey not found for product ID: ${productID}`);
         // Get the stage names for the retrieved client journey
         const stageNames = await getStages(clientJourney.id);
 

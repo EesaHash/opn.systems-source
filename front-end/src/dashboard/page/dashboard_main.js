@@ -123,7 +123,7 @@ export const DashboardPage = () => {
     useEffect(() => {
         const fetchData = async () => {
           try {
-            const fetchJourney = async (productID) => {
+            const fetchJourney = async (productID, list) => {
                 const res = await fetch("/api/clientjourney/get", {
                     method: "POST",
                     headers: {
@@ -136,14 +136,12 @@ export const DashboardPage = () => {
                 const data = await res.json();
                 console.log(data);
                 if (data.status) {
-                    return data.clientJourney;
-                } else {
-                    return null;
+                    list.push(data.clientJourney);
                 }
             };
             const list = [];
             for (const item of products) {
-                list.push(await fetchJourney(item.id));
+                await fetchJourney(item.id, list);
             }
             setJourneys(list);
             setLoading(false);

@@ -376,6 +376,39 @@ async function generateSopsForStage(clientJourney, forStage) {
     }
 }
 
+const generateSOPForStage = async (req, res) => {
+    try {
+        const {clientJourneyID, statement} = req.body;
+
+        // Generate a single SOP for the current step/statement
+        const sop = await retrySOP(statement);
+        if (sop == null) {
+            return null;
+        }
+
+        // Save the generated SOP in the database using Sequelize Model.create
+        // await SOP.create({
+        //     title: JSON.stringify(sop.title),
+        //     purpose: JSON.stringify(sop.purpose),
+        //     definitions: JSON.stringify(sop.definitions),
+        //     responsibility: JSON.stringify(sop.responsibility),
+        //     procedure: JSON.stringify(sop.procedure),
+        //     documentation: JSON.stringify(sop.documentation),
+        //     stage: forStage,
+        //     clientJourneyID: clientJourneyID
+        // });
+        return res.status(200).json({
+            status: true,
+            sop,
+        });
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            status: false,
+            message: error
+        });
+    }
+};
 
 async function generateSingleSOP(statement) {
     // Create a parser to extract structured information from the generated output
@@ -438,7 +471,7 @@ async function generateSingleSOP(statement) {
         console.log(error);
         return null;
     }
-}
+};
 
 async function retrySOP(statement) {
     let i = 0;
@@ -455,7 +488,7 @@ async function retrySOP(statement) {
         }
     }
     return sop;
-}
+};
 
 // /**
 //  * Generates a (single) SOP for a given statement/procedure step from the clientJourney
@@ -770,6 +803,7 @@ async function regenerateSingleSOP(previousSOP, request) {
 */
 
 router.post("/generate_for_stage", generateStageSops);
+router.post("/generate_single_for_stage", generateSOPForStage);
 router.post("/getall", getSopsForClientJourney);
 router.post("/get_for_stage", getSopsForStage);
 router.post("/delete_for_stage", deleteSopsForStage);
