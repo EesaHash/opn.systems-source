@@ -4,9 +4,11 @@ import AccessLimitIcon from "../svg/accessLimitIcon";
 import CloseButton from "../svg/closeButton";
 
 export const AccessLimit = _ => {
+    // Close the form when the close button is clicked
     const closeForm = _ => {
         document.getElementById("access-limit-form").style.display = "none";
     };
+    // Return the form with the warning icon, upgrade text, and upgrade plan button
     return(
         <section id="access-limit-form" className="form-popup center form-container warning-pages" style={{display: "none"}}>
             <div>

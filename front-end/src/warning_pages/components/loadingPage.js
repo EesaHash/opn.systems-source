@@ -3,6 +3,7 @@ import "../style/warning_pages.css";
 import { motion } from "framer-motion";
 
 export const loadingPage = (title, subTitle, businessName) => {
+    // Create a style object for the loading page
     const circleStyle = {
         display: "block",
         width: "30px",
@@ -13,11 +14,13 @@ export const loadingPage = (title, subTitle, businessName) => {
         position: "absolute",
         boxSizing: "border-box"
     };
+    // Create a style object for the loading page spin transition
     const spinTransition = {
         repeat: Infinity,
         ease: "linear",
         duration: 1
     };
+    // Return the loading page
     return(
         <div id="loading-page" className="content-form">
             <h2>{title}</h2>

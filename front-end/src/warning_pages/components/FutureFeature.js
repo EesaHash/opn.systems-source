@@ -4,9 +4,12 @@ import BuiltFeatureIcon from "../svg/builtFeatureIcon";
 import CloseButton from "../svg/closeButton";
 
 export const FutureFeature = _ => {
+    // This function will close the form and display a warning message
     const closeForm = _ => {
+        // Get the form element
         document.getElementById("future-feature-warning-form").style.display = "none";
     };
+    // Return the form
     return(
         <section id="future-feature-warning-form" className="form-popup center form-container warning-pages" style={{display: "none"}}>
             <div>
