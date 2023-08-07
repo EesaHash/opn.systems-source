@@ -54,12 +54,14 @@ export const Homepage = _ => {
                     </div>
                 </div>
                 <div className="customer-journey">
-                    <h1>Customizable</h1>
+                    <h1>Customizables</h1>
                     <h2>Customer Journey.</h2>
                     <h3>AI generated. Streamlined SOPs. Continuous improvement.<br/>Your improved operations.</h3>
                     <div className="customer-journey-content">
-                        <div className="customer-journey-content-1"></div>
-                        <div className="customer-journey-content-2"></div>
+                        <div className="customer-journey-content-1">
+                        </div>
+                        <div className="customer-journey-content-2">
+                        </div>
                     </div>
                 </div>
                 <div className="integration">

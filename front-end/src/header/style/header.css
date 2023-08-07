@@ -11,6 +11,7 @@
   background-color: transparent;
   display: flex;
   transition: background-color 0.3s ease;
+  gap: 2vw;
 }
 .menu-bar ul:hover {
   background-color: rgb(0, 0, 0);
