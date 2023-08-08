@@ -10,6 +10,8 @@
 }
 
 .search-container input[type=text] {
+  border-style: solid;
+  border-color: transparent;
   border-radius: 28px;
   font-size: 14px;
   flex: 1;

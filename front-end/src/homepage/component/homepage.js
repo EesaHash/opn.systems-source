@@ -112,14 +112,21 @@ export const Homepage = () => {
                         </div>
                     </div>
                 </div>
-
-                {/* Page 3: Save your time */}
-                <div className="page-3">
-                    <h1>Save your time</h1>
-                    <did className="page-3-sub-title">
-                        <h1 style={{marginRight: "25px"}}>Try</h1>
-                        <h2 style={{marginRight: "25px"}}>opn.systems</h2>
-                        <h1>for free.</h1>
+                <div className="customer-journey">
+                    <h1>Customizables</h1>
+                    <h2>Customer Journey.</h2>
+                    <h3>AI generated. Streamlined SOPs. Continuous improvement.<br/>Your improved operations.</h3>
+                    <div className="customer-journey-content">
+                        <div className="customer-journey-content-1">
+                        </div>
+                        <div className="customer-journey-content-2">
+                        </div>
+                    </div>
+                </div>
+                <div className="integration">
+                    <did className="integration-title">
+                        <h1>Seamless</h1>
+                        <h2>Integration.</h2>
                     </did>
                     <h3>AI generated. Streamlined SOPs. Continuous improvement.<br/>Your improved operations.</h3>
                     <div className="page-3-content">

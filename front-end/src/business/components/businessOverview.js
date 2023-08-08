@@ -6,6 +6,12 @@ import WavingWoman from '../svg/wavingWoman';
 import PhoneIcon from '../svg/phoneIcon';
 import EmailIcon from '../svg/emailIcon';
 import PartyPopper from '../svg/partyPopper';
+import Card from '../svg/card'
+import OpnLogo from '../../dashboard/svg/opnLogo'
+import PHONE from '../svg/PHONE'
+import PHONE2_EMAIL from '../svg/PHONE2_EMAIL'
+import PHONE3_ADD from '../svg/PHONE3_ADD'
+
 
 export const BusinessOverview = (props) => {
     return (
@@ -15,6 +21,29 @@ export const BusinessOverview = (props) => {
                     <text style={{ fontSize: "2.2vw" }}>Welcome to Opn.Systems <PartyPopper /></text>
 
                 </div>
+                {/* <div className="Front">
+                        <div className="Shape">
+                      <Card/></div>
+                      <div className="Frame2080"><OpnLogo/>
+                        <div style={{marginTop:"3.5px"}}>Company Name <div class="tagline">Innovate . Inspire . Impact.</div>
+                      </div>
+                    </div>
+                        <div className="YourNamePosition">
+                            <div className="Position">Designer</div>
+                            <div className="Name">
+                            <span>John</span>
+                            <span className="span"> </span>
+                            <span className="doe">Doe</span>
+                            </div>
+                        </div>
+                        <div className="Contract">
+                            <div className="Address"><PHONE3_ADD/>  35 Toongabbie Road, Toongabbie</div>
+                            <div className="Email"><PHONE2_EMAIL/>  {props.business.keyContact && (props.business.keyContact.email ? props.business.keyContact.email : props.business.keyContact.teamContactEmail)}</div>
+                            <div className="Number"><PHONE/> {props.business.keyContact && props.business.keyContact.phoneNumber}</div>
+                        </div>
+                </div> */}
+
+
                 <div className="container">
                     <div className="message-container">
                         <div className="text"><WavingWoman /> Key Contact Information</div>
@@ -41,6 +70,10 @@ export const BusinessOverview = (props) => {
                 </div>
             </div>
 
+
+           
+            
+
             {/* <div className="teammember" style={{margin:"0 auto 0 auto"}}>
                     {peopleTemplate("male")}
                     {peopleTemplate("female")}
@@ -62,5 +95,6 @@ export const BusinessOverview = (props) => {
                     <button >+ Invite team members</button>
                 </div>  */}
         </div>
+        
     );
 };
