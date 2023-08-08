@@ -128,34 +128,6 @@ export const DashboardPage = () => {
     useEffect(() => {
         setJourneys([]);
     }, [activeLink2]);
-    
-    useEffect(() => {
-        const fetchData = async () => {
-          try {
-            const fetchJourney = async (productID, list) => {
-                const res = await fetch("/api/clientjourney/get", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({
-                        productID: productID
-                    })
-                });
-                const data = await res.json();
-                console.log(data);
-                if (data.status) {
-                    list.push(data.clientJourney);
-                }
-            };
-            const list = [];
-            for (const item of products) {
-                await fetchJourney(item.id, list);
-            }
-        } catch (error) {
-            alert(error);
-        }
-    }, [business.id]);
 
     // Reset journeys when the second active link changes
     useEffect(() => {
@@ -166,7 +138,7 @@ export const DashboardPage = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const fetchJourney = async (productID) => {
+                const fetchJourney = async (productID, list) => {
                     const res = await fetch("/api/clientjourney/get", {
                         method: "POST",
                         headers: {
@@ -179,15 +151,13 @@ export const DashboardPage = () => {
                     const data = await res.json();
                     console.log(data);
                     if (data.status) {
-                        return data.clientJourney;
-                    } else {
-                        return null;
+                        list.push(data.clientJourney);
                     }
                 };
 
                 const list = [];
                 for (const item of products) {
-                    list.push(await fetchJourney(item.id));
+                    await fetchJourney(item.id, list)
                 }
                 setJourneys(list);
                 setLoading(false);
