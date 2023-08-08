@@ -378,25 +378,26 @@ async function generateSopsForStage(clientJourney, forStage) {
 
 const generateSOPForStage = async (req, res) => {
     try {
-        const {clientJourneyID, statement} = req.body;
-
+        const {clientJourneyID, statement, stage} = req.body;
         // Generate a single SOP for the current step/statement
-        const sop = await retrySOP(statement);
+        let sop = await retrySOP(statement);
         if (sop == null) {
             return null;
         }
 
         // Save the generated SOP in the database using Sequelize Model.create
-        // await SOP.create({
-        //     title: JSON.stringify(sop.title),
-        //     purpose: JSON.stringify(sop.purpose),
-        //     definitions: JSON.stringify(sop.definitions),
-        //     responsibility: JSON.stringify(sop.responsibility),
-        //     procedure: JSON.stringify(sop.procedure),
-        //     documentation: JSON.stringify(sop.documentation),
-        //     stage: forStage,
-        //     clientJourneyID: clientJourneyID
-        // });
+        sop = await SOP.create({
+            title: JSON.stringify(sop.title),
+            purpose: JSON.stringify(sop.purpose),
+            definitions: JSON.stringify(sop.definitions),
+            responsibility: JSON.stringify(sop.responsibility),
+            procedure: JSON.stringify(sop.procedure),
+            documentation: JSON.stringify(sop.documentation),
+            stage: stage,
+            clientJourneyID: clientJourneyID
+        });
+        console.log(sop.title);
+        console.log(`[SUCCESS] Successfully generate a SOP for ${clientJourneyID}`);
         return res.status(200).json({
             status: true,
             sop,
@@ -478,7 +479,6 @@ async function retrySOP(statement) {
     let sop = null;
     while (i < 5) {
         sop = await generateSingleSOP(statement);
-        console.log(sop);
         i++;
         if (sop == null || sop.title == null || sop.purpose == null || sop.definitions == null || sop.responsibility == null || sop.documentation == null || sop.procedure == null) {
             continue;

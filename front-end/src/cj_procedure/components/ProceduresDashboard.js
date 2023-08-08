@@ -274,34 +274,37 @@ export const ProceduresDashboard = (props) => {
         document.getElementById("generateProcedureForm").style.display = "none";
     };
     const generateProcedure = async _ => {
-        const filteredProcedures = procedures.filter(obj => obj.stage !== stages[index]);
-        setProcedures(filteredProcedures);
-        openGenerateProcedureForm();
-        
-        // const steps = JSON.parse(journey[stages[index]]).steps;
-        // for(let i = 0; i < steps.length; ++i){
-        //     // await generateSingleSOP(steps[i]);
-        //     console.log(steps[i]);
-        // }
-        
-        fetch("/api/sop/generate_for_stage", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                clientJourneyID: journey.id,
-                stage: index
-            })
-        })
-            .then((res) => { return res.json(); })
-            .then((data) => {
-                console.log(data);
-                if(data.status){
-                    setProcedures(data.sops);
-                }
-                closeGenerateProcedureForm();
-            }); 
+        await deleteSOPs();
+        const steps = JSON.parse(journey[stages[index]]).steps;
+        for(let i = 0; i < steps.length; ++i){
+            await generateSingleSOP(steps[i]);
+        }
+        closeGenerateProcedureForm();
+    };
+    const deleteSOPs = async _ => {
+        try {
+            const response = await fetch("/api/sop/delete_for_stage", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    clientJourneyID: journey.id,
+                    stage: stages[index]
+                })
+            });
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const data = await response.json();
+            openGenerateProcedureForm();
+            if (data.status) {
+                const filteredProcedures = procedures.filter(obj => obj.stage !== stages[index]);
+                setProcedures(filteredProcedures);
+            }
+        } catch (error) {
+            console.log(error);
+        }
     };
     const generateSingleSOP = async (step) => {
         try {
@@ -312,7 +315,8 @@ export const ProceduresDashboard = (props) => {
                 },
                 body: JSON.stringify({
                     clientJourneyID: journey.id,
-                    statement: step
+                    statement: step,
+                    stage: stages[index]
                 })
             });
             if (!response.ok) {
@@ -320,7 +324,10 @@ export const ProceduresDashboard = (props) => {
             }
             const data = await response.json();
             if (data.status) {
-                console.log(data.sop);
+                setProcedures(prevProcedures => {
+                    const updatedProcedures = [...prevProcedures, data.sop];
+                    return updatedProcedures;
+                });
             }
         } catch (error) {
             console.log(error);
