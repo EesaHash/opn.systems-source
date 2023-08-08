@@ -35,7 +35,7 @@ router.post("/", async (req, res) => {
         if (!(user.email_verification)) {
             console.log("Non-active account, email verification required!");
             // Send an email verification link to the user's email address
-            sendEmailConfirmation(user.email);
+            await sendEmailConfirmation(user.email);
             return res.status(400).json({
                 status: false,
                 message: "Your account is not yet active. Please verify your email to activate your account via the link sent in your email!"

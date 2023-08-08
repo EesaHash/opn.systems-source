@@ -6,12 +6,6 @@ import WavingWoman from '../svg/wavingWoman';
 import PhoneIcon from '../svg/phoneIcon';
 import EmailIcon from '../svg/emailIcon';
 import PartyPopper from '../svg/partyPopper';
-import Card from '../svg/card'
-import OpnLogo from '../../dashboard/svg/opnLogo'
-import PHONE from '../svg/PHONE'
-import PHONE2_EMAIL from '../svg/PHONE2_EMAIL'
-import PHONE3_ADD from '../svg/PHONE3_ADD'
-
 
 export const BusinessOverview = (props) => {
     return (

@@ -3,7 +3,6 @@ import "../style/pane.css";
 import { BusinessDashboard } from "../../business/components/businessDashboard";
 import EmailIcon from '../svg/emailIcon';
 import ChatIcon from '../svg/chatIcon';
-import BusinessIcon2 from '../svg/businessIcon2';
 import CreateIcon from '@mui/icons-material/Create';
 import PartyPopper from '../svg/partyPopper';
 import WorkflowThing from '../svg/workflowThing';

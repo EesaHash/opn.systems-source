@@ -22,7 +22,7 @@ router.post("/", async (req, res) => {
         }
 
         // Send email verification to the user's email address
-        sendEmailConfirmation(email);
+        await sendEmailConfirmation(email);
 
         // Send email invitations to the provided list of email addresses
         for (let i = 0; i < emails.length; ++i) {
