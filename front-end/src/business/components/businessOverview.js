@@ -5,12 +5,17 @@ import PeopleIcon from '../svg/peopleIcon';
 import WavingWoman from '../svg/wavingWoman';
 import PhoneIcon from '../svg/phoneIcon';
 import EmailIcon from '../svg/emailIcon';
-import Card from '../svg/card';
-import OpnLogo from '../../dashboard/svg/opnLogo';
-import PHONE3_ADD from '../svg/PHONE3_ADD';
-import PHONE2_EMAIL from '../svg/PHONE2_EMAIL';
-import PHONE from '../svg/PHONE';
 import PartyPopper from '../svg/partyPopper';
+// eslint-disable-next-line
+import Card from '../svg/card';
+// eslint-disable-next-line
+import OpnLogo from '../../dashboard/svg/opnLogo';
+// eslint-disable-next-line
+import PHONE3_ADD from '../svg/PHONE3_ADD';
+// eslint-disable-next-line
+import PHONE2_EMAIL from '../svg/PHONE2_EMAIL';
+// eslint-disable-next-line
+import PHONE from '../svg/PHONE';
 
 export const BusinessOverview = (props) => {
     return (

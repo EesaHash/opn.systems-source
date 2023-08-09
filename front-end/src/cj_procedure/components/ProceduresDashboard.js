@@ -17,7 +17,6 @@ export const ProceduresDashboard = (props) => {
     const [stage, setStage] = useState("");
     const [updateConfirmation, setUpdateConfirmation] = useState(-1);
     const [deleteConfirmation, setDeleteConfirmation] = useState(-1);
-    const stages = ["awareness", "interest", "evaluation", "decision", "purchase", "implementation", "postPurchase", "retention"];
     
     useEffect(() => {
         const mainTable = document.getElementById("procedure-main-table");
