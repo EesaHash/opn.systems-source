@@ -9,7 +9,7 @@ app.use(express.json());
 // ===== CONNECTION TO DATABASE =====
 require("./configuration/DatabaseConfig").connectDatabase();
 
-// ACCOUNT APIs CONTROLLERS
+// ===== ACCOUNT APIs CONTROLLERS =====
 app.use("/api/login", require("./controllers/account/loginController"));
 app.use("/api/signup", require("./controllers/account/registrationController"));
 app.use("/api/authenticatelogin", require("./controllers/account/AuthenticateLoginController"));
@@ -21,18 +21,18 @@ app.use("/api/updateuserdata", require("./controllers/account/UpdateUserDataCont
 app.use("/api/updatepassword", require("./controllers/account/UpdatePasswordController"));
 app.use("/api/resetpassword", require("./controllers/account/ResetPasswordController"));
 
-// TEAM MEMBERS APIs CONTROLLERS
+// ===== TEAM MEMBERS APIs CONTROLLERS =====
 app.use("/api/teammember/getbusinessteam", require("./controllers/team/getTeamMemberController"));
 
-// BUSINESS APIs CONTROLLERS
+// ===== BUSINESS APIs CONTROLLERS =====
 app.use("/api/business", require("./controllers/business/businessController"));
 app.use("/api/clientjourney", require("./controllers/business/clientJourneyController"));
 app.use("/api/sop", require("./controllers/business/sopController"));
 
-// PRODUCT APIs CONTROLLERS
+// ===== PRODUCT APIs CONTROLLERS =====
 app.use("/api/product/getall", require("./controllers/product/getAllProductController"));
 
-// CONNECTION TO FRONTEND BUILD
+// ===== CONNECTION TO FRONTEND BUILD =====
 app.use(express.static(path.join(__dirname, 'build')));
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'build', 'index.html'));
