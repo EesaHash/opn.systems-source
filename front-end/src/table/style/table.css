@@ -225,6 +225,7 @@
 
 .main-table, .secondary-table, .folder-list, .folder-list2, .fourth-table, .list-table4 {
   width: 100%;
+  overflow: scroll;
   position: relative;
 }
 .main-table h1, .secondary-table h1, .folder-list h1, .folder-list2 h1, .fourth-table h1, .list-table4 h1 {

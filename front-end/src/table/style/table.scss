@@ -218,7 +218,7 @@
 }
 .main-table, .secondary-table, .folder-list, .folder-list2, .fourth-table, .list-table4{
     width: 100%;
-    // overflow: scroll;
+    overflow: scroll;
     position: relative;
     & h1{
         font-size: 32px;
