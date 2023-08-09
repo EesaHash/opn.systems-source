@@ -283,6 +283,7 @@ export const ProceduresDashboard = (props) => {
     };
     const deleteSOPs = async _ => {
         try {
+            openGenerateProcedureForm();
             const response = await fetch("/api/sop/delete_for_stage", {
                 method: "POST",
                 headers: {
@@ -297,7 +298,6 @@ export const ProceduresDashboard = (props) => {
                 throw new Error('Network response was not ok');
             }
             const data = await response.json();
-            openGenerateProcedureForm();
             if (data.status) {
                 const filteredProcedures = procedures.filter(obj => obj.stage !== stages[index]);
                 setProcedures(filteredProcedures);

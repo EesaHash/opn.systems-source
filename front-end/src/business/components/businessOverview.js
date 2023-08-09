@@ -5,6 +5,11 @@ import PeopleIcon from '../svg/peopleIcon';
 import WavingWoman from '../svg/wavingWoman';
 import PhoneIcon from '../svg/phoneIcon';
 import EmailIcon from '../svg/emailIcon';
+import Card from '../svg/card';
+import OpnLogo from '../../dashboard/svg/opnLogo';
+import PHONE3_ADD from '../svg/PHONE3_ADD';
+import PHONE2_EMAIL from '../svg/PHONE2_EMAIL';
+import PHONE from '../svg/PHONE';
 import PartyPopper from '../svg/partyPopper';
 
 export const BusinessOverview = (props) => {
@@ -23,7 +28,7 @@ export const BusinessOverview = (props) => {
                       </div>
                     </div>
                         <div className="YourNamePosition">
-                            <div className="Position">Designer</div>
+                            <div className="Position">Business Owner</div>
                             <div className="Name">
                             <span>John</span>
                             <span className="span"> </span>
