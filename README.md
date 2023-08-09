@@ -1,5 +1,5 @@
 # **opn.systems-source**
-- OpnSystems Code Repository
+- Opn.Systems Code Repository
 
 ## **Technology required to be installed:**
  > ### 1. NPM
