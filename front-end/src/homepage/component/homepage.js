@@ -112,33 +112,6 @@ export const Homepage = () => {
                         </div>
                     </div>
                 </div>
-                <div className="customer-journey">
-                    <h1>Customizables</h1>
-                    <h2>Customer Journey.</h2>
-                    <h3>AI generated. Streamlined SOPs. Continuous improvement.<br/>Your improved operations.</h3>
-                    <div className="customer-journey-content">
-                        <div className="customer-journey-content-1">
-                        </div>
-                        <div className="customer-journey-content-2">
-                        </div>
-                    </div>
-                </div>
-                <div className="integration">
-                    <did className="integration-title">
-                        <h1>Seamless</h1>
-                        <h2>Integration.</h2>
-                    </did>
-                    <h3>AI generated. Streamlined SOPs. Continuous improvement.<br/>Your improved operations.</h3>
-                    <div className="page-3-content">
-                        <div className="page-3-content-1"></div>
-                        <div className="page-3-content-2"></div>
-                        <div className="page-3-content-3"></div>
-                        <div className="page-3-content-4" style={{marginRight: "0"}}></div>
-                    </div>
-                    <div>
-                        <button onClick={e => window.location.href = "signup"}>{`Start your free plan >`}</button>
-                    </div>
-                </div>
 
                 {/* Page 4: More plans */}
                 <div className="page-4">
